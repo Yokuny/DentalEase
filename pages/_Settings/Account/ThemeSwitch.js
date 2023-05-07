@@ -3,10 +3,10 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
-import RTLSwitch from "@/components/_App/_ControlPanelModal/RTLSwitch";
-import DarkAndLightMode from "@/components/_App/_ControlPanelModal/DarkAndLightMode";
-import OnlyLeftSidebarDarkMode from "@/components/_App/_ControlPanelModal/OnlyLeftSidebarDarkMode";
-import OnlyTopNavbarDark from "@/components/_App/_ControlPanelModal/OnlyTopNavbarDark";
+import RTLSwitch from "../../_App/_ControlPanelModal/RTLSwitch";
+import DarkAndLightMode from "../../_App/_ControlPanelModal/DarkAndLightMode";
+import OnlyLeftSidebarDarkMode from "../../_App/_ControlPanelModal/OnlyLeftSidebarDarkMode";
+import OnlyTopNavbarDark from "../../_App/_ControlPanelModal/OnlyTopNavbarDark";
 
 export default function ThemeSwitch() {
   return (

@@ -1,7 +1,6 @@
 {
-  "name": "admash",
-  "version": "1.4.0",
-  "private": true,
+  "name": "dental-ease",
+  "version": "0.1.0",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -24,7 +23,7 @@
     "dayjs": "^1.11.7",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.5",
-    "next": "^13.3.0",
+    "next": "^13.4.1",
     "notistack": "^2.0.8",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.0",
