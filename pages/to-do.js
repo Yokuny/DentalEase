@@ -310,7 +310,7 @@ const ToDoLists = () => {
               fontSize: 18,
               fontWeight: 500,
             }}>
-            My Tasks
+            Minhas tarefas
           </Typography>
 
           <Button
@@ -324,7 +324,7 @@ const ToDoLists = () => {
               padding: "12px 20px",
               color: "#fff !important",
             }}>
-            <AddIcon sx={{ position: "relative", top: "-1px" }} className="mr-5px" /> Add Task
+            <AddIcon sx={{ position: "relative", top: "-1px" }} className="mr-5px" /> Adicionar tarefa
           </Button>
         </Box>
 
@@ -341,7 +341,7 @@ const ToDoLists = () => {
                     borderBottom: "1px solid #F7FAFF",
                     fontSize: "13.5px",
                   }}>
-                  Name
+                  Nome
                 </TableCell>
 
                 <TableCell
@@ -349,7 +349,7 @@ const ToDoLists = () => {
                     borderBottom: "1px solid #F7FAFF",
                     fontSize: "13.5px",
                   }}>
-                  Assigned
+                  Atribuição
                 </TableCell>
 
                 <TableCell
@@ -357,7 +357,7 @@ const ToDoLists = () => {
                     borderBottom: "1px solid #F7FAFF",
                     fontSize: "13.5px",
                   }}>
-                  Start Date
+                  Início
                 </TableCell>
 
                 <TableCell
@@ -365,16 +365,7 @@ const ToDoLists = () => {
                     borderBottom: "1px solid #F7FAFF",
                     fontSize: "13.5px",
                   }}>
-                  End Date
-                </TableCell>
-
-                <TableCell
-                  align="center"
-                  sx={{
-                    borderBottom: "1px solid #F7FAFF",
-                    fontSize: "13.5px",
-                  }}>
-                  Status
+                  Término
                 </TableCell>
 
                 <TableCell
@@ -383,7 +374,7 @@ const ToDoLists = () => {
                     borderBottom: "1px solid #F7FAFF",
                     fontSize: "13.5px",
                   }}>
-                  Completion
+                  Estado
                 </TableCell>
 
                 <TableCell
@@ -392,7 +383,16 @@ const ToDoLists = () => {
                     borderBottom: "1px solid #F7FAFF",
                     fontSize: "13.5px",
                   }}>
-                  Priority
+                  Progresso
+                </TableCell>
+
+                <TableCell
+                  align="center"
+                  sx={{
+                    borderBottom: "1px solid #F7FAFF",
+                    fontSize: "13.5px",
+                  }}>
+                  Prioridade
                 </TableCell>
 
                 <TableCell
@@ -401,7 +401,7 @@ const ToDoLists = () => {
                     borderBottom: "1px solid #F7FAFF",
                     fontSize: "13.5px",
                   }}>
-                  Action
+                  Ação
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -562,7 +562,7 @@ const ToDoLists = () => {
                 fontWeight: "500",
                 fontSize: "20px",
               }}>
-              Add Task
+              Adicionar tarefa
             </Typography>
 
             <IconButton aria-label="remove" size="small" onClick={handleClose} className="modal-close">
@@ -587,7 +587,7 @@ const ToDoLists = () => {
                       fontSize: "14px",
                       mb: "12px",
                     }}>
-                    Task
+                    Tarefa
                   </Typography>
 
                   <TextField
@@ -596,7 +596,7 @@ const ToDoLists = () => {
                     required
                     fullWidth
                     id="task"
-                    label="Task"
+                    label="Tarefa"
                     autoFocus
                     InputProps={{
                       style: { borderRadius: 8 },
@@ -613,7 +613,7 @@ const ToDoLists = () => {
                       fontSize: "14px",
                       mb: "12px",
                     }}>
-                    Member
+                    Menbro
                   </Typography>
 
                   <TextField
@@ -638,7 +638,7 @@ const ToDoLists = () => {
                       fontSize: "14px",
                       mb: "12px",
                     }}>
-                    Start Date
+                    Início
                   </Typography>
 
                   <TextField
@@ -663,7 +663,7 @@ const ToDoLists = () => {
                       fontSize: "14px",
                       mb: "12px",
                     }}>
-                    End Date
+                    Término
                   </Typography>
 
                   <TextField
@@ -688,7 +688,7 @@ const ToDoLists = () => {
                       fontSize: "14px",
                       mb: "12px",
                     }}>
-                    Status
+                    Estado
                   </Typography>
 
                   <TextField
@@ -697,7 +697,7 @@ const ToDoLists = () => {
                     required
                     fullWidth
                     id="status"
-                    label="Status"
+                    label="Estado"
                     autoFocus
                     InputProps={{
                       style: { borderRadius: 8 },
@@ -713,7 +713,7 @@ const ToDoLists = () => {
                       fontSize: "14px",
                       mb: "12px",
                     }}>
-                    Completion
+                    Progresso
                   </Typography>
 
                   <TextField
@@ -738,7 +738,7 @@ const ToDoLists = () => {
                       fontSize: "14px",
                       mb: "12px",
                     }}>
-                    Priority
+                    Prioridade
                   </Typography>
 
                   <TextField
@@ -747,7 +747,7 @@ const ToDoLists = () => {
                     required
                     fullWidth
                     id="priority"
-                    label="High/medium/low"
+                    label="alta / medio / baixo"
                     autoFocus
                     InputProps={{
                       style: { borderRadius: 8 },
@@ -777,7 +777,7 @@ const ToDoLists = () => {
                       }}
                       className="mr-5px"
                     />{" "}
-                    Cancel
+                    Cancelar
                   </Button>
 
                   <Button
