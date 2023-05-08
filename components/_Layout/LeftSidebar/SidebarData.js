@@ -21,13 +21,38 @@ import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 export const SidebarData = [
   {
     title: "Agenda",
-    path: "/Schedule",
+    path: "/schedule",
     icon: <CalendarTodayIcon />,
   },
   {
     title: "Notificações",
-    path: "/Notification/",
+    path: "/notification/",
     icon: <NotificationsNoneIcon />,
+  },
+  {
+    title: "Configurações",
+    path: "/settings/account/",
+    icon: <SettingsIcon />,
+    iconClosed: <KeyboardArrowRightIcon />,
+    iconOpened: <KeyboardArrowDownIcon />,
+    subNav: [
+      {
+        title: "Conta",
+        path: "/settings/account/",
+      },
+      {
+        title: "Segurança",
+        path: "/settings/security/",
+      },
+      {
+        title: "Tema",
+        path: "/settings/theme/",
+      },
+      {
+        title: "Sair",
+        path: "/authentication/logout/",
+      },
+    ],
   },
   {
     title: "Painel",
@@ -85,7 +110,6 @@ export const SidebarData = [
       },
     ],
   },
-
   {
     title: "Transações",
     path: "/pages/invoice/",
@@ -96,31 +120,6 @@ export const SidebarData = [
       {
         title: "Ultima transação",
         path: "/pages/invoice-details/",
-      },
-    ],
-  },
-  {
-    title: "Configurações",
-    path: "/settings/account/",
-    icon: <SettingsIcon />,
-    iconClosed: <KeyboardArrowRightIcon />,
-    iconOpened: <KeyboardArrowDownIcon />,
-    subNav: [
-      {
-        title: "Conta",
-        path: "/settings/account/",
-      },
-      {
-        title: "Segurança",
-        path: "/settings/security/",
-      },
-      {
-        title: "Tema",
-        path: "/settings/theme/",
-      },
-      {
-        title: "Sair",
-        path: "/authentication/logout/",
       },
     ],
   },
