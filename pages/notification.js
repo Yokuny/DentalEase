@@ -226,29 +226,29 @@ export default function NotificationTable() {
               fontSize: 16,
               fontWeight: 500,
             }}>
-            Notification List
+            Lista de notificações
           </Typography>
 
           <Box>
-            <Tooltip title="Print">
+            <Tooltip title="Imprimir">
               <IconButton size="small" sx={{ background: "#F2F6F8" }} className="ml-5px">
                 <PrintIcon fontSize="small" />
               </IconButton>
             </Tooltip>
 
-            <Tooltip title="Delete">
+            <Tooltip title="Deletar">
               <IconButton size="small" sx={{ background: "#F2F6F8" }} className="ml-5px">
                 <DeleteIcon fontSize="small" />
               </IconButton>
             </Tooltip>
 
-            <Tooltip title="Report Spam">
+            <Tooltip title="Reportar Spam">
               <IconButton size="small" sx={{ background: "#F2F6F8" }} className="ml-5px">
                 <ErrorOutlineIcon fontSize="small" />
               </IconButton>
             </Tooltip>
 
-            <Tooltip title="More...">
+            <Tooltip title="Mais ...">
               <IconButton
                 onClick={handleClick}
                 size="small"
@@ -363,7 +363,7 @@ export default function NotificationTable() {
                   page={page}
                   SelectProps={{
                     inputProps: {
-                      "aria-label": "rows per page",
+                      "aria-label": "Rows per page",
                     },
                     native: true,
                   }}

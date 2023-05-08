@@ -55,6 +55,28 @@ export const SidebarData = [
     ],
   },
   {
+    title: "Apps",
+    path: "/chat/",
+    icon: <LayersIcon />,
+    iconClosed: <KeyboardArrowRightIcon />,
+    iconOpened: <KeyboardArrowDownIcon />,
+
+    subNav: [
+      {
+        title: "Chat",
+        path: "/chat/",
+      },
+      {
+        title: "Tarefas",
+        path: "/to-do/",
+      },
+      {
+        title: "Calendario",
+        path: "/calendar/",
+      },
+    ],
+  },
+  {
     title: "Painel",
     path: "/",
     icon: <LineAxisIcon />,
@@ -72,28 +94,6 @@ export const SidebarData = [
       {
         title: "Project Management",
         path: "/project-management/",
-      },
-    ],
-  },
-  {
-    title: "Apps",
-    path: "/apps/chat/",
-    icon: <LayersIcon />,
-    iconClosed: <KeyboardArrowRightIcon />,
-    iconOpened: <KeyboardArrowDownIcon />,
-
-    subNav: [
-      {
-        title: "Chat",
-        path: "/apps/chat/",
-      },
-      {
-        title: "Tarefas",
-        path: "/apps/to-do/",
-      },
-      {
-        title: "Calendario",
-        path: "/apps/calendar/",
       },
     ],
   },

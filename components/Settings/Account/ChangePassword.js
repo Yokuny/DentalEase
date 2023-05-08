@@ -42,7 +42,7 @@ export default function ChangePassword() {
                   mb: "10px",
                   display: "block",
                 }}>
-                Senha Anterior
+                Senha anterior
               </Typography>
               <TextField
                 autoComplete="old-password*"
@@ -63,7 +63,7 @@ export default function ChangePassword() {
                   mb: "10px",
                   display: "block",
                 }}>
-                Nova Senha
+                Nova senha
               </Typography>
               <TextField
                 autoComplete="new-password*"
@@ -84,7 +84,7 @@ export default function ChangePassword() {
                   mb: "10px",
                   display: "block",
                 }}>
-                Confirme Sua Senha
+                Confirme sua senha
               </Typography>
               <TextField
                 autoComplete="confirm-password*"

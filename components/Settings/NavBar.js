@@ -11,13 +11,13 @@ const NavBar = () => {
       <nav className={styles.topNavStyle}>
         <ul>
           <li className={router.pathname == "/settings/account" ? styles.active : ""}>
-            <Link href="/settings/account">Account</Link>
+            <Link href="/settings/account">Conta</Link>
           </li>
           <li className={router.pathname == "/settings/security" ? styles.active : ""}>
-            <Link href="/settings/security">Security</Link>
+            <Link href="/settings/security">Segurança</Link>
           </li>
           <li className={router.pathname == "/settings/theme" ? styles.active : ""}>
-            <Link href="/settings/theme">Theme</Link>
+            <Link href="/settings/theme">Tema</Link>
           </li>
         </ul>
       </nav>
