@@ -18,7 +18,7 @@ import "../styles/leftSidebarDark.css";
 import theme from "../styles/theme";
 
 import { ThemeProvider, CssBaseline } from "@mui/material";
-import Layout from "./_App/Layout";
+import Layout from "@/components/_Layout/Layout";
 
 function MyApp({ Component, pageProps }) {
   return (
