@@ -32,7 +32,12 @@ import { styled } from "@mui/material/styles";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import CloseIcon from "@mui/icons-material/Close";
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+import TotalUsers from "@/components/Task/TotalUsers";
+import CompletedTasks from "@/components/Task/CompletedTasks";
+import TasksPerformance from "@/components/Task/TasksPerformance";
 
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 function BootstrapDialogTitle(props) {
   const { children, onClose, ...other } = props;
 
@@ -249,7 +254,7 @@ const rows = [
   ),
 ].sort((a, b) => (a.name < b.name ? -1 : 1));
 
-const ToDoLists = () => {
+const Task = () => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(8);
 
@@ -287,6 +292,22 @@ const ToDoLists = () => {
 
   return (
     <>
+      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1, lg: 1, xl: 2 }}>
+        <Grid item xs={12} md={12} lg={6} xl={4}>
+          {/* TotalUsers */}
+          <TotalUsers />
+        </Grid>
+
+        <Grid item xs={12} md={12} lg={6} xl={4}>
+          {/* CompletedTasks */}
+          <CompletedTasks />
+        </Grid>
+
+        <Grid item xs={12} md={12} lg={12} xl={4}>
+          {/* TasksPerformance */}
+          <TasksPerformance />
+        </Grid>
+      </Grid>
       <Card
         sx={{
           boxShadow: "none",
@@ -821,4 +842,4 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-export default ToDoLists;
+export default Task;
