@@ -21,7 +21,7 @@ import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 export const SidebarData = [
   {
     title: "Agenda",
-    path: "/schedule",
+    path: "/",
     icon: <CalendarTodayIcon />,
   },
   {
@@ -77,195 +77,195 @@ export const SidebarData = [
     ],
   },
   {
-    title: "Painel",
-    path: "/",
-    icon: <LineAxisIcon />,
-    iconClosed: <KeyboardArrowRightIcon />,
-    iconOpened: <KeyboardArrowDownIcon />,
-    subNav: [
-      {
-        title: "eCommerce",
-        path: "/ecommerce/",
-      },
-      {
-        title: "Analytics",
-        path: "/analytics/",
-      },
-      {
-        title: "Project Management",
-        path: "/project-management/",
-      },
-    ],
-  },
-  {
     title: "Contatos",
-    path: "/contact-list/members-list/",
+    path: "/contact-list/",
     icon: <PostAddIcon />,
     iconClosed: <KeyboardArrowRightIcon />,
     iconOpened: <KeyboardArrowDownIcon />,
     subNav: [
       {
         title: "Equipe",
-        path: "/contact-list/",
+        path: "/members-list/",
       },
     ],
   },
-  {
-    title: "Transações",
-    path: "/pages/invoice/",
-    icon: <ContentCopyIcon />,
-    iconClosed: <KeyboardArrowRightIcon />,
-    iconOpened: <KeyboardArrowDownIcon />,
-    subNav: [
-      {
-        title: "Ultima transação",
-        path: "/pages/invoice-details/",
-      },
-    ],
-  },
-  {
-    title: "UI Elements",
-    path: "/ui-elements/alerts/",
-    icon: <ViewQuiltIcon />,
-    iconClosed: <KeyboardArrowRightIcon />,
-    iconOpened: <KeyboardArrowDownIcon />,
-    subNav: [
-      {
-        title: "Alerts",
-        path: "/ui-elements/alerts/",
-      },
-      {
-        title: "Autocomplete",
-        path: "/ui-elements/autocomplete/",
-      },
-      {
-        title: "Avatar",
-        path: "/ui-elements/avatar/",
-      },
-      {
-        title: "Badge",
-        path: "/ui-elements/badge/",
-      },
-      {
-        title: "Buttons",
-        path: "/ui-elements/buttons/",
-      },
-      {
-        title: "Cards",
-        path: "/ui-elements/cards/",
-      },
-      {
-        title: "Checkbox",
-        path: "/ui-elements/checkbox/",
-      },
-      {
-        title: "Swiper Slider",
-        path: "/ui-elements/swiper-slider/",
-      },
-      {
-        title: "Radio",
-        path: "/ui-elements/radio/",
-      },
-      {
-        title: "Rating",
-        path: "/ui-elements/rating/",
-      },
-      {
-        title: "Select",
-        path: "/ui-elements/select/",
-      },
-      {
-        title: "Slider",
-        path: "/ui-elements/slider/",
-      },
-      {
-        title: "Switch",
-        path: "/ui-elements/switch/",
-      },
-      {
-        title: "Chip",
-        path: "/ui-elements/chip/",
-      },
-      {
-        title: "List",
-        path: "/ui-elements/list/",
-      },
-      {
-        title: "Modal",
-        path: "/ui-elements/modal/",
-      },
-      {
-        title: "Table",
-        path: "/ui-elements/table/",
-      },
-      {
-        title: "Tooltip",
-        path: "/ui-elements/tooltip/",
-      },
-      {
-        title: "Progress",
-        path: "/ui-elements/progress/",
-      },
-      {
-        title: "Skeleton",
-        path: "/ui-elements/skeleton/",
-      },
-      {
-        title: "Snackbar",
-        path: "/ui-elements/snackbar/",
-      },
-      {
-        title: "Accordion",
-        path: "/ui-elements/accordion/",
-      },
-      {
-        title: "Pagination",
-        path: "/ui-elements/pagination/",
-      },
-      {
-        title: "Stepper",
-        path: "/ui-elements/stepper/",
-      },
-      {
-        title: "Tabs",
-        path: "/ui-elements/tabs/",
-      },
-      {
-        title: "Image List",
-        path: "/ui-elements/image-list/",
-      },
-      {
-        title: "Transitions",
-        path: "/ui-elements/transitions/",
-      },
-    ],
-  },
-  {
-    title: "Forms",
-    path: "/forms/form-layouts/",
-    icon: <CheckBoxOutlineBlankIcon />,
-    iconClosed: <KeyboardArrowRightIcon />,
-    iconOpened: <KeyboardArrowDownIcon />,
+  // {
+  //   title: "Painel",
+  //   path: "/as",
+  //   icon: <LineAxisIcon />,
+  //   iconClosed: <KeyboardArrowRightIcon />,
+  //   iconOpened: <KeyboardArrowDownIcon />,
+  //   subNav: [
+  //     {
+  //       title: "eCommerce",
+  //       path: "/ecommerce/",
+  //     },
+  //     {
+  //       title: "Analytics",
+  //       path: "/analytics/",
+  //     },
+  //     {
+  //       title: "Project Management",
+  //       path: "/project-management/",
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: "Transações",
+  //   path: "/pages/invoice/",
+  //   icon: <ContentCopyIcon />,
+  //   iconClosed: <KeyboardArrowRightIcon />,
+  //   iconOpened: <KeyboardArrowDownIcon />,
+  //   subNav: [
+  //     {
+  //       title: "Ultima transação",
+  //       path: "/pages/invoice-details/",
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: "UI Elements",
+  //   path: "/ui-elements/alerts/",
+  //   icon: <ViewQuiltIcon />,
+  //   iconClosed: <KeyboardArrowRightIcon />,
+  //   iconOpened: <KeyboardArrowDownIcon />,
+  //   subNav: [
+  //     {
+  //       title: "Alerts",
+  //       path: "/ui-elements/alerts/",
+  //     },
+  //     {
+  //       title: "Autocomplete",
+  //       path: "/ui-elements/autocomplete/",
+  //     },
+  //     {
+  //       title: "Avatar",
+  //       path: "/ui-elements/avatar/",
+  //     },
+  //     {
+  //       title: "Badge",
+  //       path: "/ui-elements/badge/",
+  //     },
+  //     {
+  //       title: "Buttons",
+  //       path: "/ui-elements/buttons/",
+  //     },
+  //     {
+  //       title: "Cards",
+  //       path: "/ui-elements/cards/",
+  //     },
+  //     {
+  //       title: "Checkbox",
+  //       path: "/ui-elements/checkbox/",
+  //     },
+  //     {
+  //       title: "Swiper Slider",
+  //       path: "/ui-elements/swiper-slider/",
+  //     },
+  //     {
+  //       title: "Radio",
+  //       path: "/ui-elements/radio/",
+  //     },
+  //     {
+  //       title: "Rating",
+  //       path: "/ui-elements/rating/",
+  //     },
+  //     {
+  //       title: "Select",
+  //       path: "/ui-elements/select/",
+  //     },
+  //     {
+  //       title: "Slider",
+  //       path: "/ui-elements/slider/",
+  //     },
+  //     {
+  //       title: "Switch",
+  //       path: "/ui-elements/switch/",
+  //     },
+  //     {
+  //       title: "Chip",
+  //       path: "/ui-elements/chip/",
+  //     },
+  //     {
+  //       title: "List",
+  //       path: "/ui-elements/list/",
+  //     },
+  //     {
+  //       title: "Modal",
+  //       path: "/ui-elements/modal/",
+  //     },
+  //     {
+  //       title: "Table",
+  //       path: "/ui-elements/table/",
+  //     },
+  //     {
+  //       title: "Tooltip",
+  //       path: "/ui-elements/tooltip/",
+  //     },
+  //     {
+  //       title: "Progress",
+  //       path: "/ui-elements/progress/",
+  //     },
+  //     {
+  //       title: "Skeleton",
+  //       path: "/ui-elements/skeleton/",
+  //     },
+  //     {
+  //       title: "Snackbar",
+  //       path: "/ui-elements/snackbar/",
+  //     },
+  //     {
+  //       title: "Accordion",
+  //       path: "/ui-elements/accordion/",
+  //     },
+  //     {
+  //       title: "Pagination",
+  //       path: "/ui-elements/pagination/",
+  //     },
+  //     {
+  //       title: "Stepper",
+  //       path: "/ui-elements/stepper/",
+  //     },
+  //     {
+  //       title: "Tabs",
+  //       path: "/ui-elements/tabs/",
+  //     },
+  //     {
+  //       title: "Image List",
+  //       path: "/ui-elements/image-list/",
+  //     },
+  //     {
+  //       title: "Transitions",
+  //       path: "/ui-elements/transitions/",
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: "Forms",
+  //   path: "/forms/form-layouts/",
+  //   icon: <CheckBoxOutlineBlankIcon />,
+  //   iconClosed: <KeyboardArrowRightIcon />,
+  //   iconOpened: <KeyboardArrowDownIcon />,
 
-    subNav: [
-      {
-        title: "Basic Elements",
-        path: "/forms/form-layouts/",
-      },
-      {
-        title: "Advanced Elements",
-        path: "/forms/advanced-elements/",
-      },
-      {
-        title: "Editors",
-        path: "/forms/editors/",
-      },
-      {
-        title: "File Uploader",
-        path: "/forms/file-uploader/",
-      },
-    ],
-  },
+  //   subNav: [
+  //     {
+  //       title: "Basic Elements",
+  //       path: "/forms/form-layouts/",
+  //     },
+  //     {
+  //       title: "Advanced Elements",
+  //       path: "/forms/advanced-elements/",
+  //     },
+  //     {
+  //       title: "Editors",
+  //       path: "/forms/editors/",
+  //     },
+  //     {
+  //       title: "File Uploader",
+  //       path: "/forms/file-uploader/",
+  //     },
+  //   ],
+  // },
 
   // {
   //   title: "Authentication ROTAS UNICAS",

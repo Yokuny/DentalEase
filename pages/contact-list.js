@@ -1,7 +1,6 @@
-import React from "react";
+import * as React from "react";
 import { Box, Typography } from "@mui/material";
 import Card from "@mui/material/Card";
-import IconButton from "@mui/material/IconButton";
 import PropTypes from "prop-types";
 import { useTheme } from "@mui/material/styles";
 import Table from "@mui/material/Table";
@@ -13,25 +12,40 @@ import TableFooter from "@mui/material/TableFooter";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import IconButton from "@mui/material/IconButton";
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
-import Tooltip from "@mui/material/Tooltip";
 import Grid from "@mui/material/Grid";
+import Tooltip from "@mui/material/Tooltip";
 import DeleteIcon from "@mui/icons-material/Delete";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
+import Backdrop from "@mui/material/Backdrop";
 import Button from "@mui/material/Button";
+import Fade from "@mui/material/Fade";
+import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
 import AddIcon from "@mui/icons-material/Add";
 import ClearIcon from "@mui/icons-material/Clear";
-import Avatar from "@mui/material/Avatar";
 import Checkbox from "@mui/material/Checkbox";
-const label = { inputProps: { "aria-label": "Checkbox demo" } };
 import { styled } from "@mui/material/styles";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import CloseIcon from "@mui/icons-material/Close";
+import Image from "next/image";
+
+const label = { inputProps: { "aria-label": "Checkbox demo" } };
+
+// Create new user Modal
+const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+  "& .MuiDialogContent-root": {
+    padding: theme.spacing(2),
+  },
+  "& .MuiDialogActions-root": {
+    padding: theme.spacing(1),
+  },
+}));
 
 function BootstrapDialogTitle(props) {
   const { children, onClose, ...other } = props;
@@ -60,9 +74,9 @@ BootstrapDialogTitle.propTypes = {
   children: PropTypes.node,
   onClose: PropTypes.func.isRequired,
 };
-// End Add Task Modal
+// End Create new user Modal
 
-function ToDoList(props) {
+function MembersLists(props) {
   const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;
 
@@ -106,152 +120,126 @@ function ToDoList(props) {
   );
 }
 
-ToDoList.propTypes = {
+MembersLists.propTypes = {
   count: PropTypes.number.isRequired,
   onPageChange: PropTypes.func.isRequired,
   page: PropTypes.number.isRequired,
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-function createData(name, url, startDate, endDate, status, badgeClass, completion, priority) {
+function createData(name, image, userName, email, tags, projects) {
   return {
     name,
-    url,
-    startDate,
-    endDate,
-    status,
-    badgeClass,
-    completion,
-    priority,
+    image,
+    userName,
+    email,
+    tags,
+    projects,
   };
 }
 
 const rows = [
   createData(
-    "Public Beta Release",
+    "Evangelina Mcclain",
     "/images/user1.png",
-    "1 Jan 2022",
-    "1 Apr 2022",
-    "Completed",
-    "successBadge",
-    "10/10",
-    "High"
+    "@jstevenson5c",
+    "jordansteve@gmail.com",
+    "HTML, CSS & JS",
+    "165"
   ),
   createData(
-    "Fix Platform Errors",
+    "Candice Munoz",
     "/images/user2.png",
-    "1 Mar 2022",
-    "1 May 2022",
-    "Completed",
-    "successBadge",
-    "10/10",
-    "High"
+    "@candice3unoz",
+    "candicemunoz@gmail.com",
+    "React, Next.js",
+    "120"
   ),
   createData(
-    "Launch our Mobile App",
+    "Mike Mcclain",
     "/images/user3.png",
-    "15 Apr 2022",
-    "15 Jun 2022",
-    "On Going",
-    "primaryBadge",
-    "7/10",
-    "Medium"
+    "@mike4mcclain",
+    "mikemcclain@gmail.com",
+    "Angular, Gatsby",
+    "220"
   ),
   createData(
-    "Add the New Pricing Page",
+    "Bernard Langley",
     "/images/user4.png",
-    "15 May 2022",
-    "15 Jun 2022",
-    "Pending",
-    "dangerBadge",
-    "1/10",
-    "Low"
+    "@bernardlangley",
+    "bernardlangley@gmail.com",
+    "HTML, React & Sass",
+    "122"
   ),
   createData(
-    "Redesign New Online Shop",
+    "Kristie Hall",
     "/images/user5.png",
-    "15 Jun 2022",
-    "15 Aug 2022",
-    "On Going",
-    "primaryBadge",
-    "0/10",
-    "Low"
+    "@kristie7hall",
+    "kristiehall@gmail.com",
+    "React, Next.js & Sass",
+    "360"
   ),
   createData(
-    "Material Ui Design",
+    "Bolton Obrien",
     "/images/user6.png",
-    "15 Jul 2022",
-    "15 Sep 2022",
-    "On Going",
-    "primaryBadge",
-    "7/10",
-    "Medium"
+    "@bolton4obrien",
+    "boltonobrien@gmail.com",
+    "Angular, HTML & Sass",
+    "250"
   ),
   createData(
-    "Add Progress Track",
+    "Dee Alvarado",
     "/images/user7.png",
-    "15 Mar 2022",
-    "15 May 2022",
-    "Completed",
-    "successBadge",
-    "10/10",
-    "High"
+    "@dee3alvarado",
+    "deealvarado@gmail.com",
+    "React, Next.js & Sass",
+    "140"
   ),
   createData(
-    "Web Design",
+    "Cervantes Kramer",
     "/images/user8.png",
-    "15 Aug 2022",
-    "15 Dec 2022",
-    "On Going",
-    "primaryBadge",
-    "9/10",
-    "High"
+    "@cervantes4kramer",
+    "cervantes4kramer@gmail.com",
+    "Gatsby, React & Sass",
+    "345"
   ),
   createData(
-    "Web Development",
+    "Dejesus Michael",
     "/images/user9.png",
-    "15 Nov 2022",
-    "15 Jan 2023",
-    "On Going",
-    "primaryBadge",
-    "8/10",
-    "High"
+    "@dejesus1michael",
+    "dejesusmichael@gmail.com",
+    "React, Gatsby & Sass",
+    "323"
   ),
   createData(
-    "React App Development",
+    "Alissa Nelson",
     "/images/user10.png",
-    "15 Jan 2022",
-    "15 Mar 2022",
-    "Completed",
-    "successBadge",
-    "10/10",
-    "High"
+    "@alissa1nelson",
+    "alissa1nelson@gmail.com",
+    "React, Gatsby & Sass",
+    "451"
   ),
+  createData("Milton", "/images/user11.png", "@milton", "milton@gmail.com", "React, HTML & Sass", "432"),
+  createData("Claude", "/images/user12.png", "@claude", "claude@gmail.com", "React, Gatsby & Sass", "543"),
+  createData("Joshua", "/images/user13.png", "@joshua", "joshua@gmail.com", "React, Gatsby & Sass", "543"),
+  createData("Harvey", "/images/user14.png", "@harvey", "harvey@gmail.com", "React, Gatsby & Sass", "432"),
+  createData("Antonio", "/images/user15.png", "@antonio", "antonio@gmail.com", "React, Gatsby & Sass", "765"),
+  createData("Julian", "/images/user16.png", "@julian", "julian@gmail.com", "React, Gatsby & Sass", "678"),
+  createData("Harold", "/images/user17.png", "@harold", "harold@gmail.com", "React, Gatsby & Sass", "165"),
   createData(
-    "eCommerce Development",
-    "/images/user11.png",
-    "15 Mar 2022",
-    "15 May 2022",
-    "On Going",
-    "primaryBadge",
-    "8/10",
-    "Medium"
-  ),
-  createData(
-    "App Development",
-    "/images/user12.png",
-    "15 May 2022",
-    "15 Jul 2022",
-    "On Going",
-    "primaryBadge",
-    "5/10",
-    "Medium"
+    "Kingston",
+    "/images/user18.png",
+    "@kingston",
+    "kingston@info.com",
+    "React, Gatsby & Sass",
+    "165"
   ),
 ].sort((a, b) => (a.name < b.name ? -1 : 1));
 
-const ToDoLists = () => {
+const ContactList = () => {
+  // Table
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(8);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
@@ -265,7 +253,7 @@ const ToDoLists = () => {
     setPage(0);
   };
 
-  // Add task modal
+  // Create new user modal
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -310,7 +298,7 @@ const ToDoLists = () => {
               fontSize: 18,
               fontWeight: 500,
             }}>
-            Minhas tarefas
+            Lista de usuários
           </Typography>
 
           <Button
@@ -324,7 +312,7 @@ const ToDoLists = () => {
               padding: "12px 20px",
               color: "#fff !important",
             }}>
-            <AddIcon sx={{ position: "relative", top: "-1px" }} className="mr-5px" /> Adicionar tarefa
+            <AddIcon sx={{ position: "relative" }} className="mr-7px" /> Adicionar usuário
           </Button>
         </Box>
 
@@ -333,75 +321,25 @@ const ToDoLists = () => {
           sx={{
             boxShadow: "none",
           }}>
-          <Table sx={{ minWidth: 930 }} aria-label="custom pagination table" className="dark-table">
+          <Table sx={{ minWidth: 850 }} aria-label="custom pagination table" className="dark-table">
             <TableHead sx={{ background: "#F7FAFF" }}>
               <TableRow>
-                <TableCell
-                  sx={{
-                    borderBottom: "1px solid #F7FAFF",
-                    fontSize: "13.5px",
-                  }}>
-                  Nome
+                <TableCell sx={{ borderBottom: "1px solid #F7FAFF", fontSize: "13.5px" }}>Nome</TableCell>
+
+                <TableCell align="center" sx={{ borderBottom: "1px solid #F7FAFF", fontSize: "13.5px" }}>
+                  Email
                 </TableCell>
 
-                <TableCell
-                  sx={{
-                    borderBottom: "1px solid #F7FAFF",
-                    fontSize: "13.5px",
-                  }}>
-                  Atribuição
+                <TableCell align="center" sx={{ borderBottom: "1px solid #F7FAFF", fontSize: "13.5px" }}>
+                  Tags
                 </TableCell>
 
-                <TableCell
-                  sx={{
-                    borderBottom: "1px solid #F7FAFF",
-                    fontSize: "13.5px",
-                  }}>
-                  Início
+                <TableCell align="center" sx={{ borderBottom: "1px solid #F7FAFF", fontSize: "13.5px" }}>
+                  Projetos
                 </TableCell>
 
-                <TableCell
-                  sx={{
-                    borderBottom: "1px solid #F7FAFF",
-                    fontSize: "13.5px",
-                  }}>
-                  Término
-                </TableCell>
-
-                <TableCell
-                  align="center"
-                  sx={{
-                    borderBottom: "1px solid #F7FAFF",
-                    fontSize: "13.5px",
-                  }}>
-                  Estado
-                </TableCell>
-
-                <TableCell
-                  align="center"
-                  sx={{
-                    borderBottom: "1px solid #F7FAFF",
-                    fontSize: "13.5px",
-                  }}>
-                  Progresso
-                </TableCell>
-
-                <TableCell
-                  align="center"
-                  sx={{
-                    borderBottom: "1px solid #F7FAFF",
-                    fontSize: "13.5px",
-                  }}>
-                  Prioridade
-                </TableCell>
-
-                <TableCell
-                  align="right"
-                  sx={{
-                    borderBottom: "1px solid #F7FAFF",
-                    fontSize: "13.5px",
-                  }}>
-                  Ação
+                <TableCell align="right" sx={{ borderBottom: "1px solid #F7FAFF", fontSize: "13.5px" }}>
+                  Ações
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -413,79 +351,75 @@ const ToDoLists = () => {
               ).map((row) => (
                 <TableRow key={row.name}>
                   <TableCell
-                    sx={{
-                      fontWeight: "500",
-                      fontSize: "13px",
+                    style={{
                       borderBottom: "1px solid #F7FAFF",
-                      color: "#260944",
-                      pt: "16px",
-                      pb: "16px",
+                      paddingTop: "13px",
+                      paddingBottom: "13px",
+                      display: "flex",
+                      alignItems: "center",
                     }}>
                     <Checkbox {...label} size="small" />
-                    {row.name}
-                  </TableCell>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                      className="ml-10px">
+                      <Image src={row.image} alt="User" width={40} height={40} className="borRadius100" />
+                      <Box>
+                        <Typography
+                          as="h5"
+                          sx={{
+                            fontWeight: "500",
+                            fontSize: "13.5px",
+                          }}
+                          className="ml-10px">
+                          {row.name}
+                        </Typography>
 
-                  <TableCell
-                    sx={{
-                      borderBottom: "1px solid #F7FAFF",
-                      pt: "16px",
-                      pb: "16px",
-                    }}>
-                    <Avatar alt="User" src={row.url} sx={{ width: 35, height: 35 }} />
-                  </TableCell>
-
-                  <TableCell
-                    sx={{
-                      borderBottom: "1px solid #F7FAFF",
-                      fontSize: "13px",
-                      pt: "16px",
-                      pb: "16px",
-                    }}>
-                    {row.startDate}
-                  </TableCell>
-
-                  <TableCell
-                    sx={{
-                      borderBottom: "1px solid #F7FAFF",
-                      fontSize: "13px",
-                      pt: "16px",
-                      pb: "16px",
-                    }}>
-                    {row.endDate}
+                        <Typography
+                          sx={{
+                            fontSize: "12px",
+                            color: "#A9A9C8",
+                          }}
+                          className="ml-10px">
+                          {row.userName}
+                        </Typography>
+                      </Box>
+                    </Box>
                   </TableCell>
 
                   <TableCell
                     align="center"
-                    sx={{
-                      fontWeight: 500,
+                    style={{
                       borderBottom: "1px solid #F7FAFF",
-                      fontSize: "11px",
-                      pt: "16px",
-                      pb: "16px",
+                      fontSize: "13px",
+                      paddingTop: "13px",
+                      paddingBottom: "13px",
                     }}>
-                    <span className={row.badgeClass}>{row.status}</span>
+                    {row.email}
                   </TableCell>
 
                   <TableCell
-                    sx={{
+                    align="center"
+                    style={{
                       borderBottom: "1px solid #F7FAFF",
                       fontSize: "13px",
-                      pt: "16px",
-                      pb: "16px",
-                    }}
-                    align="center">
-                    {row.completion}
+                      paddingTop: "13px",
+                      paddingBottom: "13px",
+                    }}>
+                    {row.tags}
                   </TableCell>
 
                   <TableCell
-                    sx={{
+                    align="center"
+                    style={{
                       borderBottom: "1px solid #F7FAFF",
                       fontSize: "13px",
-                      pt: "16px",
-                      pb: "16px",
-                    }}
-                    align="center">
-                    {row.priority}
+                      paddingTop: "13px",
+                      paddingBottom: "13px",
+                    }}>
+                    {row.projects}
                   </TableCell>
 
                   <TableCell align="right" sx={{ borderBottom: "1px solid #F7FAFF" }}>
@@ -493,13 +427,13 @@ const ToDoLists = () => {
                       sx={{
                         display: "inline-block",
                       }}>
-                      <Tooltip title="Remove" placement="top">
+                      <Tooltip title="Remover" placement="top">
                         <IconButton aria-label="remove" size="small" color="danger" className="danger">
                           <DeleteIcon fontSize="inherit" />
                         </IconButton>
                       </Tooltip>
 
-                      <Tooltip title="Rename" placement="top">
+                      <Tooltip title="Renomear" placement="top">
                         <IconButton aria-label="rename" size="small" color="primary" className="primary">
                           <DriveFileRenameOutlineIcon fontSize="inherit" />
                         </IconButton>
@@ -511,7 +445,7 @@ const ToDoLists = () => {
 
               {emptyRows > 0 && (
                 <TableRow style={{ height: 53 * emptyRows }}>
-                  <TableCell colSpan={4} style={{ borderBottom: "1px solid #F7FAFF" }} />
+                  <TableCell colSpan={5} style={{ borderBottom: "1px solid #F7FAFF" }} />
                 </TableRow>
               )}
             </TableBody>
@@ -532,7 +466,7 @@ const ToDoLists = () => {
                   }}
                   onPageChange={handleChangePage}
                   onRowsPerPageChange={handleChangeRowsPerPage}
-                  ActionsComponent={ToDoList}
+                  ActionsComponent={MembersLists}
                   style={{ borderBottom: "none" }}
                 />
               </TableRow>
@@ -541,7 +475,7 @@ const ToDoLists = () => {
         </TableContainer>
       </Card>
 
-      {/* Add task modal */}
+      {/* Create new user modal */}
       <BootstrapDialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
         <Box>
           <Box
@@ -560,9 +494,9 @@ const ToDoLists = () => {
               component="h2"
               sx={{
                 fontWeight: "500",
-                fontSize: "20px",
+                fontSize: "18px",
               }}>
-              Adicionar tarefa
+              Criar novo usuário
             </Typography>
 
             <IconButton aria-label="remove" size="small" onClick={handleClose} className="modal-close">
@@ -579,32 +513,6 @@ const ToDoLists = () => {
               }}
               className="dark-BG-101010">
               <Grid container alignItems="center" spacing={2}>
-                <Grid item xs={12} md={12} lg={12}>
-                  <Typography
-                    as="h5"
-                    sx={{
-                      fontWeight: "500",
-                      fontSize: "14px",
-                      mb: "12px",
-                    }}>
-                    Tarefa
-                  </Typography>
-
-                  <TextField
-                    autoComplete="task"
-                    name="task"
-                    required
-                    fullWidth
-                    id="task"
-                    label="Tarefa"
-                    autoFocus
-                    InputProps={{
-                      style: { borderRadius: 8 },
-                    }}
-                    className="for-dark-input"
-                  />
-                </Grid>
-
                 <Grid item xs={12} md={12} lg={6}>
                   <Typography
                     as="h5"
@@ -613,7 +521,7 @@ const ToDoLists = () => {
                       fontSize: "14px",
                       mb: "12px",
                     }}>
-                    Membro
+                    Imagem
                   </Typography>
 
                   <TextField
@@ -638,16 +546,16 @@ const ToDoLists = () => {
                       fontSize: "14px",
                       mb: "12px",
                     }}>
-                    Início
+                    Nome
                   </Typography>
 
                   <TextField
-                    autoComplete="start-date"
-                    name="startDate"
+                    autoComplete="name"
+                    name="name"
                     required
                     fullWidth
-                    id="startDate"
-                    type="date"
+                    id="name"
+                    label="Nome"
                     autoFocus
                     InputProps={{
                       style: { borderRadius: 8 },
@@ -663,16 +571,16 @@ const ToDoLists = () => {
                       fontSize: "14px",
                       mb: "12px",
                     }}>
-                    Término
+                    Nome de usuário
                   </Typography>
 
                   <TextField
-                    autoComplete="end-date"
-                    name="endDate"
+                    autoComplete="user-name"
+                    name="userName"
                     required
                     fullWidth
-                    id="endDate"
-                    type="date"
+                    id="userName"
+                    label="Nome de usuário"
                     autoFocus
                     InputProps={{
                       style: { borderRadius: 8 },
@@ -688,16 +596,16 @@ const ToDoLists = () => {
                       fontSize: "14px",
                       mb: "12px",
                     }}>
-                    Estado
+                    Email
                   </Typography>
 
                   <TextField
-                    autoComplete="status"
-                    name="status"
+                    autoComplete="email"
+                    name="email"
                     required
                     fullWidth
-                    id="status"
-                    label="Estado"
+                    id="email"
+                    label="exemplo@info.com"
                     autoFocus
                     InputProps={{
                       style: { borderRadius: 8 },
@@ -713,16 +621,16 @@ const ToDoLists = () => {
                       fontSize: "14px",
                       mb: "12px",
                     }}>
-                    Progresso
+                    Tags
                   </Typography>
 
                   <TextField
-                    autoComplete="completion"
-                    name="completion"
+                    autoComplete="tags"
+                    name="tags"
                     required
                     fullWidth
-                    id="completion"
-                    label="0/10"
+                    id="tags"
+                    label="Tags"
                     autoFocus
                     InputProps={{
                       style: { borderRadius: 8 },
@@ -738,16 +646,16 @@ const ToDoLists = () => {
                       fontSize: "14px",
                       mb: "12px",
                     }}>
-                    Prioridade
+                    Projetos
                   </Typography>
 
                   <TextField
-                    autoComplete="priority"
-                    name="priority"
+                    autoComplete="projects"
+                    name="projects"
                     required
                     fullWidth
-                    id="priority"
-                    label="alta / medio / baixo"
+                    id="Projetos"
+                    label="Example 5"
                     autoFocus
                     InputProps={{
                       style: { borderRadius: 8 },
@@ -773,9 +681,8 @@ const ToDoLists = () => {
                     <ClearIcon
                       sx={{
                         position: "relative",
-                        top: "-1px",
                       }}
-                      className="mr-5px"
+                      className="mr-7px"
                     />{" "}
                     Cancelar
                   </Button>
@@ -795,11 +702,10 @@ const ToDoLists = () => {
                     <AddIcon
                       sx={{
                         position: "relative",
-                        top: "-1px",
                       }}
-                      className="mr-5px"
+                      className="mr-7px"
                     />{" "}
-                    Adicionar tarefa
+                    Criar usuário
                   </Button>
                 </Grid>
               </Grid>
@@ -810,15 +716,4 @@ const ToDoLists = () => {
     </>
   );
 };
-
-// Add Task Modal
-const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-  "& .MuiDialogContent-root": {
-    padding: theme.spacing(2),
-  },
-  "& .MuiDialogActions-root": {
-    padding: theme.spacing(1),
-  },
-}));
-
-export default ToDoLists;
+export default ContactList;
