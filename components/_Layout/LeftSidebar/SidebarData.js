@@ -89,6 +89,19 @@ export const SidebarData = [
       },
     ],
   },
+  {
+    title: "Transações",
+    path: "/invoice/",
+    icon: <ContentCopyIcon />,
+    iconClosed: <KeyboardArrowRightIcon />,
+    iconOpened: <KeyboardArrowDownIcon />,
+    subNav: [
+      {
+        title: "Ultima transação",
+        path: "/invoice-details/",
+      },
+    ],
+  },
   // {
   //   title: "Painel",
   //   path: "/as",
@@ -110,19 +123,7 @@ export const SidebarData = [
   //     },
   //   ],
   // },
-  // {
-  //   title: "Transações",
-  //   path: "/pages/invoice/",
-  //   icon: <ContentCopyIcon />,
-  //   iconClosed: <KeyboardArrowRightIcon />,
-  //   iconOpened: <KeyboardArrowDownIcon />,
-  //   subNav: [
-  //     {
-  //       title: "Ultima transação",
-  //       path: "/pages/invoice-details/",
-  //     },
-  //   ],
-  // },
+  //
   // {
   //   title: "UI Elements",
   //   path: "/ui-elements/alerts/",
