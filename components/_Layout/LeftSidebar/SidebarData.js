@@ -1,22 +1,13 @@
 import React from "react";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
-import LineAxisIcon from "@mui/icons-material/LineAxis";
+import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+import PostAddIcon from "@mui/icons-material/PostAdd";
 import LayersIcon from "@mui/icons-material/Layers";
-import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
+import LineAxisIcon from "@mui/icons-material/LineAxis";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import SettingsIcon from "@mui/icons-material/Settings";
-import PostAddIcon from "@mui/icons-material/PostAdd";
-import ViewQuiltIcon from "@mui/icons-material/ViewQuilt";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-
-// import LockIcon from "@mui/icons-material/Lock";
-// import MailOutlineIcon from "@mui/icons-material/MailOutline";
-// import AddchartIcon from "@mui/icons-material/Addchart";
-// import CopyAllIcon from "@mui/icons-material/CopyAll";
-// import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 
 export const SidebarData = [
   {
@@ -123,34 +114,4 @@ export const SidebarData = [
       },
     ],
   },
-  // {
-  //   title: "Authentication ROTAS UNICAS",
-  //   path: "/",
-  //   icon: <LockIcon />,
-  //   iconClosed: <KeyboardArrowRightIcon />,
-  //   iconOpened: <KeyboardArrowDownIcon />,
-
-  //   subNav: [
-  //     {
-  //       title: "Sign Up",
-  //       path: "/authentication/sign-up/",
-  //     },
-  //     {
-  //       title: "Forgot Password",
-  //       path: "/authentication/forgot-password/",
-  //     },
-  //     {
-  //       title: "Lock Screen",
-  //       path: "/authentication/lock-screen/",
-  //     },
-  //     {
-  //       title: "Confirm Mail",
-  //       path: "/authentication/confirm-mail/",
-  //     },
-  //     {
-  //       title: "Logout",
-  //       path: "/authentication/logout/",
-  //     },
-  //   ],
-  // },
 ];
