@@ -1,2 +1,2 @@
 # DentalEase
-Gerencie as consultas, sua agenda, os pacientes e seu consultorio completo, facilmente, usando essa aplicação web para dentistas, feita com Node.js, MongoDB e Next.js.
+Dental Ease é um projeto full stack desenvolvido com Next.js, Node.js e SQL. O objetivo do projeto é oferecer um gerenciamento completo da clínica, eliminando a papelada e disponibilizando uma aplicação web responsiva para qualquer dispositivo. Realiza o gerenciamento da agenda de atendimentos e os contatos dos pacientes, além de permitir a triagem para o cadastro e anamnese. Também inclui funcionalidades para gerenciar consumíveis do consultorio, todos os pagamentos recebidos e despesas. Utiliza um banco de dados SQL para armazenar, consultar e apresentar dados, fornecendo insights valiosos.
