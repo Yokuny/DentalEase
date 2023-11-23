@@ -44,7 +44,7 @@ export type PatientFormProps = {
   emailErr: boolean;
   cpfErr: boolean;
   rgErr: boolean;
-  birthDateErr: boolean;
+  birthdateErr: boolean;
   phoneErr: boolean;
   cepErr: boolean;
   addressErr: boolean;
@@ -52,7 +52,7 @@ export type PatientFormProps = {
   emailValidation: (value: string) => boolean;
   cpfValidation: (value: string) => boolean;
   rgValidation: (value: string) => boolean;
-  birthDateValidation: (value: string) => boolean;
+  birthdateValidation: (value: string) => boolean;
   phoneValidation: (value: string) => boolean;
   cepValidation: (value: string) => boolean;
   addressValidation: (value: string) => boolean;

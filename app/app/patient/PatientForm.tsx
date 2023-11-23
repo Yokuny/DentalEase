@@ -12,7 +12,7 @@ const PatientForm = ({ allProps }: { allProps: PatientFormProps }) => {
   const [emailValue, setEmailValue] = useState("");
   const [cpfValue, setCpfValue] = useState("");
   const [rgValue, setRgValue] = useState("");
-  const [birthDateValue, setBirthDateValue] = useState("");
+  const [birthdateValue, setBirthdateValue] = useState("");
   const [phoneValue, setPhoneValue] = useState("");
   const [cepValue, setCepValue] = useState("");
   const [addressValue, setAddressValue] = useState("");
@@ -106,14 +106,14 @@ const PatientForm = ({ allProps }: { allProps: PatientFormProps }) => {
       <Input
         type="date"
         label="Data de nascimento"
-        value={birthDateValue || ""}
+        value={birthdateValue || ""}
         placeholder="dd/mm/aaaa"
         onChange={(e) => {
-          setBirthDateValue(e.target.value);
-          allProps.birthDateValidation(e.target.value);
+          setBirthdateValue(e.target.value);
+          allProps.birthdateValidation(e.target.value);
         }}
-        errorMessage={allProps.birthDateErr && "Data inválida"}
-        color={allProps.birthDateErr ? "danger" : "primary"}
+        errorMessage={allProps.birthdateErr && "Data inválida"}
+        color={allProps.birthdateErr ? "danger" : "primary"}
         variant="faded"
         className="max-w-[190px] h-20 mr-4"
         radius="sm"

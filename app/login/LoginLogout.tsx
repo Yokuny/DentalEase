@@ -19,50 +19,15 @@ const LoginLogout = () => {
 
   const [selected, setSelected] = useState("Entrar");
   const [loading, setLoading] = useState(false);
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const [nameErr, setNameErr] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
 
-  const handleSignin = async () => {
-    setLoading(true);
-    if (!emailValidation(email) || !passwordValidation(password)) {
-      setEmailError(true);
-      setPasswordError(true);
-      return;
-    }
-    try {
-      const res = await axios.post(`${API}/user/signin`, { email, password });
-      Cookie.set("auth_token", res.data.token);
-      router.push("/app");
-    } catch (err) {
-      setEmailError(true);
-      setPasswordError(true);
-    } finally {
-      setLoading(false);
-    }
-  };
-  const handleSignup = async () => {
-    setLoading(true);
-    if (!emailValidation(email) || !passwordValidation(password) || !nameValidation(name)) {
-      setNameErr(true);
-      setEmailError(true);
-      setPasswordError(true);
-      return;
-    }
-    try {
-      await axios.post(`${API}/user/signup`, { username: name, email, password });
-      setSelected("Entrar");
-    } catch (err) {
-      setNameErr(true);
-      setEmailError(true);
-      setPasswordError(true);
-    } finally {
-      setLoading(false);
-    }
-  };
   // data validation
   const emailValidation = (value: string) => {
     if (emailRegex.test(value)) {
@@ -92,6 +57,58 @@ const LoginLogout = () => {
     } else {
       setNameErr(true);
       return false;
+    }
+  };
+  // clean fields
+  const cleanFields = () => {
+    setName("");
+    setEmail("");
+    setPassword("");
+    setNameErr(false);
+    setEmailError(false);
+    setPasswordError(false);
+  };
+  // login and signup
+  const handleSignin = async () => {
+    if (!emailValidation(email)) {
+    } else if (!passwordValidation(password)) {
+    } else {
+      setLoading(true);
+      try {
+        const res = await axios.post(`${API}/user/signin`, { email, password });
+        cleanFields();
+        Cookie.set("auth_token", res.data.token);
+        router.push("/app");
+      } catch (err) {
+        setEmailError(true);
+        setPasswordError(true);
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
+
+  const handleSignup = async () => {
+    if (!nameValidation(name)) {
+    } else if (!emailValidation(email)) {
+    } else if (!passwordValidation(password)) {
+    } else {
+      setLoading(true);
+      try {
+        const response = await axios.post(`${API}/user/signup`, { username: name, email, password });
+        cleanFields();
+        if (response.status === 201) setSelected("Entrar");
+      } catch (err: any) {
+        cleanFields();
+        if (err.response.status === 409) {
+          setEmailError(true);
+        } else {
+          setNameErr(true);
+          setEmailError(true);
+        }
+      } finally {
+        setLoading(false);
+      }
     }
   };
   // tab selection
@@ -157,4 +174,5 @@ const LoginLogout = () => {
     </Card>
   );
 };
+
 export default LoginLogout;

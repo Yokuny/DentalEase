@@ -1,8 +1,13 @@
 "use client";
 
-import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/card";
-import PatientForm from "./PatientForm";
+import axios from "axios";
+import Cookie from "js-cookie";
+
 import { useState } from "react";
+import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/card";
+import { Button } from "@nextui-org/button";
+import PatientForm from "./PatientForm";
+import bearerToken from "@/utils/bearerToken";
 import {
   emailRegex,
   titleRegex,
@@ -14,23 +19,26 @@ import {
   sexRegex,
   telRegex,
 } from "@/utils/regex";
-import { Button } from "@nextui-org/button";
 
 export default function Patient() {
+  const API = process.env.NEXT_PUBLIC_API;
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [cpf, setCpf] = useState("");
   const [rg, setRg] = useState("");
-  const [birthDate, setBirthDate] = useState("");
+  const [birthdate, setBirthdate] = useState("");
   const [phone, setPhone] = useState("");
   const [cep, setCep] = useState("");
   const [address, setAddress] = useState("");
+
+  const [loading, setLoading] = useState(false);
 
   const [emailErr, setEmailErr] = useState(false);
   const [nameErr, setNameErr] = useState(false);
   const [cpfErr, setCpfErr] = useState(false);
   const [rgErr, setRgErr] = useState(false);
-  const [birthDateErr, setBirthDateErr] = useState(false);
+  const [birthdateErr, setBirthdateErr] = useState(false);
   const [phoneErr, setPhoneErr] = useState(false);
   const [cepErr, setCepErr] = useState(false);
   const [addressErr, setAddressErr] = useState(false);
@@ -76,13 +84,13 @@ export default function Patient() {
       return false;
     }
   };
-  const birthDateValidation = (value: string) => {
+  const birthdateValidation = (value: string) => {
     if (birthRegex.test(value)) {
-      setBirthDateErr(false);
-      setBirthDate(value);
+      setBirthdateErr(false);
+      setBirthdate(value);
       return true;
     } else {
-      setBirthDateErr(true);
+      setBirthdateErr(true);
       return false;
     }
   };
@@ -122,7 +130,7 @@ export default function Patient() {
     emailErr,
     cpfErr,
     rgErr,
-    birthDateErr,
+    birthdateErr,
     phoneErr,
     cepErr,
     addressErr,
@@ -130,24 +138,62 @@ export default function Patient() {
     emailValidation,
     cpfValidation,
     rgValidation,
-    birthDateValidation,
+    birthdateValidation,
     phoneValidation,
     cepValidation,
     addressValidation,
   };
 
+  const handleSubmit = async () => {
+    if (!nameValidation(name)) {
+    } else if (!emailValidation(email)) {
+    } else if (!phoneValidation(phone)) {
+    } else if (!cpfValidation(cpf)) {
+    } else if (!rgValidation(rg)) {
+    } else if (!birthdateValidation(birthdate)) {
+    } else if (!cepValidation(cep)) {
+    } else if (!addressValidation(address)) {
+    } else {
+      setLoading(true);
+      const data = {
+        name,
+        email,
+        cpf,
+        rg,
+        sex: "M",
+        birthdate,
+        phone,
+        cep,
+        address,
+      };
+      try {
+        const response = await axios.post(`${API}/patient/personaldata`, data, bearerToken);
+        console.log(response.data);
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
+
   return (
     <section className="flex flex-col items-center gap-3 pb-6 md:py-6 py-2">
       <Card className="max-w-full w-full" radius="none">
-        <CardHeader className="flex items-center justify-between">
-          <h3>Cadastro de paciente</h3>
+        <CardHeader className="flex items-center justify-between p-4 bg-gradient-to-r from-blue-500 to-sky-400 hover:saturate-200">
+          <h3 className="text-white">Cadastro de paciente</h3>
         </CardHeader>
-        <hr className="opacity-10" />
+        <hr className="dark:opacity-10" />
         <CardBody className="w-full">
           <PatientForm allProps={patientFormProps} />
         </CardBody>
+        <hr className="dark:opacity-10" />
         <CardFooter className="flex items-center justify-end">
-          <Button className="btn btn-primary">Cadastrar</Button>
+          <Button
+            className="p-6 bg-gradient-to-r from-sky-400 to-blue-500 hover:saturate-200"
+            onPress={handleSubmit}>
+            Cadastrar
+          </Button>
         </CardFooter>
       </Card>
     </section>
