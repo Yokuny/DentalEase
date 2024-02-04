@@ -1,10 +1,10 @@
-import Header from "@/components/header/header";
+import Header from "@/components/header/Header";
 
 export default function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <main className="min-h-screen flex flex-col items-center">
+    <>
       <Header />
-      <div className="mt-20">{children}</div>
-    </main>
+      <div>{children}</div>
+    </>
   );
 }

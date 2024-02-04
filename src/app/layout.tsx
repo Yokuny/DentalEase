@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { ThemeProvider } from "@/components/theme-provider";
+import ThemeProvider from "@/components/ThemeProvider";
+import cn from "@/lib/utils";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
@@ -14,9 +15,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="pt-br">
       <head />
-      <body className={`${inter.className} bg-white dark:bg-black`}>
+      <body className={cn("min-h-screen bg-background font-sans antialiased", inter.className)}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          {children}
+          <div className="relative flex min-h-screen flex-col bg-background">{children}</div>
         </ThemeProvider>
       </body>
     </html>
