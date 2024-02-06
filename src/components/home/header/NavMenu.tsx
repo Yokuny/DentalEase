@@ -2,9 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-
 import cn from "@/lib/utils";
-import { DropdownMenuIcon } from "@radix-ui/react-icons";
 
 import {
   NavigationMenu,
@@ -15,6 +13,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { DropdownMenuIcon } from "@radix-ui/react-icons";
 
 const components: { title: string; href: string; description: string }[] = [
   {
