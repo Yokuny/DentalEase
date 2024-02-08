@@ -11,16 +11,24 @@ const buttonVariants = cva(
       variant: {
         default:
           "bg-slate-900 text-slate-50 shadow hover:bg-slate-900/90 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90",
-        gradient:
-          "bg-gradient-to-r from-blue400 hover:from-blue500 to-blue600 hover:to-blue700 dark:text-white shadow-sm",
+        gradient: "bg-gradient-to-r from-blue400 to-blue600 hover:saturate-150 dark:text-white shadow-sm",
+        gradientS:
+          "bg-gradient-to-r from-blue400 to-blue600 saturate-150 hover:saturate-200 dark:text-white shadow-sm",
+        gradientOutline:
+          "border-blue400 bg-transparent hover:bg-blue50 dark:bg-slate-950 dark:hover:bg-slate-900 text-blue600 hover:text-blue800 dark:text-blue400 shadow-sm border",
         solid500:
-          "bg-blue500 hover:bg-blue600 dark:bg-blue400 dark:hover:bg-blue500 text-white dark:text-white shadow-sm",
+          "bg-blue500 hover:bg-blue500 hover:saturate-150 dark:bg-blue400 dark:hover:bg-blue400 dark:hover:saturate-150 text-white dark:text-white shadow-sm",
+        solid500S:
+          "bg-blue500 saturate-150 hover:bg-blue500 hover:saturate-200 dark:bg-blue400 dark:hover:bg-blue400 dark:hover:saturate-200 text-white dark:text-white shadow-sm",
         solid600:
-          "bg-blue600 hover:bg-blue700 dark:bg-blue500 dark:hover:bg-blue600 text-white dark:text-white shadow-sm",
-        solid700:
-          "bg-gradient-to-r from-blue600 hover:from-blue700 to-blue800 hover:to-blue900 dark:text-white shadow-sm",
+          "bg-blue600 hover:bg-blue600 hover:saturate-150 dark:bg-blue500 dark:hover:bg-blue500 dark:hover:saturate-150 text-white dark:text-white shadow-sm",
+        solid600S:
+          "bg-blue600 saturate-150 hover:bg-blue600 hover:saturate-200 dark:bg-blue500 dark:hover:bg-blue500 dark:hover:saturate-200 text-white dark:text-white shadow-sm",
+        solid700: "bg-gradient-to-r from-blue600 to-blue800 hover:saturate-150 dark:text-white shadow-sm",
+        solid700S:
+          "bg-gradient-to-r from-blue600 to-blue800 saturate-150 hover:saturate-200 dark:text-white shadow-sm",
         outline:
-          "border-blue700 dark:border-blue700 bg-transparent2 hover:bg-blue50 dark:bg-slate-950 dark:hover:bg-slate-900 text-blue800 hover:text-blue800 dark:text-blue400 shadow-sm border",
+          "border-blue500 dark:border-blue700 hover:bg-blue50 dark:bg-slate-950 dark:hover:bg-slate-900 text-blue600 hover:text-blue800 dark:text-blue400 bg-transparent shadow-sm border",
 
         secondary:
           "bg-slate-100 text-slate-900 shadow-sm hover:bg-slate-100/80 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800/80",

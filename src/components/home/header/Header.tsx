@@ -13,8 +13,8 @@ const Header = () => {
         </div>
 
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-          <Button className={cn(buttonVariants({ variant: "gradient" }))}>Acessar</Button>
-          <Button className={cn(buttonVariants({ variant: "solid600" }))}>Cadastrar</Button>
+          <Button className={cn(buttonVariants({ variant: "gradientS" }), "font-semibold")}>Acessar</Button>
+          <Button className={cn(buttonVariants({ variant: "solid600S" }), "font-semibold")}>Cadastrar</Button>
         </div>
       </div>
     </header>

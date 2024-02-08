@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import cn from "@/lib/utils";
 import { Button, buttonVariants } from "@/components/ui/button";
 
 const Page = () => {
@@ -10,13 +11,16 @@ const Page = () => {
           <div className="w-full h-full flex justify-evenly bg-black bg-opacity-25 ">
             <div className="w-2/4 text-start gap-10 p-10 flex items-start justify-center flex-col rounded-3xl text-white">
               <h1 className="md:text-6xl text-xl font-semibold tracking-wide whitespace-break-spaces text-balance">
-                Dental Ease seu parceiro Completo de Gestão
+                DentalEase seu parceiro Completo de Gestão
               </h1>
               <p className="md:text-2xl text-white font-light whitespace-break-spaces text-balance">
                 Transforme a gestão da sua clínica odontológica: Temos todas as ferramentas que você precisa
                 para sua clínica crescer, simplificando cada etapa do processo.
               </p>
-              <Button className={buttonVariants({ variant: "outline" })}>Teste grátis</Button>
+
+              <Button className={cn(buttonVariants({ variant: "solid500" }), "text-lg px-8 py-5")}>
+                Teste grátis
+              </Button>
             </div>
             <div></div>
           </div>
