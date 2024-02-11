@@ -2,7 +2,8 @@ import Link from "next/link";
 
 import { UserAuthForm } from "@/components/home/login/Login";
 
-const RegisterStructure = () => {
+const SignUp = ({ toast }: any) => {
+  const API = process.env.NEXT_PUBLIC_API;
   return (
     <div className="mx-auto mt-60 space-y-6 sm:w-[350px] w-full flex flex-col justify-center items-center">
       <div className="mb-6 flex flex-col space-y-2 text-center">
@@ -25,4 +26,4 @@ const RegisterStructure = () => {
   );
 };
 
-export default RegisterStructure;
+export default SignUp;

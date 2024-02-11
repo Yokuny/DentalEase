@@ -1,11 +1,10 @@
-import { SVGProps, Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { ThemeProviderProps } from "next-themes/dist/types";
 
 export type ChildrenProps = { children: React.ReactNode };
 export type ProvidersProps = ChildrenProps & { themeProps?: ThemeProviderProps };
 export type Icon = { icon?: boolean };
 export type DisabledProps = { disabled: boolean };
-export type IconSvgProps = SVGProps<SVGSVGElement> & { size?: number };
 
 export type ErrorProps = {
   error: Error;

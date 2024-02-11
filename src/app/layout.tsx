@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import ThemeProvider from "@/components/ThemeProvider";
-import cn from "@/lib/utils";
 import { Inter } from "next/font/google";
+
+import cn from "@/lib/utils";
+import ThemeProvider from "@/components/ThemeProvider";
+import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -9,6 +11,15 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "DetalEase",
   description: "DetalEase - A melhor plataforma de gestão de clínicas odontológicas",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon-16x16.png",
+    apple: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -19,6 +30,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <div className="relative flex min-h-screen flex-col bg-background">{children}</div>
         </ThemeProvider>
+        <Toaster />
       </body>
     </html>
   );
