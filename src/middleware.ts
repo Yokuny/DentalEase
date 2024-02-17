@@ -1,22 +1,25 @@
 import { NextRequest, NextResponse } from "next/server";
+import { cookies } from "next/headers";
 
 export const middleware = (request: NextRequest) => {
-  const token = localStorage.getItem("token");
-
-  console.log("middleware");
-  console.log(request.nextUrl.pathname);
-
-  const siteURL = new URL("/", request.url);
+  const siteURL = new URL("/home", request.url);
   const appURL = new URL("/app", request.url);
 
-  if (!token) {
-    if (request.nextUrl.pathname === "/home") return NextResponse.next();
-    return NextResponse.redirect(siteURL);
-  }
+  const token = cookies().has("auth");
+  const { pathname } = request.nextUrl;
 
-  if (request.nextUrl.pathname === "/") return NextResponse.redirect(appURL);
+  console.log("token", token);
+  console.log("pathname", pathname);
+
+  // if (token) {
+  //   if (pathname === "/login" || pathname === "/home") return NextResponse.redirect(appURL);
+  //   if (pathname === "/app") return NextResponse.next();
+  // } else {
+  //   if (pathname === "/app") return NextResponse.redirect(siteURL);
+  //   if (pathname === "/login" || pathname === "/home") return NextResponse.next();
+  // }
 };
 
 export const config = {
-  matcher: ["/", "/app/:path*"],
+  matcher: ["/home/:path*", "/app/:path*", "/login"],
 };

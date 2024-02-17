@@ -11,10 +11,6 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "DetalEase",
   description: "DetalEase - A melhor plataforma de gestão de clínicas odontológicas",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon-16x16.png",

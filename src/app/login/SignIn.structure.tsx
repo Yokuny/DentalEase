@@ -1,13 +1,14 @@
 "use client";
 
 import * as React from "react";
+import axios from "axios";
 
 import cn from "@/lib/utils";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ReloadIcon } from "@radix-ui/react-icons";
-import { POST_NO_AUTH } from "@/lib/fetchConfig";
+import { POST } from "@/lib/fetchConfig";
 
 const SignIn = ({ toast }: any) => {
   const API = process.env.NEXT_PUBLIC_API;
@@ -19,17 +20,18 @@ const SignIn = ({ toast }: any) => {
 
     const body = {
       email: "aaa@asd.com",
-      password: "asdASD23",
+      password: "asdASD123",
     };
 
     try {
-      const userAceess = await fetch("http://localhost:8080/user/signin", POST_NO_AUTH(body));
-      const user = await userAceess.json();
+      const userAceess = await axios.post(`${API}user/signin`, body);
+      console.log(userAceess);
+      const user = userAceess.data;
+      console.log(user);
 
       if (user.message) throw new Error(user.message);
 
-      localStorage.setItem("token", user.token);
-      localStorage.setItem("user", JSON.stringify(user.user));
+      localStorage.setItem("user", JSON.stringify(user));
       window.location.href = "/app";
     } catch (Error: any) {
       toast("Erro no login", Error.message);
