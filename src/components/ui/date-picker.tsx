@@ -17,9 +17,12 @@ const DatePickerDemo = () => {
       <PopoverTrigger asChild>
         <Button
           variant={"secondary"}
-          className={cn("w-[280px] justify-start text-left font-normal", !date && "text-muted-foreground")}>
+          className={cn(
+            "md:min-w-[280px] md:w-full justify-start text-left font-normal",
+            !date && "text-muted-foreground"
+          )}>
           <CalendarIcon className="mr-2 h-4 w-4" />
-          {date ? format(date, "PPP") : <span>Escolha o dia</span>}
+          {date ? format(date, "P") : <span>Escolha o dia</span>}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0">

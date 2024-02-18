@@ -25,18 +25,20 @@ const WorkSpace = () => {
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <Button
-          variant="gradient"
-          role="combobox"
-          aria-expanded={open}
-          className="h-12 max-w-[700px] w-full justify-between text-white font-semibold">
-          {value ? workSpace.find((space) => space.value === value)?.label : "Selecione o ambiente..."}
-          <CaretSortIcon className="ml-2 h-4 w-4 shrink-0" />
-        </Button>
+        <div className="h-16 w-full bg-gradient-to-r from-blue400 to-blue600 saturate-150 flex items-center justify-center">
+          <Button
+            variant="outline"
+            role="combobox"
+            aria-expanded={open}
+            className="h-12 md:max-w-[700px] md:w-full w-11/12 justify-between text-white font-semibold">
+            {value ? workSpace.find((space) => space.value === value)?.label : "Selecione o ambiente..."}
+            <CaretSortIcon className="ml-2 h-4 w-4 shrink-0" />
+          </Button>
+        </div>
       </PopoverTrigger>
       <PopoverContent className="max-w-[700px] w-full p-0">
         <Command className="max-w-[700px] w-screen">
-          <CommandInput placeholder="Pesquisar ambiente..." className="h-9" />
+          <CommandInput placeholder="Pesquisar ambiente..." className="h-12" />
           <CommandEmpty>Não encontrado</CommandEmpty>
           <CommandGroup>
             {workSpace.map((space) => (
