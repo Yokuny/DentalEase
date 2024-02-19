@@ -7,6 +7,7 @@ import { Button, buttonVariants } from "@/components/ui/button";
 
 const PreviousPageBtn = () => {
   const previousPage = () => window.history.back();
+
   return (
     <Button
       onClick={previousPage}

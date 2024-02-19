@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { UserAuthForm } from "@/components/home/login/Login";
+import { UserAuthForm } from "@/components/login/Login";
 
 const SignUp = ({ toast }: any) => {
   const API = process.env.NEXT_PUBLIC_API;

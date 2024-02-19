@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const DentalEaseLogo = () => {
   return (
-    <div className="w-full">
+    <div className="w-full md:block hidden">
       <div className="flex text-center">
         <Link
           href="/home"

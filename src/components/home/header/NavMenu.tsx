@@ -50,7 +50,7 @@ const components: { title: string; href: string; description: string }[] = [
   },
 ];
 
-export function NavMenu() {
+const NavMenu = () => {
   return (
     <NavigationMenu>
       <NavigationMenuList className="gap-3">
@@ -115,7 +115,7 @@ export function NavMenu() {
       </NavigationMenuList>
     </NavigationMenu>
   );
-}
+};
 
 const ListItem = React.forwardRef<React.ElementRef<"a">, React.ComponentPropsWithoutRef<"a">>(
   ({ className, title, children, ...props }, ref) => {
@@ -138,3 +138,5 @@ const ListItem = React.forwardRef<React.ElementRef<"a">, React.ComponentPropsWit
   }
 );
 ListItem.displayName = "ListItem";
+
+export default NavMenu;
