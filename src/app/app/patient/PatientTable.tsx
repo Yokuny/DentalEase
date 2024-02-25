@@ -17,7 +17,7 @@ const PatientTable = <TData, TValue>({ columns, data }: DataTableProps<TData, TV
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
-                  <TableHead key={header.id}>
+                  <TableHead key={header.id} className="p-2 bg-slate-50 dark:bg-slate-900">
                     {header.isPlaceholder
                       ? null
                       : flexRender(header.column.columnDef.header, header.getContext())}

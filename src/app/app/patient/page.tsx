@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import cn from "@/lib/utils";
 
 import { CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -9,50 +10,44 @@ import { buttonVariants } from "@/components/ui/button";
 import { Patient, columns } from "./columns";
 import PatientTable from "./PatientTable";
 import ContentHeader from "./ContentHeader";
+import { GET } from "@/lib/fetchConfig";
 
-export const payments: Patient[] = [
-  {
-    id: "728ed52f",
-    name: "Maria da Silva",
-    phone: "123456789",
-    cadastro: "01/01/2021",
-    status: "Ativo",
-  },
-  {
-    id: "489e1d42",
-    name: "João rodrigues",
-    phone: "987654321",
-    cadastro: "01/01/2021",
-    status: "Ativo",
-  },
-  {
-    id: "f6b1e3f4",
-    name: "José Pereira",
-    phone: "987654321",
-    cadastro: "01/01/2021",
-    status: "Ativo",
-  },
-  {
-    id: "f6b1e3f4",
-    name: "José Carlos",
-    phone: "987654321",
-    cadastro: "01/01/2021",
-    status: "Ativo",
-  },
-];
+const API = process.env.NEXT_PUBLIC_API;
 
 const Interfaces = () => {
+  const [patients, setPatients] = useState<Patient[]>([]);
   const searchParams = useSearchParams();
   const patientParam = searchParams.get("interface");
 
-  const API = process.env.NEXT_PUBLIC_API;
+  useEffect(() => {
+    // setIsLoading(true);
+    const fetchPatients = async () => {
+      console.log("fetch patients");
+      try {
+        console.log("fetching patients");
+        const patients = await fetch(`${API}patient`, GET());
+        const response = await patients.json();
+
+        console.log(response);
+
+        setPatients(response);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        // setIsLoading(false);
+      }
+    };
+    fetchPatients();
+  }, []);
 
   return (
     <>
       <CardHeader className="flex flex-row justify-between items-baseline">
-        <div className="md:gap-2 md:flex-row md:items-baseline flex  flex-col">
+        <div className="md:gap-2 md:flex-row md:items-baseline flex flex-col">
           <CardTitle className="text-blue400">Pacientes</CardTitle>
-          <CardDescription>Cadastros, consultas, históricos, em um só lugar.</CardDescription>
+          <CardDescription className="md:block hidden">
+            Cadastros, consultas, históricos, em um só lugar.
+          </CardDescription>
         </div>
         <Link
           href="/app/patient?interface=register"
@@ -63,7 +58,7 @@ const Interfaces = () => {
 
       <CardContent className="flex items-center justify-center flex-col">
         <ContentHeader />
-        <PatientTable columns={columns} data={payments} />
+        <PatientTable columns={columns} data={patients} />
       </CardContent>
       <CardFooter>
         <></>

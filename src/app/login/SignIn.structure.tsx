@@ -1,17 +1,18 @@
 "use client";
 
 import * as React from "react";
-import axios from "axios";
-
+import Cookie from "js-cookie";
 import cn from "@/lib/utils";
+import { ReloadIcon } from "@radix-ui/react-icons";
+
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ReloadIcon } from "@radix-ui/react-icons";
 import { POST } from "@/lib/fetchConfig";
 
+const API = process.env.NEXT_PUBLIC_API;
+
 const SignIn = ({ toast }: any) => {
-  const API = process.env.NEXT_PUBLIC_API;
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   const onSubmit = async (event: React.SyntheticEvent) => {
@@ -23,15 +24,18 @@ const SignIn = ({ toast }: any) => {
       password: "asdASD123",
     };
 
+    // const body = {
+    //   email: (event.currentTarget as HTMLFormElement).email.value,
+    //   password: (event.currentTarget as HTMLFormElement).password.value,
+    // };
+
     try {
-      const userAceess = await axios.post(`${API}user/signin`, body);
-      console.log(userAceess);
-      const user = userAceess.data;
-      console.log(user);
+      const userAceess = await fetch(`${API}user/signin`, POST(body));
+      const user = await userAceess.json();
 
-      if (user.message) throw new Error(user.message);
+      localStorage.setItem("user", JSON.stringify(user.user));
+      Cookie.set("auth", user.token, { expires: 4 });
 
-      localStorage.setItem("user", JSON.stringify(user));
       window.location.href = "/app";
     } catch (Error: any) {
       toast("Erro no login", Error.message);

@@ -34,9 +34,9 @@ const AuthStructure = () => {
       <div className="lg:p-8 mb-10 flex flex-col h-full justify-between">
         <div className="flex justify-center">
           {loginParam === "login" ? (
-            <SignIn handleRequestError={handleRequestError} />
+            <SignIn toast={handleRequestError} />
           ) : (
-            <SignUp handleRequestError={handleRequestError} />
+            <SignUp toast={handleRequestError} />
           )}
         </div>
         <div className="w-full flex justify-center">

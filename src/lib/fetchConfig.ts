@@ -1,8 +1,8 @@
 type Method = "GET" | "POST" | "PUT" | "DELETE";
 type headersStructure = {
   method: Method;
-  headers: { "Content-Type": string };
-  body: string;
+  headers: { "Content-Type": string; Authorization: string };
+  body?: string;
   withCredentials: boolean;
 };
 
@@ -11,10 +11,13 @@ const FetchConfig = (body: Object, method: Method) => {
     method: method,
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
     withCredentials: true,
     body: JSON.stringify(body),
   };
+
+  if (method === "GET" || method === "DELETE") delete headers.body;
 
   return headers;
 };

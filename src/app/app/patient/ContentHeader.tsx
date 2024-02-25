@@ -1,18 +1,25 @@
-import { ActivityLogIcon } from "@radix-ui/react-icons";
+import { ActivityLogIcon, CalendarIcon } from "@radix-ui/react-icons";
 import cn from "@/lib/utils";
 
 import { Button, buttonVariants } from "@/components/ui/button";
+import { Toggle } from "@/components/ui/toggle";
 import { Input } from "@/components/ui/input";
 
 const ContentHeader = () => {
   return (
     <div className="w-full px-6 pb-4 flex gap-3">
-      <Button variant={"gradientOutline"} className="px-6 flex gap-3 items-center max-w-[120px] w-full">
-        <ActivityLogIcon /> filtros
+      <Toggle className={cn(buttonVariants({ variant: "gradientOutline" }))}>
+        <CalendarIcon />
+      </Toggle>
+      <Button
+        variant={"gradientOutline"}
+        className="md:px-6 flex gap-3 items-center md:max-w-[120px] md:w-full text-xs">
+        <ActivityLogIcon />
+        <p className="md:block hidden"> Filtros</p>
       </Button>
       <Input
-        placeholder="Digite para buscar"
-        className={cn(buttonVariants({ variant: "outline" }), "max-w-[200px] w-full")}
+        placeholder="Buscar..."
+        className={cn(buttonVariants({ variant: "gradientOutline" }), "max-w-[240px] w-full text-xs")}
       />
     </div>
   );
