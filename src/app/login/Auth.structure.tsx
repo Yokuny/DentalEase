@@ -10,11 +10,11 @@ import PreviousPageBtn from "./PreviousPage.btn";
 import SignUp from "./SignUp.structure";
 import SignIn from "./SignIn.structure";
 
-const loginParamValues = ["entrar", "cadastrar"];
+const loginParamValues = ["login", "cadastro"];
 
 const AuthStructure = () => {
   const searchParams = useSearchParams();
-  const loginParam = searchParams.get("acess");
+  const loginParam = searchParams.get("interface");
 
   const { toast } = useToast();
 
@@ -24,16 +24,16 @@ const AuthStructure = () => {
   return (
     <>
       <Link
-        href={{ search: `?acess=${loginParamValues.find((value) => value !== loginParam) || "entrar"}` }}
+        href={{ search: `?interface=${loginParamValues.find((value) => value !== loginParam) || "login"}` }}
         className={cn(
           buttonVariants({ variant: "gradientS" }),
           "absolute right-6 top-6 md:right-10 md:top-10 w-28 text-white font-semibold"
         )}>
-        {loginParam === "entrar" ? "Cadastrar" : "Entrar"}
+        {loginParam === "login" ? "Cadastrar" : "Entrar"}
       </Link>
       <div className="lg:p-8 mb-10 flex flex-col h-full justify-between">
         <div className="flex justify-center">
-          {loginParam === "entrar" ? (
+          {loginParam === "login" ? (
             <SignIn handleRequestError={handleRequestError} />
           ) : (
             <SignUp handleRequestError={handleRequestError} />

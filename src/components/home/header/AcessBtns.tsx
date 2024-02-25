@@ -6,12 +6,12 @@ const AcessBtns = () => {
   return (
     <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
       <Link
-        href={"/login?acess=entrar"}
+        href={"/login?interface=login"}
         className={cn(buttonVariants({ variant: "gradientS" }), "font-semibold text-white")}>
         Acessar
       </Link>
       <Link
-        href={"/login?acess=cadastrar"}
+        href={"/login?interface=cadastro"}
         className={cn(buttonVariants({ variant: "solid600S" }), "font-semibold md:block hidden")}>
         Cadastrar
       </Link>

@@ -28,7 +28,7 @@ const buttonVariants = cva(
         solid700S:
           "bg-gradient-to-r from-blue600 to-blue800 saturate-150 hover:saturate-200 dark:text-white shadow-sm",
         outline:
-          "border-blue500 dark:border-blue700 hover:bg-blue50 dark:bg-slate-950 dark:hover:bg-slate-900 text-blue600 hover:text-blue800 dark:text-blue400 bg-transparent shadow-sm border",
+          "border-blue500 dark:border-blue700 hover:bg-transparent dark:bg-slate-950 dark:hover:bg-slate-900 text-blue600 hover:text-blue800 dark:text-blue400 bg-transparent shadow-sm border",
 
         secondary:
           "bg-slate-100 text-slate-900 shadow-sm hover:bg-slate-100/80 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800/80",

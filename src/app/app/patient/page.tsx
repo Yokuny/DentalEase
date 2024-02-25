@@ -1,37 +1,75 @@
 "use client";
 
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import cn from "@/lib/utils";
 
 import { CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import DatePickerDemo from "@/components/ui/date-picker";
-import { POST } from "@/lib/fetchConfig";
+import { buttonVariants } from "@/components/ui/button";
+import { Patient, columns } from "./columns";
+import PatientTable from "./PatientTable";
+import ContentHeader from "./ContentHeader";
 
-const Schedule = () => {
+export const payments: Patient[] = [
+  {
+    id: "728ed52f",
+    name: "Maria da Silva",
+    phone: "123456789",
+    cadastro: "01/01/2021",
+    status: "Ativo",
+  },
+  {
+    id: "489e1d42",
+    name: "João rodrigues",
+    phone: "987654321",
+    cadastro: "01/01/2021",
+    status: "Ativo",
+  },
+  {
+    id: "f6b1e3f4",
+    name: "José Pereira",
+    phone: "987654321",
+    cadastro: "01/01/2021",
+    status: "Ativo",
+  },
+  {
+    id: "f6b1e3f4",
+    name: "José Carlos",
+    phone: "987654321",
+    cadastro: "01/01/2021",
+    status: "Ativo",
+  },
+];
+
+const Interfaces = () => {
   const searchParams = useSearchParams();
-  const loginParam = searchParams.get("acess");
+  const patientParam = searchParams.get("interface");
 
   const API = process.env.NEXT_PUBLIC_API;
 
   return (
     <>
-      <CardHeader className="p-3 px-6 flex flex-row justify-between ">
-        <div className="md:gap-4 gap-1 flex md:flex-row md:items-center flex-col">
-          <CardTitle className="text-blue400">Agenda</CardTitle>
-          <CardDescription>Horarios agendados</CardDescription>
+      <CardHeader className="flex flex-row justify-between items-baseline">
+        <div className="md:gap-2 md:flex-row md:items-baseline flex  flex-col">
+          <CardTitle className="text-blue400">Pacientes</CardTitle>
+          <CardDescription>Cadastros, consultas, históricos, em um só lugar.</CardDescription>
         </div>
-        <div>
-          <DatePickerDemo />
-        </div>
+        <Link
+          href="/app/patient?interface=register"
+          className={cn(buttonVariants({ variant: "gradientS" }), " text-white font-semibold")}>
+          Adicionar
+        </Link>
       </CardHeader>
 
-      <CardContent className="flex items-center justify-center flex-col bg-slate-500">
-        <p>Card Content</p>
+      <CardContent className="flex items-center justify-center flex-col">
+        <ContentHeader />
+        <PatientTable columns={columns} data={payments} />
       </CardContent>
       <CardFooter>
-        <p>Card Footer</p>
+        <></>
       </CardFooter>
     </>
   );
 };
 
-export default Schedule;
+export default Interfaces;

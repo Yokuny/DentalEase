@@ -4,7 +4,6 @@ import { useSearchParams } from "next/navigation";
 
 import { CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import DatePickerDemo from "@/components/ui/date-picker";
-import { POST } from "@/lib/fetchConfig";
 
 const Schedule = () => {
   const searchParams = useSearchParams();
@@ -14,7 +13,7 @@ const Schedule = () => {
 
   return (
     <>
-      <CardHeader className="p-3 px-6 flex flex-row justify-between ">
+      <CardHeader className="p-3 px-6 flex flex-row justify-between bg-slate-300">
         <div className="md:gap-4 gap-1 flex md:flex-row md:items-center flex-col">
           <CardTitle className="text-blue400">Agenda</CardTitle>
           <CardDescription>Horarios agendados</CardDescription>

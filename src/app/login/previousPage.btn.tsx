@@ -11,10 +11,7 @@ const PreviousPageBtn = () => {
   return (
     <Button
       onClick={previousPage}
-      className={cn(
-        buttonVariants({ variant: "outline" }),
-        "border border-r-2 border-b-2 w-full flex sm:w-[350px]"
-      )}
+      className={cn(buttonVariants({ variant: "outline" }), "border border-b-2 w-full flex sm:w-[350px]")}
       type="button">
       <ArrowLeftIcon className="mr-2 h-4 w-4" /> Voltar
     </Button>
