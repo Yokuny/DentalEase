@@ -6,8 +6,10 @@ export type Patient = {
   id: string;
   name: string;
   phone: string;
-  cadastro: string;
-  status: string;
+  email: string;
+  sex: "M" | "F";
+  anamnese: boolean;
+  intraoral: boolean;
 };
 
 export const columns: ColumnDef<Patient>[] = [
@@ -22,6 +24,10 @@ export const columns: ColumnDef<Patient>[] = [
   {
     accessorKey: "cadastro",
     header: "Cadastro",
+  },
+  {
+    accessorKey: "sex",
+    header: "Sexo",
   },
   {
     accessorKey: "status",

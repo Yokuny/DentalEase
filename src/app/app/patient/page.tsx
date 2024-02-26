@@ -25,7 +25,7 @@ const Interfaces = () => {
       console.log("fetch patients");
       try {
         console.log("fetching patients");
-        const patients = await fetch(`${API}patient`, GET());
+        const patients = await fetch(`${API}patient/partial`, GET());
         const response = await patients.json();
 
         console.log(response);

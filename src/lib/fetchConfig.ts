@@ -1,3 +1,5 @@
+import Cookies from "js-cookie";
+
 type Method = "GET" | "POST" | "PUT" | "DELETE";
 type headersStructure = {
   method: Method;
@@ -11,7 +13,7 @@ const FetchConfig = (body: Object, method: Method) => {
     method: method,
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      Authorization: `Bearer ${Cookies.get("auth")}`,
     },
     withCredentials: true,
     body: JSON.stringify(body),
