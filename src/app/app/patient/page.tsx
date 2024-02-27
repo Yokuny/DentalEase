@@ -7,10 +7,11 @@ import cn from "@/lib/utils";
 
 import { CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { buttonVariants } from "@/components/ui/button";
-import { Patient, columns } from "./columns";
+import { Patient, columns } from "./tableColumns";
 import PatientTable from "./PatientTable";
 import ContentHeader from "./ContentHeader";
 import { GET } from "@/lib/fetchConfig";
+import DataTableDemo from "./TableComplete";
 
 const API = process.env.NEXT_PUBLIC_API;
 
@@ -28,11 +29,11 @@ const Interfaces = () => {
         const patients = await fetch(`${API}patient/partial`, GET());
         const response = await patients.json();
 
-        console.log(response);
+        localStorage.setItem("patients", JSON.stringify(response));
 
         setPatients(response);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       } finally {
         // setIsLoading(false);
       }
@@ -51,7 +52,7 @@ const Interfaces = () => {
         </div>
         <Link
           href="/app/patient?interface=register"
-          className={cn(buttonVariants({ variant: "gradientS" }), " text-white font-semibold")}>
+          className={cn(buttonVariants({ variant: "gradientS" }), "text-white font-semibold")}>
           Adicionar
         </Link>
       </CardHeader>
@@ -59,6 +60,7 @@ const Interfaces = () => {
       <CardContent className="flex items-center justify-center flex-col">
         <ContentHeader />
         <PatientTable columns={columns} data={patients} />
+        <DataTableDemo />
       </CardContent>
       <CardFooter>
         <></>
