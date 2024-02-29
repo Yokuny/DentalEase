@@ -8,10 +8,8 @@ import cn from "@/lib/utils";
 import { CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { buttonVariants } from "@/components/ui/button";
 import { Patient, columns } from "./tableColumns";
-import PatientTable from "./PatientTable";
-import ContentHeader from "./ContentHeader";
 import { GET } from "@/lib/fetchConfig";
-import DataTableDemo from "./TableComplete";
+import Table from "./Table";
 
 const API = process.env.NEXT_PUBLIC_API;
 
@@ -58,9 +56,7 @@ const Interfaces = () => {
       </CardHeader>
 
       <CardContent className="flex items-center justify-center flex-col">
-        <ContentHeader />
-        <PatientTable columns={columns} data={patients} />
-        <DataTableDemo />
+        <Table columns={columns} data={patients} />
       </CardContent>
       <CardFooter>
         <></>

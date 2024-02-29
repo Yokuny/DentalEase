@@ -1,7 +1,7 @@
 "use client";
 
-import * as React from "react";
-import { ChevronDownIcon } from "@radix-ui/react-icons";
+import { useState } from "react";
+import { ChevronDownIcon, CaretLeftIcon, CaretRightIcon, CalendarIcon } from "@radix-ui/react-icons";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -15,7 +15,6 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 
-import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -23,15 +22,29 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Toggle } from "@/components/ui/toggle";
+import { Button, buttonVariants } from "@/components/ui/button";
+import {
+  Table as TableBox,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
-import { data, columns } from "./tableColumns";
+import cn from "@/lib/utils";
 
-const DataTableDemo = () => {
-  const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
-  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
-  const [rowSelection, setRowSelection] = React.useState({});
+interface DataTableProps<TData, TValue> {
+  columns: ColumnDef<TData, TValue>[];
+  data: TData[];
+}
+
+const Table = <TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) => {
+  const [sorting, setSorting] = useState<SortingState>([]);
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+  const [rowSelection, setRowSelection] = useState({});
 
   const table = useReactTable({
     data,
@@ -54,17 +67,21 @@ const DataTableDemo = () => {
 
   return (
     <div className="w-full">
-      <div className="flex items-center py-4">
+      {/* // Table Header */}
+      <div className="w-full px-6 pb-4 flex items-center gap-3">
+        <Toggle className={cn(buttonVariants({ variant: "gradientOutline" }))}>
+          <CalendarIcon />
+        </Toggle>
         <Input
-          placeholder="Filter emails..."
-          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
-          onChange={(event) => table.getColumn("email")?.setFilterValue(event.target.value)}
-          className="max-w-sm"
+          placeholder="Buscar paciente..."
+          value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
+          onChange={(event) => table.getColumn("name")?.setFilterValue(event.target.value)}
+          className={cn(buttonVariants({ variant: "gradientOutline" }), "max-w-[240px] w-full text-xs")}
         />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
-              Columns <ChevronDownIcon className="ml-2 h-4 w-4" />
+            <Button variant="gradientOutline" className="ml-auto">
+              Colunas <ChevronDownIcon className="ml-2 h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
@@ -85,14 +102,15 @@ const DataTableDemo = () => {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <div className="rounded-md border">
-        <Table>
+      {/* // Table Body */}
+      <div className="border border-x-0 w-full">
+        <TableBox>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id}>
+                    <TableHead key={header.id} className="p-2 bg-slate-50 dark:bg-slate-900">
                       {header.isPlaceholder
                         ? null
                         : flexRender(header.column.columnDef.header, header.getContext())}
@@ -116,32 +134,32 @@ const DataTableDemo = () => {
             ) : (
               <TableRow>
                 <TableCell colSpan={columns.length} className="h-24 text-center">
-                  No results.
+                  Sem resultado.
                 </TableCell>
               </TableRow>
             )}
           </TableBody>
-        </Table>
+        </TableBox>
       </div>
-      <div className="flex items-center justify-end space-x-2 py-4">
-        <div className="flex-1 text-sm text-muted-foreground">
-          {table.getFilteredSelectedRowModel().rows.length} of {table.getFilteredRowModel().rows.length}{" "}
-          row(s) selected.
+      {/* // Pagination */}
+      <div className="space-x-2 md:px-6 px-4 py-4 flex justify-between items-center">
+        <div className="text-sm text-muted-foreground">
+          {table.getFilteredRowModel().rows.length} of {data.length} results
         </div>
         <div className="space-x-2">
           <Button
-            variant="outline"
+            variant="gradientOutline"
             size="sm"
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}>
-            Previous
+            <CaretLeftIcon className="h-4 w-4" />
           </Button>
           <Button
-            variant="outline"
+            variant="gradientOutline"
             size="sm"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}>
-            Next
+            <CaretRightIcon className="h-4 w-4" />
           </Button>
         </div>
       </div>
@@ -149,4 +167,4 @@ const DataTableDemo = () => {
   );
 };
 
-export default DataTableDemo;
+export default Table;

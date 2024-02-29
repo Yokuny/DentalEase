@@ -15,18 +15,18 @@ const buttonVariants = cva(
         gradientS:
           "bg-gradient-to-r from-blue400 to-blue600 saturate-150 hover:saturate-200 dark:text-white shadow-sm",
         gradientOutline:
-          "border-blue100 focus-visible:ring-blue50 dark:border-blue700 text-blue600 hover:text-blue800 hover:placeholder:text-blue800 dark:text-blue400 placeholder:text-blue600 dark:placeholder:text-blue400 bg-transparent dark:bg-slate-950 hover:bg-blue50 dark:hover:bg-slate-900 shadow-sm border",
+          "border-blue400 focus-visible:ring-blue100 dark:border-blue700 text-blue600 hover:text-blue800 hover:placeholder:text-blue800 dark:text-blue400 placeholder:text-blue600 dark:placeholder:text-blue400 bg-transparent dark:bg-slate-950 hover:bg-blue50 dark:hover:bg-slate-900 shadow-sm border",
         solid500:
           "bg-blue500 hover:bg-blue500 hover:saturate-150 dark:bg-blue400 dark:hover:bg-blue400 dark:hover:saturate-150 text-white dark:text-white shadow-sm",
         solid500S:
-          "bg-blue500 saturate-150 hover:bg-blue500 hover:saturate-200 dark:bg-blue400 dark:hover:bg-blue400 dark:hover:saturate-200 text-white dark:text-white shadow-sm",
+          "bg-blue500 saturate-150 hover:bg-blue400 hover:saturate-200 dark:bg-blue600 dark:hover:bg-blue500 dark:hover:saturate-200 text-white dark:text-white shadow-sm",
         solid600:
           "bg-blue600 hover:bg-blue600 hover:saturate-150 dark:bg-blue500 dark:hover:bg-blue500 dark:hover:saturate-150 text-white dark:text-white shadow-sm",
         solid600S:
           "bg-blue600 saturate-150 hover:bg-blue600 hover:saturate-200 dark:bg-blue500 dark:hover:bg-blue500 dark:hover:saturate-200 text-white dark:text-white shadow-sm",
         solid700: "bg-gradient-to-r from-blue600 to-blue800 hover:saturate-150 dark:text-white shadow-sm",
         solid700S:
-          "bg-gradient-to-r from-blue600 to-blue800 saturate-150 hover:saturate-200 dark:text-white shadow-sm",
+          "bg-gradient-to-r from-blue400 to-blue600 dark:from-blue600 dark:to-blue800 saturate-150 hover:saturate-200 dark:text-white text-white shadow-sm",
         outline:
           "border-blue500 dark:border-blue700 hover:bg-transparent dark:bg-slate-950 dark:hover:bg-slate-900 text-blue600 hover:text-blue800 dark:text-blue400 bg-transparent shadow-sm border",
 
