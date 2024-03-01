@@ -20,18 +20,15 @@ const SignIn = ({ toast }: any) => {
     setIsLoading(true);
 
     const body = {
-      email: "aaa@asd.com",
-      password: "asdASD123",
-    };
-
-    // const body = {
-    //   email: (event.currentTarget as HTMLFormElement).email.value,
-    //   password: (event.currentTarget as HTMLFormElement).password.value,
-    // };
+      email: (event.currentTarget as HTMLFormElement).email.value,
+      password: (event.currentTarget as HTMLFormElement).password.value,
+    }; // validar com regex
 
     try {
-      const userAceess = await fetch(`${API}user/signin`, POST(body));
-      const user = await userAceess.json();
+      const res = await fetch(`${API}user/signin`, POST(body));
+      const user = await res.json();
+
+      if (user.message) throw new Error(user.message);
 
       localStorage.setItem("user", JSON.stringify(user.user));
       Cookie.set("auth", user.token, { expires: 4 });

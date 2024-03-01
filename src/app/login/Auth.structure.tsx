@@ -17,8 +17,7 @@ const AuthStructure = () => {
   const loginParam = searchParams.get("interface");
 
   const { toast } = useToast();
-
-  const handleRequestError = (title: string, message: string) =>
+  const handlRequestResponse = (title: string, message: string) =>
     toast({ title: title, description: message });
 
   return (
@@ -27,16 +26,16 @@ const AuthStructure = () => {
         href={{ search: `?interface=${loginParamValues.find((value) => value !== loginParam) || "login"}` }}
         className={cn(
           buttonVariants({ variant: "gradientS" }),
-          "absolute right-6 top-6 md:right-10 md:top-10 w-28 text-white font-semibold"
+          "absolute right-6 top-6 md:right-10 md:top-10 w-28"
         )}>
         {loginParam === "login" ? "Cadastrar" : "Entrar"}
       </Link>
       <div className="lg:p-8 mb-10 flex flex-col h-full justify-between">
         <div className="flex justify-center">
           {loginParam === "login" ? (
-            <SignIn toast={handleRequestError} />
+            <SignIn toast={handlRequestResponse} />
           ) : (
-            <SignUp toast={handleRequestError} />
+            <SignUp toast={handlRequestResponse} />
           )}
         </div>
         <div className="w-full flex justify-center">
