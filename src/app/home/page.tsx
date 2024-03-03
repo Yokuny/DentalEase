@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import cn from "@/lib/utils";
+import { cn } from "@/helpers/cn.util";
+
 import { Button, buttonVariants } from "@/components/ui/button";
 
 const Page = () => {

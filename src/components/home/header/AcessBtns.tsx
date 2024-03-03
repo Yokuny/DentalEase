@@ -1,5 +1,5 @@
 import { buttonVariants } from "@/components/ui/button";
-import cn from "@/lib/utils";
+import { cn } from "@/helpers/cn.util";
 import Link from "next/link";
 
 const AcessBtns = () => {

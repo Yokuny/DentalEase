@@ -1,6 +1,6 @@
 "use client";
 
-import cn from "@/lib/utils";
+import { cn } from "@/helpers/cn.util";
 
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import { Button, buttonVariants } from "@/components/ui/button";

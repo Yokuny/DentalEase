@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { format } from "date-fns";
-import cn from "@/lib/utils";
+import { cn } from "@/helpers/cn.util";
 
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";

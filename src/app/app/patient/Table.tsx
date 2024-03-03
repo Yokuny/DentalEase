@@ -33,7 +33,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import cn from "@/lib/utils";
+import { cn } from "@/helpers/cn.util";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];

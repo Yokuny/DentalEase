@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import cn from "@/lib/utils";
+import { cn } from "@/helpers/cn.util";
 
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "@/components/ui/command";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";

@@ -4,13 +4,13 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { ReloadIcon } from "@radix-ui/react-icons";
-import cn from "@/lib/utils";
+import { cn } from "@/helpers/cn.util";
 
 import { CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { buttonVariants } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { Patient, columns } from "./tableColumns";
-import { GET } from "@/lib/fetchConfig";
+import { GET } from "../../../helpers/fetch.config";
 import Table from "./Table";
 
 import Register from "./Register";
@@ -19,8 +19,6 @@ const API = process.env.NEXT_PUBLIC_API;
 
 const Interfaces = () => {
   const [patients, setPatients] = useState<Patient[]>([]);
-  const searchParams = useSearchParams();
-  // const patientParam = searchParams.get("interface");
 
   const { toast } = useToast();
   const handlRequestResponse = (title: string, message: string) =>
@@ -51,7 +49,6 @@ const Interfaces = () => {
 
   return (
     <>
-      <Register />
       <CardHeader className="flex flex-row justify-between items-baseline">
         <div className="md:gap-2 md:flex-row md:items-baseline flex flex-col">
           <CardTitle className="text-blue400">Pacientes</CardTitle>
@@ -66,11 +63,7 @@ const Interfaces = () => {
             <ReloadIcon />
             Atualizar
           </button>
-          <Link
-            href="/app/patient?interface=register"
-            className={cn(buttonVariants({ variant: "gradientS" }))}>
-            Adicionar
-          </Link>
+          <Register />
         </div>
       </CardHeader>
 

@@ -3,7 +3,7 @@
 import * as React from "react"
 import { DayPicker } from "react-day-picker";
 import { ptBR } from "date-fns/locale";
-import cn from "@/lib/utils";
+import { cn } from "@/helpers/cn.util";
 
 import { buttonVariants } from "@/components/ui/button";
 import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";

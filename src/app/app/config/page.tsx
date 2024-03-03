@@ -4,7 +4,7 @@ import { useSearchParams } from "next/navigation";
 
 import { CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import DatePickerDemo from "@/components/ui/date-picker";
-import { POST } from "@/lib/fetchConfig";
+import { POST } from "../../../helpers/fetch.config";
 
 const Schedule = () => {
   const searchParams = useSearchParams();

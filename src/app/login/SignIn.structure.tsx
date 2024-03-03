@@ -2,13 +2,13 @@
 
 import * as React from "react";
 import Cookie from "js-cookie";
-import cn from "@/lib/utils";
+import { cn } from "@/helpers/cn.util";
 import { ReloadIcon } from "@radix-ui/react-icons";
 
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { POST } from "@/lib/fetchConfig";
+import { POST } from "../../helpers/fetch.config";
 
 const API = process.env.NEXT_PUBLIC_API;
 
