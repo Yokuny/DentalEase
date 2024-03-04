@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 import Banner from "./Banner";
-import AuthStructure from "./Auth.structure";
+import Auth from "./Auth";
 
 export const metadata: Metadata = {
   title: "Autenticação",
@@ -12,7 +12,7 @@ const AuthenticationPage = () => {
   return (
     <div className="container relative h-screen flex-col items-center justify-center grid lg:max-w-none lg:grid-cols-2 lg:px-0">
       <Banner />
-      <AuthStructure />
+      <Auth />
     </div>
   );
 };

@@ -3,9 +3,11 @@
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { redirect } from "next/navigation";
+import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { patientSchema } from "@/schemas/patient.schema";
 import { request, POST } from "@/helpers/fetch.config";
+import { ReloadIcon } from "@radix-ui/react-icons";
 import type { ProfileFormProps } from "@/types";
 
 import {
@@ -22,6 +24,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const ProfileForm = ({ toast }: ProfileFormProps) => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const form = useForm<z.infer<typeof patientSchema>>({
     resolver: zodResolver(patientSchema),
     defaultValues: {
@@ -38,6 +41,7 @@ const ProfileForm = ({ toast }: ProfileFormProps) => {
   });
 
   async function onSubmit(values: z.infer<typeof patientSchema>) {
+    setIsLoading(true);
     const body = {
       name: values.name,
       email: values.email,
@@ -49,6 +53,7 @@ const ProfileForm = ({ toast }: ProfileFormProps) => {
       cep: values.cep,
       address: values.address,
     };
+
     try {
       const res = await request("patient", POST(body));
       if (res.message) throw new Error(res.message);
@@ -59,6 +64,7 @@ const ProfileForm = ({ toast }: ProfileFormProps) => {
     } catch (Error: any) {
       toast("Erro ao registrar paciente", Error.message);
     } finally {
+      setIsLoading(false);
     }
   }
 
@@ -72,7 +78,7 @@ const ProfileForm = ({ toast }: ProfileFormProps) => {
             <FormItem>
               <FormLabel>Nome</FormLabel>
               <FormControl>
-                <Input placeholder="Digite o nome..." {...field} className="md:w-64" />
+                <Input placeholder="Digite o nome..." disabled={isLoading} {...field} className="md:w-64" />
               </FormControl>
               <FormDescription>Digite o nome completo do paciente.</FormDescription>
               <FormMessage />
@@ -86,7 +92,7 @@ const ProfileForm = ({ toast }: ProfileFormProps) => {
             <FormItem>
               <FormLabel>CPF</FormLabel>
               <FormControl>
-                <Input placeholder="Digite o CPF..." {...field} className="md:w-48" />
+                <Input placeholder="Digite o CPF..." disabled={isLoading} {...field} className="md:w-48" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -99,7 +105,7 @@ const ProfileForm = ({ toast }: ProfileFormProps) => {
             <FormItem>
               <FormLabel>RG</FormLabel>
               <FormControl>
-                <Input placeholder="Digite o RG..." {...field} className="md:w-44" />
+                <Input placeholder="Digite o RG..." disabled={isLoading} {...field} className="md:w-44" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -112,7 +118,7 @@ const ProfileForm = ({ toast }: ProfileFormProps) => {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="Digite o email..." {...field} className="md:w-64" />
+                <Input placeholder="Digite o email..." disabled={isLoading} {...field} className="md:w-64" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -125,7 +131,7 @@ const ProfileForm = ({ toast }: ProfileFormProps) => {
             <FormItem>
               <FormLabel>Data de Nascimento</FormLabel>
               <FormControl>
-                <Input type="date" {...field} className="md:w-40" />
+                <Input type="date" disabled={isLoading} {...field} className="md:w-40" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -138,7 +144,7 @@ const ProfileForm = ({ toast }: ProfileFormProps) => {
             <FormItem>
               <FormLabel>Telefone</FormLabel>
               <FormControl>
-                <Input placeholder="Digite o número..." {...field} className="md:w-44" />
+                <Input placeholder="Digite o número..." disabled={isLoading} {...field} className="md:w-44" />
               </FormControl>
               <FormDescription>Opte por número WhatsApp</FormDescription>
               <FormMessage />
@@ -159,8 +165,12 @@ const ProfileForm = ({ toast }: ProfileFormProps) => {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="M">Masculino</SelectItem>
-                    <SelectItem value="F">Feminino</SelectItem>
+                    <SelectItem disabled={isLoading} value="M">
+                      Masculino
+                    </SelectItem>
+                    <SelectItem disabled={isLoading} value="F">
+                      Feminino
+                    </SelectItem>
                   </SelectContent>
                 </Select>
               </FormControl>
@@ -175,7 +185,7 @@ const ProfileForm = ({ toast }: ProfileFormProps) => {
             <FormItem>
               <FormLabel>CEP</FormLabel>
               <FormControl>
-                <Input placeholder="Digite aqui..." {...field} className="md:w-44" />
+                <Input placeholder="Digite aqui..." disabled={isLoading} {...field} className="md:w-44" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -188,13 +198,14 @@ const ProfileForm = ({ toast }: ProfileFormProps) => {
             <FormItem>
               <FormLabel>Endereço</FormLabel>
               <FormControl>
-                <Input placeholder="Digite aqui..." {...field} className="md:w-72" />
+                <Input placeholder="Digite aqui..." disabled={isLoading} {...field} className="md:w-72" />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit" variant={"gradient"} className="w-full">
+        <Button type="submit" variant={"gradient"} className="w-full" disabled={isLoading}>
+          {isLoading && <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />}
           Cadastrar
         </Button>
       </form>
