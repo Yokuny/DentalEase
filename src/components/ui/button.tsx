@@ -16,7 +16,7 @@ const buttonVariants = cva(
         gradientS:
           "bg-gradient-to-r from-blue400 to-blue600 saturate-150 hover:saturate-200 dark:text-white shadow-sm font-semibold text-white",
         gradientOutline:
-          "border-blue400 focus-visible:ring-blue100 dark:border-blue700 text-blue600 hover:text-blue800 hover:placeholder:text-blue800 dark:text-blue400 placeholder:text-blue600 dark:placeholder:text-blue400 bg-transparent dark:bg-slate-950 hover:bg-blue50 dark:hover:bg-slate-900 shadow-sm border font-semibold",
+          "border-blue400 focus-visible:ring-blue100 dark:border-blue700 text-blue600 hover:text-blue700 hover:placeholder:text-blue800 dark:text-blue400 placeholder:text-blue600 dark:placeholder:text-blue400 bg-transparent dark:bg-slate-950 hover:bg-blue50 dark:hover:bg-slate-900 shadow-sm border font-semibold",
         solid500:
           "bg-blue500 hover:bg-blue500 hover:saturate-150 dark:bg-blue400 dark:hover:bg-blue400 dark:hover:saturate-150 text-white dark:text-white shadow-sm font-semibold text-white",
         solid500S:
@@ -30,7 +30,7 @@ const buttonVariants = cva(
         solid700S:
           "bg-gradient-to-r from-blue400 to-blue600 dark:from-blue600 dark:to-blue800 saturate-150 hover:saturate-200 dark:text-white text-white shadow-sm font-semibold text-white",
         outline:
-          "border-blue500 dark:border-blue700 hover:bg-transparent dark:bg-slate-950 dark:hover:bg-slate-900 text-blue600 hover:text-blue800 dark:text-blue400 bg-transparent shadow-sm border font-semibold",
+          "border-slate-800 dark:border-slate-300 hover:bg-blue50 dark:bg-slate-950 dark:hover:bg-slate-900 text-slate-800 hover:text-slate900 dark:text-slate-300 bg-transparent shadow-sm border font-semibold",
 
         secondary:
           "bg-slate-100 text-slate-900 shadow-sm hover:bg-slate-100/80 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800/80 font-semibold text-white",

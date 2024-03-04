@@ -1,5 +1,7 @@
 import Cookies from "js-cookie";
 
+const API = process.env.NEXT_PUBLIC_API;
+
 type Method = "GET" | "POST" | "PUT" | "DELETE";
 type headersStructure = {
   method: Method;
@@ -29,4 +31,9 @@ const PUT = (body: Object) => FetchConfig(body, "PUT");
 const GET = () => FetchConfig({}, "GET");
 const DELETE = () => FetchConfig({}, "DELETE");
 
-export { POST, PUT, GET, DELETE };
+const request = async (url: string, config: headersStructure) => {
+  const res = await fetch(`${API}${url}`, config);
+  return res.json();
+};
+
+export { POST, PUT, GET, DELETE, request };

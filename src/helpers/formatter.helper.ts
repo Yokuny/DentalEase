@@ -1,7 +1,31 @@
+const padStart = (value: number) => String(value).padStart(2, "0");
+
+export const numClean = (value: string) => value.replace(/[^0-9]/g, "");
+
+export const formatCpfCnpj = (value: string) => {
+  const num = numClean(value);
+
+  const cpfCheck = num.length === 11;
+  const cnpjCheck = num.length === 14;
+
+  function cpf(num: string) {
+    return `${num.slice(0, 3)}.${num.slice(3, 6)}.${num.slice(6, 9)}-${num.slice(9)}`;
+  }
+
+  function cnpj(num: string) {
+    return `${num.slice(0, 2)}.${num.slice(2, 5)}.${num.slice(5, 8)}/${num.slice(8, 12)}-${num.slice(12)}`;
+  }
+
+  if (cpfCheck) return cpf(num);
+  if (cnpjCheck) return cnpj(num);
+
+  return num;
+};
+
+export const stringToDate = (data: string | Date) => new Date(data);
+
 export const extractData = (data: Date, format: string) => {
   const date = new Date(data);
-
-  const padStart = (value: number) => String(value).padStart(2, "0");
 
   const hour = padStart(date.getHours());
   const minute = padStart(date.getMinutes());
@@ -20,14 +44,4 @@ export const extractData = (data: Date, format: string) => {
     default:
       return `${dayAndMonth} ${hourAndMinute}`;
   }
-};
-
-export const formatTime = (time: number) => {
-  const hours = Math.floor(time / 3600);
-  const minutes = Math.floor((time % 3600) / 60);
-  const seconds = Math.floor(time % 60);
-
-  return `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds
-    .toString()
-    .padStart(2, "0")}`;
 };

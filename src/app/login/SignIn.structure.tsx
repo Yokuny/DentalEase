@@ -2,17 +2,16 @@
 
 import * as React from "react";
 import Cookie from "js-cookie";
-import { cn } from "@/helpers/cn.util";
 import { ReloadIcon } from "@radix-ui/react-icons";
+import { cn } from "@/helpers/cn.util";
+import type { ProfileFormProps } from "@/types";
 
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { POST } from "../../helpers/fetch.config";
+import { request, POST } from "@/helpers/fetch.config";
 
-const API = process.env.NEXT_PUBLIC_API;
-
-const SignIn = ({ toast }: any) => {
+const SignIn = ({ toast }: ProfileFormProps) => {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   const onSubmit = async (event: React.SyntheticEvent) => {
@@ -22,16 +21,15 @@ const SignIn = ({ toast }: any) => {
     const body = {
       email: (event.currentTarget as HTMLFormElement).email.value,
       password: (event.currentTarget as HTMLFormElement).password.value,
-    }; // validar com regex
+    };
 
     try {
-      const res = await fetch(`${API}user/signin`, POST(body));
-      const user = await res.json();
+      const res = await request("user/signin", POST(body));
 
-      if (user.message) throw new Error(user.message);
+      if (res.message) throw new Error(res.message);
 
-      localStorage.setItem("user", JSON.stringify(user.user));
-      Cookie.set("auth", user.token, { expires: 4 });
+      localStorage.setItem("user", JSON.stringify(res.user));
+      Cookie.set("auth", res.token, { expires: 4 });
 
       window.location.href = "/app";
     } catch (Error: any) {

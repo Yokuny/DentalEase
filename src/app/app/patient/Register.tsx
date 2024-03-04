@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import Link from "next/link";
+import { cn } from "@/helpers/cn.util";
+import type { ProfileFormProps } from "@/types";
 
-import { Button } from "@/components/ui/button";
 import {
   Drawer,
   DrawerClose,
@@ -12,35 +14,46 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import ProfileForm from "./ProfileForm";
+import { buttonVariants } from "@/components/ui/button";
+import PatientForm from "./Form";
 
-const DrawerDemo = () => {
+const DrawerDemo = ({ toast }: ProfileFormProps) => {
   const searchParams = useSearchParams();
   const patientParam = searchParams.get("interface");
 
   const [open, setOpen] = useState(false);
   useEffect(() => {
-    if (patientParam === "register") setOpen(true);
+    patientParam === "register" ? setOpen(true) : setOpen(false);
   }, [patientParam]);
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
+      {/* Adicionar Button */}
       <DrawerTrigger asChild>
-        <Button variant="gradientS">Adicionar</Button>
+        <Link
+          href={"/app/patient?interface=register"}
+          className={cn(buttonVariants({ variant: "gradientS" }))}>
+          Adicionar
+        </Link>
       </DrawerTrigger>
+      {/* Body */}
       <DrawerContent>
-        <div className="mx-auto w-full max-w-sm">
+        <div className="mx-auto w-full md:max-w-6xl max-w-sm">
           <DrawerHeader>
             <DrawerTitle>Cadastro de paciente</DrawerTitle>
             <DrawerDescription>Adicione um novo paciente</DrawerDescription>
           </DrawerHeader>
           <div className="p-4 pb-0">
-            <ProfileForm />
+            <PatientForm toast={toast} />
           </div>
           <DrawerFooter>
-            <Button>Submit</Button>
             <DrawerClose asChild>
-              <Button variant="outline">Cancel</Button>
+              <Link
+                onClick={() => toast("Operação cancelada", "O registro foi limpo")}
+                href={"/app/patient"}
+                className={cn(buttonVariants({ variant: "outline" }))}>
+                Cancelar
+              </Link>
             </DrawerClose>
           </DrawerFooter>
         </div>

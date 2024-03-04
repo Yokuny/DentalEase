@@ -1,9 +1,9 @@
 import Link from "next/link";
+import type { ProfileFormProps } from "@/types";
 
 import { UserAuthForm } from "@/components/login/Login";
 
-const SignUp = ({ toast }: any) => {
-  const API = process.env.NEXT_PUBLIC_API;
+const SignUp = ({ toast }: ProfileFormProps) => {
   return (
     <div className="mx-auto mt-60 space-y-6 sm:w-[350px] w-full flex flex-col justify-center items-center">
       <div className="mb-6 flex flex-col space-y-2 text-center">

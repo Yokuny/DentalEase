@@ -9,8 +9,6 @@ const Schedule = () => {
   const searchParams = useSearchParams();
   const loginParam = searchParams.get("acess");
 
-  const API = process.env.NEXT_PUBLIC_API;
-
   return (
     <>
       <CardHeader className="p-3 px-6 flex flex-row justify-between bg-slate-300">
