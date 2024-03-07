@@ -1,6 +1,6 @@
 import DentalEaseLogo from "@/components/dentalEase/DentalEaseLogo";
-import NavMenu from "@/components/home/header/NavMenu";
-import AcessBtns from "@/components/home/header/AcessBtns";
+import NavMenu from "@/components/layout/home/NavMenu";
+import AcessBtns from "@/components/layout/home/AcessBtns";
 
 const Header = () => {
   return (

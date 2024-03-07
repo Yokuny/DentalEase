@@ -32,7 +32,7 @@ const DrawerDemo = ({ toast }: ProfileFormProps) => {
       <DrawerTrigger asChild>
         <Link
           href={"/app/patient?interface=register"}
-          className={cn(buttonVariants({ variant: "gradientS" }))}>
+          className={cn(buttonVariants({ variant: "gradient" }))}>
           Adicionar
         </Link>
       </DrawerTrigger>
@@ -51,7 +51,7 @@ const DrawerDemo = ({ toast }: ProfileFormProps) => {
               <Link
                 onClick={() => toast("Operação cancelada", "O registro foi limpo")}
                 href={"/app/patient"}
-                className={cn(buttonVariants({ variant: "outline" }))}>
+                className={cn(buttonVariants({ variant: "outlineBlue" }), "text-darkBlue")}>
                 Cancelar
               </Link>
             </DrawerClose>

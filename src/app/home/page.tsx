@@ -19,7 +19,7 @@ const Page = () => {
                 para sua clínica crescer, simplificando cada etapa do processo.
               </p>
 
-              <Button className={cn(buttonVariants({ variant: "solid500" }), "text-lg px-8 py-5")}>
+              <Button className={cn(buttonVariants({ variant: "default" }), "text-lg px-8 py-5")}>
                 Teste grátis
               </Button>
             </div>

@@ -9,33 +9,19 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default:
-          "bg-slate-900 text-slate-50 shadow hover:bg-slate-900/90 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90 font-semibold text-white",
+        default: "bg-primaryBlue hover:bg-darkBlue saturate-150 font-semibold text-white shadow",
+        primary:
+          "bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-950 dark:text-slate-200 hover:text-black hover:dark:text-white placeholder:text-black dark:placeholder:text-white border border-slate-200 dark:border-slate-700 shadow-sm",
+        secondary: "bg-skyBlue hover:saturate-150 font-semibold text-white shadow-sm",
         gradient:
-          "bg-gradient-to-r from-blue400 to-blue600 hover:saturate-150 dark:text-white shadow-sm font-semibold text-white",
-        gradientS:
-          "bg-gradient-to-r from-blue400 to-blue600 saturate-150 hover:saturate-200 dark:text-white shadow-sm font-semibold text-white",
-        gradientOutline:
-          "border-blue400 focus-visible:ring-blue100 dark:border-blue700 text-blue600 hover:text-blue700 hover:placeholder:text-blue800 dark:text-blue400 placeholder:text-blue600 dark:placeholder:text-blue400 bg-transparent dark:bg-slate-950 hover:bg-blue50 dark:hover:bg-slate-900 shadow-sm border font-semibold",
-        solid500:
-          "bg-blue500 hover:bg-blue500 hover:saturate-150 dark:bg-blue400 dark:hover:bg-blue400 dark:hover:saturate-150 text-white dark:text-white shadow-sm font-semibold text-white",
-        solid500S:
-          "bg-blue500 saturate-150 hover:bg-blue400 hover:saturate-200 dark:bg-blue600 dark:hover:bg-blue500 dark:hover:saturate-200 text-white dark:text-white shadow-sm font-semibold text-white",
-        solid600:
-          "bg-blue600 hover:bg-blue600 hover:saturate-150 dark:bg-blue500 dark:hover:bg-blue500 dark:hover:saturate-150 text-white dark:text-white shadow-sm font-semibold text-white",
-        solid600S:
-          "bg-blue600 saturate-150 hover:bg-blue600 hover:saturate-200 dark:bg-blue500 dark:hover:bg-blue500 dark:hover:saturate-200 text-white dark:text-white shadow-sm font-semibold text-white",
-        solid700:
-          "bg-gradient-to-r from-blue600 to-blue800 hover:saturate-150 dark:text-white shadow-sm font-semibold text-white",
-        solid700S:
-          "bg-gradient-to-r from-blue400 to-blue600 dark:from-blue600 dark:to-blue800 saturate-150 hover:saturate-200 dark:text-white text-white shadow-sm font-semibold text-white",
+          "bg-gradient-to-r from-primaryBlue bg-darkBlue saturate-150 hover:saturate-100 font-semibold text-white shadow-sm",
         outline:
-          "border-slate-800 dark:border-slate-300 hover:bg-blue50 dark:bg-slate-950 dark:hover:bg-slate-900 text-slate-800 hover:text-slate900 dark:text-slate-300 bg-transparent shadow-sm border font-semibold",
-
-        secondary:
-          "bg-slate-100 text-slate-900 shadow-sm hover:bg-slate-100/80 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800/80 font-semibold text-white",
+          "border-slate-600 bg-slate-50 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-950 dark:hover:bg-slate-800 text-slate-800 hover:text-black dark:text-slate-200 shadow-sm border font-semibold",
+        outlineBlue:
+          "border-primaryBlue dark:border-primaryBlue/80 hover:bg-primaryBlue dark:hover:bg-darkBlue saturate-150 font-semibold dark:text-white text-slate-800 hover:text-white shadow-sm border",
         ghost:
-          "bg-gradient-to-r from-blue100 to-blue300 shadow-sm hover:saturate-150 text-blue800 dark:text-blue950 font-semibold text-white",
+          "bg-gradient-to-r from-skyBlue to-primaryBlue shadow-sm hover:saturate-150 text-darkBlue dark:text-blue950 font-semibold text-white",
+        blank: "",
         link: "text-slate-900 underline-offset-4 hover:underline dark:text-slate-50 font-semibold text-white",
       },
       size: {

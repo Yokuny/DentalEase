@@ -14,7 +14,7 @@ const Schedule = () => {
     <>
       <CardHeader className="p-3 px-6 flex flex-row justify-between ">
         <div className="md:gap-4 gap-1 flex md:flex-row md:items-center flex-col">
-          <CardTitle className="text-blue400">Agenda</CardTitle>
+          <CardTitle className="text-primaryBlue">Agenda</CardTitle>
           <CardDescription>Horarios agendados</CardDescription>
         </div>
         <div>

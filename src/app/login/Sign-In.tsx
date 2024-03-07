@@ -99,7 +99,7 @@ const SignIn = ({ toast }: ProfileFormProps) => {
                 </FormItem>
               )}
             />
-            <Button className={cn(buttonVariants({ variant: "gradientS" }))} disabled={isLoading}>
+            <Button className={cn(buttonVariants({ variant: "gradient" }))} disabled={isLoading}>
               {isLoading && <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />}
               Entrar
             </Button>

@@ -3,14 +3,13 @@
 import { useEffect, useState } from "react";
 import { ReloadIcon } from "@radix-ui/react-icons";
 import { cn } from "@/helpers/cn.util";
-import { Patient, columns } from "../../../components/app/patient/tableColumns";
+import { Patient, columns } from "./List";
 import { request, GET } from "@/helpers/fetch.config";
 
 import { CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { buttonVariants } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
-import HeaderDescription from "@/components/app/patient/HeaderDescription";
-import List from "./List";
+import List from "../../../components/list/List";
 import Register from "./Register";
 
 const Interfaces = () => {
@@ -46,12 +45,21 @@ const Interfaces = () => {
   return (
     <>
       <CardHeader className="flex flex-row justify-between items-baseline">
-        <HeaderDescription />
+        <div className="md:gap-2 md:flex-row md:items-baseline flex flex-col">
+          <CardTitle className="text-darkBlue">Pacientes</CardTitle>
+          <CardDescription className="md:block hidden">
+            Cadastros, consultas, históricos, em um só lugar.
+          </CardDescription>
+        </div>
         <div className="md:gap-2 md:flex-row flex flex-col">
           <button
-            className={cn(buttonVariants({ variant: "outline" }), "flex items-center gap-2")}
+            className={cn(buttonVariants({ variant: "default" }), "flex items-center gap-2")}
             onClick={fetchPatients}>
-            {isLoading ? <ReloadIcon className="animate-spin" /> : <ReloadIcon />}
+            {isLoading ? (
+              <ReloadIcon className="animate-spin" />
+            ) : (
+              <ReloadIcon className="hover:animate-spin" />
+            )}
             Atualizar
           </button>
           <Register toast={handlRequestResponse} />

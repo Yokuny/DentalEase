@@ -24,7 +24,7 @@ const Auth = () => {
       <Link
         href={{ search: `?interface=${loginParamValues.find((value) => value !== loginParam) || "login"}` }}
         className={cn(
-          buttonVariants({ variant: "gradientS" }),
+          buttonVariants({ variant: "gradient" }),
           "absolute right-6 top-6 md:right-10 md:top-10 w-28"
         )}>
         {loginParam === "login" ? "Cadastrar" : "Entrar"}

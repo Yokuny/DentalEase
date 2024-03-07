@@ -25,21 +25,9 @@ const config = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
 
-        blue50: "hsl(var(--blue50))",
-        blue100: "hsl(var(--blue100))",
-        blue200: "hsl(var(--blue200))",
-        blue300: "hsl(var(--blue300))",
-        blue400: "hsl(var(--blue400))",
-        blue500: "hsl(var(--blue500))",
-        blue600: "hsl(var(--blue600))",
-        blue700: "hsl(var(--blue700))",
-        blue800: "hsl(var(--blue800))",
-        blue900: "hsl(var(--blue900))",
-        blue950: "hsl(var(--blue950))",
-
-        transparent1: "hsla(var(--transparent1))",
-        transparent2: "hsla(var(--transparent2))",
-        transparent4: "hsla(var(--transparent4))",
+        skyBlue: "hsl(var(--skyBlue))",
+        primaryBlue: "hsl(var(--primaryBlue))",
+        darkBlue: "hsl(var(--darkBlue))",
 
         primary: {
           DEFAULT: "hsl(var(--primary))",

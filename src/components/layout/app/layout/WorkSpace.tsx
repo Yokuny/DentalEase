@@ -26,7 +26,7 @@ const WorkSpace = () => {
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <div className="h-16 w-full bg-gradient-to-r from-blue400 to-blue600 saturate-150 flex items-center justify-center">
+        <div className="h-16 w-full bg-gradient-to-r from-sky-400 to-primaryBlue saturate-150 flex items-center justify-center">
           <Button
             variant="outline"
             role="combobox"
