@@ -46,8 +46,8 @@ const Interfaces = () => {
     <>
       <CardHeader className="flex flex-row justify-between items-baseline">
         <div className="md:gap-2 md:flex-row md:items-baseline flex flex-col">
-          <CardTitle className="text-darkBlue">Pacientes</CardTitle>
-          <CardDescription className="md:block hidden">
+          <CardTitle className="text-primaryBlue md:text-xl">Pacientes</CardTitle>
+          <CardDescription className="md:block hidden text-xs">
             Cadastros, consultas, históricos, em um só lugar.
           </CardDescription>
         </div>

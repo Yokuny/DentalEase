@@ -1,17 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { cn } from "@/helpers/cn.util";
 
+import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "@/components/ui/command";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
-import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
 
 const workSpace = [
   { value: "home", label: "Agenda" },
   { value: "dashboard", label: "Dashboard" },
   { value: "patient", label: "Paciente" },
+  { value: "patient?interface=register", label: "Cadastrar Paciente" },
   { value: "odontogram", label: "Odontogram" },
   { value: "service", label: "Serviço" },
   { value: "schedule", label: "Agendamento" },
@@ -20,18 +22,24 @@ const workSpace = [
 
 const WorkSpace = () => {
   const [open, setOpen] = useState(false);
+
   const [value, setValue] = useState("");
-  // enviar para a rota selecionada
+  const pathname = usePathname();
+  const path = pathname.split("/app/")[1];
+
+  useEffect(() => {
+    setValue(path);
+  }, [path]);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <div className="h-16 w-full bg-gradient-to-r from-sky-400 to-primaryBlue saturate-150 flex items-center justify-center">
           <Button
-            variant="outline"
+            variant="outlineBlue"
             role="combobox"
             aria-expanded={open}
-            className="h-12 md:max-w-[700px] md:w-full w-11/12 justify-between text-white font-semibold">
+            className="h-12 md:max-w-[700px] md:w-full w-11/12 justify-between text-white shadow-sm">
             {value ? workSpace.find((space) => space.value === value)?.label : "Selecione o ambiente..."}
             <CaretSortIcon className="ml-2 h-4 w-4 shrink-0" />
           </Button>
@@ -47,6 +55,7 @@ const WorkSpace = () => {
                 key={space.value}
                 value={space.value}
                 onSelect={(currentValue) => {
+                  window.location.href = `${currentValue}`;
                   setValue(currentValue === value ? "" : currentValue);
                   setOpen(false);
                 }}>
