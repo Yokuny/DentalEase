@@ -44,7 +44,6 @@ const Table = <TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) 
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
-  const [rowSelection, setRowSelection] = useState({});
 
   const table = useReactTable({
     data,
@@ -56,12 +55,10 @@ const Table = <TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) 
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     onColumnVisibilityChange: setColumnVisibility,
-    onRowSelectionChange: setRowSelection,
     state: {
       sorting,
       columnFilters,
       columnVisibility,
-      rowSelection,
     },
   });
 
@@ -110,7 +107,9 @@ const Table = <TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) 
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id} className="p-2 bg-slate-50 dark:bg-slate-900">
+                    <TableHead
+                      key={header.id}
+                      className="p-2 bg-slate-50 dark:bg-slate-900 md:text-sm text-xs">
                       {header.isPlaceholder
                         ? null
                         : flexRender(header.column.columnDef.header, header.getContext())}
@@ -125,7 +124,7 @@ const Table = <TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) 
               table.getRowModel().rows.map((row) => (
                 <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
+                    <TableCell key={cell.id} className="md:text-sm text-xs">
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
                   ))}
@@ -143,23 +142,30 @@ const Table = <TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) 
       </div>
       {/* // Pagination */}
       <div className="space-x-2 md:px-6 px-4 py-4 flex justify-between items-center">
-        <div className="text-sm text-muted-foreground">
-          {table.getFilteredRowModel().rows.length} of {data.length} results
+        <div className="text-sm text-muted-foreground flex gap-3">
+          <span>
+            {table.getRowModel().rows.length} de {data.length} resultados
+          </span>
+          <span className="md:block hidden">{table.getPageCount()} paginas.</span>
         </div>
-        <div className="space-x-2">
+        <div className="space-x-2 flex">
           <Button
+            onClick={() => table.previousPage()}
+            disabled={!table.getCanPreviousPage()}
             variant="primary"
             size="sm"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}>
-            <CaretLeftIcon className="h-4 w-4" />
+            className="flex items-center gap-1">
+            <CaretLeftIcon className="h-3 w-3" />
+            <p className="font-semibold">{table.getState().pagination.pageIndex + 1}</p>
           </Button>
           <Button
             variant="primary"
             size="sm"
             onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}>
-            <CaretRightIcon className="h-4 w-4" />
+            disabled={!table.getCanNextPage()}
+            className="flex items-center gap-1">
+            <p className="font-semibold">{table.getState().pagination.pageIndex + 2}</p>
+            <CaretRightIcon className="h-3 w-3" />
           </Button>
         </div>
       </div>

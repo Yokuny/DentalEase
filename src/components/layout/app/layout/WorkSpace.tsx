@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/helpers/cn.util";
 
 import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
@@ -15,15 +15,19 @@ const workSpace = [
   { value: "patient", label: "Paciente" },
   { value: "patient?interface=register", label: "Cadastrar Paciente" },
   { value: "odontogram", label: "Odontogram" },
+  { value: "odontogram?interface=register", label: "Registrar Odontograma" },
   { value: "service", label: "Serviço" },
+  { value: "service?interface=register", label: "Cadastrar Serviço" },
   { value: "schedule", label: "Agendamento" },
+  { value: "schedule?interface=register", label: "Agendar" },
   { value: "config", label: "Configurações" },
 ];
 
 const WorkSpace = () => {
+  const [value, setValue] = useState("");
   const [open, setOpen] = useState(false);
 
-  const [value, setValue] = useState("");
+  const router = useRouter();
   const pathname = usePathname();
   const path = pathname.split("/app/")[1];
 
@@ -55,7 +59,7 @@ const WorkSpace = () => {
                 key={space.value}
                 value={space.value}
                 onSelect={(currentValue) => {
-                  window.location.href = `${currentValue}`;
+                  router.push(`/app/${currentValue}`);
                   setValue(currentValue === value ? "" : currentValue);
                   setOpen(false);
                 }}>

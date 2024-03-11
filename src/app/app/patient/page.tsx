@@ -1,5 +1,6 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ReloadIcon } from "@radix-ui/react-icons";
 import { cn } from "@/helpers/cn.util";
@@ -13,6 +14,13 @@ import List from "../../../components/list/List";
 import Register from "./Register";
 
 const Interfaces = () => {
+  const searchParams = useSearchParams();
+  const patientParam = searchParams.get("interface");
+
+  useEffect(() => {
+    console.log(patientParam);
+  }, [patientParam]);
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [patients, setPatients] = useState<Patient[]>([]);
   useEffect(() => {
@@ -28,7 +36,6 @@ const Interfaces = () => {
     setIsLoading(true);
     try {
       const res = await request("patient/partial", GET());
-
       if (res.message) throw new Error(res.message);
 
       localStorage.setItem("patients", JSON.stringify(res));
@@ -51,7 +58,7 @@ const Interfaces = () => {
             Cadastros, consultas, históricos, em um só lugar.
           </CardDescription>
         </div>
-        <div className="md:gap-2 md:flex-row flex flex-col">
+        <div className="gap-2 flex-row flex">
           <button
             className={cn(buttonVariants({ variant: "default" }), "flex items-center gap-2")}
             onClick={fetchPatients}>
@@ -60,7 +67,7 @@ const Interfaces = () => {
             ) : (
               <ReloadIcon className="hover:animate-spin" />
             )}
-            Atualizar
+            <p className="md:block hidden">Atualizar</p>
           </button>
           <Register toast={handlRequestResponse} />
         </div>

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { CaretSortIcon, MixerHorizontalIcon } from "@radix-ui/react-icons";
 import { ColumnDef } from "@tanstack/react-table";
 
@@ -45,7 +46,7 @@ export const columns: ColumnDef<Patient>[] = [
           className="gap-1 flex items-center cursor-pointer hover:text-darkBlue dark:hover:text-skyBlue"
           onClick={() => handleSorting(column)}>
           Email
-          <CaretSortIcon className="h-4 w-4" />
+          <CaretSortIcon className="h-4 md:w-4 w-3" />
         </div>
       );
     },
@@ -59,7 +60,7 @@ export const columns: ColumnDef<Patient>[] = [
           className="gap-1 flex items-center cursor-pointer hover:text-darkBlue dark:hover:text-skyBlue"
           onClick={() => handleSorting(column)}>
           Sexo
-          <CaretSortIcon className="h-4 w-4" />
+          <CaretSortIcon className="h-4 md:w-4 w-3" />
         </div>
       );
     },
@@ -90,19 +91,33 @@ export const columns: ColumnDef<Patient>[] = [
         <div className="flex justify-end">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="primary" className="h-7 w-full p-0">
+              <Button variant="primary" className="h-7 w-12 md:w-14 p-0">
                 <span className="sr-only">Abrir menu</span>
                 <MixerHorizontalIcon className="h-3 w-3" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Ações</DropdownMenuLabel>
-              {!patient.anamnese && <DropdownMenuItem>Cadastrar anamnese</DropdownMenuItem>}
-              {!patient.intraoral && <DropdownMenuItem>Cadastrar intraoral</DropdownMenuItem>}
+              {!patient.anamnese && (
+                <DropdownMenuItem>
+                  <Link href={`/app/patient/${patient.id}?interface=anamnese`}>Cadastrar anamnese</Link>
+                </DropdownMenuItem>
+              )}
+              {!patient.intraoral && (
+                <DropdownMenuItem>
+                  <Link href={`/app/patient/${patient.id}?interface=intraoral`}>Cadastrar intraoral</Link>
+                </DropdownMenuItem>
+              )}
               {(!patient.anamnese || !patient.intraoral) && <DropdownMenuSeparator />}
-              <DropdownMenuItem>Criar odontograma</DropdownMenuItem>
-              <DropdownMenuItem>Criar agendamento</DropdownMenuItem>
-              <DropdownMenuItem>Visualizar registro</DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href={`/app/odontogram/${patient.id}?interface=register`}>Criar odontograma</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href={`/app/schedule/${patient.id}?interface=register`}>Criar agendamento</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href={`/app/patient/${patient.id}?interface=update`}>Visualizar cadastro</Link>
+              </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={handleCopy(patient.phone)}>Copiar telefone</DropdownMenuItem>
               <DropdownMenuItem onClick={handleCopy(patient.email)}>Copiar email</DropdownMenuItem>

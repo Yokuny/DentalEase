@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { cn } from "@/helpers/cn.util";
@@ -20,6 +20,7 @@ import PatientForm from "./Form";
 const DrawerDemo = ({ toast }: ProfileFormProps) => {
   const searchParams = useSearchParams();
   const patientParam = searchParams.get("interface");
+  const closed = () => toast("Operação cancelada", "O registro foi limpo");
 
   const [open, setOpen] = useState(false);
   useEffect(() => {
@@ -32,13 +33,13 @@ const DrawerDemo = ({ toast }: ProfileFormProps) => {
       <DrawerTrigger asChild>
         <Link
           href={"/app/patient?interface=register"}
-          className={cn(buttonVariants({ variant: "gradient" }))}>
+          className={cn(buttonVariants({ variant: "gradient" }), "md:text-sm text-xs")}>
           Adicionar
         </Link>
       </DrawerTrigger>
       {/* Body */}
       <DrawerContent>
-        <div className="mx-auto w-full md:max-w-6xl max-w-sm">
+        <div className="mx-auto w-full md:max-w-6xl">
           <DrawerHeader>
             <DrawerTitle>Cadastro de paciente</DrawerTitle>
             <DrawerDescription>Adicione um novo paciente</DrawerDescription>
@@ -49,7 +50,7 @@ const DrawerDemo = ({ toast }: ProfileFormProps) => {
           <DrawerFooter>
             <DrawerClose asChild>
               <Link
-                onClick={() => toast("Operação cancelada", "O registro foi limpo")}
+                onClick={closed}
                 href={"/app/patient"}
                 className={cn(buttonVariants({ variant: "outlineBlue" }), "text-darkBlue")}>
                 Cancelar

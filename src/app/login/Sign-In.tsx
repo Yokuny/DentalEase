@@ -1,21 +1,24 @@
 "use client";
 
 import * as React from "react";
+import Cookie from "js-cookie";
 import { z } from "zod";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signinSchema } from "@/schemas/user.schema";
 import { request, POST } from "@/helpers/fetch.config";
-import Cookie from "js-cookie";
-import { ReloadIcon } from "@radix-ui/react-icons";
 import { cn } from "@/helpers/cn.util";
 import type { ProfileFormProps } from "@/types";
 
+import { ReloadIcon } from "@radix-ui/react-icons";
 import { Input } from "@/components/ui/input";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 
 const SignIn = ({ toast }: ProfileFormProps) => {
+  const router = useRouter();
+
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const form = useForm<z.infer<typeof signinSchema>>({
     resolver: zodResolver(signinSchema),
@@ -39,7 +42,7 @@ const SignIn = ({ toast }: ProfileFormProps) => {
       localStorage.setItem("user", JSON.stringify(res.user));
       Cookie.set("auth", res.token, { expires: 4 });
 
-      window.location.href = "/app";
+      router.push("/app");
     } catch (Error: any) {
       toast("Erro no login", Error.message);
     } finally {

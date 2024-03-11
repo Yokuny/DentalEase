@@ -1,12 +1,14 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { cn } from "@/helpers/cn.util";
-import { ArrowLeftIcon } from "@radix-ui/react-icons";
 
+import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import { Button, buttonVariants } from "@/components/ui/button";
 
 const PreviousPageBtn = () => {
-  const previousPage = () => window.history.back();
+  const router = useRouter();
+  const previousPage = () => router.back();
 
   return (
     <Button
