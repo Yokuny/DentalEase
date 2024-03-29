@@ -1,22 +1,22 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, redirect } from "next/navigation";
 import Anamnesis from "./Anamnesis";
+import Intraoral from "./Intraoral";
 
 const CloseView = () => {
   const searchParams = useSearchParams();
   const pageInterface = searchParams.get("interface");
 
-  if (pageInterface === "anamnesis") {
+  if (pageInterface === "anamnese") {
     return <Anamnesis />;
   }
 
-  return (
-    <div>
-      <h1>Patient Page</h1>
-      <p>Dynamic ID: {}</p>
-    </div>
-  );
+  if (pageInterface === "intraoral") {
+    return <Intraoral />;
+  }
+
+  return redirect("/app/patient");
 };
 
 export default CloseView;

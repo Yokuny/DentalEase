@@ -64,7 +64,7 @@ const ProfileForm = ({ toast }: ProfileFormProps) => {
         toast("Paciente registrado", "Paciente registrado com sucesso");
 
         form.reset();
-        return router.push(`/app/patient/${res.id}?interface=anamnesis`);
+        return router.push(`/app/patient/${res.id}?interface=anamnese`);
       }
 
       throw new Error(res.message);

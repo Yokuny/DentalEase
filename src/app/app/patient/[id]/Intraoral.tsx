@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { request, POST } from "@/helpers/fetch.config";
 import { ReloadIcon } from "@radix-ui/react-icons";
-import { anamnesisSchema, patientSchema } from "@/schemas/patient.schema";
+import { intraoralSchema, patientSchema } from "@/schemas/patient.schema";
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -29,8 +29,8 @@ const Anamnesis = () => {
 
   const { id } = useParams();
 
-  const form = useForm<z.infer<typeof anamnesisSchema>>({
-    resolver: zodResolver(anamnesisSchema),
+  const form = useForm<z.infer<typeof intraoralSchema>>({
+    resolver: zodResolver(intraoralSchema),
     defaultValues: {
       mainComplaint: "",
       gumsBleedEasily: "false",
@@ -65,7 +65,7 @@ const Anamnesis = () => {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof anamnesisSchema>) {
+  async function onSubmit(values: z.infer<typeof intraoralSchema>) {
     setIsLoading(true);
     const body = {
       Patient: id,

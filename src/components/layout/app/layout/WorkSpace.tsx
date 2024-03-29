@@ -29,8 +29,9 @@ const WorkSpace = () => {
 
   const router = useRouter();
   const pathname = usePathname();
-  const path = pathname.split("/app/")[1];
-
+  const pathString = pathname.split("/app")[1];
+  const path = pathString.split("/")[1];
+  
   useEffect(() => {
     setValue(path);
   }, [path]);
