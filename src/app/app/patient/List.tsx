@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { z } from "zod";
 import { CaretSortIcon, MixerHorizontalIcon } from "@radix-ui/react-icons";
 import { ColumnDef } from "@tanstack/react-table";
 
@@ -27,6 +28,15 @@ const handleSorting = (column: any) => {
 };
 const handleCopy = (value: string) => () => {
   navigator.clipboard.writeText(value);
+};
+
+const setActivePatient = (values: Patient) => {
+  const patient = {
+    name: values.name,
+    email: values.email,
+    phone: values.phone,
+  };
+  localStorage.setItem("activePatient", JSON.stringify(patient));
 };
 
 export const columns: ColumnDef<Patient>[] = [
@@ -100,12 +110,20 @@ export const columns: ColumnDef<Patient>[] = [
               <DropdownMenuLabel>Ações</DropdownMenuLabel>
               {!patient.anamnese && (
                 <DropdownMenuItem>
-                  <Link href={`/app/patient/${patient.id}?interface=anamnese`}>Cadastrar anamnese</Link>
+                  <Link
+                    href={`/app/patient/${patient.id}?interface=anamnese`}
+                    onClick={() => setActivePatient(patient)}>
+                    Cadastrar anamnese
+                  </Link>
                 </DropdownMenuItem>
               )}
               {!patient.intraoral && (
                 <DropdownMenuItem>
-                  <Link href={`/app/patient/${patient.id}?interface=intraoral`}>Cadastrar intraoral</Link>
+                  <Link
+                    href={`/app/patient/${patient.id}?interface=intraoral`}
+                    onClick={() => setActivePatient(patient)}>
+                    Cadastrar intraoral
+                  </Link>
                 </DropdownMenuItem>
               )}
               {(!patient.anamnese || !patient.intraoral) && <DropdownMenuSeparator />}

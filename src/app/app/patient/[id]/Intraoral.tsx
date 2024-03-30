@@ -62,7 +62,7 @@ const Anamnesis = () => {
     };
 
     try {
-      const res = await request("patient/intraoral", POST(body));
+      const res = await request("patient/intra-oral", POST(body));
 
       console.log(res);
 

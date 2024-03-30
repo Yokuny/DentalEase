@@ -38,8 +38,8 @@ const WorkSpace = () => {
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
-        <div className="h-16 w-full bg-gradient-to-r from-sky-400 to-primaryBlue saturate-150 flex items-center justify-center">
+      <PopoverTrigger asChild className="sticky top-0 z-50">
+        <div className="md:h-16 h-14 w-full bg-gradient-to-r from-sky-400 to-primaryBlue saturate-150 flex items-center justify-center">
           <Button
             variant="outlineBlue"
             role="combobox"

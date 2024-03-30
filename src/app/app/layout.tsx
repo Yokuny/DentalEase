@@ -6,7 +6,7 @@ export default function Layout({ children }: Readonly<{ children: React.ReactNod
   return (
     <main>
       <WorkSpace />
-      <div className="md:py-10 gap-10 max-w-screen-2xl md:container min-h-screen flex flex-col items-center justify-between">
+      <div className="md:py-10 mt-2 gap-10 max-w-screen-2xl md:container min-h-screen flex flex-col items-center justify-between">
         <Card className="w-full">{children}</Card>
       </div>
       <Footer />
