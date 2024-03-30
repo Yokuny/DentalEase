@@ -105,6 +105,7 @@ const Anamnesis = () => {
       const res = await request("patient/anamnesis", POST(body));
 
       console.log(res);
+      console.log("res");
 
       // form.reset();
     } catch (Error: any) {

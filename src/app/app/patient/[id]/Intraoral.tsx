@@ -32,36 +32,16 @@ const Anamnesis = () => {
   const form = useForm<z.infer<typeof intraoralSchema>>({
     resolver: zodResolver(intraoralSchema),
     defaultValues: {
-      mainComplaint: "",
-      gumsBleedEasily: "false",
-      sensitiveTeeth: "false",
-      allergicToMedication: "false",
-      medicationAllergy: "",
-      bitesPenOrPencil: "false",
-      nailsBiting: "false",
-      otherHarmfulHabits: "",
-      pregnant: "false",
-      pregnancyMonth: 0,
-      breastfeeding: "false",
-      underMedicalTreatment: "false",
-      medicalTreatmentDetails: "",
-      takingMedication: "false",
-      medicationDetails: "",
-      infectiousDisease: "",
-      smoker: "false",
-      alcoholConsumer: "false",
-      illnesses: {
-        diabetes: "false",
-        tuberculosis: "false",
-        heartProblems: "false",
-        arthritis: "false",
-        asthma: "false",
-        highBloodPressure: "false",
-        kidneyProblems: "false",
-        liverProblems: "false",
-        otherIllnesses: "",
-      },
-      importantHealthInformation: "",
+      hygiene: "normal",
+      halitosis: "ausente",
+      tartar: "ausente",
+      gums: "normal",
+      mucosa: "normal",
+      tongue: "",
+      palate: "",
+      oralFloor: "",
+      lips: "",
+      otherObservations: "",
     },
   });
 
@@ -69,40 +49,20 @@ const Anamnesis = () => {
     setIsLoading(true);
     const body = {
       Patient: id,
-      mainComplaint: values.mainComplaint,
-      gumsBleedEasily: values.gumsBleedEasily,
-      sensitiveTeeth: values.sensitiveTeeth,
-      allergicToMedication: values.allergicToMedication,
-      medicationAllergy: values.medicationAllergy,
-      bitesPenOrPencil: values.bitesPenOrPencil,
-      nailsBiting: values.nailsBiting,
-      otherHarmfulHabits: values.otherHarmfulHabits,
-      pregnant: values.pregnant,
-      pregnancyMonth: values.pregnancyMonth,
-      breastfeeding: values.breastfeeding,
-      underMedicalTreatment: values.underMedicalTreatment,
-      medicalTreatmentDetails: values.medicalTreatmentDetails,
-      takingMedication: values.takingMedication,
-      medicationDetails: values.medicationDetails,
-      infectiousDisease: values.infectiousDisease,
-      smoker: values.smoker,
-      alcoholConsumer: values.alcoholConsumer,
-      illnesses: {
-        diabetes: values.illnesses.diabetes,
-        tuberculosis: values.illnesses.tuberculosis,
-        heartProblems: values.illnesses.heartProblems,
-        arthritis: values.illnesses.arthritis,
-        asthma: values.illnesses.asthma,
-        highBloodPressure: values.illnesses.highBloodPressure,
-        kidneyProblems: values.illnesses.kidneyProblems,
-        liverProblems: values.illnesses.liverProblems,
-        otherIllnesses: values.illnesses.otherIllnesses,
-      },
-      importantHealthInformation: values.importantHealthInformation,
+      hygiene: values.hygiene,
+      halitosis: values.halitosis,
+      tartar: values.tartar,
+      gums: values.gums,
+      mucosa: values.mucosa,
+      tongue: values.tongue,
+      palate: values.palate,
+      oralFloor: values.oralFloor,
+      lips: values.lips,
+      otherObservations: values.otherObservations,
     };
 
     try {
-      const res = await request("patient/anamnesis", POST(body));
+      const res = await request("patient/intraoral", POST(body));
 
       console.log(res);
 
@@ -168,72 +128,13 @@ const Anamnesis = () => {
         <Form {...form}>
           <form className="gap-4 flex-col flex w-full" onSubmit={form.handleSubmit(onSubmit)}>
             <div className="bg-slate-50 dark:bg-slate-900/70 p-4 gap-4 rounded-md w-full flex-wrap justify-start flex">
-              {subtitleSeparator("Histórico Médico")}
+              {subtitleSeparator("Avaliação da saúde bucal")}
               <FormField
                 control={form.control}
-                name="mainComplaint"
-                render={({ field }) => (
-                  <FormItem className="md:w-1/4 md:max-w-none max-w-48 ">
-                    <FormLabel>Queixa principal</FormLabel>
-                    <FormControl className="md:text-sm text-xs">
-                      <Input
-                        className="bg-white dark:bg-slate-950/50"
-                        placeholder="Descreva a queixa principal do paciente..."
-                        disabled={isLoading}
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormDescription className="md:block hidden"></FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="infectiousDisease"
-                render={({ field }) => (
-                  <FormItem className="md:w-1/5 md:max-w-none max-w-36">
-                    <FormLabel>Doença infecciosa</FormLabel>
-                    <FormControl className="md:text-sm text-xs">
-                      <Input
-                        className="bg-white dark:bg-slate-950/50"
-                        placeholder="Digite a doença infecciosa..."
-                        disabled={isLoading}
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="importantHealthInformation"
-                render={({ field }) => (
-                  <FormItem className="md:w-1/4 md:max-w-none max-w-40">
-                    <FormLabel>Informações importantes de saúde</FormLabel>
-                    <FormControl className="md:text-sm text-xs">
-                      <Input
-                        className="bg-white dark:bg-slate-950/50"
-                        placeholder="Digite informações importantes de saúde..."
-                        disabled={isLoading}
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-
-            <div className="bg-slate-50 dark:bg-slate-900/70 p-4 gap-4 rounded-md w-full flex-wrap justify-start flex">
-              {subtitleSeparator("Hábitos Prejudiciais")}
-              <FormField
-                control={form.control}
-                name="smoker"
+                name="hygiene"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Fumante</FormLabel>
+                    <FormLabel>Higiene</FormLabel>
                     <FormControl>
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl className="md:text-sm text-xs">
@@ -242,11 +143,14 @@ const Anamnesis = () => {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
-                            Sim
+                          <SelectItem className="text-xs" disabled={isLoading} value={"normal"}>
+                            Normal
                           </SelectItem>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"false"}>
-                            Não
+                          <SelectItem className="text-xs" disabled={isLoading} value={"regular"}>
+                            Regular
+                          </SelectItem>
+                          <SelectItem className="text-xs" disabled={isLoading} value={"deficiente"}>
+                            Deficiente
                           </SelectItem>
                         </SelectContent>
                       </Select>
@@ -257,10 +161,10 @@ const Anamnesis = () => {
               />
               <FormField
                 control={form.control}
-                name="alcoholConsumer"
+                name="halitosis"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Consumidor de álcool</FormLabel>
+                    <FormLabel>Halito</FormLabel>
                     <FormControl>
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl className="md:text-sm text-xs">
@@ -269,11 +173,14 @@ const Anamnesis = () => {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
-                            Sim
+                          <SelectItem className="text-xs" disabled={isLoading} value={"ausente"}>
+                            Ausente
                           </SelectItem>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"false"}>
-                            Não
+                          <SelectItem className="text-xs" disabled={isLoading} value={"moderada"}>
+                            Moderado
+                          </SelectItem>
+                          <SelectItem className="text-xs" disabled={isLoading} value={"forte"}>
+                            Forte
                           </SelectItem>
                         </SelectContent>
                       </Select>
@@ -284,10 +191,10 @@ const Anamnesis = () => {
               />
               <FormField
                 control={form.control}
-                name="bitesPenOrPencil"
+                name="tartar"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Rói caneta ou lápis</FormLabel>
+                    <FormLabel>Tartaro</FormLabel>
                     <FormControl>
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl className="md:text-sm text-xs">
@@ -296,11 +203,14 @@ const Anamnesis = () => {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
-                            Sim
+                          <SelectItem className="text-xs" disabled={isLoading} value={"ausente"}>
+                            Ausente
                           </SelectItem>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"false"}>
-                            Não
+                          <SelectItem className="text-xs" disabled={isLoading} value={"pouco"}>
+                            Pouco
+                          </SelectItem>
+                          <SelectItem className="text-xs" disabled={isLoading} value={"muito"}>
+                            Muito
                           </SelectItem>
                         </SelectContent>
                       </Select>
@@ -311,10 +221,10 @@ const Anamnesis = () => {
               />
               <FormField
                 control={form.control}
-                name="nailsBiting"
+                name="gums"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Rói unhas</FormLabel>
+                    <FormLabel>Gengiva</FormLabel>
                     <FormControl>
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl className="md:text-sm text-xs">
@@ -323,11 +233,14 @@ const Anamnesis = () => {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
-                            Sim
+                          <SelectItem className="text-xs" disabled={isLoading} value={"normal"}>
+                            Normal
                           </SelectItem>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"false"}>
-                            Não
+                          <SelectItem className="text-xs" disabled={isLoading} value={"gengivite"}>
+                            Gengivite
+                          </SelectItem>
+                          <SelectItem className="text-xs" disabled={isLoading} value={"periodontite"}>
+                            Periodontite
                           </SelectItem>
                         </SelectContent>
                       </Select>
@@ -338,17 +251,26 @@ const Anamnesis = () => {
               />
               <FormField
                 control={form.control}
-                name="otherHarmfulHabits"
+                name="mucosa"
                 render={({ field }) => (
-                  <FormItem className="md:w-1/4 md:max-w-none max-w-48">
-                    <FormLabel>Outros hábitos prejudiciais</FormLabel>
-                    <FormControl className="md:text-sm text-xs">
-                      <Input
-                        className="bg-white dark:bg-slate-950/50"
-                        placeholder="Descreva outros hábitos prejudiciais..."
-                        disabled={isLoading}
-                        {...field}
-                      />
+                  <FormItem>
+                    <FormLabel>Mucosa</FormLabel>
+                    <FormControl>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl className="md:text-sm text-xs">
+                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
+                            <SelectValue />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem className="text-xs" disabled={isLoading} value={"normal"}>
+                            Normal
+                          </SelectItem>
+                          <SelectItem className="text-xs" disabled={isLoading} value={"alterada"}>
+                            Alterada
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -356,507 +278,94 @@ const Anamnesis = () => {
               />
             </div>
             <div className="bg-slate-50 dark:bg-slate-900/70 p-4 gap-4 rounded-md w-full flex-wrap justify-start flex">
-              {subtitleSeparator("Condições Especiais")}
+              {subtitleSeparator("Exame das partes da boca")}
               <FormField
                 control={form.control}
-                name="allergicToMedication"
+                name="tongue"
                 render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Alergia a medicamentos</FormLabel>
+                  <FormItem className="md:w-52 w-full">
+                    <FormLabel>Língua</FormLabel>
                     <FormControl>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl className="md:text-sm text-xs">
-                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                            <SelectValue />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
-                            Sim
-                          </SelectItem>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"false"}>
-                            Não
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              {form.watch("allergicToMedication") === "true" && (
-                <FormField
-                  control={form.control}
-                  name="medicationAllergy"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Alergia a medicamentos</FormLabel>
-                      <FormControl className="md:text-sm text-xs">
-                        <Input
-                          className="bg-white dark:bg-slate-950/50"
-                          placeholder="Descreva a alergia a medicamentos..."
-                          disabled={isLoading}
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              )}
-              <FormField
-                control={form.control}
-                name="gumsBleedEasily"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Gengiva sangra</FormLabel>
-                    <FormControl>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl className="md:text-sm text-xs">
-                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                            <SelectValue />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
-                            Sim
-                          </SelectItem>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"false"}>
-                            Não
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="sensitiveTeeth"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Dentes sensíveis</FormLabel>
-                    <FormControl>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl className="md:text-sm text-xs">
-                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                            <SelectValue />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
-                            Sim
-                          </SelectItem>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"false"}>
-                            Não
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="pregnant"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Grávida</FormLabel>
-                    <FormControl>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl className="md:text-sm text-xs">
-                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                            <SelectValue />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
-                            Sim
-                          </SelectItem>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"false"}>
-                            Não
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              {form.watch("pregnant") === "true" && (
-                <FormField
-                  control={form.control}
-                  name="pregnancyMonth"
-                  render={({ field }) => (
-                    <FormItem className="md:w-32 md:max-w-none max-w-32">
-                      <FormLabel>Mês de gestação</FormLabel>
-                      <FormControl>
-                        <Input
-                          className="bg-white dark:bg-slate-950/50"
-                          type="number"
-                          placeholder="Digite o mês de gestação..."
-                          disabled={isLoading}
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              )}
-              <FormField
-                control={form.control}
-                name="breastfeeding"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Amamentando</FormLabel>
-                    <FormControl>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl className="md:text-sm text-xs">
-                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                            <SelectValue />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
-                            Sim
-                          </SelectItem>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"false"}>
-                            Não
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="underMedicalTreatment"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Em tratamento médico</FormLabel>
-                    <FormControl>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl className="md:text-sm text-xs">
-                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                            <SelectValue />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
-                            Sim
-                          </SelectItem>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"false"}>
-                            Não
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              {form.watch("underMedicalTreatment") === "true" && (
-                <FormField
-                  control={form.control}
-                  name="medicalTreatmentDetails"
-                  render={({ field }) => (
-                    <FormItem className="md:w-1/4 md:max-w-none max-w-48">
-                      <FormLabel>Detalhes do tratamento médico</FormLabel>
-                      <FormControl className="md:text-sm text-xs">
-                        <Input
-                          className="bg-white dark:bg-slate-950/50"
-                          placeholder="Descreva os detalhes do tratamento médico..."
-                          disabled={isLoading}
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              )}
-              <FormField
-                control={form.control}
-                name="takingMedication"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Tomando medicamentos</FormLabel>
-                    <FormControl>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl className="md:text-sm text-xs">
-                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                            <SelectValue />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
-                            Sim
-                          </SelectItem>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"false"}>
-                            Não
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              {form.watch("takingMedication") === "true" && (
-                <FormField
-                  control={form.control}
-                  name="medicationDetails"
-                  render={({ field }) => (
-                    <FormItem className="md:w-1/4 md:max-w-none max-w-48">
-                      <FormLabel>Detalhes dos medicamentos</FormLabel>
-                      <FormControl className="md:text-sm text-xs">
-                        <Input
-                          className="bg-white dark:bg-slate-950/50"
-                          placeholder="Descreva os detalhes dos medicamentos..."
-                          disabled={isLoading}
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              )}
-            </div>
-
-            <div className="bg-slate-50 dark:bg-slate-900/70 p-4 gap-4 rounded-md w-full flex-wrap justify-start flex">
-              {subtitleSeparator("Doenças Crônicas")}
-              <FormField
-                control={form.control}
-                name="illnesses.diabetes"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Diabetes</FormLabel>
-                    <FormControl>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl className="md:text-sm text-xs">
-                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                            <SelectValue />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
-                            Sim
-                          </SelectItem>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"false"}>
-                            Não
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="illnesses.tuberculosis"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Tuberculose</FormLabel>
-                    <FormControl>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl className="md:text-sm text-xs">
-                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                            <SelectValue />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
-                            Sim
-                          </SelectItem>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"false"}>
-                            Não
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="illnesses.heartProblems"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Problemas cardíacos</FormLabel>
-                    <FormControl>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl className="md:text-sm text-xs">
-                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                            <SelectValue />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
-                            Sim
-                          </SelectItem>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"false"}>
-                            Não
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="illnesses.arthritis"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Artrite</FormLabel>
-                    <FormControl>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl className="md:text-sm text-xs">
-                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                            <SelectValue />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
-                            Sim
-                          </SelectItem>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"false"}>
-                            Não
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="illnesses.asthma"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Asma</FormLabel>
-                    <FormControl>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl className="md:text-sm text-xs">
-                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                            <SelectValue />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
-                            Sim
-                          </SelectItem>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"false"}>
-                            Não
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="illnesses.highBloodPressure"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Pressão alta</FormLabel>
-                    <FormControl>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl className="md:text-sm text-xs">
-                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                            <SelectValue />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
-                            Sim
-                          </SelectItem>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"false"}>
-                            Não
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="illnesses.kidneyProblems"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Problemas renais</FormLabel>
-                    <FormControl>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl className="md:text-sm text-xs">
-                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                            <SelectValue />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
-                            Sim
-                          </SelectItem>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"false"}>
-                            Não
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="illnesses.liverProblems"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Problemas hepáticos</FormLabel>
-                    <FormControl>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl className="md:text-sm text-xs">
-                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                            <SelectValue />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
-                            Sim
-                          </SelectItem>
-                          <SelectItem className="text-xs" disabled={isLoading} value={"false"}>
-                            Não
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="illnesses.otherIllnesses"
-                render={({ field }) => (
-                  <FormItem className="md:w-1/4 md:max-w-none max-w-48">
-                    <FormLabel>Outras doenças</FormLabel>
-                    <FormControl className="md:text-sm text-xs">
                       <Input
                         className="bg-white dark:bg-slate-950/50"
-                        placeholder="Descreva outras doenças..."
+                        type="text"
+                        placeholder="Descreva a condição da língua"
+                        disabled={isLoading}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="palate"
+                render={({ field }) => (
+                  <FormItem className="md:w-52 w-full">
+                    <FormLabel>Céu da boca</FormLabel>
+                    <FormControl>
+                      <Input
+                        className="bg-white dark:bg-slate-950/50"
+                        type="text"
+                        placeholder="Descreva o céu da boca"
+                        disabled={isLoading}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="oralFloor"
+                render={({ field }) => (
+                  <FormItem className="md:w-52 w-full">
+                    <FormLabel>Assoalho bucal</FormLabel>
+                    <FormControl>
+                      <Input
+                        className="bg-white dark:bg-slate-950/50"
+                        type="text"
+                        placeholder="Descreva o assoalho bucal"
+                        disabled={isLoading}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="lips"
+                render={({ field }) => (
+                  <FormItem className="md:w-52 w-full">
+                    <FormLabel>Lábios</FormLabel>
+                    <FormControl>
+                      <Input
+                        className="bg-white dark:bg-slate-950/50"
+                        type="text"
+                        placeholder="Descreva a condição dos lábios"
+                        disabled={isLoading}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="otherObservations"
+                render={({ field }) => (
+                  <FormItem className="md:w-56 w-full">
+                    <FormLabel>Outras Observações</FormLabel>
+                    <FormControl>
+                      <Input
+                        className="bg-white dark:bg-slate-950/50"
+                        type="text"
+                        placeholder="Descreva outros sintomas ou preocupações."
                         disabled={isLoading}
                         {...field}
                       />
