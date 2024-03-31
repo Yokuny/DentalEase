@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { z } from "zod";
 import { CaretSortIcon, MixerHorizontalIcon } from "@radix-ui/react-icons";
 import { ColumnDef } from "@tanstack/react-table";
+import type { Patient } from "@/types";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -12,16 +12,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-
-export type Patient = {
-  id: string;
-  name: string;
-  phone: string;
-  email: string;
-  sex: "M" | "F";
-  anamnese: boolean;
-  intraoral: boolean;
-};
 
 const handleSorting = (column: any) => {
   column.toggleSorting(column.getIsSorted() === "asc");

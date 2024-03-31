@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { request, POST } from "@/helpers/fetch.config";
 import { ReloadIcon } from "@radix-ui/react-icons";
 import { anamnesisSchema } from "@/schemas/patient.schema";
+import { stringToBoolean } from "@/helpers/validade.helper";
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -64,32 +65,32 @@ const Anamnesis = () => {
     const body = {
       Patient: id,
       mainComplaint: values.mainComplaint,
-      gumsBleedEasily: values.gumsBleedEasily,
-      sensitiveTeeth: values.sensitiveTeeth,
-      allergicToMedication: values.allergicToMedication,
+      gumsBleedEasily: stringToBoolean(values.gumsBleedEasily),
+      sensitiveTeeth: stringToBoolean(values.sensitiveTeeth),
+      allergicToMedication: stringToBoolean(values.allergicToMedication),
       medicationAllergy: values.medicationAllergy,
-      bitesPenOrPencil: values.bitesPenOrPencil,
-      nailsBiting: values.nailsBiting,
+      bitesPenOrPencil: stringToBoolean(values.bitesPenOrPencil),
+      nailsBiting: stringToBoolean(values.nailsBiting),
       otherHarmfulHabits: values.otherHarmfulHabits,
-      pregnant: values.pregnant,
+      pregnant: stringToBoolean(values.pregnant),
       pregnancyMonth: values.pregnancyMonth,
-      breastfeeding: values.breastfeeding,
-      underMedicalTreatment: values.underMedicalTreatment,
+      breastfeeding: stringToBoolean(values.breastfeeding),
+      underMedicalTreatment: stringToBoolean(values.underMedicalTreatment),
       medicalTreatmentDetails: values.medicalTreatmentDetails,
-      takingMedication: values.takingMedication,
+      takingMedication: stringToBoolean(values.takingMedication),
       medicationDetails: values.medicationDetails,
       infectiousDisease: values.infectiousDisease,
-      smoker: values.smoker,
-      alcoholConsumer: values.alcoholConsumer,
+      smoker: stringToBoolean(values.smoker),
+      alcoholConsumer: stringToBoolean(values.alcoholConsumer),
       illnesses: {
-        diabetes: values.illnesses.diabetes,
-        tuberculosis: values.illnesses.tuberculosis,
-        heartProblems: values.illnesses.heartProblems,
-        arthritis: values.illnesses.arthritis,
-        asthma: values.illnesses.asthma,
-        highBloodPressure: values.illnesses.highBloodPressure,
-        kidneyProblems: values.illnesses.kidneyProblems,
-        liverProblems: values.illnesses.liverProblems,
+        diabetes: stringToBoolean(values.illnesses.diabetes),
+        tuberculosis: stringToBoolean(values.illnesses.tuberculosis),
+        heartProblems: stringToBoolean(values.illnesses.heartProblems),
+        arthritis: stringToBoolean(values.illnesses.arthritis),
+        asthma: stringToBoolean(values.illnesses.asthma),
+        highBloodPressure: stringToBoolean(values.illnesses.highBloodPressure),
+        kidneyProblems: stringToBoolean(values.illnesses.kidneyProblems),
+        liverProblems: stringToBoolean(values.illnesses.liverProblems),
         otherIllnesses: values.illnesses.otherIllnesses,
       },
       importantHealthInformation: values.importantHealthInformation,
@@ -97,7 +98,6 @@ const Anamnesis = () => {
 
     try {
       const res = await request("patient/anamnesis", POST(body));
-
       console.log("res", res);
     } catch (Error: any) {
       console.log(Error);
