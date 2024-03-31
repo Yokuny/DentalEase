@@ -1,6 +1,5 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ReloadIcon } from "@radix-ui/react-icons";
 import { cn } from "@/helpers/cn.util";
@@ -14,15 +13,9 @@ import List from "../../../components/list/List";
 import Register from "./Register";
 
 const Interfaces = () => {
-  const searchParams = useSearchParams();
-  const patientParam = searchParams.get("interface");
-
-  useEffect(() => {
-    console.log(patientParam);
-  }, [patientParam]);
-
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [patients, setPatients] = useState<Patient[]>([]);
+
   useEffect(() => {
     const patients = localStorage.getItem("patients");
     if (patients) setPatients(JSON.parse(patients));

@@ -7,26 +7,20 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { request, POST } from "@/helpers/fetch.config";
 import { ReloadIcon } from "@radix-ui/react-icons";
-import { anamnesisSchema, patientSchema } from "@/schemas/patient.schema";
+import { anamnesisSchema } from "@/schemas/patient.schema";
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import ActivePatientRender from "@/components/app/patient/ActivePatientRender";
+import SubtitleSeparator from "@/components/app/patient/SubtitleSeparator";
 
 const Anamnesis = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const router = useRouter();
 
+  const router = useRouter();
   const { id } = useParams();
 
   const form = useForm<z.infer<typeof anamnesisSchema>>({
@@ -66,7 +60,6 @@ const Anamnesis = () => {
   });
 
   async function onSubmit(values: z.infer<typeof anamnesisSchema>) {
-    console.log("rodando");
     setIsLoading(true);
     const body = {
       Patient: id,
@@ -105,59 +98,14 @@ const Anamnesis = () => {
     try {
       const res = await request("patient/anamnesis", POST(body));
 
-      console.log(res);
-      console.log("res");
-
-      // form.reset();
+      console.log("res", res);
     } catch (Error: any) {
       console.log(Error);
     } finally {
+      form.reset();
       setIsLoading(false);
     }
   }
-
-  const activePatientRender = () => {
-    const storedActivePatient = localStorage.getItem("activePatient");
-    if (!storedActivePatient) return;
-    const activePatient = JSON.parse(storedActivePatient) as z.infer<typeof patientSchema>;
-
-    return (
-      <>
-        <span className="flex flex-wrap gap-2 text-slate-500 dark:text-slate-400">
-          <span className="border p-2 px-4 flex gap-1 rounded-md bg-muted/40 cursor-not-allowed">
-            <span className="text-xs font-mono">Name:</span>
-            <span className="text-xs font-medium">{activePatient.name}</span>
-          </span>
-          {activePatient.cpf && (
-            <span className="border p-2 px-4 flex gap-1 rounded-md bg-muted/40 cursor-not-allowed">
-              <span className="text-xs font-mono">CPF:</span>
-              <span className="text-xs font-medium">{activePatient.cpf}</span>
-            </span>
-          )}
-          {activePatient.rg && (
-            <span className="border p-2 px-4 flex gap-1 rounded-md bg-muted/40 cursor-not-allowed">
-              <span className="text-xs font-mono">RG:</span>
-              <span className="text-xs font-medium">{activePatient.rg}</span>
-            </span>
-          )}
-          <span className="border p-2 px-4 flex gap-1 rounded-md bg-muted/40 cursor-not-allowed">
-            <span className="text-xs font-mono">Celular:</span>
-            <span className="text-xs font-medium">{activePatient.phone}</span>
-          </span>
-          <span className="border p-2 px-4 flex gap-1 rounded-md bg-muted/40 cursor-not-allowed">
-            <span className="text-xs font-mono">Email:</span>
-            <span className="text-xs font-medium">{activePatient.email}</span>
-          </span>
-        </span>
-      </>
-    );
-  };
-
-  const subtitleSeparator = (subtitle: string) => (
-    <div className="w-full mt-4">
-      <h4 className="text-darkBlue dark:text-skyBlue text-xs font-semibold">{subtitle}</h4>
-    </div>
-  );
 
   return (
     <>
@@ -166,14 +114,20 @@ const Anamnesis = () => {
           <CardTitle className="text-primaryBlue md:text-xl">Anamnese</CardTitle>
           <CardDescription className="">Dados pessoais e histórico clínico.</CardDescription>
         </div>
-        {activePatientRender()}
+        <ActivePatientRender />
       </CardHeader>
 
-      <CardContent className="p-6 pb-0 items-center justify-center flex flex-col">
+      <CardContent className="md:p-6 p-0 pb-0 items-center justify-center flex flex-col">
         <Form {...form}>
-          <form className="gap-4 flex-col flex w-full" onSubmit={form.handleSubmit(onSubmit)}>
+          <form
+            id="form-id"
+            className="gap-4 flex-col flex w-full"
+            onSubmit={(e) => {
+              e.preventDefault();
+              onSubmit(form.getValues());
+            }}>
             <div className="bg-slate-50 dark:bg-slate-900/70 p-4 gap-4 rounded-md w-full flex-wrap justify-start flex">
-              {subtitleSeparator("Histórico Médico")}
+              <SubtitleSeparator subtitle="Histórico Médico" />
               <FormField
                 control={form.control}
                 name="mainComplaint"
@@ -188,7 +142,6 @@ const Anamnesis = () => {
                         {...field}
                       />
                     </FormControl>
-                    <FormDescription className="md:block hidden"></FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -230,9 +183,8 @@ const Anamnesis = () => {
                 )}
               />
             </div>
-
             <div className="bg-slate-50 dark:bg-slate-900/70 p-4 gap-4 rounded-md w-full flex-wrap justify-start flex">
-              {subtitleSeparator("Hábitos Prejudiciais")}
+              <SubtitleSeparator subtitle="Hábitos Prejudiciais" />
               <FormField
                 control={form.control}
                 name="smoker"
@@ -361,7 +313,7 @@ const Anamnesis = () => {
               />
             </div>
             <div className="bg-slate-50 dark:bg-slate-900/70 p-4 gap-4 rounded-md w-full flex-wrap justify-start flex">
-              {subtitleSeparator("Condições Especiais")}
+              <SubtitleSeparator subtitle="Condições Especiais" />
               <FormField
                 control={form.control}
                 name="allergicToMedication"
@@ -633,9 +585,8 @@ const Anamnesis = () => {
                 />
               )}
             </div>
-
             <div className="bg-slate-50 dark:bg-slate-900/70 p-4 gap-4 rounded-md w-full flex-wrap justify-start flex">
-              {subtitleSeparator("Doenças Crônicas")}
+              <SubtitleSeparator subtitle="Doenças Crônicas" />
               <FormField
                 control={form.control}
                 name="illnesses.diabetes"
@@ -871,11 +822,25 @@ const Anamnesis = () => {
                 )}
               />
             </div>
-
-            <Button type="submit" variant={"gradient"} className="mt-4 w-full" disabled={isLoading}>
-              {isLoading && <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />}
-              Cadastrar
-            </Button>
+            <div className="w-full md:p-0 px-4 flex md:gap-4 gap-2">
+              <Button
+                form="form-id"
+                type="submit"
+                variant={"gradient"}
+                className="mt-4 w-3/4"
+                disabled={isLoading}>
+                {isLoading && <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />}
+                Cadastrar
+              </Button>
+              <Button
+                type="button"
+                variant={"outlineBlue"}
+                className="mt-4 w-1/4 text-darkBlue"
+                onClick={() => router.back()}
+                disabled={isLoading}>
+                Voltar
+              </Button>
+            </div>
           </form>
         </Form>
       </CardContent>

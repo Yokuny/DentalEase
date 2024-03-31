@@ -24,9 +24,10 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const ProfileForm = ({ toast }: ProfileFormProps) => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const router = useRouter();
 
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const form = useForm<z.infer<typeof patientSchema>>({
     resolver: zodResolver(patientSchema),
     defaultValues: {
@@ -69,8 +70,6 @@ const ProfileForm = ({ toast }: ProfileFormProps) => {
 
       throw new Error(res.message);
     } catch (Error: any) {
-      console.log(Error);
-      console.log(Error.message);
       toast("Erro ao registrar paciente", Error.message);
     } finally {
       setIsLoading(false);

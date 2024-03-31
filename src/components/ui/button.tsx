@@ -16,7 +16,7 @@ const buttonVariants = cva(
         gradient:
           "bg-gradient-to-r from-primaryBlue bg-darkBlue saturate-150 hover:saturate-100 font-semibold text-white shadow-sm",
         outline:
-          "border-slate-600 bg-slate-50 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-950 dark:hover:bg-slate-800 text-slate-800 hover:text-black dark:text-slate-200 shadow-sm border font-semibold",
+          "border-slate-400 bg-slate-50 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-950 dark:hover:bg-slate-800 text-slate-700 hover:text-slate-900 dark:text-slate-300 shadow-sm border font-semibold",
         outlineBlue:
           "border-primaryBlue dark:border-primaryBlue/80 hover:bg-primaryBlue dark:hover:bg-darkBlue saturate-150 font-semibold dark:text-white text-slate-800 hover:text-white shadow-sm border",
         ghost:
