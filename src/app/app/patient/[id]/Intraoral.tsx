@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { request, POST } from "@/helpers/fetch.config";
 import { ReloadIcon } from "@radix-ui/react-icons";
 import { intraoralSchema } from "@/schemas/patient.schema";
+import type { toastProps } from "@/types";
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -17,7 +18,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import ActivePatientRender from "@/components/app/patient/ActivePatientRender";
 import SubtitleSeparator from "@/components/app/patient/SubtitleSeparator";
 
-const Anamnesis = () => {
+const Anamnesis = ({ toast }: toastProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
 
@@ -57,10 +58,10 @@ const Anamnesis = () => {
 
     try {
       const res = await request("patient/intra-oral", POST(body));
-
-      console.log("res", res);
+      toast("Sucesso", res.message);
+      router.push(`/app/patient`);
     } catch (Error: any) {
-      console.log(Error);
+      toast("Erro", Error.message);
     } finally {
       form.reset();
       setIsLoading(false);

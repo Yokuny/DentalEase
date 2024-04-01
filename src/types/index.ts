@@ -1,4 +1,4 @@
-export type ProfileFormProps = {
+export type toastProps = {
   toast: (title: string, message: string) => void;
 };
 

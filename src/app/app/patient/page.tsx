@@ -3,8 +3,9 @@
 import { useEffect, useState } from "react";
 import { ReloadIcon } from "@radix-ui/react-icons";
 import { cn } from "@/helpers/cn.util";
-import { Patient, columns } from "./List";
+import { columns } from "./List";
 import { request, GET } from "@/helpers/fetch.config";
+import type { Patient } from "@/types";
 
 import { CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { buttonVariants } from "@/components/ui/button";

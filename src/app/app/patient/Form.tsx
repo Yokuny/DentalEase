@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { patientSchema } from "@/schemas/patient.schema";
 import { request, POST } from "@/helpers/fetch.config";
 import { ReloadIcon } from "@radix-ui/react-icons";
-import type { ProfileFormProps } from "@/types";
+import type { toastProps } from "@/types";
 
 import {
   Form,
@@ -23,7 +23,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-const ProfileForm = ({ toast }: ProfileFormProps) => {
+const ProfileForm = ({ toast }: toastProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const router = useRouter();
