@@ -1,4 +1,4 @@
-export type toastProps = {
+export type ToastProps = {
   toast: (title: string, message: string) => void;
 };
 
