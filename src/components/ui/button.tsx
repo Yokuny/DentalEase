@@ -11,7 +11,7 @@ const buttonVariants = cva(
       variant: {
         default: "bg-primaryBlue hover:bg-darkBlue saturate-150 font-semibold text-white shadow",
         primary:
-          "bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-950 dark:text-slate-200 hover:text-black hover:dark:text-white placeholder:text-black dark:placeholder:text-white border border-slate-200 dark:border-slate-700 shadow-sm data-[state=on]:bg-primaryBlue data-[state=on]:text-white data-[state=on]:border-transparent",
+          "bg-slate-50 dark:bg-slate-900 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-950 dark:text-slate-200 hover:text-black hover:dark:text-white placeholder:text-black dark:placeholder:text-white border border-slate-200 dark:border-slate-700 shadow-sm data-[state=on]:bg-primaryBlue data-[state=on]:text-white data-[state=on]:border-transparent",
         secondary: "bg-skyBlue hover:saturate-150 font-semibold text-white shadow-sm",
         gradient:
           "bg-gradient-to-r from-primaryBlue bg-darkBlue saturate-150 hover:saturate-100 font-semibold text-white shadow-sm",
