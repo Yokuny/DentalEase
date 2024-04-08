@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { request, POST } from "@/helpers/fetch.config";
 import { ReloadIcon } from "@radix-ui/react-icons";
 import { cn } from "@/helpers/cn.util";
-import type { ProfileFormProps } from "@/types";
+import type { ToastProps } from "@/types";
 
 import { Input } from "@/components/ui/input";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -18,7 +18,7 @@ const emailSchema = z.object({
   email: z.string().email("Insira um e-mail válido"),
 });
 
-const SignUp = ({ toast }: ProfileFormProps) => {
+const SignUp = ({ toast }: ToastProps) => {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const form = useForm<z.infer<typeof emailSchema>>({
     resolver: zodResolver(emailSchema),
@@ -35,6 +35,7 @@ const SignUp = ({ toast }: ProfileFormProps) => {
     };
 
     setTimeout(() => {
+      toast("Error", "Rotina não implementado.");
       setIsLoading(false);
     }, 3000);
   }

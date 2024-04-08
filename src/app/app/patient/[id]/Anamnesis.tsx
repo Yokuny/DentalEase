@@ -455,6 +455,8 @@ const Anamnesis = ({ toast }: ToastProps) => {
                         <Input
                           className="bg-white dark:bg-slate-950/50"
                           type="number"
+                          min={0}
+                          max={10}
                           placeholder="Digite o mês de gestação..."
                           disabled={isLoading}
                           {...field}

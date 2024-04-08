@@ -30,10 +30,10 @@ const Interfaces = () => {
     setIsLoading(true);
     try {
       const res = await request("patient/partial", GET());
-      if (res.message) throw new Error(res.message);
+      if (res.success === false) throw new Error(res.message);
 
-      localStorage.setItem("patients", JSON.stringify(res));
-      setPatients(res);
+      localStorage.setItem("patients", JSON.stringify(res.data));
+      setPatients(res.data);
 
       handlRequestResponse("Sucesso", "Lista de pacientes atualizada.");
     } catch (error: any) {

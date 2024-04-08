@@ -15,7 +15,7 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { buttonVariants } from "@/components/ui/button";
-import PatientForm from "./Form";
+import Form from "./Form";
 
 const DrawerDemo = ({ toast }: ToastProps) => {
   const searchParams = useSearchParams();
@@ -29,7 +29,7 @@ const DrawerDemo = ({ toast }: ToastProps) => {
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
-      {/* Adicionar Button */}
+      {/* Button */}
       <DrawerTrigger asChild>
         <Link
           href={"/app/patient?interface=register"}
@@ -45,7 +45,7 @@ const DrawerDemo = ({ toast }: ToastProps) => {
             <DrawerDescription>Adicione um novo paciente</DrawerDescription>
           </DrawerHeader>
           <div className="p-4 pb-0">
-            <PatientForm toast={toast} />
+            <Form toast={toast} />
           </div>
           <DrawerFooter>
             <DrawerClose asChild>

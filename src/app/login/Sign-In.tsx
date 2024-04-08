@@ -9,14 +9,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { signinSchema } from "@/schemas/user.schema";
 import { request, POST } from "@/helpers/fetch.config";
 import { cn } from "@/helpers/cn.util";
-import type { ProfileFormProps } from "@/types";
+import type { ToastProps } from "@/types";
 
 import { ReloadIcon } from "@radix-ui/react-icons";
 import { Input } from "@/components/ui/input";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 
-const SignIn = ({ toast }: ProfileFormProps) => {
+const SignIn = ({ toast }: ToastProps) => {
   const router = useRouter();
 
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
@@ -37,10 +37,10 @@ const SignIn = ({ toast }: ProfileFormProps) => {
 
     try {
       const res = await request("user/signin", POST(body));
-      if (res.message) throw new Error(res.message);
+      if (res.success === false) throw new Error(res.message);
 
-      localStorage.setItem("user", JSON.stringify(res.user));
-      Cookie.set("auth", res.token, { expires: 4 });
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+      Cookie.set("auth", res.data.token, { expires: 4 });
 
       router.push("/app");
     } catch (Error: any) {

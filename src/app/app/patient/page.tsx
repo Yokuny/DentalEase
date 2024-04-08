@@ -30,10 +30,10 @@ const Interfaces = () => {
     setIsLoading(true);
     try {
       const res = await request("patient/partial", GET());
-      if (res.message) throw new Error(res.message);
+      if (res.success === false) throw new Error(res.message);
 
       localStorage.setItem("patients", JSON.stringify(res));
-      setPatients(res);
+      setPatients(res.data as Patient[]);
 
       handlRequestResponse("Sucesso", "Lista de pacientes atualizada.");
     } catch (error: any) {
@@ -48,7 +48,7 @@ const Interfaces = () => {
       <CardHeader className="flex flex-row justify-between items-baseline">
         <div className="md:gap-2 md:flex-row md:items-baseline flex flex-col">
           <CardTitle className="text-primaryBlue md:text-xl">Pacientes</CardTitle>
-          <CardDescription className="md:block hidden text-xs">
+          <CardDescription className="md:block hidden text-xs font-mono tracking-tighter">
             Cadastros, consultas, históricos, em um só lugar.
           </CardDescription>
         </div>
@@ -56,11 +56,7 @@ const Interfaces = () => {
           <button
             className={cn(buttonVariants({ variant: "default" }), "flex items-center gap-2")}
             onClick={fetchPatients}>
-            {isLoading ? (
-              <ReloadIcon className="animate-spin" />
-            ) : (
-              <ReloadIcon className="hover:animate-spin" />
-            )}
+            {isLoading ? <ReloadIcon className="animate-spin" /> : <ReloadIcon className="hover:animate-spin" />}
             <p className="md:block hidden">Atualizar</p>
           </button>
           <Register toast={handlRequestResponse} />

@@ -25,7 +25,7 @@ export const anamnesisSchema = z.object({
   nailsBiting: z.enum(["true", "false"]),
   otherHarmfulHabits: z.string().trim().max(120, lengthMessage(0, 120)),
   pregnant: z.enum(["true", "false"]),
-  pregnancyMonth: z.number().max(10),
+  pregnancyMonth: z.number().max(10).min(0),
   breastfeeding: z.enum(["true", "false"]),
   underMedicalTreatment: z.enum(["true", "false"]),
   medicalTreatmentDetails: z.string().trim().max(120, lengthMessage(0, 120)),

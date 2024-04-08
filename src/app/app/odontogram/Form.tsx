@@ -60,15 +60,15 @@ const ProfileForm = ({ toast }: ToastProps) => {
     try {
       const res = await request("patient", POST(body));
 
-      if (res.id) {
-        localStorage.setItem("activePatient", JSON.stringify(body));
-        toast("Paciente registrado", "Paciente registrado com sucesso");
+      if (res.success === false) throw new Error(res.message);
 
-        form.reset();
-        return router.push(`/app/patient/${res.id}?interface=anamnese`);
-      }
+      localStorage.setItem("activePatient", JSON.stringify(body));
+      toast("Paciente registrado", "Paciente registrado com sucesso");
 
-      throw new Error(res.message);
+      form.reset();
+      return router.push(`/app/patient/${res.data.id}?interface=anamnese`);
+      
+
     } catch (Error: any) {
       toast("Erro ao registrar paciente", Error.message);
     } finally {

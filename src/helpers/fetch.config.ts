@@ -10,6 +10,12 @@ type headersStructure = {
   withCredentials: boolean;
 };
 
+type Response<T> = {
+  success: boolean;
+  data: T;
+  message: string;
+};
+
 const FetchConfig = (body: Object, method: Method) => {
   const headers: headersStructure = {
     method: method,
@@ -33,7 +39,7 @@ const DELETE = () => FetchConfig({}, "DELETE");
 
 const request = async (url: string, config: headersStructure) => {
   const res = await fetch(`${API}${url}`, config);
-  return res.json();
+  return res.json() as Promise<Response<any>>;
 };
 
 export { POST, PUT, GET, DELETE, request };
