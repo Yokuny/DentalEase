@@ -101,7 +101,7 @@ export const columns: ColumnDef<Patient>[] = [
               {!patient.anamnese && (
                 <DropdownMenuItem>
                   <Link
-                    href={`/app/patient/${patient.id}?interface=anamnese`}
+                    href={`/app/patient/${patient._id}?interface=anamnese`}
                     onClick={() => setActivePatient(patient)}>
                     Cadastrar anamnese
                   </Link>
@@ -110,7 +110,7 @@ export const columns: ColumnDef<Patient>[] = [
               {!patient.intraoral && (
                 <DropdownMenuItem>
                   <Link
-                    href={`/app/patient/${patient.id}?interface=intraoral`}
+                    href={`/app/patient/${patient._id}?interface=intraoral`}
                     onClick={() => setActivePatient(patient)}>
                     Cadastrar intraoral
                   </Link>
@@ -118,18 +118,19 @@ export const columns: ColumnDef<Patient>[] = [
               )}
               {(!patient.anamnese || !patient.intraoral) && <DropdownMenuSeparator />}
               <DropdownMenuItem>
-                <Link href={`/app/odontogram/${patient.id}?interface=register`}>Criar odontograma</Link>
+                <Link href={`/app/odontogram/${patient._id}?interface=register`}>Criar odontograma</Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <Link href={`/app/schedule/${patient.id}?interface=register`}>Criar agendamento</Link>
+                <Link href={`/app/schedule/${patient._id}?interface=register`}>Criar agendamento</Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <Link href={`/app/patient/${patient.id}?interface=update`}>Visualizar cadastro</Link>
+                <Link href={`/app/patient/${patient._id}?interface=update`}>Visualizar cadastro</Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={handleCopy(patient.phone)}>Copiar telefone</DropdownMenuItem>
               <DropdownMenuItem onClick={handleCopy(patient.email)}>Copiar email</DropdownMenuItem>
               <DropdownMenuItem onClick={handleCopy(patient.name)}>Copiar nome</DropdownMenuItem>
+              <DropdownMenuItem onClick={handleCopy(patient._id)}>Copiar ID</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

@@ -24,14 +24,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Toggle } from "@/components/ui/toggle";
 import { Button, buttonVariants } from "@/components/ui/button";
-import {
-  Table as TableBox,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { Table as TableBox, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 import { cn } from "@/helpers/cn.util";
 
@@ -73,7 +66,10 @@ const Table = <TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) 
           placeholder="Buscar paciente..."
           value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
           onChange={(event) => table.getColumn("name")?.setFilterValue(event.target.value)}
-          className={cn(buttonVariants({ variant: "primary" }), "max-w-[240px] w-full text-xs")}
+          className={cn(
+            buttonVariants({ variant: "primary" }),
+            "max-w-[240px] w-full text-xs font-normal tracking-wide"
+          )}
         />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -107,12 +103,8 @@ const Table = <TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) 
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead
-                      key={header.id}
-                      className="p-2 bg-slate-50 dark:bg-slate-900 md:text-sm text-xs">
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(header.column.columnDef.header, header.getContext())}
+                    <TableHead key={header.id} className="p-2 bg-slate-50 dark:bg-slate-900 md:text-sm text-xs">
+                      {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                     </TableHead>
                   );
                 })}

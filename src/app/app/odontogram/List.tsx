@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { CaretSortIcon, MixerHorizontalIcon } from "@radix-ui/react-icons";
+import { CaretSortIcon, MixerHorizontalIcon, CheckIcon, Cross2Icon } from "@radix-ui/react-icons";
 import { ColumnDef } from "@tanstack/react-table";
-import type { Patient } from "@/types";
+import type { Odontogram } from "@/types";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -13,70 +13,61 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-const handleSorting = (column: any) => {
-  column.toggleSorting(column.getIsSorted() === "asc");
-};
-const handleCopy = (value: string) => () => {
-  navigator.clipboard.writeText(value);
-};
+const handleSorting = (column: any) => column.toggleSorting(column.getIsSorted() === "asc");
+const handleCopy = (value: string) => () => navigator.clipboard.writeText(value);
 
-const setActivePatient = (values: Patient) => {
-  const patient = {
-    name: values.name,
-    email: values.email,
-    phone: values.phone,
-  };
-  localStorage.setItem("activePatient", JSON.stringify(patient));
-};
-
-export const columns: ColumnDef<Patient>[] = [
+export const columns: ColumnDef<Odontogram>[] = [
   {
-    accessorKey: "name",
-    header: "Nome",
-  },
-  {
-    accessorKey: "phone",
-    header: "Contato",
-  },
-  {
-    accessorKey: "email",
+    accessorKey: "finished",
     header: ({ column }) => {
       return (
         <div
           className="gap-1 flex items-center cursor-pointer hover:text-darkBlue dark:hover:text-skyBlue"
           onClick={() => handleSorting(column)}>
-          Email
+          Finalizado
           <CaretSortIcon className="h-4 md:w-4 w-3" />
         </div>
       );
     },
-    cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
-  },
-  {
-    accessorKey: "sex",
-    header: ({ column }) => {
-      return (
-        <div
-          className="gap-1 flex items-center cursor-pointer hover:text-darkBlue dark:hover:text-skyBlue"
-          onClick={() => handleSorting(column)}>
-          Sexo
-          <CaretSortIcon className="h-4 md:w-4 w-3" />
-        </div>
-      );
-    },
-  },
-  {
-    accessorKey: "register",
-    header: "Cadastro",
     cell: ({ row }) => {
-      const patient = row.original;
-      let percentage = 20;
-      if (patient.anamnese) percentage += 40;
-      if (patient.intraoral) percentage += 40;
-
+      const { finished } = row.original;
       return (
-        <div className="flex items-center gap-1">
-          <span>{percentage}%</span>
+        <div className="">
+          {finished ? (
+            <CheckIcon className="h-4 w-4 text-green-500" />
+          ) : (
+            <Cross2Icon className="h-4 w-4 text-sky-500" />
+          )}
+        </div>
+      );
+    },
+  },
+  {
+    accessorKey: "patient",
+    header: ({ column }) => {
+      return (
+        <div
+          className="gap-1 flex items-center cursor-pointer hover:text-darkBlue dark:hover:text-skyBlue"
+          onClick={() => handleSorting(column)}>
+          Paciente
+          <CaretSortIcon className="h-4 md:w-4 w-3" />
+        </div>
+      );
+    },
+  },
+  {
+    accessorKey: "workToBeDone",
+    header: "Serviço",
+  },
+  {
+    accessorKey: "doctor",
+    header: ({ column }) => {
+      return (
+        <div
+          className="gap-1 flex items-center cursor-pointer hover:text-darkBlue dark:hover:text-skyBlue"
+          onClick={() => handleSorting(column)}>
+          Doutor
+          <CaretSortIcon className="h-4 md:w-4 w-3" />
         </div>
       );
     },
@@ -85,7 +76,7 @@ export const columns: ColumnDef<Patient>[] = [
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
-      const patient = row.original;
+      const odontogram = row.original;
 
       return (
         <div className="flex justify-end">
@@ -98,38 +89,14 @@ export const columns: ColumnDef<Patient>[] = [
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Ações</DropdownMenuLabel>
-              {!patient.anamnese && (
-                <DropdownMenuItem>
-                  <Link
-                    href={`/app/patient/${patient.id}?interface=anamnese`}
-                    onClick={() => setActivePatient(patient)}>
-                    Cadastrar anamnese
-                  </Link>
-                </DropdownMenuItem>
-              )}
-              {!patient.intraoral && (
-                <DropdownMenuItem>
-                  <Link
-                    href={`/app/patient/${patient.id}?interface=intraoral`}
-                    onClick={() => setActivePatient(patient)}>
-                    Cadastrar intraoral
-                  </Link>
-                </DropdownMenuItem>
-              )}
-              {(!patient.anamnese || !patient.intraoral) && <DropdownMenuSeparator />}
               <DropdownMenuItem>
-                <Link href={`/app/odontogram/${patient.id}?interface=register`}>Criar odontograma</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Link href={`/app/schedule/${patient.id}?interface=register`}>Criar agendamento</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Link href={`/app/patient/${patient.id}?interface=update`}>Visualizar cadastro</Link>
+                <Link href={`/app/odontogram/${odontogram._id}?interface=update`}>Visualizar odontograma</Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={handleCopy(patient.phone)}>Copiar telefone</DropdownMenuItem>
-              <DropdownMenuItem onClick={handleCopy(patient.email)}>Copiar email</DropdownMenuItem>
-              <DropdownMenuItem onClick={handleCopy(patient.name)}>Copiar nome</DropdownMenuItem>
+              <DropdownMenuItem onClick={handleCopy(odontogram.patient)}>Copiar nome do paciente</DropdownMenuItem>
+              <DropdownMenuItem onClick={handleCopy(odontogram.patient_id)}>Copiar ID do paciente</DropdownMenuItem>
+              <DropdownMenuItem onClick={handleCopy(odontogram.doctor)}>Copiar nome do doutor</DropdownMenuItem>
+              <DropdownMenuItem onClick={handleCopy(odontogram.doctor_id)}>Copiar ID do doutor</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

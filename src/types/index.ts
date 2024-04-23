@@ -8,7 +8,7 @@ export type ErrorProps = {
 };
 
 export type Patient = {
-  id: string;
+  _id: string;
   name: string;
   phone: string;
   email: string;
@@ -16,3 +16,14 @@ export type Patient = {
   anamnese: boolean;
   intraoral: boolean;
 };
+
+export type Odontogram = {
+  _id: string;
+  workToBeDone: string;
+  finished: boolean;
+  patient: string;
+  doctor: string;
+  patient_id: string;
+  doctor_id: string;
+};
+

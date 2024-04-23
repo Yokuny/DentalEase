@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { cn } from "@/helpers/cn.util";
@@ -15,7 +15,7 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { buttonVariants } from "@/components/ui/button";
-import PatientForm from "./Form";
+import OdontogramForm from "./Form";
 
 const DrawerDemo = ({ toast }: ToastProps) => {
   const searchParams = useSearchParams();
@@ -32,7 +32,7 @@ const DrawerDemo = ({ toast }: ToastProps) => {
       {/* Adicionar Button */}
       <DrawerTrigger asChild>
         <Link
-          href={"/app/patient?interface=register"}
+          href={"/app/odontogram?interface=register"}
           className={cn(buttonVariants({ variant: "gradient" }), "md:text-sm text-xs")}>
           Adicionar
         </Link>
@@ -41,17 +41,17 @@ const DrawerDemo = ({ toast }: ToastProps) => {
       <DrawerContent>
         <div className="mx-auto w-full md:max-w-6xl">
           <DrawerHeader>
-            <DrawerTitle>Cadastro de paciente</DrawerTitle>
-            <DrawerDescription>Adicione um novo paciente</DrawerDescription>
+            <DrawerTitle>Cadastro de odontograma</DrawerTitle>
+            <DrawerDescription>Adicione um novo odontograma</DrawerDescription>
           </DrawerHeader>
           <div className="p-4 pb-0">
-            <PatientForm toast={toast} />
+            <OdontogramForm toast={toast} />
           </div>
           <DrawerFooter>
             <DrawerClose asChild>
               <Link
                 onClick={closed}
-                href={"/app/patient"}
+                href={"/app/odontogram"}
                 className={cn(buttonVariants({ variant: "outlineBlue" }), "text-darkBlue")}>
                 Cancelar
               </Link>

@@ -10,7 +10,7 @@ import type { Patient } from "@/types";
 import { CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { buttonVariants } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
-import List from "../../../components/list/List";
+import List from "../../../components/list/PatientList";
 import Register from "./Register";
 
 const Interfaces = () => {
@@ -22,17 +22,13 @@ const Interfaces = () => {
     if (patients) setPatients(JSON.parse(patients));
   }, []);
 
-  const { toast } = useToast();
-  const handlRequestResponse = (title: string, message: string) =>
-    toast({ title: title, description: message });
-
   const fetchPatients = async () => {
     setIsLoading(true);
     try {
       const res = await request("patient/partial", GET());
       if (res.success === false) throw new Error(res.message);
 
-      localStorage.setItem("patients", JSON.stringify(res));
+      localStorage.setItem("patients", JSON.stringify(res.data));
       setPatients(res.data as Patient[]);
 
       handlRequestResponse("Sucesso", "Lista de pacientes atualizada.");
@@ -42,6 +38,9 @@ const Interfaces = () => {
       setIsLoading(false);
     }
   };
+
+  const { toast } = useToast();
+  const handlRequestResponse = (title: string, message: string) => toast({ title: title, description: message });
 
   return (
     <>
