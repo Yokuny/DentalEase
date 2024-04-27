@@ -75,9 +75,7 @@ const ProfileForm = ({ toast }: ToastProps) => {
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="md:gap-4 gap-2 flex-wrap md:justify-between justify-between flex">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="md:gap-4 gap-2 flex-wrap justify-between flex">
         <FormField
           control={form.control}
           name="name"
@@ -87,9 +85,7 @@ const ProfileForm = ({ toast }: ToastProps) => {
               <FormControl className="md:text-sm text-xs">
                 <Input placeholder="Digite o nome..." disabled={isLoading} {...field} />
               </FormControl>
-              <FormDescription className="md:block hidden">
-                Digite o nome completo do paciente.
-              </FormDescription>
+              <FormDescription className="md:block hidden">Digite o nome completo do paciente.</FormDescription>
               <FormMessage />
             </FormItem>
           )}

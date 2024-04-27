@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDownIcon, CaretLeftIcon, CaretRightIcon, CalendarIcon } from "@radix-ui/react-icons";
+import { ChevronDownIcon, CaretLeftIcon, CaretRightIcon, CheckIcon } from "@radix-ui/react-icons";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -60,7 +60,7 @@ const Table = <TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) 
       {/* // Table Header */}
       <div className="w-full px-6 pb-4 flex items-center gap-3">
         <Toggle className={cn(buttonVariants({ variant: "primary" }))}>
-          <CalendarIcon />
+          <CheckIcon />
         </Toggle>
         <Input
           placeholder="Buscar paciente..."

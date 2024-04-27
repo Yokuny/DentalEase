@@ -122,7 +122,7 @@ const Anamnesis = ({ toast }: ToastProps) => {
       <CardContent className="md:p-6 p-0 pb-0 items-center justify-center flex flex-col">
         <Form {...form}>
           <form
-            id="form-id"
+            id="anamnesis-form"
             className="gap-4 flex-col flex w-full"
             onSubmit={(e) => {
               e.preventDefault();
@@ -828,7 +828,7 @@ const Anamnesis = ({ toast }: ToastProps) => {
             </div>
             <div className="w-full md:p-0 px-4 flex md:gap-4 gap-2">
               <Button
-                form="form-id"
+                form="anamnesis-form"
                 type="submit"
                 variant={"gradient"}
                 className="mt-4 w-3/4"

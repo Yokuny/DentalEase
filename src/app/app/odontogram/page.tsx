@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { ReloadIcon } from "@radix-ui/react-icons";
 import { cn } from "@/helpers/cn.util";
 import { columns } from "./List";
@@ -58,7 +58,9 @@ const Interfaces = () => {
             {isLoading ? <ReloadIcon className="animate-spin" /> : <ReloadIcon className="hover:animate-spin" />}
             <p className="md:block hidden">Atualizar</p>
           </button>
-          <Register toast={handlRequestResponse} />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Register toast={handlRequestResponse} />
+          </Suspense>
         </div>
       </CardHeader>
 

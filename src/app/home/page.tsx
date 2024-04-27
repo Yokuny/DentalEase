@@ -15,41 +15,16 @@ const Page = () => {
                 DentalEase seu parceiro Completo de Gestão
               </h1>
               <p className="md:text-2xl text-white font-light whitespace-break-spaces text-balance">
-                Transforme a gestão da sua clínica odontológica: Temos todas as ferramentas que você precisa
-                para sua clínica crescer, simplificando cada etapa do processo.
+                Transforme a gestão da sua clínica odontológica: Temos todas as ferramentas que você precisa para sua
+                clínica crescer, simplificando cada etapa do processo.
               </p>
 
-              <Button className={cn(buttonVariants({ variant: "default" }), "text-lg px-8 py-5")}>
-                Teste grátis
-              </Button>
+              <Button className={cn(buttonVariants({ variant: "default" }), "text-lg px-8 py-5")}>Teste grátis</Button>
             </div>
             <div></div>
           </div>
         </div>
         <Image className="w-full" height={5184} width={3456} alt="banner" src="/5.jpg" />
-      </div>
-
-      <div className="flex justify-center mt-10">
-        <div className="flex flex-col items-center w-1/4 p-4">
-          <img src="/5.jpg" alt="Card 1" className="w-24 h-24 mb-4" />
-          <h2 className="text-lg font-semibold">Card 1 Title</h2>
-          <p className="text-sm text-center">Card 1 Description</p>
-        </div>
-        <div className="flex flex-col items-center w-1/4 p-4">
-          <img src="/5.jpg" alt="Card 2" className="w-24 h-24 mb-4" />
-          <h2 className="text-lg font-semibold">Card 2 Title</h2>
-          <p className="text-sm text-center">Card 2 Description</p>
-        </div>
-        <div className="flex flex-col items-center w-1/4 p-4">
-          <img src="/5.jpg" alt="Card 3" className="w-24 h-24 mb-4" />
-          <h2 className="text-lg font-semibold">Card 3 Title</h2>
-          <p className="text-sm text-center">Card 3 Description</p>
-        </div>
-        <div className="flex flex-col items-center w-1/4 p-4">
-          <img src="/5.jpg" alt="Card 4" className="w-24 h-24 mb-4" />
-          <h2 className="text-lg font-semibold">Card 4 Title</h2>
-          <p className="text-sm text-center">Card 4 Description</p>
-        </div>
       </div>
     </div>
   );

@@ -1,14 +1,14 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+// import { useSearchParams } from "next/navigation";
 
 import { CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import DatePickerDemo from "@/components/ui/date-picker";
 import { request, POST } from "@/helpers/fetch.config";
 
 const Schedule = () => {
-  const searchParams = useSearchParams();
-  const loginParam = searchParams.get("acess");
+  // const searchParams = useSearchParams();
+  // const loginParam = searchParams.get("acess");
 
   return (
     <>

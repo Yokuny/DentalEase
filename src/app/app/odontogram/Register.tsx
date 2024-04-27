@@ -5,15 +5,14 @@ import { cn } from "@/helpers/cn.util";
 import type { ToastProps } from "@/types";
 
 import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { buttonVariants } from "@/components/ui/button";
 import OdontogramForm from "./Form";
 
@@ -28,38 +27,36 @@ const DrawerDemo = ({ toast }: ToastProps) => {
   }, [patientParam]);
 
   return (
-    <Drawer open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={setOpen}>
       {/* Adicionar Button */}
-      <DrawerTrigger asChild>
+      <DialogTrigger asChild>
         <Link
           href={"/app/odontogram?interface=register"}
           className={cn(buttonVariants({ variant: "gradient" }), "md:text-sm text-xs")}>
           Adicionar
         </Link>
-      </DrawerTrigger>
+      </DialogTrigger>
       {/* Body */}
-      <DrawerContent>
-        <div className="mx-auto w-full md:max-w-6xl">
-          <DrawerHeader>
-            <DrawerTitle>Cadastro de odontograma</DrawerTitle>
-            <DrawerDescription>Adicione um novo odontograma</DrawerDescription>
-          </DrawerHeader>
-          <div className="p-4 pb-0">
+      <DialogContent>
+        <div className="mx-auto w-full gap-3 flex-col flex">
+          <DialogHeader>
+            <DialogTitle>Cadastro de odontograma</DialogTitle>
+            <DialogDescription>Adicione um novo odontograma</DialogDescription>
+          </DialogHeader>
+          <div className="py-4 pb-0">
             <OdontogramForm toast={toast} />
           </div>
-          <DrawerFooter>
-            <DrawerClose asChild>
-              <Link
-                onClick={closed}
-                href={"/app/odontogram"}
-                className={cn(buttonVariants({ variant: "outlineBlue" }), "text-darkBlue")}>
-                Cancelar
-              </Link>
-            </DrawerClose>
-          </DrawerFooter>
+          <DialogFooter>
+            <Link
+              onClick={closed}
+              href={"/app/odontogram"}
+              className={cn(buttonVariants({ variant: "outlineBlue" }), "text-darkBlue w-full")}>
+              Cancelar
+            </Link>
+          </DialogFooter>
         </div>
-      </DrawerContent>
-    </Drawer>
+      </DialogContent>
+    </Dialog>
   );
 };
 

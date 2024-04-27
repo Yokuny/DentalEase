@@ -23,10 +23,7 @@ const Auth = () => {
     <>
       <Link
         href={{ search: `?interface=${loginParamValues.find((value) => value !== loginParam) || "login"}` }}
-        className={cn(
-          buttonVariants({ variant: "gradient" }),
-          "absolute right-6 top-6 md:right-10 md:top-10 w-28"
-        )}>
+        className={cn(buttonVariants({ variant: "gradient" }), "absolute right-6 top-6 md:right-10 md:top-10 w-28")}>
         {loginParam === "login" ? "Cadastrar" : "Entrar"}
       </Link>
       <div className="lg:p-8 mb-10 flex flex-col h-full justify-between">

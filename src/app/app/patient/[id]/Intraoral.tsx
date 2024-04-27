@@ -81,7 +81,7 @@ const Anamnesis = ({ toast }: ToastProps) => {
       <CardContent className="md:p-6 p-0 pb-0 items-center justify-center flex flex-col">
         <Form {...form}>
           <form
-            id="form-id"
+            id="intraoral-form"
             className="gap-4 flex-col flex w-full"
             onSubmit={(e) => {
               e.preventDefault();
@@ -341,7 +341,7 @@ const Anamnesis = ({ toast }: ToastProps) => {
                 Cadastrar
               </Button>
               <Button
-                form="form-id"
+                form="intraoral-form"
                 type="button"
                 variant={"outlineBlue"}
                 className="mt-4 w-1/4 text-darkBlue"
