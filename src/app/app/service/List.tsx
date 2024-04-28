@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { CaretSortIcon, MixerHorizontalIcon, CheckIcon, Cross2Icon } from "@radix-ui/react-icons";
 import { ColumnDef } from "@tanstack/react-table";
-import type { Odontogram } from "@/types";
+import type { Service } from "@/types";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -28,13 +28,20 @@ const SortableComponent = ({ column, title }: { column: any; title: string }) =>
   );
 };
 
-export const columns: ColumnDef<Odontogram>[] = [
+export const columns: ColumnDef<Service>[] = [
   {
-    accessorKey: "finished",
-    header: ({ column }) => SortableComponent({ column, title: "Finalizado" }),
+    accessorKey: "status",
+    header: ({ column }) => SortableComponent({ column, title: "Situação" }),
     cell: ({ row }) => {
-      const { finished } = row.original;
-      return <Badge variant={finished ? "positive" : "negative"}>{finished ? "Sim" : "Não"}</Badge>;
+      const { status } = row.original;
+
+      return (
+        <div className="flex items-center gap-2">
+          <Badge variant={status === "Pendente" ? "neutral" : status === "Pago" ? "positive" : "negative"}>
+            {status}
+          </Badge>
+        </div>
+      );
     },
   },
   {
@@ -42,18 +49,31 @@ export const columns: ColumnDef<Odontogram>[] = [
     header: ({ column }) => SortableComponent({ column, title: "Paciente" }),
   },
   {
+    accessorKey: "doctor",
+    header: ({ column }) => SortableComponent({ column, title: "Doutor" }),
+  },
+  {
     accessorKey: "workToBeDone",
     header: "Serviço",
   },
   {
-    accessorKey: "doctor",
-    header: ({ column }) => SortableComponent({ column, title: "Doutor" }),
+    accessorKey: "price",
+    header: ({ column }) => SortableComponent({ column, title: "Preço" }),
+    cell: ({ row }) => {
+      const { price } = row.original;
+
+      return (
+        <div className="flex items-center gap-2">
+          <span>R$ {price.toFixed(2)}</span>
+        </div>
+      );
+    },
   },
   {
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
-      const odontogram = row.original;
+      const service = row.original;
 
       return (
         <div className="flex justify-end">
@@ -67,13 +87,14 @@ export const columns: ColumnDef<Odontogram>[] = [
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Ações</DropdownMenuLabel>
               <DropdownMenuItem>
-                <Link href={`/app/odontogram/${odontogram._id}?interface=update`}>Visualizar odontograma</Link>
+                <Link href={`/app/service/${service._id}?interface=update`}>Visualizar serviço</Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={handleCopy(odontogram.patient)}>Copiar nome do paciente</DropdownMenuItem>
-              <DropdownMenuItem onClick={handleCopy(odontogram.patient_id)}>Copiar ID do paciente</DropdownMenuItem>
-              <DropdownMenuItem onClick={handleCopy(odontogram.doctor)}>Copiar nome do doutor</DropdownMenuItem>
-              <DropdownMenuItem onClick={handleCopy(odontogram.doctor_id)}>Copiar ID do doutor</DropdownMenuItem>
+              <DropdownMenuItem onClick={handleCopy(service.price.toString())}>Copiar preço</DropdownMenuItem>
+              <DropdownMenuItem onClick={handleCopy(service.patient)}>Copiar nome do paciente</DropdownMenuItem>
+              <DropdownMenuItem onClick={handleCopy(service.patient_id)}>Copiar ID do paciente</DropdownMenuItem>
+              <DropdownMenuItem onClick={handleCopy(service.doctor)}>Copiar nome do doutor</DropdownMenuItem>
+              <DropdownMenuItem onClick={handleCopy(service.doctor_id)}>Copiar ID do doutor</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

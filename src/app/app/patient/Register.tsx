@@ -15,9 +15,9 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { buttonVariants } from "@/components/ui/button";
-import Form from "./Form";
+import PatientForm from "./Form";
 
-const DrawerDemo = ({ toast }: ToastProps) => {
+const NewPatient = ({ toast }: ToastProps) => {
   const searchParams = useSearchParams();
   const patientParam = searchParams.get("interface");
   const closed = () => toast("Operação cancelada", "O registro foi limpo");
@@ -45,7 +45,7 @@ const DrawerDemo = ({ toast }: ToastProps) => {
             <DrawerDescription>Adicione um novo paciente</DrawerDescription>
           </DrawerHeader>
           <div className="p-4 pb-0">
-            <Form toast={toast} />
+            <PatientForm toast={toast} />
           </div>
           <DrawerFooter>
             <DrawerClose asChild>
@@ -63,4 +63,4 @@ const DrawerDemo = ({ toast }: ToastProps) => {
   );
 };
 
-export default DrawerDemo;
+export default NewPatient;

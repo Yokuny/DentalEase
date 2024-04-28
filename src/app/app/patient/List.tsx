@@ -12,6 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Badge } from "@/components/ui/badge";
 
 const handleSorting = (column: any) => {
   column.toggleSorting(column.getIsSorted() === "asc");
@@ -29,6 +30,17 @@ const setActivePatient = (values: Patient) => {
   localStorage.setItem("activePatient", JSON.stringify(patient));
 };
 
+const SortableComponent = ({ column, title }: { column: any; title: string }) => {
+  return (
+    <div
+      className="gap-1 flex items-center cursor-pointer hover:text-darkBlue dark:hover:text-skyBlue"
+      onClick={() => handleSorting(column)}>
+      {title}
+      <CaretSortIcon className="h-4 md:w-4 w-3" />
+    </div>
+  );
+};
+
 export const columns: ColumnDef<Patient>[] = [
   {
     accessorKey: "name",
@@ -40,28 +52,18 @@ export const columns: ColumnDef<Patient>[] = [
   },
   {
     accessorKey: "email",
-    header: ({ column }) => {
-      return (
-        <div
-          className="gap-1 flex items-center cursor-pointer hover:text-darkBlue dark:hover:text-skyBlue"
-          onClick={() => handleSorting(column)}>
-          Email
-          <CaretSortIcon className="h-4 md:w-4 w-3" />
-        </div>
-      );
-    },
+    header: ({ column }) => SortableComponent({ column, title: "Email" }),
     cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
   },
   {
     accessorKey: "sex",
-    header: ({ column }) => {
+    header: ({ column }) => SortableComponent({ column, title: "Sexo" }),
+    cell: ({ row }) => {
+      const { sex } = row.original;
       return (
-        <div
-          className="gap-1 flex items-center cursor-pointer hover:text-darkBlue dark:hover:text-skyBlue"
-          onClick={() => handleSorting(column)}>
-          Sexo
-          <CaretSortIcon className="h-4 md:w-4 w-3" />
-        </div>
+        <Badge className="w-8 text-center flex items-center" variant={sex === "M" ? "neutral" : "pink"}>
+          {sex === "M" ? "M" : "F"}
+        </Badge>
       );
     },
   },
@@ -118,10 +120,13 @@ export const columns: ColumnDef<Patient>[] = [
               )}
               {(!patient.anamnese || !patient.intraoral) && <DropdownMenuSeparator />}
               <DropdownMenuItem>
-                <Link href={`/app/odontogram/${patient._id}?interface=register`}>Criar odontograma</Link>
+                <Link href={`/app/odontogram?interface=register`}>Criar odontograma</Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <Link href={`/app/schedule/${patient._id}?interface=register`}>Criar agendamento</Link>
+                <Link href={`/app/schedule?interface=register`}>Criar serviço</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href={`/app/schedule?interface=register`}>Criar agendamento</Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <Link href={`/app/patient/${patient._id}?interface=update`}>Visualizar cadastro</Link>

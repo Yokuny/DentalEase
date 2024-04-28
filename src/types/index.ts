@@ -27,3 +27,14 @@ export type Odontogram = {
   doctor_id: string;
 };
 
+export type Service = {
+  _id: string;
+  workToBeDone: string;
+  price: number;
+  patient: string;
+  doctor: string;
+  patient_id: string;
+  doctor_id: string;
+  odontogram_id: string;
+  status: "Pendente" | "Pago" | "Cancelado";
+};
