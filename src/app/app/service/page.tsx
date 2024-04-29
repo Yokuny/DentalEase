@@ -1,10 +1,10 @@
 "use client";
 
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useCallback, useEffect, useState } from "react";
 import { ReloadIcon } from "@radix-ui/react-icons";
-import { cn } from "@/helpers/cn.util";
 import { columns } from "./List";
-import { request, GET } from "@/helpers/fetch.config";
+import { localService, refreshService } from "@/helpers/dataManager.helper";
+import { cn } from "@/helpers/cn.util";
 import type { Service } from "@/types";
 
 import { CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -17,30 +17,39 @@ const Interfaces = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [services, setServices] = useState<Service[]>([]);
 
+  const { toast } = useToast();
+  const handlRequestResponse = useCallback(
+    (title: string, message: string) => toast({ title: title, description: message }),
+    [toast]
+  );
+
   useEffect(() => {
-    const services = localStorage.getItem("services");
-    if (services) setServices(JSON.parse(services));
-  }, []);
+    setIsLoading(true);
+    const fetchService = async () => {
+      try {
+        const data = await localService();
+        setServices(data);
+      } catch (error: any) {
+        handlRequestResponse("Erro", error.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchService();
+  }, [handlRequestResponse]);
 
   const fetchService = async () => {
     setIsLoading(true);
     try {
-      const res = await request("service/partial", GET());
-      if (res.success === false) throw new Error(res.message);
-
-      localStorage.setItem("services", JSON.stringify(res.data));
-      setServices(res.data);
-
-      handlRequestResponse("Sucesso", "Lista de serviços atualizada.");
+      const data = await refreshService();
+      handlRequestResponse("Sucesso", "Serviços atualizados com sucesso");
+      setServices(data);
     } catch (error: any) {
       handlRequestResponse("Erro", error.message);
     } finally {
       setIsLoading(false);
     }
   };
-
-  const { toast } = useToast();
-  const handlRequestResponse = (title: string, message: string) => toast({ title: title, description: message });
 
   return (
     <>

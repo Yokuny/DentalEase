@@ -1,6 +1,17 @@
+import type { Patient, Doctor, Odontogram, Service } from "@/types";
+
 const padStart = (value: number) => String(value).padStart(2, "0");
 
 export const numClean = (value: string) => value.replace(/[^0-9]/g, "");
+
+const valueAndLabel = (value: string, label: string) => ({ value, label });
+
+export const comboboxDataFormat = (register: Patient[] | Doctor[] | Odontogram[] | Service[]) =>
+  register.map((data) => {
+    if ("name" in data) return valueAndLabel(data._id, data.name);
+    if ("patient" in data) return valueAndLabel(data._id, data.patient);
+    return valueAndLabel("", "Erro ao carregar dados");
+  });
 
 export const formatCpfCnpj = (value: string) => {
   const num = numClean(value);

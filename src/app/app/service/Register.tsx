@@ -5,59 +5,62 @@ import { cn } from "@/helpers/cn.util";
 import type { ToastProps } from "@/types";
 
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
 import { buttonVariants } from "@/components/ui/button";
-import OdontogramForm from "./Form";
+import ServiceForm from "./Form";
 
-const NewOdontogram = ({ toast }: ToastProps) => {
+const NewService = ({ toast }: ToastProps) => {
   const searchParams = useSearchParams();
-  const patientParam = searchParams.get("interface");
+  const serviceParam = searchParams.get("interface");
   const closed = () => toast("Operação cancelada", "O registro foi limpo");
 
   const [open, setOpen] = useState(false);
   useEffect(() => {
-    patientParam === "register" ? setOpen(true) : setOpen(false);
-  }, [patientParam, searchParams]);
+    serviceParam === "register" ? setOpen(true) : setOpen(false);
+  }, [serviceParam]);
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      {/* Adicionar Button */}
-      <DialogTrigger asChild>
+    <Drawer open={open} onOpenChange={setOpen}>
+      {/* Button */}
+      <DrawerTrigger asChild>
         <Link
-          href={"/app/odontogram?interface=register"}
+          href={"/app/service?interface=register"}
           className={cn(buttonVariants({ variant: "gradient" }), "md:text-sm text-xs")}>
           Adicionar
         </Link>
-      </DialogTrigger>
+      </DrawerTrigger>
       {/* Body */}
-      <DialogContent>
-        <div className="mx-auto w-full gap-3 flex-col flex">
-          <DialogHeader>
-            <DialogTitle>Cadastro de odontograma</DialogTitle>
-            <DialogDescription>Adicione um novo odontograma</DialogDescription>
-          </DialogHeader>
-          <div className="py-4 pb-0">
-            <OdontogramForm toast={toast} />
+      <DrawerContent>
+        <div className="mx-auto w-full md:max-w-6xl">
+          <DrawerHeader>
+            <DrawerTitle>Cadastro de serviço</DrawerTitle>
+            <DrawerDescription>Adicione um novo serviço</DrawerDescription>
+          </DrawerHeader>
+          <div className="p-4 pb-0">
+            <ServiceForm toast={toast} />
           </div>
-          <DialogFooter>
-            <Link
-              onClick={closed}
-              href={"/app/odontogram"}
-              className={cn(buttonVariants({ variant: "outlineBlue" }), "text-darkBlue w-full")}>
-              Cancelar
-            </Link>
-          </DialogFooter>
+          <DrawerFooter>
+            <DrawerClose asChild>
+              <Link
+                onClick={closed}
+                href={"/app/service"}
+                className={cn(buttonVariants({ variant: "outlineBlue" }), "text-darkBlue")}>
+                Cancelar
+              </Link>
+            </DrawerClose>
+          </DrawerFooter>
         </div>
-      </DialogContent>
-    </Dialog>
+      </DrawerContent>
+    </Drawer>
   );
 };
 
-export default NewOdontogram;
+export default NewService;

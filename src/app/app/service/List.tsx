@@ -64,7 +64,10 @@ export const columns: ColumnDef<Service>[] = [
 
       return (
         <div className="flex items-center gap-2">
-          <span>R$ {price.toFixed(2)}</span>
+          <span className="sr-only">Preço</span>
+          <p className="text-xs">
+            R$ <span className="text-sm">{price.toFixed(2)}</span>
+          </p>
         </div>
       );
     },
@@ -92,8 +95,8 @@ export const columns: ColumnDef<Service>[] = [
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={handleCopy(service.price.toString())}>Copiar preço</DropdownMenuItem>
               <DropdownMenuItem onClick={handleCopy(service.patient)}>Copiar nome do paciente</DropdownMenuItem>
-              <DropdownMenuItem onClick={handleCopy(service.patient_id)}>Copiar ID do paciente</DropdownMenuItem>
               <DropdownMenuItem onClick={handleCopy(service.doctor)}>Copiar nome do doutor</DropdownMenuItem>
+              <DropdownMenuItem onClick={handleCopy(service.patient_id)}>Copiar ID do paciente</DropdownMenuItem>
               <DropdownMenuItem onClick={handleCopy(service.doctor_id)}>Copiar ID do doutor</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

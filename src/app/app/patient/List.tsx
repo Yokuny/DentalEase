@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CaretSortIcon, MixerHorizontalIcon } from "@radix-ui/react-icons";
+import { CaretSortIcon, MixerHorizontalIcon, CheckIcon } from "@radix-ui/react-icons";
 import { ColumnDef } from "@tanstack/react-table";
 import type { Patient } from "@/types";
 
@@ -58,28 +58,25 @@ export const columns: ColumnDef<Patient>[] = [
   {
     accessorKey: "sex",
     header: ({ column }) => SortableComponent({ column, title: "Sexo" }),
-    cell: ({ row }) => {
-      const { sex } = row.original;
-      return (
-        <Badge className="w-8 text-center flex items-center" variant={sex === "M" ? "neutral" : "pink"}>
-          {sex === "M" ? "M" : "F"}
-        </Badge>
-      );
-    },
+    cell: ({ row }) => (
+      <Badge className="w-8" variant={row.original.sex === "M" ? "neutral" : "pink"}>
+        {row.original.sex === "M" ? "M" : "F"}
+      </Badge>
+    ),
   },
   {
     accessorKey: "register",
     header: "Cadastro",
     cell: ({ row }) => {
-      const patient = row.original;
       let percentage = 20;
-      if (patient.anamnese) percentage += 40;
-      if (patient.intraoral) percentage += 40;
+
+      if (row.original.anamnese) percentage += 40;
+      if (row.original.intraoral) percentage += 40;
 
       return (
-        <div className="flex items-center gap-1">
-          <span>{percentage}%</span>
-        </div>
+        <Badge className="w-12" variant={percentage <= 40 ? "alert" : percentage <= 80 ? "neutral" : "positive"}>
+          {percentage === 100 ? <CheckIcon /> : `${percentage}%`}
+        </Badge>
       );
     },
   },

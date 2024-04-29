@@ -10,20 +10,12 @@ import { request, POST } from "@/helpers/fetch.config";
 import { ReloadIcon } from "@radix-ui/react-icons";
 import type { ToastProps } from "@/types";
 
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-const ProfileForm = ({ toast }: ToastProps) => {
+const PatientForm = ({ toast }: ToastProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const router = useRouter();
@@ -62,7 +54,7 @@ const ProfileForm = ({ toast }: ToastProps) => {
       if (res.success === false) throw new Error(res.message);
 
       localStorage.setItem("activePatient", JSON.stringify(body));
-      toast("Paciente registrado", "Paciente registrado com sucesso");
+      toast("Sucesso", "Paciente registrado com sucesso");
 
       form.reset();
       return router.push(`/app/patient/${res.data._id}?interface=anamnese`);
@@ -219,4 +211,4 @@ const ProfileForm = ({ toast }: ToastProps) => {
   );
 };
 
-export default ProfileForm;
+export default PatientForm;

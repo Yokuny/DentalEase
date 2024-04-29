@@ -1,10 +1,10 @@
 "use client";
 
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useCallback, useEffect, useState } from "react";
 import { ReloadIcon } from "@radix-ui/react-icons";
-import { cn } from "@/helpers/cn.util";
 import { columns } from "./List";
-import { request, GET } from "@/helpers/fetch.config";
+import { localPatient, refreshPatient } from "@/helpers/dataManager.helper";
+import { cn } from "@/helpers/cn.util";
 import type { Patient } from "@/types";
 
 import { CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -17,21 +17,33 @@ const Interfaces = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [patients, setPatients] = useState<Patient[]>([]);
 
+  const { toast } = useToast();
+  const handlRequestResponse = useCallback(
+    (title: string, message: string) => toast({ title: title, description: message }),
+    [toast]
+  );
+
   useEffect(() => {
-    const patients = localStorage.getItem("patients");
-    if (patients) setPatients(JSON.parse(patients));
-  }, []);
+    const fetchPatients = async () => {
+      setIsLoading(true);
+      try {
+        const data = await localPatient();
+        setPatients(data);
+      } catch (error: any) {
+        handlRequestResponse("Erro", error.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchPatients();
+  }, [handlRequestResponse]);
 
   const fetchPatients = async () => {
     setIsLoading(true);
     try {
-      const res = await request("patient/partial", GET());
-      if (res.success === false) throw new Error(res.message);
-
-      localStorage.setItem("patients", JSON.stringify(res.data));
-      setPatients(res.data as Patient[]);
-
-      handlRequestResponse("Sucesso", "Lista de pacientes atualizada.");
+      const data = await refreshPatient();
+      handlRequestResponse("Sucesso", "Pacientes atualizados com sucesso");
+      setPatients(data);
     } catch (error: any) {
       handlRequestResponse("Erro", error.message);
     } finally {
@@ -39,16 +51,13 @@ const Interfaces = () => {
     }
   };
 
-  const { toast } = useToast();
-  const handlRequestResponse = (title: string, message: string) => toast({ title: title, description: message });
-
   return (
     <>
       <CardHeader className="flex flex-row justify-between items-baseline">
         <div className="md:gap-2 md:flex-row md:items-baseline flex flex-col">
           <CardTitle className="text-primaryBlue md:text-xl">Pacientes</CardTitle>
           <CardDescription className="md:block hidden text-xs font-mono tracking-tighter">
-            Cadastros, consultas, históricos, em um só lugar.
+            Lista de pacientes cadastrados
           </CardDescription>
         </div>
         <div className="gap-2 flex-row flex">

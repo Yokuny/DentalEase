@@ -1,10 +1,10 @@
 "use client";
 
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useCallback, useEffect, useState } from "react";
 import { ReloadIcon } from "@radix-ui/react-icons";
-import { cn } from "@/helpers/cn.util";
 import { columns } from "./List";
-import { request, GET } from "@/helpers/fetch.config";
+import { localOdontogram, refreshOdontogram } from "@/helpers/dataManager.helper";
+import { cn } from "@/helpers/cn.util";
 import type { Odontogram } from "@/types";
 
 import { CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -17,21 +17,33 @@ const Interfaces = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [odontograms, setOdontograms] = useState<Odontogram[]>([]);
 
+  const { toast } = useToast();
+  const handlRequestResponse = useCallback(
+    (title: string, message: string) => toast({ title: title, description: message }),
+    [toast]
+  );
+
   useEffect(() => {
-    const odontograms = localStorage.getItem("odontograms");
-    if (odontograms) setOdontograms(JSON.parse(odontograms));
-  }, []);
+    const fetchOdontogram = async () => {
+      setIsLoading(true);
+      try {
+        const data = await localOdontogram();
+        setOdontograms(data);
+      } catch (error: any) {
+        handlRequestResponse("Erro", error.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchOdontogram();
+  }, [handlRequestResponse]);
 
   const fetchOdontogram = async () => {
     setIsLoading(true);
     try {
-      const res = await request("odontogram/partial", GET());
-      if (res.success === false) throw new Error(res.message);
-
-      localStorage.setItem("odontograms", JSON.stringify(res.data));
-      setOdontograms(res.data);
-
-      handlRequestResponse("Sucesso", "Lista de odontogramas atualizada.");
+      const data = await refreshOdontogram();
+      handlRequestResponse("Sucesso", "Odontograma atualizado com sucesso");
+      setOdontograms(data);
     } catch (error: any) {
       handlRequestResponse("Erro", error.message);
     } finally {
@@ -39,17 +51,12 @@ const Interfaces = () => {
     }
   };
 
-  const { toast } = useToast();
-  const handlRequestResponse = (title: string, message: string) => toast({ title: title, description: message });
-
   return (
     <>
       <CardHeader className="flex flex-row justify-between items-baseline">
         <div className="md:gap-2 md:flex-row md:items-baseline flex flex-col">
           <CardTitle className="text-primaryBlue md:text-xl">Odontograma</CardTitle>
-          <CardDescription className="md:block hidden text-xs">
-            Cadastros, consultas, históricos, em um só lugar.
-          </CardDescription>
+          <CardDescription className="md:block hidden text-xs">Lista de odontogramas cadastrados</CardDescription>
         </div>
         <div className="gap-2 flex-row flex">
           <button

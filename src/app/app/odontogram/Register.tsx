@@ -18,13 +18,13 @@ import OdontogramForm from "./Form";
 
 const NewOdontogram = ({ toast }: ToastProps) => {
   const searchParams = useSearchParams();
-  const patientParam = searchParams.get("interface");
+  const odontogramParam = searchParams.get("interface");
   const closed = () => toast("Operação cancelada", "O registro foi limpo");
 
   const [open, setOpen] = useState(false);
   useEffect(() => {
-    patientParam === "register" ? setOpen(true) : setOpen(false);
-  }, [patientParam, searchParams]);
+    odontogramParam === "register" ? setOpen(true) : setOpen(false);
+  }, [odontogramParam, searchParams]);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>

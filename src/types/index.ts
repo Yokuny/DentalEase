@@ -27,6 +27,13 @@ export type Odontogram = {
   doctor_id: string;
 };
 
+export type Doctor = {
+  _id: string;
+  name: string;
+  email: string;
+  avatar: string;
+};
+
 export type Service = {
   _id: string;
   workToBeDone: string;

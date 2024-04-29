@@ -3,26 +3,23 @@
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { odontogramSchema } from "@/schemas/odontogram.schema";
-import { request, POST, GET } from "@/helpers/fetch.config";
-import { ReloadIcon, CheckIcon, CaretSortIcon } from "@radix-ui/react-icons";
-import type { Patient, ToastProps } from "@/types";
-
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "@/components/ui/command";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { request, POST } from "@/helpers/fetch.config";
+import { ReloadIcon } from "@radix-ui/react-icons";
+import type { ToastProps } from "@/types";
 import { cn } from "@/helpers/cn.util";
+
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import PatientCombobox from "@/components/data-inputs/PatientCombobox";
+import DentistCombobox from "@/components/data-inputs/DentistCombobox";
 
-const ProfileForm = ({ toast }: ToastProps) => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [dentist, setDentist] = useState("");
-
+const OdontogramForm = ({ toast }: ToastProps) => {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const form = useForm<z.infer<typeof odontogramSchema>>({
     resolver: zodResolver(odontogramSchema),
@@ -47,7 +44,6 @@ const ProfileForm = ({ toast }: ToastProps) => {
 
     try {
       const res = await request("odontogram/create", POST(body));
-
       if (res.success === false) throw new Error(res.message);
 
       localStorage.setItem("activeOdontogram", JSON.stringify(body));
@@ -55,132 +51,12 @@ const ProfileForm = ({ toast }: ToastProps) => {
 
       form.reset();
       return router.push(`/app/patient/${res.data.id}?interface=anamnese`);
-      // mudar para agendamento
     } catch (Error: any) {
       toast("Erro ao registrar odontograma", Error.message);
     } finally {
       setIsLoading(false);
     }
   }
-
-  const comboboxDataFormat = (register: Patient[]) => {
-    return register.map((data) => ({
-      value: data._id,
-      label: data.name,
-    }));
-  };
-
-  const PatientCombobox = (field: any) => {
-    const [open, setOpen] = useState(false);
-    const [patient, setPatient] = useState("");
-
-    let patients = [{ value: "", label: "Selecione o paciente..." }];
-
-    const localPatients = localStorage.getItem("patients");
-    if (localPatients) {
-      const convertedPatients = comboboxDataFormat(JSON.parse(localPatients));
-      patients = convertedPatients;
-    }
-
-    return (
-      <Popover open={open} onOpenChange={setOpen}>
-        <PopoverTrigger asChild>
-          <Button role="combobox" aria-expanded={open} className="h-10 w-full justify-between font-medium">
-            {patient ? patients.find((item) => item.value === patient)?.label : "Selecione o paciente..."}
-            <CaretSortIcon className="ml-2 h-4 w-4 shrink-0" />
-          </Button>
-        </PopoverTrigger>
-        <PopoverContent className="p-0">
-          <Command>
-            <CommandInput placeholder="Selecione o paciente" />
-            <CommandEmpty>Paciente não encontrado</CommandEmpty>
-            <CommandGroup>
-              {patients.map((item) => (
-                <CommandItem
-                  key={item.value}
-                  value={item.value}
-                  onSelect={(currentValue) => {
-                    setPatient(currentValue === patient ? "" : currentValue);
-                    field.onChange(currentValue === patient ? "" : currentValue);
-                    setOpen(false);
-                  }}>
-                  <CheckIcon className={cn("mr-2 h-4 w-4", patient === item.value ? "opacity-100" : "opacity-0")} />
-                  {item.label}
-                </CommandItem>
-              ))}
-            </CommandGroup>
-          </Command>
-        </PopoverContent>
-      </Popover>
-    );
-  };
-
-  const DentistCombobox = (field: any) => {
-    const [open, setOpen] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
-    const [dentists, setDentists] = useState([{ value: "", label: "Selecione o dentista..." }]);
-
-    useEffect(() => {
-      const fetchDentist = async () => {
-        const localDentist = localStorage.getItem("dentist");
-
-        if (localDentist) {
-          const parsedDentist = JSON.parse(localDentist);
-          const convertedDentist = comboboxDataFormat(parsedDentist);
-          setDentists(convertedDentist);
-        } else {
-          setIsLoading(true);
-          try {
-            const res = await request("clinic/doctors", GET());
-            if (res.success === false) throw new Error(res.message);
-
-            localStorage.setItem("dentist", JSON.stringify(res.data));
-
-            const convertedDentist = comboboxDataFormat(res.data);
-            setDentists(convertedDentist);
-          } catch (error: any) {
-            toast("Erro", error.message);
-          } finally {
-            setIsLoading(false);
-          }
-        }
-      };
-
-      fetchDentist();
-    }, []);
-
-    return (
-      <Popover open={open} onOpenChange={setOpen}>
-        <PopoverTrigger asChild className="w-full">
-          <Button role="combobox" aria-expanded={open} className="h-10 justify-between font-medium">
-            {dentist ? dentists.find((item) => item.value === dentist)?.label : "Selecione o dentista..."}
-            <CaretSortIcon className="ml-2 h-4 w-4 shrink-0" />
-          </Button>
-        </PopoverTrigger>
-        <PopoverContent className="p-0">
-          <Command>
-            <CommandInput placeholder="Selecione o dentista" disabled={isLoading} />
-            <CommandEmpty>Dentista não encontrado</CommandEmpty>
-            <CommandGroup>
-              {dentists.map((item) => (
-                <CommandItem
-                  key={item.value}
-                  value={item.value}
-                  onSelect={(currentValue) => {
-                    setDentist(currentValue === dentist ? "" : currentValue);
-                    field.onChange(currentValue === dentist ? "" : currentValue);
-                    setOpen(false);
-                  }}>
-                  <CheckIcon className={cn("mr-2 h-4 w-4", dentist === item.value ? "opacity-100" : "opacity-0")} />
-                  {item.label}
-                </CommandItem>
-              ))}
-            </CommandGroup>
-          </Command>
-        </PopoverContent>
-      </Popover>
-    );
-  };
 
   return (
     <Form {...form}>
@@ -197,7 +73,9 @@ const ProfileForm = ({ toast }: ToastProps) => {
             name="Patient"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormControl>{PatientCombobox({ ...field })}</FormControl>
+                <FormControl>
+                  <PatientCombobox controller={{ ...field }} toast={toast} />
+                </FormControl>
               </FormItem>
             )}
           />
@@ -206,7 +84,9 @@ const ProfileForm = ({ toast }: ToastProps) => {
             name="Doctor"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormControl>{DentistCombobox({ ...field })}</FormControl>
+                <FormControl>
+                  <DentistCombobox controller={{ ...field }} toast={toast} />
+                </FormControl>
               </FormItem>
             )}
           />
@@ -238,4 +118,4 @@ const ProfileForm = ({ toast }: ToastProps) => {
   );
 };
 
-export default ProfileForm;
+export default OdontogramForm;

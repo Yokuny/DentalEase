@@ -4,6 +4,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import type { Odontogram } from "@/types";
 
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,7 +13,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Badge } from "@/components/ui/badge";
 
 const handleSorting = (column: any) => column.toggleSorting(column.getIsSorted() === "asc");
 const handleCopy = (value: string) => () => navigator.clipboard.writeText(value);
@@ -32,10 +32,9 @@ export const columns: ColumnDef<Odontogram>[] = [
   {
     accessorKey: "finished",
     header: ({ column }) => SortableComponent({ column, title: "Finalizado" }),
-    cell: ({ row }) => {
-      const { finished } = row.original;
-      return <Badge variant={finished ? "positive" : "negative"}>{finished ? "Sim" : "Não"}</Badge>;
-    },
+    cell: ({ row }) => (
+      <Badge variant={row.original.finished ? "neutral" : "positive"}>{row.original.finished ? "Sim" : "Não"}</Badge>
+    ),
   },
   {
     accessorKey: "patient",
@@ -71,8 +70,8 @@ export const columns: ColumnDef<Odontogram>[] = [
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={handleCopy(odontogram.patient)}>Copiar nome do paciente</DropdownMenuItem>
-              <DropdownMenuItem onClick={handleCopy(odontogram.patient_id)}>Copiar ID do paciente</DropdownMenuItem>
               <DropdownMenuItem onClick={handleCopy(odontogram.doctor)}>Copiar nome do doutor</DropdownMenuItem>
+              <DropdownMenuItem onClick={handleCopy(odontogram.patient_id)}>Copiar ID do paciente</DropdownMenuItem>
               <DropdownMenuItem onClick={handleCopy(odontogram.doctor_id)}>Copiar ID do doutor</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
