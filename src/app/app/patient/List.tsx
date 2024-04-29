@@ -4,6 +4,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import type { Patient } from "@/types";
 
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,7 +13,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Badge } from "@/components/ui/badge";
 
 const handleSorting = (column: any) => {
   column.toggleSorting(column.getIsSorted() === "asc");

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { cn } from "@/helpers/cn.util";
 import type { ToastProps } from "@/types";
 
+import { buttonVariants } from "@/components/ui/button";
 import {
   Drawer,
   DrawerClose,
@@ -14,7 +15,6 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { buttonVariants } from "@/components/ui/button";
 import ServiceForm from "./Form";
 
 const NewService = ({ toast }: ToastProps) => {

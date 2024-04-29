@@ -4,6 +4,7 @@ import Link from "next/link";
 import { cn } from "@/helpers/cn.util";
 import type { ToastProps } from "@/types";
 
+import { buttonVariants } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -13,7 +14,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { buttonVariants } from "@/components/ui/button";
 import OdontogramForm from "./Form";
 
 const NewOdontogram = ({ toast }: ToastProps) => {

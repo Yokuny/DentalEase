@@ -4,11 +4,10 @@ import { Suspense, useCallback, useEffect, useState } from "react";
 import { ReloadIcon } from "@radix-ui/react-icons";
 import { columns } from "./List";
 import { localPatient, refreshPatient } from "@/helpers/dataManager.helper";
-import { cn } from "@/helpers/cn.util";
 import type { Patient } from "@/types";
 
+import { Button } from "@/components/ui/button";
 import { CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { buttonVariants } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import List from "../../../components/list/PatientList";
 import Register from "./Register";
@@ -24,8 +23,8 @@ const Interfaces = () => {
   );
 
   useEffect(() => {
+    setIsLoading(true);
     const fetchPatients = async () => {
-      setIsLoading(true);
       try {
         const data = await localPatient();
         setPatients(data);
@@ -61,12 +60,10 @@ const Interfaces = () => {
           </CardDescription>
         </div>
         <div className="gap-2 flex-row flex">
-          <button
-            className={cn(buttonVariants({ variant: "default" }), "flex items-center gap-2")}
-            onClick={fetchPatients}>
+          <Button className={"flex items-center gap-2"} onClick={fetchPatients}>
             {isLoading ? <ReloadIcon className="animate-spin" /> : <ReloadIcon className="hover:animate-spin" />}
             <p className="md:block hidden">Atualizar</p>
-          </button>
+          </Button>
           <Suspense fallback={<div>Carregando...</div>}>
             <Register toast={handlRequestResponse} />
           </Suspense>

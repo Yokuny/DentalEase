@@ -99,11 +99,7 @@ const OdontogramForm = ({ toast }: ToastProps) => {
             <FormItem className="w-full">
               <FormLabel className="md:text-sm text-xs">Trabalho a ser feito</FormLabel>
               <FormControl className="md:text-sm text-xs">
-                <Textarea
-                  className={cn(buttonVariants({ variant: "outline" }), "w-full font-normal")}
-                  {...field}
-                  placeholder="O que será feito?"
-                />
+                <Textarea className="w-full font-normal" {...field} placeholder="O que será feito?" />
               </FormControl>
               <FormMessage />
             </FormItem>

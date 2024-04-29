@@ -1,17 +1,19 @@
 "use client";
 
 import { z } from "zod";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { serviceSchema } from "@/schemas/service.schema";
 import { request, POST } from "@/helpers/fetch.config";
 import { ReloadIcon } from "@radix-ui/react-icons";
+import { cn } from "@/helpers/cn.util";
 import type { ToastProps } from "@/types";
 
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import PatientCombobox from "@/components/data-inputs/PatientCombobox";
@@ -65,7 +67,7 @@ const ServiceForm = ({ toast }: ToastProps) => {
     <Form {...form}>
       <form
         id="service-form"
-        className="md:gap-4 gap-2 flex-wrap justify-between flex"
+        className="md:gap-4 gap-2 flex-wrap flex"
         onSubmit={(e) => {
           e.preventDefault();
           onSubmit(form.getValues());
@@ -94,14 +96,15 @@ const ServiceForm = ({ toast }: ToastProps) => {
             )}
           />
         </div>
+
         <FormField
           control={form.control}
           name="workToBeDone"
           render={({ field }) => (
-            <FormItem className="md:w-1/2 md:max-w-none max-w-96 w-full">
+            <FormItem className="w-full">
               <FormLabel className="md:text-sm text-xs">Trabalho a ser feito</FormLabel>
               <FormControl className="md:text-sm text-xs">
-                <Input placeholder="Digite aqui..." disabled={isLoading} {...field} />
+                <Textarea className="w-full font-normal" {...field} placeholder="O que será feito?" />
               </FormControl>
               <FormMessage />
             </FormItem>
