@@ -64,8 +64,8 @@ const Table = <TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) 
         </Toggle>
         <Input
           placeholder="Buscar paciente..."
-          value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
-          onChange={(event) => table.getColumn("name")?.setFilterValue(event.target.value)}
+          value={(table.getColumn("patient")?.getFilterValue() as string) ?? ""}
+          onChange={(event) => table.getColumn("patient")?.setFilterValue(event.target.value)}
           className={cn(
             buttonVariants({ variant: "primary" }),
             "max-w-[240px] w-full text-xs font-normal tracking-wide"

@@ -43,7 +43,7 @@ const ServiceForm = ({ toast }: ToastProps) => {
       Doctor: values.Doctor,
       Odontogram: values.Odontogram,
       workToBeDone: values.workToBeDone,
-      price: values.price,
+      price: parseFloat(values.price.toString()),
       status: values.status,
     };
 
@@ -96,7 +96,6 @@ const ServiceForm = ({ toast }: ToastProps) => {
             )}
           />
         </div>
-
         <FormField
           control={form.control}
           name="workToBeDone"
@@ -110,40 +109,52 @@ const ServiceForm = ({ toast }: ToastProps) => {
             </FormItem>
           )}
         />
-        <FormField
-          control={form.control}
-          name="price"
-          render={({ field }) => (
-            <FormItem className="md:w-1/6 md:max-w-none max-w-32">
-              <FormLabel className="md:text-sm text-xs">Preço</FormLabel>
-              <FormControl className="md:text-sm text-xs">
-                <Input type="number" placeholder="Digite aqui..." disabled={isLoading} {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="status"
-          render={({ field }) => (
-            <FormItem className="md:w-1/4 md:max-w-none max-w-48">
-              <FormLabel className="md:text-sm text-xs">Status</FormLabel>
-              <FormControl className="md:text-sm text-xs">
-                <Select {...field}>
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="pending">Pendente</SelectItem>
-                    <SelectItem value="paid">Pago</SelectItem>
-                  </SelectContent>
-                </Select>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <div className="w-full md:gap-6 gap-4 flex-wrap p-4 bg-slate-50 dark:bg-slate-900/70 rounded-md flex">
+          <FormField
+            control={form.control}
+            name="price"
+            render={({ field }) => (
+              <FormItem className="md:w-1/6 md:max-w-none max-w-32">
+                <FormLabel className="md:text-sm text-xs">Preço</FormLabel>
+                <FormControl className="md:text-sm text-xs">
+                  <Input
+                    type="number"
+                    placeholder="Digite aqui..."
+                    disabled={isLoading}
+                    className="bg-white dark:bg-slate-950/50"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="status"
+            render={({ field }) => (
+              <FormItem className="md:w-1/4 md:max-w-none max-w-48">
+                <FormLabel className="md:text-sm text-xs">Status</FormLabel>
+                <FormControl className="md:text-sm text-xs">
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <SelectTrigger className="bg-white dark:bg-slate-950/50">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="pending" disabled={isLoading}>
+                        Pendente
+                      </SelectItem>
+                      <SelectItem value="paid" disabled={isLoading}>
+                        Pago
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
         <Button form="service-form" type="submit" variant={"gradient"} className="mt-4 w-full" disabled={isLoading}>
           {isLoading && <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />}
           Cadastrar

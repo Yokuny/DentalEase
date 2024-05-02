@@ -39,7 +39,7 @@ const NewPatient = ({ toast }: ToastProps) => {
       </DrawerTrigger>
       {/* Body */}
       <DrawerContent>
-        <div className="mx-auto w-full md:max-w-6xl">
+        <div className="mx-auto w-full md:max-w-6xl my-6">
           <DrawerHeader>
             <DrawerTitle>Cadastro de paciente</DrawerTitle>
             <DrawerDescription>Adicione um novo paciente</DrawerDescription>
