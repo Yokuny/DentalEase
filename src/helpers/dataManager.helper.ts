@@ -1,5 +1,8 @@
 import { request, GET } from "@/helpers/fetch.config";
 import { comboboxDataFormat } from "@/helpers/formatter.helper";
+import type { Patient, Doctor, Odontogram, Service } from "@/types";
+
+type Combobox = { value: string; label: string };
 
 // Patient
 
@@ -12,14 +15,14 @@ export const refreshPatient = async () => {
   return res.data;
 };
 
-export const localPatient = async () => {
+export const localPatient = async (): Promise<Patient[]> => {
   const patient = localStorage.getItem("patients");
   if (patient) return JSON.parse(patient);
 
   return refreshPatient();
 };
 
-export const comboboxPatient = async () => {
+export const comboboxPatient = async (): Promise<Combobox[]> => {
   const patient = await localPatient();
   return comboboxDataFormat(patient);
 };
@@ -35,15 +38,18 @@ export const refreshOdontogram = async () => {
   return res.data;
 };
 
-export const localOdontogram = async () => {
+export const localOdontogram = async (): Promise<Odontogram[]> => {
   const odontogram = localStorage.getItem("odontograms");
   if (odontogram) return JSON.parse(odontogram);
 
   return refreshOdontogram();
 };
 
-export const comboboxOdontogram = async () => {
+export const comboboxOdontogram = async (patient: string | null): Promise<Combobox[]> => {
   const odontogram = await localOdontogram();
+
+  if (patient)
+    return comboboxDataFormat(odontogram.filter((el: any) => el.patient_id === patient && el.finished === false));
   return comboboxDataFormat(odontogram);
 };
 
@@ -58,14 +64,14 @@ export const refreshDenstist = async () => {
   return res.data;
 };
 
-export const localDentist = async () => {
+export const localDentist = async (): Promise<Doctor[]> => {
   const dentist = localStorage.getItem("dentists");
   if (dentist) return JSON.parse(dentist);
 
   return refreshDenstist();
 };
 
-export const comboboxDentist = async () => {
+export const comboboxDentist = async (): Promise<Combobox[]> => {
   const dentist = await localDentist();
   return comboboxDataFormat(dentist);
 };
@@ -81,14 +87,14 @@ export const refreshService = async () => {
   return res.data;
 };
 
-export const localService = async () => {
+export const localService = async (): Promise<Service[]> => {
   const service = localStorage.getItem("services");
   if (service) return JSON.parse(service);
 
   return refreshService();
 };
 
-export const comboboxService = async () => {
+export const comboboxService = async (): Promise<Combobox[]> => {
   const service = await localService();
   return comboboxDataFormat(service);
 };

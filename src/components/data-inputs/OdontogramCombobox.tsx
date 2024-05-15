@@ -9,7 +9,7 @@ import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 
-const OdontogramCombobox = ({ controller, toast }: { controller: any; toast: any }) => {
+const OdontogramCombobox = ({ controller, toast, patient, disabled }: any) => {
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [odontograms, setOdontograms] = useState([{ value: "", label: "Selecione o odontograma..." }]);
@@ -19,7 +19,7 @@ const OdontogramCombobox = ({ controller, toast }: { controller: any; toast: any
     setIsLoading(true);
     const fetchDentist = async () => {
       try {
-        const data = await comboboxOdontogram();
+        const data = await comboboxOdontogram(patient);
         setOdontograms(data);
       } catch (error: any) {
         toast("Erro", error.message);
@@ -28,11 +28,11 @@ const OdontogramCombobox = ({ controller, toast }: { controller: any; toast: any
       }
     };
     fetchDentist();
-  }, [toast]);
+  }, [toast, patient]);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild className="w-full">
+      <PopoverTrigger asChild className="w-full" disabled={isLoading || disabled}>
         <Button role="combobox" aria-expanded={open} className="h-10 justify-between font-medium">
           {odontogram ? odontograms.find((item) => item.value === odontogram)?.label : "Selecione o odontograma..."}
           <CaretSortIcon className="ml-2 h-4 w-4 shrink-0" />
@@ -40,7 +40,7 @@ const OdontogramCombobox = ({ controller, toast }: { controller: any; toast: any
       </PopoverTrigger>
       <PopoverContent className="p-0">
         <Command>
-          <CommandInput placeholder="Selecione o odontograma" disabled={isLoading} />
+          <CommandInput placeholder="Selecione o odontograma" disabled={isLoading || disabled} />
           <CommandEmpty>Odontograma não encontrado</CommandEmpty>
           <CommandGroup>
             {odontograms.map((item) => (

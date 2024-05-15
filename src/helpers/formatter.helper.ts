@@ -6,12 +6,15 @@ export const numClean = (value: string) => value.replace(/[^0-9]/g, "");
 
 const valueAndLabel = (value: string, label: string) => ({ value, label });
 
-export const comboboxDataFormat = (register: Patient[] | Doctor[] | Odontogram[] | Service[]) =>
-  register.map((data) => {
+export const comboboxDataFormat = (register: Patient[] | Doctor[] | Odontogram[] | Service[]) => {
+  if (register.length === 0) return [{ value: "", label: "Nenhum registro encontrado" }];
+
+  return register.map((data) => {
     if ("name" in data) return valueAndLabel(data._id, data.name);
     if ("patient" in data) return valueAndLabel(data._id, data.patient);
     return valueAndLabel("", "Erro ao carregar dados");
   });
+};
 
 export const formatCpfCnpj = (value: string) => {
   const num = numClean(value);

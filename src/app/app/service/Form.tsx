@@ -17,6 +17,7 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import PatientCombobox from "@/components/data-inputs/PatientCombobox";
+import OdontogramCombobox from "@/components/data-inputs/OdontogramCombobox";
 import DentistCombobox from "@/components/data-inputs/DentistCombobox";
 
 const ServiceForm = ({ toast }: ToastProps) => {
@@ -86,6 +87,23 @@ const ServiceForm = ({ toast }: ToastProps) => {
           />
           <FormField
             control={form.control}
+            name="Odontogram"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormControl>
+                  <OdontogramCombobox
+                    controller={{ ...field }}
+                    toast={toast}
+                    patient={form.getValues().Patient}
+                    disabled={form.getValues().Patient === ""}
+                  />
+                </FormControl>
+                <FormLabel className="md:text-sm text-xs ml-4">{form.getValues().Patient}</FormLabel>
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
             name="Doctor"
             render={({ field }) => (
               <FormItem className="w-full">
@@ -96,6 +114,7 @@ const ServiceForm = ({ toast }: ToastProps) => {
             )}
           />
         </div>
+
         <FormField
           control={form.control}
           name="workToBeDone"
