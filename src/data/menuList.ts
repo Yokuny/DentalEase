@@ -1,5 +1,5 @@
 import IconCalender from "./Calender.Icon";
-import IconDental from "./dental.icon";
+import IconDental from "./Dental.Icon";
 import IconPatients from "./Patients.Icon";
 import IconTask from "./Service.Icon";
 import IconSchedule from "./Schedule.Icon";
