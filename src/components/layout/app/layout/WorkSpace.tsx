@@ -3,25 +3,12 @@
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/helpers/cn.util";
+import { workSpace } from "@/data/workSpace";
 
 import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "@/components/ui/command";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
-
-const workSpace = [
-  { value: "home", label: "Agenda" },
-  { value: "dashboard", label: "Dashboard" },
-  { value: "patient", label: "Paciente" },
-  { value: "patient?interface=register", label: "Cadastrar Paciente" },
-  { value: "odontogram", label: "Odontogram" },
-  { value: "odontogram?interface=register", label: "Registrar Odontograma" },
-  { value: "service", label: "Serviço" },
-  { value: "service?interface=register", label: "Cadastrar Serviço" },
-  { value: "schedule", label: "Agendamento" },
-  { value: "schedule?interface=register", label: "Agendar" },
-  { value: "config", label: "Configurações" },
-];
 
 const WorkSpace = () => {
   const [value, setValue] = useState("");
@@ -31,14 +18,14 @@ const WorkSpace = () => {
   const pathname = usePathname();
   const pathString = pathname.split("/app")[1];
   const path = pathString.split("/")[1];
-  
+
   useEffect(() => {
     setValue(path);
   }, [path]);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild className="sticky top-0 z-50">
+      <PopoverTrigger asChild className="sticky top-0 z-40">
         <div className="md:h-16 h-14 w-full bg-gradient-to-r from-sky-400 to-primaryBlue saturate-150 flex items-center justify-center">
           <Button
             variant="outlineBlue"
@@ -65,9 +52,7 @@ const WorkSpace = () => {
                   setOpen(false);
                 }}>
                 {space.label}
-                <CheckIcon
-                  className={cn("ml-auto h-4 w-4", value === space.value ? "opacity-100" : "opacity-0")}
-                />
+                <CheckIcon className={cn("ml-auto h-4 w-4", value === space.value ? "opacity-100" : "opacity-0")} />
               </CommandItem>
             ))}
           </CommandGroup>
