@@ -22,7 +22,7 @@ const buttonVariants = cva(
         ghost:
           "bg-gradient-to-r from-skyBlue to-primaryBlue shadow-sm hover:saturate-150 text-darkBlue dark:text-blue950 font-semibold text-white",
         blank: "",
-        link: "text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-900 hover:text-black hover:dark:text-white underline-offset-4 hover:underline ",
+        link: "text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-900 hover:text-black hover:dark:text-white underline-offset-4 hover:underline",
       },
       size: {
         default: "h-9 px-4 py-2",

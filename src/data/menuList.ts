@@ -1,9 +1,9 @@
-import IconCalender from "./Calender.Icon";
-import IconDental from "./Dental.Icon";
-import IconPatients from "./Patients.Icon";
-import IconTask from "./Service.Icon";
-import IconSchedule from "./Schedule.Icon";
-import IconGear from "./Gear.Icon";
+import IconCalender from "../../public/Calender.Icon";
+import IconDental from "../../public/Dental.Icon";
+import IconPatients from "../../public/Patients.Icon";
+import IconTask from "../../public/Service.Icon";
+import IconSchedule from "../../public/Schedule.Icon";
+import IconGear from "../../public/Gear.Icon";
 
 type Submenu = {
   href: string;

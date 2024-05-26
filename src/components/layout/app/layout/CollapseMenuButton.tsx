@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { ChevronDownIcon, DotIcon } from "@radix-ui/react-icons";
+import { ChevronDownIcon, DotIcon, DotFilledIcon } from "@radix-ui/react-icons";
 import { DropdownMenuArrow } from "@radix-ui/react-dropdown-menu";
 import { cn } from "@/helpers/cn.util";
 
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip";
 import {
@@ -39,9 +39,9 @@ const CollapseMenuButton = ({ icon: Icon, label, active, submenus, isOpen }: Col
   return isOpen ? (
     <Collapsible open={isCollapsed} onOpenChange={setIsCollapsed} className="w-full">
       <CollapsibleTrigger className="[&[data-state=open]>div>div>svg]:rotate-180 mb-1" asChild>
-        <Button variant={active ? "gradient" : "primary"} className="w-full justify-start h-10">
+        <Button variant={active ? "outlineBlue" : "primary"} className="w-full justify-start h-10">
           <div className="w-full items-center flex justify-between">
-            <div className="flex items-center">
+            <div className="flex items-center ">
               <span className="mr-4">
                 <Icon size={18} />
               </span>
@@ -62,20 +62,19 @@ const CollapseMenuButton = ({ icon: Icon, label, active, submenus, isOpen }: Col
       </CollapsibleTrigger>
       <CollapsibleContent className="overflow-hidden data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down">
         {submenus.map(({ href, label, active }, index) => (
-          <Button key={index} variant={active ? "gradient" : "link"} className="w-full justify-start h-10 mb-1" asChild>
-            <Link href={href}>
-              <span className="mr-4 ml-2">
-                <DotIcon />
-              </span>
-              <p
-                className={cn(
-                  "max-w-[170px] truncate",
-                  isOpen ? "translate-x-0 opacity-100" : "-translate-x-96 opacity-0"
-                )}>
-                {label}
-              </p>
-            </Link>
-          </Button>
+          <Link
+            href={href}
+            key={index}
+            className={cn(buttonVariants({ variant: "link" }), "w-full h-8 justify-start items-center flex")}>
+            <span className="mr-2 ml-2">{active ? <DotFilledIcon /> : <DotIcon />}</span>
+            <p
+              className={cn(
+                "max-w-[170px] truncate text-xs",
+                isOpen ? "translate-x-0 opacity-100" : "-translate-x-96 opacity-0"
+              )}>
+              {label}
+            </p>
+          </Link>
         ))}
       </CollapsibleContent>
     </Collapsible>
@@ -85,7 +84,7 @@ const CollapseMenuButton = ({ icon: Icon, label, active, submenus, isOpen }: Col
         <Tooltip delayDuration={100}>
           <TooltipTrigger asChild>
             <DropdownMenuTrigger asChild>
-              <Button variant={active ? "gradient" : "link"} className="w-full justify-start h-10 mb-1">
+              <Button variant={active ? "outlineBlue" : "link"} className="p-[13px] w-full justify-start h-10 mb-1">
                 <div className="w-full items-center flex justify-between">
                   <div className="flex items-center">
                     <span className={cn(isOpen === false ? "" : "mr-4")}>
