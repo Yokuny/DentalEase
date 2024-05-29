@@ -21,8 +21,10 @@ const Schedule = () => {
         </div>
       </CardHeader>
 
-      <CardContent className="flex items-center justify-center flex-col bg-slate-500">
-        <p>Card Content</p>
+      <CardContent className="flex items-center justify-center flex-col">
+        <div className="w-full">
+          <div className="w-full px-6 pb-4 flex items-center gap-3">a</div>
+        </div>
       </CardContent>
       <CardFooter>
         <p>Card Footer</p>

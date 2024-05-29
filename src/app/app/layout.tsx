@@ -2,7 +2,6 @@
 
 import WorkSpace from "@/components/layout/app/layout/WorkSpace";
 import Sidebar from "@/components/layout/app/layout/Sidebar";
-import Footer from "@/components/layout/app/layout/Footer";
 import { Card } from "@/components/ui/card";
 
 const Layout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
@@ -13,7 +12,6 @@ const Layout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
         <Card className="w-full">{children}</Card>
       </div>
       <Sidebar />
-      <Footer />
     </main>
   );
 };

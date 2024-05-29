@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import CollapseMenuButton from "./CollapseMenuButton";
+import ThemeToggle from "@/components/theme/ThemeToggle";
 
 interface MenuProps {
   isOpen: boolean | undefined;
@@ -68,7 +69,9 @@ const Menu = ({ isOpen }: MenuProps) => {
               )}
             </li>
           ))}
-          <li className="w-full grow flex items-end">
+          <li className="w-full grow justify-end items-center flex-col flex">
+            <ThemeToggle isOpen={isOpen} />
+
             <TooltipProvider disableHoverableContent>
               <Tooltip delayDuration={100}>
                 <TooltipTrigger asChild>
