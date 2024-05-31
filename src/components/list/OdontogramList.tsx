@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDownIcon, CaretLeftIcon, CaretRightIcon, CheckIcon } from "@radix-ui/react-icons";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -15,6 +14,10 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 
+import IconCheck from "../../../public/Check.Icon";
+import IconDown from "../../../public/Down.Icon";
+import IconRight from "../../../public/Right.Icon";
+import IconLeft from "../../../public/Left.Icon";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -60,7 +63,7 @@ const Table = <TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) 
       {/* // Table Header */}
       <div className="w-full px-6 pb-4 flex items-center gap-3">
         <Toggle className={cn(buttonVariants({ variant: "primary" }))}>
-          <CheckIcon />
+          <IconCheck className="w-3 h-3" />
         </Toggle>
         <Input
           placeholder="Buscar paciente..."
@@ -74,7 +77,7 @@ const Table = <TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="primary" className="ml-auto text-xs">
-              Colunas <ChevronDownIcon className="ml-2 h-4 w-4" />
+              Colunas <IconDown className="ml-2 h-3 w-3" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
@@ -147,7 +150,7 @@ const Table = <TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) 
             variant="primary"
             size="sm"
             className="flex items-center gap-1">
-            <CaretLeftIcon className="h-3 w-3" />
+            <IconLeft className="h-3 w-3" />
             <p className="font-semibold">{table.getState().pagination.pageIndex + 1}</p>
           </Button>
           <Button
@@ -157,7 +160,7 @@ const Table = <TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) 
             disabled={!table.getCanNextPage()}
             className="flex items-center gap-1">
             <p className="font-semibold">{table.getState().pagination.pageIndex + 2}</p>
-            <CaretRightIcon className="h-3 w-3" />
+            <IconRight className="h-3 w-3" />
           </Button>
         </div>
       </div>

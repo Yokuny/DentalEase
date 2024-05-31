@@ -1,22 +1,10 @@
-"use client";
-
-import { useState } from "react";
-import { ReloadIcon } from "@radix-ui/react-icons";
-import { cn } from "@/helpers/cn.util";
-import { request, POST } from "@/helpers/fetch.config";
-import type {} from "@/types";
-
 import { CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { buttonVariants } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import Form from "./Form";
 
 const Interfaces = () => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-
   const { toast } = useToast();
-  const handlRequestResponse = (title: string, message: string) =>
-    toast({ title: title, description: message });
+  const handlRequestResponse = (title: string, message: string) => toast({ title: title, description: message });
 
   return (
     <>

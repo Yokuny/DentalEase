@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CheckIcon, CaretSortIcon } from "@radix-ui/react-icons";
 import { comboboxPatient } from "@/helpers/dataManager.helper";
 import { cn } from "@/helpers/cn.util";
 
+import IconCheck from "../../../public/Check.Icon";
+import IconSort from "../../../public/Sort.Icon";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "@/components/ui/command";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
@@ -35,7 +36,7 @@ const PatientCombobox = ({ controller, toast }: { controller: any; toast: any })
       <PopoverTrigger asChild>
         <Button role="combobox" aria-expanded={open} className="h-10 w-full justify-between font-medium">
           {patient ? patients.find((item) => item.value === patient)?.label : "Selecione o paciente..."}
-          <CaretSortIcon className="ml-2 h-4 w-4 shrink-0" />
+          <IconSort className="ml-2 h-3 w-3 shrink-0" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="p-0">
@@ -52,7 +53,7 @@ const PatientCombobox = ({ controller, toast }: { controller: any; toast: any })
                   controller.onChange(currentValue === patient ? "" : currentValue);
                   setOpen(false);
                 }}>
-                <CheckIcon className={cn("mr-2 h-4 w-4", patient === item.value ? "opacity-100" : "opacity-0")} />
+                <IconCheck className={cn("mr-2 h-3 w-3", patient === item.value ? "opacity-100" : "opacity-0")} />
                 {item.label}
               </CommandItem>
             ))}

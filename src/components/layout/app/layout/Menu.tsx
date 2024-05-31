@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ExitIcon } from "@radix-ui/react-icons";
 import getMenuList from "@/data/menuList";
 import { cn } from "@/helpers/cn.util";
 
+import IconExit from "../../../../../public/Exit.Icon";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
@@ -23,7 +23,7 @@ const Menu = ({ isOpen }: MenuProps) => {
   return (
     <ScrollArea className="[&>div>div[style]]:!block">
       <nav className="mt-8 h-full w-full">
-        <ul className="flex flex-col min-h-[calc(100vh-48px-36px-16px-32px)] lg:min-h-[calc(100vh-32px-40px-32px)] items-start space-y-1 px-2">
+        <ul className="min-h-[calc(100vh-48px-36px-16px-32px)] lg:min-h-[calc(100vh-32px-40px-32px)] items-start space-y-1 px-1 flex flex-col">
           {menuList.map(({ groupLabel, menus }, index) => (
             <li className={cn("w-full mt-4", groupLabel ? "pt-5" : "")} key={index}>
               {(isOpen && groupLabel) || isOpen === undefined ? (
@@ -40,12 +40,12 @@ const Menu = ({ isOpen }: MenuProps) => {
                       <Tooltip delayDuration={100}>
                         <TooltipTrigger asChild>
                           <Button
-                            variant={active ? "outlineBlue" : "link"}
+                            variant={active ? "primary" : "link"}
                             className="w-full justify-start h-10 mb-1"
                             asChild>
                             <Link href={href} className={cn(isOpen === false && "flex items-center justify-center")}>
                               <span className={cn(isOpen === false ? "" : "mr-4")}>
-                                <Icon size={18} />
+                                <Icon className="dark:text-white text-black" />
                               </span>
                               <p
                                 className={cn(
@@ -77,7 +77,7 @@ const Menu = ({ isOpen }: MenuProps) => {
                 <TooltipTrigger asChild>
                   <Button onClick={() => {}} variant="blank" className="w-full justify-center h-10 mt-5">
                     <span className={cn(isOpen === false ? "" : "mr-4")}>
-                      <ExitIcon />
+                      <IconExit className="dark:text-white text-black" />
                     </span>
                     <p className={cn("whitespace-nowrap", isOpen === false ? "opacity-0 hidden" : "opacity-100")}>
                       Sair

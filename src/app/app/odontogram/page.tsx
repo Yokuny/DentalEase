@@ -1,11 +1,11 @@
 "use client";
 
 import { Suspense, useCallback, useEffect, useState } from "react";
-import { ReloadIcon } from "@radix-ui/react-icons";
 import { columns } from "./List";
 import { localOdontogram, refreshOdontogram } from "@/helpers/dataManager.helper";
 import type { Odontogram } from "@/types";
 
+import IconReload from "../../../../public/Reload.Icon";
 import { Button } from "@/components/ui/button";
 import { CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
@@ -58,8 +58,11 @@ const Interfaces = () => {
           <CardDescription className="md:block hidden text-xs">Lista de odontogramas cadastrados</CardDescription>
         </div>
         <div className="gap-2 flex-row flex">
-          <Button className={"flex items-center gap-2"} onClick={fetchOdontogram}>
-            {isLoading ? <ReloadIcon className="animate-spin" /> : <ReloadIcon className="hover:animate-spin" />}
+          <Button
+            variant="primary"
+            className="group flex items-center gap-2 text-slate-700 dark:text-slate-300"
+            onClick={fetchOdontogram}>
+            {isLoading ? <IconReload className="animate-spin" /> : <IconReload className="group-hover:animate-spin" />}
             <p className="md:block hidden">Atualizar</p>
           </Button>
           <Suspense fallback={<div>Loading...</div>}>

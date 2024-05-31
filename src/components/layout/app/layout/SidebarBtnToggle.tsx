@@ -1,6 +1,6 @@
-import { CaretLeftIcon } from "@radix-ui/react-icons";
 import { cn } from "@/helpers/cn.util";
 
+import IconBack from "../../../../../public/Back.Icon";
 import { Button } from "@/components/ui/button";
 
 interface SidebarToggleProps {
@@ -10,15 +10,15 @@ interface SidebarToggleProps {
 
 const SidebarBtnToggle = ({ isOpen, setIsOpen }: SidebarToggleProps) => {
   return (
-    <div className="absolute z-[100] top-[15px] -right-[16px] invisible lg:visible">
+    <div className="invisible lg:visible absolute z-[100] top-[15px] -right-[16px]">
       <Button
         onClick={() => setIsOpen?.()}
         className="rounded-md w-10 h-8 border shadow-sm"
         variant="primary"
         size="icon">
-        <CaretLeftIcon
+        <IconBack
           className={cn(
-            "h-3 w-3 transition-transform ease-in-out duration-700 stroke-slate-900 dark:stroke-slate-100",
+            "transition-transform ease-in-out duration-700 text-black dark:text-white",
             isOpen === false ? "rotate-180" : "rotate-0"
           )}
         />

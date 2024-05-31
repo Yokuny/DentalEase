@@ -5,7 +5,8 @@ import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/helpers/cn.util";
 import { workSpace } from "@/data/workSpace";
 
-import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
+import IconCheck from "../../../../../public/Check.Icon";
+import IconSort from "../../../../../public/Sort.Icon";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "@/components/ui/command";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
@@ -33,7 +34,7 @@ const WorkSpace = () => {
             aria-expanded={open}
             className="h-12 md:max-w-[700px] md:w-full w-11/12 justify-between text-white shadow-sm">
             {value ? workSpace.find((space) => space.value === value)?.label : "Selecione o ambiente..."}
-            <CaretSortIcon className="ml-2 h-4 w-4 shrink-0" />
+            <IconSort className="ml-2 h-3 w-3 shrink-0" />
           </Button>
         </div>
       </PopoverTrigger>
@@ -52,7 +53,7 @@ const WorkSpace = () => {
                   setOpen(false);
                 }}>
                 {space.label}
-                <CheckIcon className={cn("ml-auto h-4 w-4", value === space.value ? "opacity-100" : "opacity-0")} />
+                <IconCheck className={cn("ml-auto h-3 w-3", value === space.value ? "opacity-100" : "opacity-0")} />
               </CommandItem>
             ))}
           </CommandGroup>

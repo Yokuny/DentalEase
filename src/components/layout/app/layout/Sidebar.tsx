@@ -2,9 +2,9 @@ import { useStore } from "@/hooks/use-store";
 import { useSidebarToggle } from "@/hooks/use-sidebar-toggle";
 import { cn } from "@/helpers/cn.util";
 
+import DentalEaseLogo from "@/components/dental-ease/DentalEaseLogo";
 import SidebarBtnToggle from "./SidebarBtnToggle";
 import Menu from "./Menu";
-import DentalEaseLogo from "@/components/dental-ease/DentalEaseLogo";
 
 const Sidebar = () => {
   const sidebar = useStore(useSidebarToggle, (state) => state);
@@ -12,8 +12,8 @@ const Sidebar = () => {
   return (
     <aside
       className={cn(
-        "fixed z-50 top-0 left-0 h-screen -translate-x-full lg:translate-x-0 transition-[width] ease-in-out duration-300",
-        sidebar?.isOpen === false ? "w-[90px]" : "w-72"
+        "-translate-x-full lg:translate-x-0 transition-[width] ease-in-out duration-300 fixed z-50 top-0 left-0 h-screen",
+        sidebar?.isOpen === false ? "w-[80px]" : "w-64"
       )}>
       <SidebarBtnToggle isOpen={sidebar?.isOpen} setIsOpen={sidebar?.setIsOpen} />
       <div className="absolute z-0 bg-white dark:bg-slate-950 mt-16 border-r w-full h-full"></div>

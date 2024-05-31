@@ -1,15 +1,13 @@
 "use client";
 
-import * as React from "react";
 import { z } from "zod";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { request, POST } from "@/helpers/fetch.config";
-import { ReloadIcon } from "@radix-ui/react-icons";
 import { cn } from "@/helpers/cn.util";
-import type { ToastProps } from "@/types";
+import type { LogInProps } from "@/types";
 
+import IconReload from "../../../public/Reload.Icon";
 import { Input } from "@/components/ui/input";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
@@ -18,8 +16,7 @@ const emailSchema = z.object({
   email: z.string().email("Insira um e-mail válido"),
 });
 
-const SignUp = ({ toast }: ToastProps) => {
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+const SignUp = ({ toast, isLoading, setIsLoading }: LogInProps) => {
   const form = useForm<z.infer<typeof emailSchema>>({
     resolver: zodResolver(emailSchema),
     defaultValues: {
@@ -71,7 +68,7 @@ const SignUp = ({ toast }: ToastProps) => {
               )}
             />
             <Button className={cn(buttonVariants({ variant: "gradient" }))} disabled={isLoading}>
-              {isLoading && <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />}
+              {isLoading && <IconReload className="mr-2 h-4 w-4 animate-spin" />}
               Entrar
             </Button>
           </form>

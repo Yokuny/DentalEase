@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { CaretSortIcon, MixerHorizontalIcon, CheckIcon, Cross2Icon } from "@radix-ui/react-icons";
 import { ColumnDef } from "@tanstack/react-table";
 import type { Service } from "@/types";
 
+import IconMixer from "../../../../public/Mixer.Icon";
+import IconSort from "../../../../public/Sort.Icon";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -23,7 +24,7 @@ const SortableComponent = ({ column, title }: { column: any; title: string }) =>
       className="gap-1 flex items-center cursor-pointer hover:text-darkBlue dark:hover:text-skyBlue"
       onClick={() => handleSorting(column)}>
       {title}
-      <CaretSortIcon className="h-4 md:w-4 w-3" />
+      <IconSort className="h-3 w-3" />
     </div>
   );
 };
@@ -84,7 +85,7 @@ export const columns: ColumnDef<Service>[] = [
             <DropdownMenuTrigger asChild>
               <Button variant="primary" className="h-7 w-12 md:w-14 p-0">
                 <span className="sr-only">Abrir menu</span>
-                <MixerHorizontalIcon className="h-3 w-3" />
+                <IconMixer className="h-3 w-3" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">

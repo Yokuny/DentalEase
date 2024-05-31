@@ -8,9 +8,9 @@ import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { clinicSchema } from "@/schemas/clinic.schema";
 import { request, POST } from "@/helpers/fetch.config";
-import { ReloadIcon } from "@radix-ui/react-icons";
 import type { ToastProps } from "@/types";
 
+import IconReload from "../../../../../public/Reload.Icon";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -135,7 +135,7 @@ const ClinicForm = ({ toast }: ToastProps) => {
           />
         </div>
         <Button form="form-id" type="submit" variant={"gradient"} className="mt-4" disabled={isLoading}>
-          {isLoading && <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />}
+          {isLoading && <IconReload className="mr-2 h-4 w-4 animate-spin" />}
           Registrar
         </Button>
       </form>

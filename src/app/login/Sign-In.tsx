@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import Cookie from "js-cookie";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
@@ -9,17 +8,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { signinSchema } from "@/schemas/user.schema";
 import { request, POST } from "@/helpers/fetch.config";
 import { cn } from "@/helpers/cn.util";
-import type { ToastProps } from "@/types";
+import type { LogInProps } from "@/types";
 
-import { ReloadIcon } from "@radix-ui/react-icons";
+import IconReload from "../../../public/Reload.Icon";
 import { Input } from "@/components/ui/input";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 
-const SignIn = ({ toast }: ToastProps) => {
+const SignIn = ({ toast, isLoading, setIsLoading }: LogInProps) => {
   const router = useRouter();
 
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const form = useForm<z.infer<typeof signinSchema>>({
     resolver: zodResolver(signinSchema),
     defaultValues: {
@@ -103,7 +101,7 @@ const SignIn = ({ toast }: ToastProps) => {
               )}
             />
             <Button className={cn(buttonVariants({ variant: "gradient" }))} disabled={isLoading}>
-              {isLoading && <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />}
+              {isLoading && <IconReload className="mr-2 h-4 w-4 animate-spin" />}
               Entrar
             </Button>
           </form>

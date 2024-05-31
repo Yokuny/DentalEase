@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
 import { comboboxOdontogram } from "@/helpers/dataManager.helper";
 import { cn } from "@/helpers/cn.util";
 
+import IconCheck from "../../../public/Check.Icon";
+import IconSort from "../../../public/Sort.Icon";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "@/components/ui/command";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
@@ -35,7 +36,7 @@ const OdontogramCombobox = ({ controller, toast, patient, disabled }: any) => {
       <PopoverTrigger asChild className="w-full" disabled={isLoading || disabled}>
         <Button role="combobox" aria-expanded={open} className="h-10 justify-between font-medium">
           {odontogram ? odontograms.find((item) => item.value === odontogram)?.label : "Selecione o odontograma..."}
-          <CaretSortIcon className="ml-2 h-4 w-4 shrink-0" />
+          <IconSort className="ml-2 h-3 w-3 shrink-0" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="p-0">
@@ -52,7 +53,7 @@ const OdontogramCombobox = ({ controller, toast, patient, disabled }: any) => {
                   controller.onChange(currentValue === odontogram ? "" : currentValue);
                   setOpen(false);
                 }}>
-                <CheckIcon className={cn("mr-2 h-4 w-4", odontogram === item.value ? "opacity-100" : "opacity-0")} />
+                <IconCheck className={cn("mr-2 h-3 w-3", odontogram === item.value ? "opacity-100" : "opacity-0")} />
                 {item.label}
               </CommandItem>
             ))}

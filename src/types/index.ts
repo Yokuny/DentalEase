@@ -2,6 +2,12 @@ export type ToastProps = {
   toast: (title: string, message: string) => void;
 };
 
+export type LogInProps = {
+  toast: (title: string, message: string) => void;
+  isLoading: boolean;
+  setIsLoading: (value: boolean) => void;
+};
+
 export type ErrorProps = {
   error: Error;
   reset: () => void;

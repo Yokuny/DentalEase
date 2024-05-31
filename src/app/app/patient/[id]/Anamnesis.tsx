@@ -6,11 +6,11 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { request, POST } from "@/helpers/fetch.config";
-import { ReloadIcon } from "@radix-ui/react-icons";
 import { anamnesisSchema } from "@/schemas/patient.schema";
 import { stringToBoolean } from "@/helpers/validade.helper";
 import type { ToastProps } from "@/types";
 
+import IconReload from "../../../../../public/Reload.Icon";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -833,7 +833,7 @@ const Anamnesis = ({ toast }: ToastProps) => {
                 variant={"gradient"}
                 className="mt-4 w-3/4"
                 disabled={isLoading}>
-                {isLoading && <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />}
+                {isLoading && <IconReload className="mr-2 h-4 w-4 animate-spin" />}
                 Cadastrar
               </Button>
               <Button

@@ -7,11 +7,10 @@ import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { odontogramSchema } from "@/schemas/odontogram.schema";
 import { request, POST } from "@/helpers/fetch.config";
-import { ReloadIcon } from "@radix-ui/react-icons";
 import type { ToastProps } from "@/types";
-import { cn } from "@/helpers/cn.util";
 
-import { Button, buttonVariants } from "@/components/ui/button";
+import IconReload from "../../../../public/Reload.Icon";
+import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import PatientCombobox from "@/components/data-inputs/PatientCombobox";
@@ -106,7 +105,7 @@ const OdontogramForm = ({ toast }: ToastProps) => {
           )}
         />
         <Button form="odontogram-form" type="submit" variant={"gradient"} className="mt-4 w-full" disabled={isLoading}>
-          {isLoading && <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />}
+          {isLoading && <IconReload className="mr-2 h-4 w-4 animate-spin" />}
           Cadastrar
         </Button>
       </form>

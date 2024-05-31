@@ -7,9 +7,9 @@ import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { patientSchema } from "@/schemas/patient.schema";
 import { request, POST } from "@/helpers/fetch.config";
-import { ReloadIcon } from "@radix-ui/react-icons";
 import type { ToastProps } from "@/types";
 
+import IconReload from "../../../../public/Reload.Icon";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -246,7 +246,7 @@ const PatientForm = ({ toast }: ToastProps) => {
           />
         </div>
         <Button form="patient-form" type="submit" variant={"gradient"} className="mt-4 w-full" disabled={isLoading}>
-          {isLoading && <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />}
+          {isLoading && <IconReload className="mr-2 h-4 w-4 animate-spin" />}
           Cadastrar
         </Button>
       </form>
