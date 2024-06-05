@@ -1,24 +1,14 @@
 "use client";
 
-// import { useSearchParams } from "next/navigation";
-
 import { CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import DatePickerDemo from "@/components/ui/date-picker";
-import { POST } from "@/helpers/fetch.config";
 
-const Schedule = () => {
-  // const searchParams = useSearchParams();
-  // const loginParam = searchParams.get("acess");
-
+const Config = () => {
   return (
     <>
       <CardHeader className="p-3 px-6 flex flex-row justify-between ">
         <div className="md:gap-4 gap-1 flex md:flex-row md:items-center flex-col">
           <CardTitle>Agenda</CardTitle>
           <CardDescription>Horarios agendados</CardDescription>
-        </div>
-        <div>
-          <DatePickerDemo />
         </div>
       </CardHeader>
 
@@ -32,4 +22,4 @@ const Schedule = () => {
   );
 };
 
-export default Schedule;
+export default Config;
