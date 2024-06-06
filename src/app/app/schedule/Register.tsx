@@ -15,9 +15,8 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import ServiceForm from "./Form";
 
-const NewService = ({ toast }: ToastProps) => {
+const NewAppointment = ({ toast }: ToastProps) => {
   const searchParams = useSearchParams();
   const serviceParam = searchParams.get("interface");
   const closed = () => toast("Operação cancelada", "O registro foi limpo");
@@ -32,7 +31,7 @@ const NewService = ({ toast }: ToastProps) => {
       {/* Button */}
       <DrawerTrigger asChild>
         <Link
-          href={"/app/service?interface=register"}
+          href={"/app/schedule?interface=register"}
           className={cn(buttonVariants({ variant: "gradient" }), "md:text-sm text-xs w-[100px]")}>
           Adicionar
         </Link>
@@ -41,17 +40,15 @@ const NewService = ({ toast }: ToastProps) => {
       <DrawerContent>
         <div className="mx-auto w-full md:max-w-6xl">
           <DrawerHeader>
-            <DrawerTitle>Cadastro de serviço</DrawerTitle>
-            <DrawerDescription>Adicione um novo serviço</DrawerDescription>
+            <DrawerTitle>Agendar</DrawerTitle>
+            <DrawerDescription>Adicione um novo compromisso</DrawerDescription>
           </DrawerHeader>
-          <div className="p-4 pb-0">
-            <ServiceForm toast={toast} />
-          </div>
+          <div className="p-4 pb-0">{/* METE AQUI DENTRO */}</div>
           <DrawerFooter>
             <DrawerClose asChild>
               <Link
                 onClick={closed}
-                href={"/app/service"}
+                href={"/app/schedule"}
                 className={cn(buttonVariants({ variant: "outlineBlue" }), "text-darkBlue")}>
                 Cancelar
               </Link>
@@ -63,4 +60,4 @@ const NewService = ({ toast }: ToastProps) => {
   );
 };
 
-export default NewService;
+export default NewAppointment;

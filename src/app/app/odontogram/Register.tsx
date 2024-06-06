@@ -32,7 +32,7 @@ const NewOdontogram = ({ toast }: ToastProps) => {
       <DialogTrigger asChild>
         <Link
           href={"/app/odontogram?interface=register"}
-          className={cn(buttonVariants({ variant: "gradient" }), "md:text-sm text-xs")}>
+          className={cn(buttonVariants({ variant: "gradient" }), "md:text-sm text-xs w-[100px]")}>
           Adicionar
         </Link>
       </DialogTrigger>

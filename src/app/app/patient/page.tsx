@@ -5,15 +5,15 @@ import { columns } from "./List";
 import { localPatient, refreshPatient } from "@/helpers/dataManager.helper";
 import type { Patient } from "@/types";
 
-import IconReload from "../../../../public/Reload.Icon";
-import { Button } from "@/components/ui/button";
+// import IconReload from "../../../../public/Reload.Icon";
+// import { Button } from "@/components/ui/button";
 import { CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
 import List from "../../../components/list/PatientList";
 import Register from "./Register";
 
 const Interfaces = () => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  // const [isLoading, setIsLoading] = useState<boolean>(false);
   const [patients, setPatients] = useState<Patient[]>([]);
 
   const { toast } = useToast();
@@ -23,7 +23,7 @@ const Interfaces = () => {
   );
 
   useEffect(() => {
-    setIsLoading(true);
+    // setIsLoading(true);
     const fetchPatients = async () => {
       try {
         const data = await localPatient();
@@ -31,24 +31,24 @@ const Interfaces = () => {
       } catch (error: any) {
         handlRequestResponse("Erro", error.message);
       } finally {
-        setIsLoading(false);
+        // setIsLoading(false);
       }
     };
     fetchPatients();
   }, [handlRequestResponse]);
 
-  const fetchPatients = async () => {
-    setIsLoading(true);
-    try {
-      const data = await refreshPatient();
-      handlRequestResponse("Sucesso", "Pacientes atualizados com sucesso");
-      setPatients(data);
-    } catch (error: any) {
-      handlRequestResponse("Erro", error.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  // const fetchPatients = async () => {
+  //   setIsLoading(true);
+  //   try {
+  //     const data = await refreshPatient();
+  //     handlRequestResponse("Sucesso", "Pacientes atualizados com sucesso");
+  //     setPatients(data);
+  //   } catch (error: any) {
+  //     handlRequestResponse("Erro", error.message);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
 
   return (
     <>
@@ -60,13 +60,13 @@ const Interfaces = () => {
           </CardDescription>
         </div>
         <div className="gap-2 flex-row flex">
-          <Button
+          {/* <Button
             variant="primary"
             className="group flex items-center gap-2 text-slate-700 dark:text-slate-300"
             onClick={fetchPatients}>
             {isLoading ? <IconReload className="animate-spin" /> : <IconReload className="group-hover:animate-spin" />}
             <p className="md:block hidden">Atualizar</p>
-          </Button>
+          </Button> */}
           <Suspense fallback={<div>Carregando...</div>}>
             <Register toast={handlRequestResponse} />
           </Suspense>
