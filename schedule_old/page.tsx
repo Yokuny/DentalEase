@@ -3,7 +3,7 @@
 // import { useSearchParams } from "next/navigation";
 
 import { CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import DatePickerDemo from "@/components/ui/date-picker";
+import DatePicker from "@/components/ui/date-picker";
 import Scheduler from "./Scheduler";
 
 const events = [
@@ -224,7 +224,7 @@ const Schedule = () => {
           <CardDescription>Horarios agendados</CardDescription>
         </div>
         <div>
-          <DatePickerDemo />
+          <DatePicker />
         </div>
       </CardHeader>
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { comboboxOdontogram } from "@/helpers/dataManager.helper";
+import { comboboxService } from "@/helpers/dataManager.helper";
 import { cn } from "@/helpers/cn.util";
 
 import IconCheck from "../../../public/Check.Icon";
@@ -10,18 +10,18 @@ import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 
-const OdontogramCombobox = ({ controller, toast, patient, disabled }: any) => {
+const ServiceCombobox = ({ controller, toast, disabled }: any) => {
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [odontograms, setOdontograms] = useState([{ value: "", label: "Selecione o odontograma..." }]);
-  const [odontogram, setOdontogram] = useState("");
+  const [services, setServices] = useState([{ value: "", label: "Selecione um serviço..." }]);
+  const [service, setService] = useState("");
 
   useEffect(() => {
     setIsLoading(true);
     const fetchDentist = async () => {
       try {
-        const data = await comboboxOdontogram({ patient: patient });
-        setOdontograms(data);
+        const data = await comboboxService({ onlyActive: true });
+        setServices(data);
       } catch (error: any) {
         toast("Erro", error.message);
       } finally {
@@ -29,31 +29,31 @@ const OdontogramCombobox = ({ controller, toast, patient, disabled }: any) => {
       }
     };
     fetchDentist();
-  }, [toast, patient]);
+  }, [toast]);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild className="w-full" disabled={isLoading || disabled}>
         <Button role="combobox" aria-expanded={open} className="h-10 justify-between font-medium">
-          {odontogram ? odontograms.find((item) => item.value === odontogram)?.label : "Selecione o odontograma..."}
+          {service ? services.find((item) => item.value === service)?.label : "Selecione um serviço..."}
           <IconSort className="ml-2 h-3 w-3 shrink-0" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="p-0">
         <Command>
-          <CommandInput placeholder="Selecione o odontograma" disabled={isLoading || disabled} />
-          <CommandEmpty>Odontograma não encontrado</CommandEmpty>
+          <CommandInput placeholder="Selecione um serviço" disabled={isLoading || disabled} />
+          <CommandEmpty>Serviço não encontrado</CommandEmpty>
           <CommandGroup>
-            {odontograms.map((item) => (
+            {services.map((item) => (
               <CommandItem
                 key={item.value}
                 value={item.value}
                 onSelect={(currentValue) => {
-                  setOdontogram(currentValue === odontogram ? "" : currentValue);
-                  controller.onChange(currentValue === odontogram ? "" : currentValue);
+                  setService(currentValue === service ? "" : currentValue);
+                  controller.onChange(currentValue === service ? "" : currentValue);
                   setOpen(false);
                 }}>
-                <IconCheck className={cn("mr-2 h-3 w-3", odontogram === item.value ? "opacity-100" : "opacity-0")} />
+                <IconCheck className={cn("mr-2 h-3 w-3", service === item.value ? "opacity-100" : "opacity-0")} />
                 {item.label}
               </CommandItem>
             ))}
@@ -64,4 +64,4 @@ const OdontogramCombobox = ({ controller, toast, patient, disabled }: any) => {
   );
 };
 
-export default OdontogramCombobox;
+export default ServiceCombobox;

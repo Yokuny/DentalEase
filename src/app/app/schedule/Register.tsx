@@ -15,6 +15,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+import ScheduleForm from "./Form";
 
 const NewAppointment = ({ toast }: ToastProps) => {
   const searchParams = useSearchParams();
@@ -43,13 +44,15 @@ const NewAppointment = ({ toast }: ToastProps) => {
             <DrawerTitle>Agendar</DrawerTitle>
             <DrawerDescription>Adicione um novo compromisso</DrawerDescription>
           </DrawerHeader>
-          <div className="p-4 pb-0">{/* METE AQUI DENTRO */}</div>
+          <div className="p-4 pb-0">
+            <ScheduleForm toast={toast} />
+          </div>
           <DrawerFooter>
             <DrawerClose asChild>
               <Link
                 onClick={closed}
                 href={"/app/schedule"}
-                className={cn(buttonVariants({ variant: "outlineBlue" }), "text-darkBlue")}>
+                className={cn(buttonVariants({ variant: "link" }), "text-darkBlue w-full !no-underline")}>
                 Cancelar
               </Link>
             </DrawerClose>

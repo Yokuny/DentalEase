@@ -50,7 +50,7 @@ const NewOdontogram = ({ toast }: ToastProps) => {
             <Link
               onClick={closed}
               href={"/app/odontogram"}
-              className={cn(buttonVariants({ variant: "outlineBlue" }), "text-darkBlue w-full")}>
+              className={cn(buttonVariants({ variant: "link" }), "text-darkBlue w-full !no-underline")}>
               Cancelar
             </Link>
           </DialogFooter>

@@ -51,14 +51,14 @@ const ServiceForm = () => {
     );
   };
 
-  //   const data = [
-  //     {
-  //       Id: 1,
-  //       Subject: "Meeting",
-  //       StartTime: new Date(2023, 1, 15, 10, 0),
-  //       EndTime: new Date(2023, 1, 15, 12, 30),
-  //     },
-  //   ];
+  const data = [
+    {
+      Id: 1,
+      Subject: "Meeting",
+      StartTime: new Date(2024, 1, 15, 10, 0),
+      EndTime: new Date(2023, 1, 15, 12, 30),
+    },
+  ];
 
   return (
     <div className="w-full">

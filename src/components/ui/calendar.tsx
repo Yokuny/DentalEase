@@ -18,38 +18,35 @@ function Calendar({ className, classNames, ...props }: CalendarProps) {
       locale={ptBR}
       className={cn("p-3", className)}
       classNames={{
-        months: "flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0",
+        months: "space-y-4 sm:space-x-4 sm:space-y-0 flex-col sm:flex-row flex",
         month: "space-y-4",
         caption: "flex justify-center pt-1 relative items-center",
-        caption_label: "text-sm font-medium",
+        caption_label: "text-sm font-medium dark:text-slate-200 text-slate-700",
         nav: "space-x-1 flex items-center",
-        nav_button: cn(
-          buttonVariants({ variant: "primary" }),
-          "h-7 w-9 p-0 border-slate-400 dark:border-slate-500 text-black dark:text-white"
-        ),
+        nav_button: cn(buttonVariants({ variant: "link" }), "h-7 w-9 p-0 text-black dark:text-white"),
         nav_button_previous: "absolute left-1",
         nav_button_next: "absolute right-1",
         table: "w-full border-collapse space-y-1",
         head_row: "flex justify-between px-2",
-        head_cell: "font-normal text-[0.8rem] text-darkBlue dark:text-skyBlue",
-        row: "w-full mt-2 flex",
+        head_cell: "font-normal text-[0.8rem]",
+        row: "w-full mt-2 flex gap-1",
         cell: cn(
-          "rounded-md relative md:p-[3px] text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected].day-outside)]:bg-slate-200/50 [&:has([aria-selected].day-range-end)]:rounded-r-md dark:[&:has([aria-selected].day-outside)]:bg-slate-700/50",
+          "relative md:p-[2px] p-0 text-center text-sm rounded-md focus-within:relative focus-within:z-20 [&:has([aria-selected].day-outside)]:bg-slate-200/50 [&:has([aria-selected].day-range-end)]:rounded-r-md dark:[&:has([aria-selected].day-outside)]:bg-slate-700/50",
           props.mode === "range"
             ? "[&:has(>.day-range-end)]:rounded-r-md [&:has(>.day-range-start)]:rounded-l-md first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md"
             : "[&:has([aria-selected])]:rounded-md"
         ),
         day: cn(
-          buttonVariants({ variant: "blank" }),
-          "h-8 w-8 p-0 hover:bg-slate-50 dark:hover:bg-slate-700 font-normal text-slate-700 dark:text-slate-200"
+          buttonVariants({ variant: "link" }),
+          "font-mono border h-10 w-10 p-5 hover:bg-slate-50 dark:hover:bg-slate-700 font-normal text-slate-700 dark:text-slate-200 hover:no-underline"
         ),
         day_range_start: "day-range-start",
         day_range_end: "day-range-end",
         day_selected:
-          "text-slate-50 focus:text-slate-50 bg-primaryBlue hover:bg-primaryBlue focus:bg-primaryBlue aria-selected:text-slate-50",
-        day_today: "border-slate-500  dark:bg-slate-900 dark:border-slate-300 border",
+          "!text-slate-50 focus:!text-slate-50 bg-primaryBlue hover:bg-primaryBlue focus:bg-primaryBlue aria-selected:text-slate-50",
+        day_today: "!text-darkBlue dark:!text-skyBlue !font-semibold",
         day_outside:
-          "day-outside text-slate-400 opacity-50 dark:opacity-100 aria-selected:bg-slate-100/50 aria-selected:text-slate-900 aria-selected:opacity-50 dark:text-slate-500 dark:aria-selected:bg-slate-800/50 dark:aria-selected:text-slate-300",
+          "day-outside text-slate-300 opacity-20 dark:opacity-60 aria-selected:bg-slate-100/50 aria-selected:text-slate-900 aria-selected:opacity-50 dark:text-slate-500 dark:aria-selected:bg-slate-800/50 dark:aria-selected:text-slate-300",
         day_disabled: "text-slate-400 opacity-50 dark:text-slate-300",
         day_range_middle:
           "aria-selected:bg-slate-100 aria-selected:text-slate-900 dark:aria-selected:bg-slate-800 dark:aria-selected:text-slate-50",

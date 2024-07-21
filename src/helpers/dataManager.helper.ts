@@ -45,7 +45,9 @@ export const localOdontogram = async (): Promise<Odontogram[]> => {
   return refreshOdontogram();
 };
 
-export const comboboxOdontogram = async (patient: string | null): Promise<Combobox[]> => {
+type PatientFilter = { patient: string | null };
+
+export const comboboxOdontogram = async ({ patient }: PatientFilter): Promise<Combobox[]> => {
   const odontogram = await localOdontogram();
 
   if (patient)
@@ -94,7 +96,11 @@ export const localService = async (): Promise<Service[]> => {
   return refreshService();
 };
 
-export const comboboxService = async (): Promise<Combobox[]> => {
+type OnlyActive = { onlyActive: boolean | undefined };
+
+export const comboboxService = async ({ onlyActive }: OnlyActive): Promise<Combobox[]> => {
   const service = await localService();
+
+  if (onlyActive) return comboboxDataFormat(service.filter((el: any) => el.status !== "canceled"));
   return comboboxDataFormat(service);
 };

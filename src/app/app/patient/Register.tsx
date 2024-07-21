@@ -52,7 +52,7 @@ const NewPatient = ({ toast }: ToastProps) => {
               <Link
                 onClick={closed}
                 href={"/app/patient"}
-                className={cn(buttonVariants({ variant: "outlineBlue" }), "text-darkBlue")}>
+                className={cn(buttonVariants({ variant: "link" }), "text-darkBlue w-full !no-underline")}>
                 Cancelar
               </Link>
             </DrawerClose>
