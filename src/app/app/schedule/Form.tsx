@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { scheduleSchema } from "@/schemas/schedule.schema";
 import { request, POST } from "@/helpers/fetch.config";
+import router from "next/router";
 import type { ToastProps } from "@/types";
 
 import IconReload from "../../../../public/Reload.Icon";
@@ -35,7 +36,6 @@ const ServiceForm = ({ toast }: ToastProps) => {
     defaultValues: {
       Service: "",
       startTime: "",
-      endTime: "",
     },
   });
 
@@ -62,28 +62,36 @@ const ServiceForm = ({ toast }: ToastProps) => {
   }, [form.watch, form]);
 
   async function onSubmit(values: z.infer<typeof scheduleSchema>) {
-    //   setIsLoading(true);
-    //   const body = {
-    //     startTime: values.startTime,
-    //     endTime: values.endTime,
-    //   };
-    //   try {
-    //     const res = await request("patient", POST(body));
-    //     if (res.success === false) throw new Error(res.message);
-    //     localStorage.setItem("activePatient", JSON.stringify(body));
-    //     toast("Sucesso", "Paciente registrado com sucesso");
-    //     form.reset();
-    //     return router.push(`/app/patient/${res.data._id}?interface=anamnese`);
-    //   } catch (Error: any) {
-    //     toast("Erro ao registrar paciente", Error.message);
-    //   } finally {
-    //     setIsLoading(false);
-    //   }
+    setIsLoading(true);
+    const body = {
+      Service: values.Service,
+      startTime: values.startTime,
+      endTime: values.endTime,
+    };
+
+    console.log(body);
+    try {
+      const res = await request("schedule/create", POST(body));
+      if (res.success === false) throw new Error(res.message);
+      toast("Sucesso", "Agendamento realizado");
+      form.reset();
+      return router.push(`/schedule?interface=view`);
+    } catch (Error: any) {
+      toast("Erro ao registrar agendamento", Error.message);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
     <Form {...form}>
-      <form id="service-form" onSubmit={form.handleSubmit(onSubmit)} className="gap-4 flex-wrap justify-between flex">
+      <form
+        id="service-form"
+        onSubmit={(e) => {
+          e.preventDefault();
+          onSubmit(form.getValues());
+        }}
+        className="gap-4 flex-wrap justify-between flex">
         <div className="p-4 bg-slate-50 dark:bg-slate-900/70 rounded-md w-full">
           <div className="p-4 px-8 bg-white dark:bg-slate-950 rounded-md w-full flex-wrap justify-between items-center flex">
             <div className="max-w-96 w-full gap-4 flex-col flex">
