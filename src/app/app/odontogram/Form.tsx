@@ -15,6 +15,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import PatientCombobox from "@/components/data-inputs/PatientCombobox";
 import DentistCombobox from "@/components/data-inputs/DentistCombobox";
+import Teeth from "@/components/app/odontogram/Teeth";
 
 const OdontogramForm = ({ toast }: ToastProps) => {
   const router = useRouter();
@@ -90,6 +91,18 @@ const OdontogramForm = ({ toast }: ToastProps) => {
             )}
           />
         </div>
+
+        <FormField
+          control={form.control}
+          name="teeth"
+          render={({ field }) => (
+            <FormItem className="w-full">
+              <FormControl className="md:text-sm text-xs">
+                <Teeth controller={{ ...field }} />
+              </FormControl>
+            </FormItem>
+          )}
+        />
 
         <FormField
           control={form.control}

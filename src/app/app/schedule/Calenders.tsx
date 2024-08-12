@@ -8,14 +8,14 @@ import {
   Month,
   Agenda,
   Inject,
-  Timezone,
   ViewsDirective,
   ViewDirective,
 } from "@syncfusion/ej2-react-schedule";
-import { Internationalization } from "@syncfusion/ej2-base";
+import { Internationalization, registerLicense } from "@syncfusion/ej2-base";
+
+registerLicense("Ngo9BigBOggjHTQxAR8/V1NBaF5cXmZCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdnWXdecXZUQ2VYVE11V0I=");
 
 const ServiceForm = () => {
-  const LocalTimeZone = new Timezone().getLocalTimezoneName();
   let instance: Internationalization = new Internationalization();
 
   const headerTemplate = ({ date }: { date: Date }) => {
@@ -71,7 +71,7 @@ const ServiceForm = () => {
         // }}
         workHours={{ start: "7:00", end: "20:00" }}
         workDays={[1, 2, 3, 4, 5, 6]}
-        timezone={LocalTimeZone}>
+      >
         <ViewsDirective>
           <ViewDirective option="Day" />
           <ViewDirective option="WorkWeek" />

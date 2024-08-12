@@ -1,7 +1,7 @@
 const IconMixer = (props: React.SVGProps<SVGSVGElement>) => (
   <svg width="1.1em" height="1.1em" viewBox="0 0 15 15" {...props}>
     <path
-      stroke-width="2"
+      strokeWidth="2"
       fill="currentColor"
       fill-rule="evenodd"
       clip-rule="evenodd"

@@ -37,7 +37,9 @@ const Schedule = () => {
         </div>
       </CardHeader>
 
-      <CardContent className="flex items-center justify-center flex-col">{/* <Calendar /> */}</CardContent>
+      <CardContent className="flex items-center justify-center flex-col">
+        <Calendar />
+      </CardContent>
       <CardFooter className="h-2"></CardFooter>
     </>
   );

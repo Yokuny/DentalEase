@@ -14,8 +14,8 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 
 import ServiceCombobox from "@/components/data-inputs/ServiceCombobox";
-import ScheduleCard from "./ScheduleCard";
-import DayAndHour from "./DayAndHour";
+import ScheduleCard from "../../../components/app/schedule/ScheduleCard";
+import DayAndHour from "../../../components/app/schedule/DayAndHour";
 
 type Service = {
   _id: string;
@@ -69,7 +69,6 @@ const ServiceForm = ({ toast }: ToastProps) => {
       endTime: values.endTime,
     };
 
-    console.log(body);
     try {
       const res = await request("schedule/create", POST(body));
       if (res.success === false) throw new Error(res.message);

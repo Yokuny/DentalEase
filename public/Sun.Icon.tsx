@@ -3,15 +3,15 @@ const IconSun = (props: React.SVGProps<SVGSVGElement>) => (
     <path
       d="M16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12Z"
       stroke="CurrentColor"
-      stroke-width="1.2"></path>
-    <path d="M12 3V5" stroke="CurrentColor" stroke-width="1.2" stroke-linecap="round"></path>
-    <path d="M12 19V21" stroke="CurrentColor" stroke-width="1.2" stroke-linecap="round"></path>
-    <path d="M18.3654 5.63623L16.9512 7.05044" stroke="CurrentColor" stroke-width="1.2" stroke-linecap="round"></path>
-    <path d="M7.05093 16.9497L5.63672 18.3639" stroke="CurrentColor" stroke-width="1.2" stroke-linecap="round"></path>
-    <path d="M18.3654 18.3644L16.9512 16.9502" stroke="CurrentColor" stroke-width="1.2" stroke-linecap="round"></path>
-    <path d="M7.05093 7.04996L5.63672 5.63574" stroke="CurrentColor" stroke-width="1.2" stroke-linecap="round"></path>
-    <path d="M21 12L19 12" stroke="CurrentColor" stroke-width="1.2" stroke-linecap="round"></path>
-    <path d="M5 12L3 12" stroke="CurrentColor" stroke-width="1.2" stroke-linecap="round"></path>
+      strokeWidth="1.2"></path>
+    <path d="M12 3V5" stroke="CurrentColor" strokeWidth="1.2" strokeLinecap="round"></path>
+    <path d="M12 19V21" stroke="CurrentColor" strokeWidth="1.2" strokeLinecap="round"></path>
+    <path d="M18.3654 5.63623L16.9512 7.05044" stroke="CurrentColor" strokeWidth="1.2" strokeLinecap="round"></path>
+    <path d="M7.05093 16.9497L5.63672 18.3639" stroke="CurrentColor" strokeWidth="1.2" strokeLinecap="round"></path>
+    <path d="M18.3654 18.3644L16.9512 16.9502" stroke="CurrentColor" strokeWidth="1.2" strokeLinecap="round"></path>
+    <path d="M7.05093 7.04996L5.63672 5.63574" stroke="CurrentColor" strokeWidth="1.2" strokeLinecap="round"></path>
+    <path d="M21 12L19 12" stroke="CurrentColor" strokeWidth="1.2" strokeLinecap="round"></path>
+    <path d="M5 12L3 12" stroke="CurrentColor" strokeWidth="1.2" strokeLinecap="round"></path>
   </svg>
 );
 export default IconSun;
