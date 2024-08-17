@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 
 export const middleware = (request: NextRequest) => {
-  const siteURL = new URL("/home", request.url);
+  const siteURL = new URL("/login", request.url);
   const appURL = new URL("/app", request.url);
 
   const authCookie = cookies().has("auth");

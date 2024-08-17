@@ -50,7 +50,8 @@ const OdontogramForm = ({ toast }: ToastProps) => {
       toast("Sucesso", "Odontograma registrado com sucesso");
 
       form.reset();
-      return router.push(`/app/patient/${res.data.id}?interface=anamnese`);
+      return router.push(`/app/odontogram`);
+      //pensar em logica para recarregar os odontogram ou apresentar o cadastro do usuario
     } catch (Error: any) {
       toast("Erro ao registrar odontograma", Error.message);
     } finally {

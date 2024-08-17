@@ -24,7 +24,7 @@ const Page = () => {
             <div></div>
           </div>
         </div>
-        <Image className="w-full" height={5184} width={3456} alt="banner" src="/5.jpg" />
+        <Image className="w-full" height={5184} width={3456} alt="banner" src="/pictures/5.jpg" />
       </div>
     </div>
   );

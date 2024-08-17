@@ -1,4 +1,4 @@
-const IconTeethParts = (props: React.SVGProps<SVGSVGElement>) => (
+const IconToothParts = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 27 27" width="2em" fill="none" stroke="CurrentColor" strokeWidth="1.3" {...props}>
     <path d="M8.58244 18.2344C6.27799 20.5112 5.03609 21.7531 2.71097 24.0989C-0.683593 20.7182 2.02103 13.9564 2.02103 13.4045C2.02103 12.7836 -0.683593 6.09093 2.71097 2.71008L8.57557 8.58155V18.2411L8.58244 18.2344Z"></path>
     <path d="M18.2446 8.57504C20.5491 6.27059 21.7841 5.05632 24.1092 2.72424C27.5038 6.11881 24.7991 12.8668 24.7991 13.4187C24.7992 13.9962 27.5038 20.7323 24.1092 24.1131L18.2446 18.2416V8.58207V8.57504Z"></path>
@@ -8,4 +8,4 @@ const IconTeethParts = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-export default IconTeethParts;
+export default IconToothParts;

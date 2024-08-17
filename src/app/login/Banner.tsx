@@ -6,7 +6,7 @@ const Banner = () => {
   return (
     <div className="relative hidden h-full flex-col bg-muted p-10 text-white lg:flex dark:border-r">
       <Image
-        src="/3.jpg"
+        src="/pictures/3.jpg"
         width={1280}
         height={843}
         alt="Authentication"

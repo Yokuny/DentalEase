@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { registerLicense } from "@syncfusion/ej2-base";
 
 import { cn } from "@/helpers/cn.util";
 import ThemeProvider from "@/components/theme/ThemeProvider";
@@ -8,8 +7,6 @@ import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
-registerLicense("Ngo9BigBOggjHTQxAR8/V1NBaF5cXmZCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdnWXhceHVWRWZfWEZ3X0s=");
-// Ngo9BigBOggjHTQxAR8/V1NCaF5cXmZCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdnWXhceHVWQmNeUkB2X0U=
 
 export const metadata: Metadata = {
   title: "DetalEase",
