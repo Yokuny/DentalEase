@@ -104,3 +104,26 @@ export const comboboxService = async ({ onlyActive }: OnlyActive): Promise<Combo
   if (onlyActive) return comboboxDataFormat(service.filter((el: any) => el.status !== "canceled"));
   return comboboxDataFormat(service);
 };
+
+// Schedule
+
+export const refreshSchedule = async () => {
+  const res = await request("schedule/partial", GET());
+  if (res.success === false) throw new Error(res.message);
+
+  localStorage.setItem("schedules", JSON.stringify(res.data));
+
+  return res.data;
+};
+
+export const localSchedule = async (): Promise<Service[]> => {
+  const schedule = localStorage.getItem("schedules");
+  if (schedule) return JSON.parse(schedule);
+
+  return refreshSchedule();
+};
+
+export const comboboxSchedule = async (): Promise<Combobox[]> => {
+  const schedule = await localSchedule();
+  return comboboxDataFormat(schedule);
+};

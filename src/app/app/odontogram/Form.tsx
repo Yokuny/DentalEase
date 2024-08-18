@@ -7,6 +7,7 @@ import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { odontogramSchema } from "@/schemas/odontogram.schema";
 import { request, POST } from "@/helpers/fetch.config";
+import { refreshOdontogram } from "@/helpers/dataManager.helper";
 import type { ToastProps } from "@/types";
 
 import IconReload from "../../../../public/Reload.Icon";
@@ -44,14 +45,14 @@ const OdontogramForm = ({ toast }: ToastProps) => {
 
     try {
       const res = await request("odontogram/create", POST(body));
-      if (res.success === false) throw new Error(res.message);
+      if (res.success !== true) throw new Error(res.message);
 
       localStorage.setItem("activeOdontogram", JSON.stringify(body));
       toast("Sucesso", "Odontograma registrado com sucesso");
-
       form.reset();
+
+      await refreshOdontogram();
       return router.push(`/app/odontogram`);
-      //pensar em logica para recarregar os odontogram ou apresentar o cadastro do usuario
     } catch (Error: any) {
       toast("Erro ao registrar odontograma", Error.message);
     } finally {

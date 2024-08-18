@@ -76,6 +76,7 @@ const TimePicker = ({ day, handleDate }: RightPanelProps) => {
             <div className="grid gap-2 pr-3">
               {availableTimes.map((availableTime) => (
                 <Button
+                  type="button"
                   variant="link"
                   disabled={day == undefined ? true : day >= today ? false : true}
                   className="font-mono border bg-transparent dark:bg-transparent hover:bg-slate-50 dark:hover:bg-slate-700 font-normal text-slate-700 dark:text-slate-200 hover:no-underline"

@@ -2,17 +2,17 @@
 
 import { z } from "zod";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { scheduleSchema } from "@/schemas/schedule.schema";
 import { request, POST } from "@/helpers/fetch.config";
-import router from "next/router";
+import { refreshSchedule } from "@/helpers/dataManager.helper";
 import type { ToastProps } from "@/types";
 
 import IconReload from "../../../../public/Reload.Icon";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
-
 import ServiceCombobox from "@/components/data-inputs/ServiceCombobox";
 import ScheduleCard from "../../../components/app/schedule/ScheduleCard";
 import DayAndHour from "../../../components/app/schedule/DayAndHour";
@@ -27,6 +27,7 @@ type Service = {
 };
 
 const ServiceForm = ({ toast }: ToastProps) => {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [service, setService] = useState<Service>();
   const [startDate, setStartDate] = useState<Date>();
@@ -74,7 +75,9 @@ const ServiceForm = ({ toast }: ToastProps) => {
       if (res.success === false) throw new Error(res.message);
       toast("Sucesso", "Agendamento realizado");
       form.reset();
-      return router.push(`/schedule?interface=view`);
+
+      await refreshSchedule();
+      return router.push(`/app/schedule?interface=view`);
     } catch (Error: any) {
       toast("Erro ao registrar agendamento", Error.message);
     } finally {

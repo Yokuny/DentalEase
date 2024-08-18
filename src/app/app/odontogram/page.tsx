@@ -30,9 +30,9 @@ const Interfaces = () => {
         setOdontograms(data);
       } catch (error: any) {
         handlRequestResponse("Erro", error.message);
-      } finally {
-        // setIsLoading(false);
-      }
+      } // finally {
+      //   setIsLoading(false);
+      // }
     };
     fetchOdontogram();
   }, [handlRequestResponse]);
@@ -60,10 +60,9 @@ const Interfaces = () => {
         <div className="gap-2 flex-row flex">
           {/* <Button
             variant="primary"
-            className="group flex items-center gap-2 text-slate-700 dark:text-slate-300"
+            className="flex items-center gap-2 text-slate-700 dark:text-slate-300"
             onClick={fetchOdontogram}>
-            {isLoading ? <IconReload className="animate-spin" /> : <IconReload className="group-hover:animate-spin" />}
-            <p className="md:block hidden">Atualizar</p>
+            <IconReload />
           </Button> */}
           <Suspense fallback={<div>Loading...</div>}>
             <Register toast={handlRequestResponse} />

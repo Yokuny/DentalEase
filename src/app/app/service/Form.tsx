@@ -7,6 +7,7 @@ import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { serviceSchema } from "@/schemas/service.schema";
 import { request, POST } from "@/helpers/fetch.config";
+import { refreshService } from "@/helpers/dataManager.helper";
 import type { ToastProps } from "@/types";
 
 import IconReload from "../../../../public/Reload.Icon";
@@ -53,8 +54,9 @@ const ServiceForm = ({ toast }: ToastProps) => {
 
       localStorage.setItem("activeService", JSON.stringify(body));
       toast("Sucesso", "Serviço registrado com sucesso");
-
       form.reset();
+
+      await refreshService();
       return router.push(`/app`);
     } catch (Error: any) {
       toast("Erro ao registrar serviço", Error.message);

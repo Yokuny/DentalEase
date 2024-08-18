@@ -7,6 +7,7 @@ import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { patientSchema } from "@/schemas/patient.schema";
 import { request, POST } from "@/helpers/fetch.config";
+import { refreshPatient } from "@/helpers/dataManager.helper";
 import type { ToastProps } from "@/types";
 
 import IconReload from "../../../../public/Reload.Icon";
@@ -55,8 +56,9 @@ const PatientForm = ({ toast }: ToastProps) => {
 
       localStorage.setItem("activePatient", JSON.stringify(body));
       toast("Sucesso", "Paciente registrado com sucesso");
-
       form.reset();
+
+      await refreshPatient();
       return router.push(`/app/patient/${res.data._id}?interface=anamnese`);
     } catch (Error: any) {
       toast("Erro ao registrar paciente", Error.message);

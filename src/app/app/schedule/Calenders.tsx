@@ -10,6 +10,7 @@ import {
   Inject,
   ViewsDirective,
   ViewDirective,
+
 } from "@syncfusion/ej2-react-schedule";
 import { Internationalization, registerLicense } from "@syncfusion/ej2-base";
 

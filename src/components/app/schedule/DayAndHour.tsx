@@ -3,12 +3,12 @@ import { Calendar } from "@/components/ui/calendar";
 
 import TimePicker from "./TimePicker";
 
-type DayAndHourProps = {
-  controller: any;
-};
-
-const DayAndHour = ({ controller }: DayAndHourProps) => {
+const DayAndHour = ({ controller }: { controller: any }) => {
   const [date, setDate] = useState<Date>();
+
+  const handleDate = (date: Date) => {
+    controller.onChange(date);
+  };
 
   return (
     <div className="items-center flex">
@@ -18,12 +18,7 @@ const DayAndHour = ({ controller }: DayAndHourProps) => {
         </div>
       </div>
       <div className="max-w-60 w-full p-4 rounded-md">
-        <TimePicker
-          day={date}
-          handleDate={(date: Date) => {
-            controller.onChange(date);
-          }}
-        />
+        <TimePicker day={date} handleDate={handleDate} />
       </div>
     </div>
   );
