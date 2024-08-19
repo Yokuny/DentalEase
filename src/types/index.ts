@@ -37,7 +37,7 @@ export type Doctor = {
   _id: string;
   name: string;
   email: string;
-  avatar: string;
+  avatar: string | null;
 };
 
 export type Service = {
@@ -50,4 +50,13 @@ export type Service = {
   doctor_id: string;
   odontogram_id: string;
   status: "Pendente" | "Pago" | "Cancelado";
+};
+
+export type Schedule = {
+  _id: string;
+  startTime: string;
+  endTime: string | null;
+  patient: string;
+  doctor: string;
+  service: string;
 };

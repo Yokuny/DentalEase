@@ -1,6 +1,6 @@
 import { request, GET } from "@/helpers/fetch.config";
 import { comboboxDataFormat } from "@/helpers/formatter.helper";
-import type { Patient, Doctor, Odontogram, Service } from "@/types";
+import type { Patient, Doctor, Odontogram, Service, Schedule } from "@/types";
 
 type Combobox = { value: string; label: string };
 
@@ -8,10 +8,9 @@ type Combobox = { value: string; label: string };
 
 export const refreshPatient = async () => {
   const res = await request("patient/partial", GET());
-  if (res.success === false) throw new Error(res.message);
+  if (res.success !== true) throw new Error(res.message);
 
   localStorage.setItem("patients", JSON.stringify(res.data));
-
   return res.data;
 };
 
@@ -31,10 +30,9 @@ export const comboboxPatient = async (): Promise<Combobox[]> => {
 
 export const refreshOdontogram = async () => {
   const res = await request("odontogram/partial", GET());
-  if (res.success === false) throw new Error(res.message);
+  if (res.success !== true) throw new Error(res.message);
 
   localStorage.setItem("odontograms", JSON.stringify(res.data));
-
   return res.data;
 };
 
@@ -59,10 +57,9 @@ export const comboboxOdontogram = async ({ patient }: PatientFilter): Promise<Co
 
 export const refreshDenstist = async () => {
   const res = await request("clinic/doctors", GET());
-  if (res.success === false) throw new Error(res.message);
+  if (res.success !== true) throw new Error(res.message);
 
   localStorage.setItem("dentists", JSON.stringify(res.data));
-
   return res.data;
 };
 
@@ -82,10 +79,9 @@ export const comboboxDentist = async (): Promise<Combobox[]> => {
 
 export const refreshService = async () => {
   const res = await request("service/partial", GET());
-  if (res.success === false) throw new Error(res.message);
+  if (res.success !== true) throw new Error(res.message);
 
   localStorage.setItem("services", JSON.stringify(res.data));
-
   return res.data;
 };
 
@@ -109,21 +105,15 @@ export const comboboxService = async ({ onlyActive }: OnlyActive): Promise<Combo
 
 export const refreshSchedule = async () => {
   const res = await request("schedule/partial", GET());
-  if (res.success === false) throw new Error(res.message);
+  if (res.success !== true) throw new Error(res.message);
 
   localStorage.setItem("schedules", JSON.stringify(res.data));
-
   return res.data;
 };
 
-export const localSchedule = async (): Promise<Service[]> => {
+export const localSchedule = async (): Promise<Schedule[]> => {
   const schedule = localStorage.getItem("schedules");
   if (schedule) return JSON.parse(schedule);
 
   return refreshSchedule();
-};
-
-export const comboboxSchedule = async (): Promise<Combobox[]> => {
-  const schedule = await localSchedule();
-  return comboboxDataFormat(schedule);
 };

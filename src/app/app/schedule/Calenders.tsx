@@ -1,6 +1,7 @@
 "use client";
 
-import { cn } from "@/helpers/cn.util";
+import { useCallback, useEffect, useState } from "react";
+import { Internationalization, registerLicense } from "@syncfusion/ej2-base";
 import {
   ScheduleComponent,
   Day,
@@ -10,14 +11,48 @@ import {
   Inject,
   ViewsDirective,
   ViewDirective,
-
 } from "@syncfusion/ej2-react-schedule";
-import { Internationalization, registerLicense } from "@syncfusion/ej2-base";
+
+import { useToast } from "@/components/ui/use-toast";
+import { localSchedule, refreshSchedule } from "@/helpers/dataManager.helper";
+import { cn } from "@/helpers/cn.util";
+import type { Schedule } from "@/types";
 
 registerLicense("Ngo9BigBOggjHTQxAR8/V1NBaF5cXmZCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdnWXdecXZUQ2VYVE11V0I=");
 
 const ServiceForm = () => {
+  const [schedule, setSchedule] = useState<Schedule[]>([]);
+  // const [isLoading, setIsLoading] = useState<boolean>(false);
   let instance: Internationalization = new Internationalization();
+
+  const fieldsToProcess = {
+    id: "_id",
+    subject: { name: "patient" },
+    startTime: { name: "startTime" },
+    endTime: { name: "endTime" },
+    description: { name: "service" },
+  };
+
+  const { toast } = useToast();
+  const handlRequestResponse = useCallback(
+    (title: string, message: string) => toast({ title: title, description: message }),
+    [toast]
+  );
+
+  useEffect(() => {
+    // setIsLoading(true);
+    const fetchSchedule = async () => {
+      try {
+        const data = await localSchedule();
+        setSchedule(data);
+      } catch (error: any) {
+        handlRequestResponse("Erro", error.message);
+      } finally {
+        // setIsLoading(false);
+      }
+    };
+    fetchSchedule();
+  }, [handlRequestResponse]);
 
   const headerTemplate = ({ date }: { date: Date }) => {
     const weekTranslation: Record<string, string> = {
@@ -52,27 +87,15 @@ const ServiceForm = () => {
     );
   };
 
-  const data = [
-    {
-      Id: 1,
-      Subject: "Meeting",
-      StartTime: new Date(2024, 1, 15, 10, 0),
-      EndTime: new Date(2023, 1, 15, 12, 30),
-    },
-  ];
-
   return (
     <div className="w-full">
       <ScheduleComponent
         height="74vh"
         dateHeaderTemplate={headerTemplate}
         selectedDate={new Date()}
-        // eventSettings={{
-        //   dataSource: data,
-        // }}
+        eventSettings={{ dataSource: schedule, fields: fieldsToProcess }}
         workHours={{ start: "7:00", end: "20:00" }}
-        workDays={[1, 2, 3, 4, 5, 6]}
-      >
+        workDays={[1, 2, 3, 4, 5, 6]}>
         <ViewsDirective>
           <ViewDirective option="Day" />
           <ViewDirective option="WorkWeek" />
