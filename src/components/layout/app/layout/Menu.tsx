@@ -5,12 +5,12 @@ import { usePathname } from "next/navigation";
 import getMenuList from "@/data/menuList";
 import { cn } from "@/helpers/cn.util";
 
-import IconExit from "../../../../../public/Exit.Icon";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import CollapseMenuButton from "./CollapseMenuButton";
 import ThemeToggle from "@/components/theme/ThemeToggle";
+import ExitButton from "./ExitButton";
 
 interface MenuProps {
   isOpen: boolean | undefined;
@@ -71,22 +71,7 @@ const Menu = ({ isOpen }: MenuProps) => {
           ))}
           <li className="w-full grow justify-end items-center flex-col flex">
             <ThemeToggle isOpen={isOpen} />
-
-            <TooltipProvider disableHoverableContent>
-              <Tooltip delayDuration={100}>
-                <TooltipTrigger asChild>
-                  <Button onClick={() => {}} variant="blank" className="w-full justify-center h-10 mt-5">
-                    <span className={cn(isOpen === false ? "" : "mr-4")}>
-                      <IconExit className="dark:text-white text-black" />
-                    </span>
-                    <p className={cn("whitespace-nowrap", isOpen === false ? "opacity-0 hidden" : "opacity-100")}>
-                      Sair
-                    </p>
-                  </Button>
-                </TooltipTrigger>
-                {isOpen === false && <TooltipContent side="right">Sair</TooltipContent>}
-              </Tooltip>
-            </TooltipProvider>
+            <ExitButton isOpen={isOpen} />
           </li>
         </ul>
       </nav>

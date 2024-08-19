@@ -28,7 +28,6 @@ const NewOdontogram = ({ toast }: ToastProps) => {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      {/* Adicionar Button */}
       <DialogTrigger asChild>
         <Link
           href={"/app/odontogram?interface=register"}
@@ -36,7 +35,6 @@ const NewOdontogram = ({ toast }: ToastProps) => {
           Adicionar
         </Link>
       </DialogTrigger>
-      {/* Body */}
       <DialogContent>
         <div className="mx-auto w-full gap-3 flex-col flex">
           <DialogHeader>
