@@ -1,6 +1,6 @@
 import { request, GET } from "@/helpers/fetch.config";
 import { comboboxDataFormat } from "@/helpers/formatter.helper";
-import type { Patient, Doctor, Odontogram, Service, Schedule } from "@/types";
+import type { PartialPatient, PartialDoctor, PartialOdontogram, PartialService, PartialSchedule } from "@/types";
 
 type Combobox = { value: string; label: string };
 
@@ -14,7 +14,7 @@ export const refreshPatient = async () => {
   return res.data;
 };
 
-export const localPatient = async (): Promise<Patient[]> => {
+export const localPatient = async (): Promise<PartialPatient[]> => {
   const patient = localStorage.getItem("patients");
   if (patient) return JSON.parse(patient);
 
@@ -36,7 +36,7 @@ export const refreshOdontogram = async () => {
   return res.data;
 };
 
-export const localOdontogram = async (): Promise<Odontogram[]> => {
+export const localOdontogram = async (): Promise<PartialOdontogram[]> => {
   const odontogram = localStorage.getItem("odontograms");
   if (odontogram) return JSON.parse(odontogram);
 
@@ -63,7 +63,7 @@ export const refreshDenstist = async () => {
   return res.data;
 };
 
-export const localDentist = async (): Promise<Doctor[]> => {
+export const localDentist = async (): Promise<PartialDoctor[]> => {
   const dentist = localStorage.getItem("dentists");
   if (dentist) return JSON.parse(dentist);
 
@@ -85,7 +85,7 @@ export const refreshService = async () => {
   return res.data;
 };
 
-export const localService = async (): Promise<Service[]> => {
+export const localService = async (): Promise<PartialService[]> => {
   const service = localStorage.getItem("services");
   if (service) return JSON.parse(service);
 
@@ -111,7 +111,7 @@ export const refreshSchedule = async () => {
   return res.data;
 };
 
-export const localSchedule = async (): Promise<Schedule[]> => {
+export const localSchedule = async (): Promise<PartialSchedule[]> => {
   const schedule = localStorage.getItem("schedules");
   if (schedule) return JSON.parse(schedule);
 

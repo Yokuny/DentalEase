@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ColumnDef } from "@tanstack/react-table";
-import type { Odontogram } from "@/types";
+import type { PartialOdontogram } from "@/types";
 
 import IconMixer from "../../../../public/Mixer.Icon";
 import IconSort from "../../../../public/Sort.Icon";
@@ -29,7 +29,7 @@ const SortableComponent = ({ column, title }: { column: any; title: string }) =>
   );
 };
 
-export const columns: ColumnDef<Odontogram>[] = [
+export const columns: ColumnDef<PartialOdontogram>[] = [
   {
     accessorKey: "finished",
     header: ({ column }) => SortableComponent({ column, title: "Finalizado" }),

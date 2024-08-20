@@ -1,3 +1,10 @@
+import type { NewPatient, NewAnamnesis, NewIntraoral } from "./patient.schema";
+import type { NewOdontogram } from "./odontogram.schema";
+import type { NewService } from "./service.schema";
+import type { NewSchedule } from "./schedule.schema";
+
+type Clinic = { Clinic: string };
+
 export type ToastProps = {
   toast: (title: string, message: string) => void;
 };
@@ -13,7 +20,7 @@ export type ErrorProps = {
   reset: () => void;
 };
 
-export type Patient = {
+export type PartialPatient = {
   _id: string;
   name: string;
   phone: string;
@@ -22,8 +29,10 @@ export type Patient = {
   anamnese: boolean;
   intraoral: boolean;
 };
+export type ClinicPatient = NewPatient & Clinic & { anamnese: NewAnamnesis; intraoral: NewIntraoral };
+export type FullPatient = ClinicPatient & { _id: string; createdAt: Date };
 
-export type Odontogram = {
+export type PartialOdontogram = {
   _id: string;
   workToBeDone: string;
   finished: boolean;
@@ -32,15 +41,17 @@ export type Odontogram = {
   patient_id: string;
   doctor_id: string;
 };
+export type ClinicOdontogram = NewOdontogram & Clinic;
+export type FullOdontogram = ClinicOdontogram & { _id: string; createdAt: Date };
 
-export type Doctor = {
+export type PartialDoctor = {
   _id: string;
   name: string;
   email: string;
   avatar: string | null;
 };
 
-export type Service = {
+export type PartialService = {
   _id: string;
   workToBeDone: string;
   price: number;
@@ -51,8 +62,10 @@ export type Service = {
   odontogram_id: string;
   status: "Pendente" | "Pago" | "Cancelado";
 };
+export type ClinicService = NewService & Clinic;
+export type FullService = ClinicService & { _id: string; createdAt: Date };
 
-export type Schedule = {
+export type PartialSchedule = {
   _id: string;
   startTime: string;
   endTime: string | null;
@@ -60,3 +73,5 @@ export type Schedule = {
   doctor: string;
   service: string;
 };
+export type ClinicSchedule = NewSchedule & Clinic;
+export type FullSchedule = ClinicSchedule & { _id: string; createdAt: Date };

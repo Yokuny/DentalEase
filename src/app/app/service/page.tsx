@@ -3,7 +3,7 @@
 import { Suspense, useCallback, useEffect, useState } from "react";
 import { columns } from "./List";
 import { localService, refreshService } from "@/helpers/dataManager.helper";
-import type { Service } from "@/types";
+import type { PartialService } from "@/types";
 
 // import IconReload from "../../../../public/Reload.Icon";
 // import { Button } from "@/components/ui/button";
@@ -14,7 +14,7 @@ import Register from "./Register";
 
 const Interfaces = () => {
   // const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [services, setServices] = useState<Service[]>([]);
+  const [services, setServices] = useState<PartialService[]>([]);
 
   const { toast } = useToast();
   const handlRequestResponse = useCallback(

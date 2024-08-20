@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ColumnDef } from "@tanstack/react-table";
-import type { Patient } from "@/types";
+import type { PartialPatient } from "@/types";
 
 import IconMixer from "../../../../public/Mixer.Icon";
 import IconSort from "../../../../public/Sort.Icon";
@@ -23,7 +23,7 @@ const handleCopy = (value: string) => () => {
   navigator.clipboard.writeText(value);
 };
 
-const setActivePatient = (values: Patient) => {
+const setActivePatient = (values: PartialPatient) => {
   const patient = {
     name: values.name,
     email: values.email,
@@ -43,7 +43,7 @@ const SortableComponent = ({ column, title }: { column: any; title: string }) =>
   );
 };
 
-export const columns: ColumnDef<Patient>[] = [
+export const columns: ColumnDef<PartialPatient>[] = [
   {
     accessorKey: "name",
     header: "Nome",

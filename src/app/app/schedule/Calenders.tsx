@@ -16,12 +16,12 @@ import {
 import { useToast } from "@/components/ui/use-toast";
 import { localSchedule, refreshSchedule } from "@/helpers/dataManager.helper";
 import { cn } from "@/helpers/cn.util";
-import type { Schedule } from "@/types";
+import type { PartialSchedule } from "@/types";
 
 registerLicense("Ngo9BigBOggjHTQxAR8/V1NBaF5cXmZCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdnWXdecXZUQ2VYVE11V0I=");
 
 const ServiceForm = () => {
-  const [schedule, setSchedule] = useState<Schedule[]>([]);
+  const [schedule, setSchedule] = useState<PartialSchedule[]>([]);
   // const [isLoading, setIsLoading] = useState<boolean>(false);
   let instance: Internationalization = new Internationalization();
 

@@ -848,8 +848,6 @@ const Anamnesis = ({ toast }: ToastProps) => {
           </form>
         </Form>
       </CardContent>
-
-      <CardFooter></CardFooter>
     </>
   );
 };

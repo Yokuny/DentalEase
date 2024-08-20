@@ -3,7 +3,7 @@
 import { Suspense, useCallback, useEffect, useState } from "react";
 import { columns } from "./List";
 import { localOdontogram, refreshOdontogram } from "@/helpers/dataManager.helper";
-import type { Odontogram } from "@/types";
+import type { PartialOdontogram } from "@/types";
 
 // import IconReload from "../../../../public/Reload.Icon";
 // import { Button } from "@/components/ui/button";
@@ -14,7 +14,7 @@ import Register from "./Register";
 
 const Interfaces = () => {
   // const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [odontograms, setOdontograms] = useState<Odontogram[]>([]);
+  const [odontograms, setOdontograms] = useState<PartialOdontogram[]>([]);
 
   const { toast } = useToast();
   const handlRequestResponse = useCallback(

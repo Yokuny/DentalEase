@@ -3,7 +3,7 @@
 import { Suspense, useCallback, useEffect, useState } from "react";
 import { columns } from "./List";
 import { localPatient, refreshPatient } from "@/helpers/dataManager.helper";
-import type { Patient } from "@/types";
+import type { PartialPatient } from "@/types";
 
 // import IconReload from "../../../../public/Reload.Icon";
 // import { Button } from "@/components/ui/button";
@@ -14,7 +14,7 @@ import Register from "./Register";
 
 const Interfaces = () => {
   // const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [patients, setPatients] = useState<Patient[]>([]);
+  const [patients, setPatients] = useState<PartialPatient[]>([]);
 
   const { toast } = useToast();
   const handlRequestResponse = useCallback(

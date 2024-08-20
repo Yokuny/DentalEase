@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ColumnDef } from "@tanstack/react-table";
-import type { Service } from "@/types";
+import type { PartialService } from "@/types";
 
 import IconMixer from "../../../../public/Mixer.Icon";
 import IconSort from "../../../../public/Sort.Icon";
@@ -29,7 +29,7 @@ const SortableComponent = ({ column, title }: { column: any; title: string }) =>
   );
 };
 
-export const columns: ColumnDef<Service>[] = [
+export const columns: ColumnDef<PartialService>[] = [
   {
     accessorKey: "status",
     header: ({ column }) => SortableComponent({ column, title: "Situação" }),
