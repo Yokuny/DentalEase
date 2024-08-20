@@ -1,12 +1,12 @@
-import type { Patient, Doctor, Odontogram, Service } from "@/types";
+import type { PartialPatient, PartialDoctor, PartialOdontogram, PartialService } from "@/types";
+
+type Register = PartialPatient | PartialDoctor | PartialOdontogram | PartialService;
 
 const padStart = (value: number) => String(value).padStart(2, "0");
-
 export const numClean = (value: string) => value.replace(/[^0-9]/g, "");
-
 const valueAndLabel = (value: string, label: string) => ({ value, label });
 
-export const comboboxDataFormat = (register: Patient[] | Doctor[] | Odontogram[] | Service[]) => {
+export const comboboxDataFormat = (register: Register[]): { value: string; label: string }[] => {
   if (register.length === 0) return [{ value: "", label: "Nenhum registro encontrado" }];
 
   return register.map((data) => {
