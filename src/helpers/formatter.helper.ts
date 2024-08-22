@@ -16,7 +16,8 @@ export const comboboxDataFormat = (register: Register[]): { value: string; label
   });
 };
 
-export const formatCpfCnpj = (value: string) => {
+export const formatCpfCnpj = (value: string | undefined | null) => {
+  if (!value) return "";
   const num = numClean(value);
 
   const cpfCheck = num.length === 11;
