@@ -36,9 +36,18 @@ export const formatCpfCnpj = (value: string) => {
   return num;
 };
 
-export const stringToDate = (data: string | Date) => new Date(data);
+export const formatPhone = (value: string | undefined | null) => {
+  if (!value) return "";
+  const num = numClean(value);
 
-export const extractData = (data: Date, format: string) => {
+  if (num.length === 11) return `(${num.slice(0, 2)}) ${num.slice(2, 7)}-${num.slice(7)}`;
+  return `(${num.slice(0, 2)}) ${num.slice(2, 6)}-${num.slice(6)}`;
+};
+
+export const stringToDate = (data: Date | string) => new Date(data);
+
+export const extractData = (data: Date | string | undefined | null, format: string) => {
+  if (!data) return "";
   const date = new Date(data);
 
   const hour = padStart(date.getHours());
@@ -47,15 +56,15 @@ export const extractData = (data: Date, format: string) => {
   const day = padStart(date.getDate());
   const month = padStart(date.getMonth() + 1);
 
-  const dayAndMonth = `${day}/${month}`;
+  const dayAndMonth = `${day} ${month}`;
   const hourAndMinute = `${hour}:${minute}`;
 
   switch (format) {
     case "hour":
       return `${hourAndMinute}`;
     case "full":
-      return `${dayAndMonth}/${date.getFullYear()} ${hourAndMinute}:${second}`;
+      return `${dayAndMonth} ${date.getFullYear()} ${hourAndMinute}:${second}`;
     default:
-      return `${dayAndMonth} ${hourAndMinute}`;
+      return `${dayAndMonth} ${date.getFullYear()}`;
   }
 };
