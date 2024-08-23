@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ColumnDef } from "@tanstack/react-table";
+import { formatPhone } from "@/helpers/formatter.helper";
 import type { PartialPatient } from "@/types";
 
 import IconMixer from "../../../../public/Mixer.Icon";
@@ -47,10 +48,16 @@ export const columns: ColumnDef<PartialPatient>[] = [
   {
     accessorKey: "name",
     header: "Nome",
+    cell: ({ row }) => (
+      <Link href={`/app/patient/${row.original._id}?interface=update`}>
+        <p className="hover:text-darkBlue dark:hover:text-skyBlue">{row.original.name}</p>
+      </Link>
+    ),
   },
   {
     accessorKey: "phone",
     header: "Contato",
+    cell: ({ row }) => <div>{formatPhone(row.original.phone)}</div>,
   },
   {
     accessorKey: "email",
@@ -122,7 +129,7 @@ export const columns: ColumnDef<PartialPatient>[] = [
                 <Link href={`/app/odontogram?interface=register`}>Criar odontograma</Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <Link href={`/app/schedule?interface=register`}>Criar serviço</Link>
+                <Link href={`/app/service?interface=register`}>Criar serviço</Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <Link href={`/app/schedule?interface=register`}>Criar agendamento</Link>

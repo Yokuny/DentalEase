@@ -21,7 +21,7 @@ const buttonVariants = cva(
           "border-primaryBlue dark:border-primaryBlue/80 hover:bg-primaryBlue dark:hover:bg-darkBlue saturate-150 font-semibold dark:text-white text-slate-800 hover:text-white shadow-sm border",
         ghost:
           "bg-gradient-to-r from-skyBlue to-primaryBlue shadow-sm hover:saturate-150 text-darkBlue dark:text-blue950 font-semibold text-white",
-        blank: "!p-0 font-",
+        blank: "!p-0",
         link: "text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-900 underline-offset-4 hover:underline",
       },
       size: {

@@ -50,8 +50,8 @@ const Patient = ({ toast }: ToastProps) => {
       </CardHeader>
       <CardContent>
         <Accordion type="single" collapsible className="px-8">
-          <PatientAnamenesis anamenesis={patient?.anamnese} />
-          <PatientIntraoral intraoral={patient?.intraoral} />
+          <PatientAnamenesis anamenesis={patient?.anamnese} userID={String(id)} />
+          <PatientIntraoral intraoral={patient?.intraoral} userID={String(id)} />
         </Accordion>
       </CardContent>
     </>

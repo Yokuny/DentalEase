@@ -14,7 +14,7 @@ const CloseView = () => {
   const { toast } = useToast();
   const handlRequestResponse = (title: string, message: string) => toast({ title: title, description: message });
 
-  if (pageInterface === "patient") {
+  if (pageInterface === "update") {
     return <Patient toast={handlRequestResponse} />;
   }
 
