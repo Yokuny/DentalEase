@@ -55,7 +55,7 @@ const Interfaces = () => {
       <CardHeader className="flex flex-row justify-between items-baseline">
         <div className="md:gap-2 md:flex-row md:items-baseline flex flex-col">
           <CardTitle className="text-primaryBlue md:text-xl">Odontograma</CardTitle>
-          <CardDescription className="md:block hidden text-xs">
+          <CardDescription>
             Realize agendamentos apartir do odontograma. Visualise o histórico de procedimentos realizados.
           </CardDescription>
         </div>
@@ -66,7 +66,7 @@ const Interfaces = () => {
             onClick={fetchOdontogram}>
             <IconReload />
           </Button> */}
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<div>Carregando...</div>}>
             <Register toast={handlRequestResponse} />
           </Suspense>
         </div>

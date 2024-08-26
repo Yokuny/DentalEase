@@ -128,11 +128,11 @@ const Anamnesis = ({ toast }: ToastProps) => {
         setOpen(false);
         router.push(`/app/patient`);
       }}>
-      <DialogContent className="md:p-6 p-0 pb-0 items-center justify-center flex flex-col">
+      <DialogContent className="md:p-6 p-0 pb-0 justify-center flex flex-col">
         <DialogHeader>
           <div className="md:gap-2 mb-4 md:flex-row md:items-baseline flex flex-col">
             <DialogTitle className="text-primaryBlue md:text-xl tracking-tight">Anamnese</DialogTitle>
-            <DialogDescription className="tracking-wide">Dados pessoais e histórico clínico.</DialogDescription>
+            <DialogDescription className="tracking-wide">Histórico médico e hábitos</DialogDescription>
           </div>
           <ActivePatientRender />
         </DialogHeader>

@@ -48,7 +48,7 @@ const CloseView = () => {
       <CardHeader>
         <div className="md:gap-2 mb-4 md:flex-row md:items-baseline flex flex-col">
           <CardTitle className="text-skyBlue md:text-2xl tracking-wide">{patient?.name}</CardTitle>
-          {/* <CardDescription className="">Ficha completa do paciente.</CardDescription> */}
+          {/* <CardDescription>Ficha completa do paciente.</CardDescription> */}
         </div>
         {patient && <PatientAboutField patient={patient} />}
       </CardHeader>
@@ -58,7 +58,8 @@ const CloseView = () => {
           <PatientIntraoral intraoral={patient?.intraoral} userID={String(id)} />
         </Accordion>
       </CardContent>
-      <Suspense fallback={<div>Loading...</div>}>
+
+      <Suspense fallback={<div>Carregando...</div>}>
         <Anamnesis toast={handlRequestResponse} />
         <Intraoral toast={handlRequestResponse} />
       </Suspense>

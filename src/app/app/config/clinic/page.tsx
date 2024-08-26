@@ -10,7 +10,7 @@ const Interfaces = () => {
     <>
       {/* <CardHeader className="items-baseline md:gap-2 md:flex-row md:items-baseline flex flex-col">
         <CardTitle className="text-primaryBlue md:text-xl">Clinica</CardTitle>
-        <CardDescription className="md:block hidden text-xs font-mono tracking-tighter">
+        <CardDescription>
           Registro da clinica.
         </CardDescription>
       </CardHeader>
