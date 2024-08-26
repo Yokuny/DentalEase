@@ -109,7 +109,7 @@ export const columns: ColumnDef<PartialPatient>[] = [
               {!patient.anamnese && (
                 <DropdownMenuItem>
                   <Link
-                    href={`/app/patient/${patient._id}?interface=anamnese`}
+                    href={`/app/patient/${patient._id}?interface=anamnesis`}
                     onClick={() => setActivePatient(patient)}>
                     Cadastrar anamnese
                   </Link>
@@ -135,7 +135,7 @@ export const columns: ColumnDef<PartialPatient>[] = [
                 <Link href={`/app/schedule?interface=register`}>Criar agendamento</Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <Link href={`/app/patient/${patient._id}?interface=update`}>Visualizar cadastro</Link>
+                <Link href={`/app/patient/${patient._id}`}>Visualizar cadastro</Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={handleCopy(patient.phone)}>Copiar telefone</DropdownMenuItem>

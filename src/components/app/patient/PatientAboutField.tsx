@@ -14,7 +14,6 @@ const PatientAboutField = ({ patient }: { patient: FullPatient }) => {
   const setBaseInfo = useCallback(() => {
     setBasePatientInfo([
       { title: "Contato", value: formatPhone(patient?.phone) },
-      { title: "Nascimento", value: extractData(patient?.birthdate, "") },
       { title: "Sexo", value: patient?.sex == "F" ? "Feminino" : "Masculino" },
     ]);
   }, [patient]);
@@ -22,13 +21,13 @@ const PatientAboutField = ({ patient }: { patient: FullPatient }) => {
   const setFullInfo = useCallback(() => {
     setBasePatientInfo([
       { title: "Contato", value: formatPhone(patient?.phone) },
-      { title: "Nascimento", value: extractData(patient?.birthdate, "") },
       { title: "Sexo", value: patient?.sex == "F" ? "Feminino" : "Masculino" },
-      { title: "E-mail", value: patient?.email },
       { title: "CPF", value: formatCpfCnpj(patient?.cpf) },
       { title: "RG", value: patient?.rg },
+      { title: "E-mail", value: patient?.email },
+      { title: "Nascimento", value: extractData(patient?.birthdate, "") },
       { title: "Endereço", value: patient?.address },
-      { title: "Criado em", value: extractData(patient?.createdAt, "") },
+      { title: "Cadastrado em", value: extractData(patient?.createdAt, "") },
     ]);
   }, [patient]);
 

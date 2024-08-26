@@ -59,7 +59,7 @@ const PatientForm = ({ toast }: ToastProps) => {
       form.reset();
 
       await refreshPatient();
-      return router.push(`/app/patient/${res.data._id}?interface=anamnese`);
+      return router.push(`/app/patient/${res.data._id}?interface=anamnesis`);
     } catch (Error: any) {
       toast("Erro ao registrar paciente", Error.message);
     } finally {

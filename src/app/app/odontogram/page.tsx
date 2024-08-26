@@ -55,7 +55,9 @@ const Interfaces = () => {
       <CardHeader className="flex flex-row justify-between items-baseline">
         <div className="md:gap-2 md:flex-row md:items-baseline flex flex-col">
           <CardTitle className="text-primaryBlue md:text-xl">Odontograma</CardTitle>
-          <CardDescription className="md:block hidden text-xs">Lista de odontogramas cadastrados</CardDescription>
+          <CardDescription className="md:block hidden text-xs">
+            Realize agendamentos apartir do odontograma. Visualise o histórico de procedimentos realizados.
+          </CardDescription>
         </div>
         <div className="gap-2 flex-row flex">
           {/* <Button

@@ -2,7 +2,7 @@ import { z } from "zod";
 import { validObjectID, numClean, birthRegExp } from "../helpers";
 import { lengthMessage, mailMessage, objectIdMessage } from "../helpers/zodMessage.helper";
 
-const patientSchema = z.object({
+export const patientSchema = z.object({
   name: z.string().trim().min(5, lengthMessage(5, 30)).max(30, lengthMessage(5, 30)),
   email: z.string().trim().email(mailMessage()).min(5, lengthMessage(5, 50)).max(50, lengthMessage(5, 50)),
   cpf: z.string().trim().min(11, lengthMessage(11, 11)).max(11, lengthMessage(11, 11)).transform(numClean),
@@ -14,7 +14,7 @@ const patientSchema = z.object({
   address: z.string().trim().min(5, lengthMessage(5, 50)).max(50, lengthMessage(5, 50)),
 });
 
-const anamnesisSchema = z.object({
+export const anamnesisSchema = z.object({
   Patient: z.string().refine(validObjectID, objectIdMessage()),
   mainComplaint: z.string().trim().max(250, lengthMessage(0, 250)),
   gumsBleedEasily: z.boolean(),
@@ -48,7 +48,7 @@ const anamnesisSchema = z.object({
   importantHealthInformation: z.string().trim().max(250, lengthMessage(0, 250)),
 });
 
-const intraoralSchema = z.object({
+export const intraoralSchema = z.object({
   Patient: z.string().refine(validObjectID, objectIdMessage()),
   hygiene: z.enum(["normal", "regular", "deficiente"]),
   halitosis: z.enum(["ausente", "moderada", "forte"]),
@@ -65,3 +65,5 @@ const intraoralSchema = z.object({
 export type NewPatient = z.infer<typeof patientSchema>;
 export type NewAnamnesis = z.infer<typeof anamnesisSchema>;
 export type NewIntraoral = z.infer<typeof intraoralSchema>;
+export type UpdateAnamnesis = z.infer<typeof anamnesisSchema> & { lastUpdate: Date | string };
+export type UpdateIntraoral = z.infer<typeof intraoralSchema> & { lastUpdate: Date | string };

@@ -56,7 +56,7 @@ const Interfaces = () => {
         <div className="md:gap-2 md:flex-row md:items-baseline flex flex-col">
           <CardTitle className="text-primaryBlue md:text-xl">Pacientes</CardTitle>
           <CardDescription className="md:block hidden text-xs font-mono tracking-tighter">
-            Lista de pacientes cadastrados
+            Lista de pacientes cadastrados, visualise cadastro, realize agendamentos ou registre procedimentos.
           </CardDescription>
         </div>
         <div className="gap-2 flex-row flex">

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { cn } from "@/helpers/cn.util";
-import type { ToastProps } from "@/types";
 
 import { buttonVariants } from "@/components/ui/button";
 import {
@@ -16,7 +15,11 @@ import {
 } from "@/components/ui/dialog";
 import OdontogramForm from "./Form";
 
-const NewOdontogram = ({ toast }: ToastProps) => {
+type OdontogramProps = {
+  toast: (title: string, message: string) => void;
+};
+
+const NewOdontogram = ({ toast }: OdontogramProps) => {
   const searchParams = useSearchParams();
   const odontogramParam = searchParams.get("interface");
   const closed = () => toast("Operação cancelada", "O registro foi limpo");

@@ -1,4 +1,4 @@
-import type { NewPatient, NewAnamnesis, NewIntraoral } from "./patient.schema";
+import type { NewPatient, UpdateAnamnesis, UpdateIntraoral } from "./patient.schema";
 import type { NewOdontogram } from "./odontogram.schema";
 import type { NewService } from "./service.schema";
 import type { NewSchedule } from "./schedule.schema";
@@ -29,8 +29,8 @@ export type PartialPatient = {
   anamnese: boolean;
   intraoral: boolean;
 };
-export type Anamnese = NewAnamnesis & { _id: string };
-export type Intraoral = NewIntraoral & { _id: string };
+export type Anamnese = UpdateAnamnesis & { _id: string };
+export type Intraoral = UpdateIntraoral & { _id: string };
 export type ClinicPatient = NewPatient & Clinic & { anamnese: Anamnese; intraoral: Intraoral };
 export type FullPatient = ClinicPatient & { _id: string; createdAt: Date };
 

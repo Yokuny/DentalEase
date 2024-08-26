@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { patientSchema } from "@/schemas/patient.schema";
+import { formatCpfCnpj, formatPhone } from "@/helpers";
 
 const activePatientRender = () => {
   const storedActivePatient = localStorage.getItem("activePatient");
@@ -16,7 +17,7 @@ const activePatientRender = () => {
         {activePatient.cpf && (
           <span className="border p-2 px-4 flex gap-1 rounded-md bg-muted/40 cursor-not-allowed">
             <span className="text-xs font-mono">CPF:</span>
-            <span className="text-xs font-medium">{activePatient.cpf}</span>
+            <span className="text-xs font-medium">{formatCpfCnpj(activePatient.cpf)}</span>
           </span>
         )}
         {activePatient.rg && (
@@ -27,7 +28,7 @@ const activePatientRender = () => {
         )}
         <span className="border p-2 px-4 flex gap-1 rounded-md bg-muted/40 cursor-not-allowed">
           <span className="text-xs font-mono">Celular:</span>
-          <span className="text-xs font-medium">{activePatient.phone}</span>
+          <span className="text-xs font-medium">{formatPhone(activePatient.phone)}</span>
         </span>
         <span className="border p-2 px-4 flex gap-1 rounded-md bg-muted/40 cursor-not-allowed">
           <span className="text-xs font-mono">Email:</span>

@@ -1,28 +1,37 @@
 "use client";
 
-import { useState } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { request, POST } from "@/helpers/fetch.config";
 import { intraoralSchema } from "@/schemas/patient.schema";
+import { refreshPatient } from "@/helpers/dataManager.helper";
 import type { ToastProps } from "@/types";
 
 import IconReload from "../../../../../public/Reload.Icon";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import ActivePatientRender from "@/components/app/patient/ActivePatientRender";
 import SubtitleSeparator from "@/components/app/patient/SubtitleSeparator";
 
-const Anamnesis = ({ toast }: ToastProps) => {
+const Intraoral = ({ toast }: ToastProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const router = useRouter();
+  const [open, setOpen] = useState(false);
 
+  const searchParams = useSearchParams();
+  const intraoralParam = searchParams.get("interface");
+
+  const router = useRouter();
   const { id } = useParams();
+
+  useEffect(() => {
+    intraoralParam === "intraoral" ? setOpen(true) : setOpen(false);
+  }, [intraoralParam]);
 
   const form = useForm<z.infer<typeof intraoralSchema>>({
     resolver: zodResolver(intraoralSchema),
@@ -57,28 +66,34 @@ const Anamnesis = ({ toast }: ToastProps) => {
     };
 
     try {
-      const res = await request("patient/intra-oral", POST(body));
+      const res = await request("patient/intraoral", POST(body));
       toast("Sucesso", res.message);
+
+      form.reset();
+      await refreshPatient();
       router.push(`/app/patient`);
     } catch (Error: any) {
       toast("Erro", Error.message);
     } finally {
-      form.reset();
       setIsLoading(false);
     }
   }
 
   return (
-    <>
-      <CardHeader>
-        <div className="md:gap-2 mb-4 md:flex-row md:items-baseline flex flex-col">
-          <CardTitle className="text-primaryBlue md:text-xl">Anamnese</CardTitle>
-          <CardDescription className="">Dados pessoais e histórico clínico.</CardDescription>
-        </div>
-        <ActivePatientRender />
-      </CardHeader>
-
-      <CardContent className="md:p-6 p-0 pb-0 items-center justify-center flex flex-col">
+    <Dialog
+      open={open}
+      onOpenChange={() => {
+        setOpen(false);
+        router.push(`/app/patient`);
+      }}>
+      <DialogContent className="md:p-6 p-0 pb-0 items-center justify-center flex flex-col">
+        <DialogHeader>
+          <div className="md:gap-2 mb-4 md:flex-row md:items-baseline flex flex-col">
+            <DialogTitle className="text-primaryBlue md:text-xl">Anamnese</DialogTitle>
+            <DialogDescription className="tracking-wide">Dados pessoais e histórico clínico.</DialogDescription>
+          </div>
+          <ActivePatientRender />
+        </DialogHeader>
         <Form {...form}>
           <form
             id="intraoral-form"
@@ -352,9 +367,9 @@ const Anamnesis = ({ toast }: ToastProps) => {
             </div>
           </form>
         </Form>
-      </CardContent>
-    </>
+      </DialogContent>
+    </Dialog>
   );
 };
 
-export default Anamnesis;
+export default Intraoral;
