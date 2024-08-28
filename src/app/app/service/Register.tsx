@@ -29,7 +29,6 @@ const NewService = ({ toast }: ToastProps) => {
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
-      {/* Button */}
       <DrawerTrigger asChild>
         <Link
           href={"/app/service?interface=register"}
@@ -37,7 +36,6 @@ const NewService = ({ toast }: ToastProps) => {
           Adicionar
         </Link>
       </DrawerTrigger>
-      {/* Body */}
       <DrawerContent>
         <div className="mx-auto w-full md:max-w-6xl">
           <DrawerHeader>

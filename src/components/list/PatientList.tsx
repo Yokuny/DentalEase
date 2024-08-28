@@ -63,7 +63,7 @@ const Table = <TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) 
       {/* // Table Header */}
       <div className="w-full px-6 pb-4 flex items-center gap-3">
         <Toggle className={cn(buttonVariants({ variant: "primary" }))}>
-          <IconCheck />
+          <IconCheck className="w-3 h-3" />
         </Toggle>
         <Input
           placeholder="Buscar paciente..."

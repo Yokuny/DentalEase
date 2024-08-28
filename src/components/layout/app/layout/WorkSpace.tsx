@@ -24,6 +24,9 @@ const WorkSpace = () => {
     setValue(path);
   }, [path]);
 
+  // Adicionar junto ao Array workSpace os pacientes
+  // encaminhando com id do paciente a rota para o paciente
+
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild className="sticky top-0 z-40">

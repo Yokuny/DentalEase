@@ -2,7 +2,6 @@
 
 import { useState, useEffect, Suspense } from "react";
 import { useParams } from "next/navigation";
-import { request, POST } from "@/helpers/fetch.config";
 import { requestPatient } from "@/helpers/requestById.helper";
 import type { FullPatient } from "@/types";
 

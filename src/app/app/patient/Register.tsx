@@ -29,7 +29,6 @@ const NewPatient = ({ toast }: ToastProps) => {
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
-      {/* Button */}
       <DrawerTrigger asChild>
         <Link
           href={"/app/patient?interface=register"}
@@ -37,7 +36,6 @@ const NewPatient = ({ toast }: ToastProps) => {
           Adicionar
         </Link>
       </DrawerTrigger>
-      {/* Body */}
       <DrawerContent>
         <div className="mx-auto w-full md:max-w-6xl my-6">
           <DrawerHeader>

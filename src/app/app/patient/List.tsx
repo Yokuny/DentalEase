@@ -50,7 +50,9 @@ export const columns: ColumnDef<PartialPatient>[] = [
     header: "Nome",
     cell: ({ row }) => (
       <Link href={`/app/patient/${row.original._id}?interface=update`}>
-        <p className="hover:text-darkBlue dark:hover:text-skyBlue">{row.original.name}</p>
+        <p className="hover:text-darkBlue dark:hover:text-skyBlue hover:font-semibold  transition-all hover:tracking-[-0.022em]">
+          {row.original.name}
+        </p>
       </Link>
     ),
   },

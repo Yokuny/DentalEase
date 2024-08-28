@@ -7,6 +7,8 @@ export const numClean = (value: string) => value.replace(/[^0-9]/g, "");
 const valueAndLabel = (value: string, label: string) => ({ value, label });
 
 export const comboboxDataFormat = (register: Register[]): { value: string; label: string }[] => {
+  alert(JSON.stringify(register, null, 2));
+  // TO-DO, Processo para quando não houver registros
   if (register.length === 0) return [{ value: "", label: "Nenhum registro encontrado" }];
 
   return register.map((data) => {
