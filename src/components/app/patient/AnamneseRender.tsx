@@ -1,4 +1,6 @@
 import type { Anamnese } from "@/types";
+import { capitalizeString } from "@/helpers/formatter.helper";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 type Node = {
   children: React.ReactNode;
@@ -31,89 +33,100 @@ const AnamneseRender = ({ anamnese }: { anamnese: Anamnese }) => {
     anamnese.medicationDetails;
 
   return (
-    <div className="w-full max-w-md gap-2 flex-col flex">
-      <div className="border rounded-sm p-3 w-auto gap-1 flex-col flex bg-white dark:bg-slate-950">
-        <Title>Reclamação principal</Title>
-        <Content>{anamnese.mainComplaint}</Content>
-      </div>
-      {anamnese.importantHealthInformation && (
-        <div className="border rounded-sm p-3 w-auto gap-1 flex-col flex bg-white dark:bg-slate-950">
-          <Title>Informações de saúde importantes</Title>
-          <Content>{anamnese.importantHealthInformation}</Content>
-        </div>
-      )}
-      {anamnese.infectiousDisease && (
-        <div className="border rounded-sm p-3 w-auto gap-1 flex-col flex bg-white dark:bg-slate-950">
-          <Title>Doença infecciosa</Title>
-          <Content>{anamnese.infectiousDisease}</Content>
-        </div>
-      )}
+    <ScrollArea className="w-full whitespace-nowrap">
+      <div className="gap-2 w-auto h-[500px] flex-wrap flex-row flex">
+        <div className="max-w-md w-full gap-2 flex-col flex">
+          <div className="w-full h-fit p-3 gap-1 border rounded-sm bg-white dark:bg-slate-950 flex-col flex">
+            <Title>Reclamação principal</Title>
+            <Content>{capitalizeString(anamnese.mainComplaint)}</Content>
+          </div>
 
-      <div className="border rounded-sm p-3 gap-2 flex-col flex bg-white dark:bg-slate-950">
-        <h3 className="mb-2 text-sm font-medium tracking-wide text-muted-foreground">Hábitos Prejudiciais</h3>
-        <ol className="gap-1 flex-col flex">
-          {anamnese.smoker && <LiItem>Fumante</LiItem>}
-          {anamnese.alcoholConsumer && <LiItem>Consome álcool</LiItem>}
-          {anamnese.bitesPenOrPencil && <LiItem>Morde caneta e/ou lápis</LiItem>}
-          {anamnese.nailsBiting && <LiItem>Rói unhas</LiItem>}
-          {anamnese.otherHarmfulHabits && (
-            <div className="border rounded-sm p-3 pl-2 mt-2 w-auto gap-1 flex-col flex">
-              <Subtitle>Outros hábitos prejudiciais</Subtitle>
-              <Content>{anamnese.otherHarmfulHabits}</Content>
+          <div className="w-full h-fit border rounded-sm p-3 gap-2 flex-col flex bg-white dark:bg-slate-950">
+            <h3 className="mb-2 text-sm font-medium tracking-wide text-muted-foreground">Hábitos Prejudiciais</h3>
+            <ol className="gap-1 flex-col flex">
+              {anamnese.smoker && <LiItem>Fumante</LiItem>}
+              {anamnese.alcoholConsumer && <LiItem>Consome álcool</LiItem>}
+              {anamnese.bitesPenOrPencil && <LiItem>Morde caneta e/ou lápis</LiItem>}
+              {anamnese.nailsBiting && <LiItem>Rói unhas</LiItem>}
+              {anamnese.otherHarmfulHabits && (
+                <div className="border rounded-sm p-3 pl-2 mb-2 w-auto gap-1 flex-col flex">
+                  <Subtitle>Outros hábitos prejudiciais</Subtitle>
+                  <Content>{capitalizeString(anamnese.otherHarmfulHabits)}</Content>
+                </div>
+              )}
+            </ol>
+          </div>
+
+          {anamnese.importantHealthInformation && (
+            <div className="w-full h-fit border rounded-sm p-3 gap-1 flex-col flex bg-white dark:bg-slate-950">
+              <Title>Informações de saúde importantes</Title>
+              <Content>{capitalizeString(anamnese.importantHealthInformation)}</Content>
             </div>
           )}
-        </ol>
-      </div>
 
-      {hasEspecialConditions && (
-        <div className="border rounded-sm p-3 gap-2 flex-col flex bg-white dark:bg-slate-950">
-          <Title>Condições Especiais</Title>
-          <ul className="border rounded-sm p-3 gap-1 text-sm flex-col flex">
-            {anamnese.allergicToMedication && <LiItem>Alergico a medicamentos</LiItem>}
-            {anamnese.medicationAllergy && anamnese.allergicToMedication && (
-              <div className="border rounded-sm p-3 pl-2 mt-2 w-auto gap-1 flex-col flex">
-                <Subtitle>Reação alérgica a:</Subtitle>
-                <Content>{anamnese.medicationAllergy}</Content>
-              </div>
-            )}
-            {anamnese.gumsBleedEasily && <LiItem>Gengiva sangra facilmente</LiItem>}
-            {anamnese.sensitiveTeeth && <LiItem>Dentes sensíveis</LiItem>}
-            {anamnese.pregnant && <LiItem>Grávida</LiItem>}
-            {anamnese.pregnant && anamnese.pregnancyMonth && (
-              <div className="border rounded-sm p-3 pl-2 mt-2 w-auto gap-1 flex-col flex">
-                <Subtitle>Mês de gravidez:</Subtitle>
-                <Content>{anamnese.pregnancyMonth}º</Content>
-              </div>
-            )}
-            {anamnese.breastfeeding && <LiItem>Amamentando</LiItem>}
-            {anamnese.underMedicalTreatment && <LiItem>Em tratamento médico</LiItem>}
-            {anamnese.medicalTreatmentDetails && anamnese.underMedicalTreatment && (
-              <div className="border rounded-sm p-3 pl-2 mt-2 w-auto gap-1 flex-col flex">
-                <Subtitle>Detalhes do tratamento médico:</Subtitle>
-                <Content>{anamnese.medicalTreatmentDetails}</Content>
-              </div>
-            )}
-            {anamnese.takingMedication && <LiItem>Tomando medicamentos</LiItem>}
-            {anamnese.medicationDetails && anamnese.takingMedication && <LiItem>{anamnese.medicationDetails}</LiItem>}
-          </ul>
+          {anamnese.infectiousDisease && (
+            <div className="w-full h-fit border rounded-sm p-3 gap-1 flex-col flex bg-white dark:bg-slate-950">
+              <Title>Doença infecciosa</Title>
+              <Content>{capitalizeString(anamnese.infectiousDisease)}</Content>
+            </div>
+          )}
+
+          <div className="w-full h-fit border rounded-sm p-3 gap-2 flex-col flex bg-white dark:bg-slate-950">
+            <Title>Doenças Crônicas</Title>
+            <ul className="border rounded-sm p-3 gap-1 text-sm flex-col flex">
+              {anamnese.illnesses.diabetes && <LiItem>Diabetes</LiItem>}
+              {anamnese.illnesses.tuberculosis && <LiItem>Tuberculose</LiItem>}
+              {anamnese.illnesses.heartProblems && <LiItem>Problemas cardíacos</LiItem>}
+              {anamnese.illnesses.arthritis && <LiItem>Artrite</LiItem>}
+              {anamnese.illnesses.asthma && <LiItem>Asma</LiItem>}
+              {anamnese.illnesses.highBloodPressure && <LiItem>Pressão alta</LiItem>}
+              {anamnese.illnesses.kidneyProblems && <LiItem>Problemas renais</LiItem>}
+              {anamnese.illnesses.liverProblems && <LiItem>Problemas hepáticos</LiItem>}
+              {anamnese.illnesses.otherIllnesses && <LiItem>{anamnese.illnesses.otherIllnesses}</LiItem>}
+            </ul>
+          </div>
         </div>
-      )}
 
-      <div className="border rounded-sm p-3 gap-2 flex-col flex bg-white dark:bg-slate-950">
-        <Title>Doenças Crônicas</Title>
-        <ul className="border rounded-sm p-3 gap-1 text-sm flex-col flex">
-          {anamnese.illnesses.diabetes && <LiItem>Diabetes</LiItem>}
-          {anamnese.illnesses.tuberculosis && <LiItem>Tuberculose</LiItem>}
-          {anamnese.illnesses.heartProblems && <LiItem>Problemas cardíacos</LiItem>}
-          {anamnese.illnesses.arthritis && <LiItem>Artrite</LiItem>}
-          {anamnese.illnesses.asthma && <LiItem>Asma</LiItem>}
-          {anamnese.illnesses.highBloodPressure && <LiItem>Pressão alta</LiItem>}
-          {anamnese.illnesses.kidneyProblems && <LiItem>Problemas renais</LiItem>}
-          {anamnese.illnesses.liverProblems && <LiItem>Problemas hepáticos</LiItem>}
-          {anamnese.illnesses.otherIllnesses && <LiItem>{anamnese.illnesses.otherIllnesses}</LiItem>}
-        </ul>
+        {hasEspecialConditions && (
+          <div className="max-w-md w-full h-fit border rounded-sm p-3 gap-2 flex-col flex bg-white dark:bg-slate-950">
+            <Title>Condições Especiais</Title>
+            <ul className="border rounded-sm p-3 gap-1 text-sm flex-col flex">
+              {anamnese.allergicToMedication && <LiItem>Alergico a medicamentos</LiItem>}
+              {anamnese.medicationAllergy && anamnese.allergicToMedication && (
+                <div className="border rounded-sm p-3 pl-2 mb-2 w-auto gap-1 flex-col flex">
+                  <Subtitle>Reação alérgica a:</Subtitle>
+                  <Content>{capitalizeString(anamnese.medicationAllergy)}</Content>
+                </div>
+              )}
+              {anamnese.gumsBleedEasily && <LiItem>Gengiva sangra facilmente</LiItem>}
+              {anamnese.sensitiveTeeth && <LiItem>Dentes sensíveis</LiItem>}
+              {anamnese.pregnant && <LiItem>Grávida</LiItem>}
+              {anamnese.pregnant && anamnese.pregnancyMonth && (
+                <div className="border rounded-sm p-3 pl-2 mb-2 w-auto gap-1 flex-col flex">
+                  <Subtitle>Mês de gravidez:</Subtitle>
+                  <Content>{anamnese.pregnancyMonth}º</Content>
+                </div>
+              )}
+              {anamnese.breastfeeding && <LiItem>Amamentando</LiItem>}
+              {anamnese.underMedicalTreatment && <LiItem>Em tratamento médico</LiItem>}
+              {anamnese.medicalTreatmentDetails && anamnese.underMedicalTreatment && (
+                <div className="border rounded-sm p-3 pl-2 mb-2 w-auto gap-1 flex-col flex">
+                  <Subtitle>Detalhes do tratamento médico:</Subtitle>
+                  <Content>{capitalizeString(anamnese.medicalTreatmentDetails)}</Content>
+                </div>
+              )}
+              {anamnese.takingMedication && <LiItem>Tomando medicamentos</LiItem>}
+              {anamnese.medicationDetails && anamnese.takingMedication && (
+                <div className="border rounded-sm p-3 pl-2 mb-2 w-auto gap-1 flex-col flex">
+                  <Subtitle>Detalhes da medicação:</Subtitle>
+                  <LiItem>{capitalizeString(anamnese.medicationDetails)}</LiItem>
+                </div>
+              )}
+            </ul>
+          </div>
+        )}
       </div>
-    </div>
+    </ScrollArea>
   );
 };
 

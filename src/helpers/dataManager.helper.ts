@@ -47,6 +47,7 @@ type PatientFilter = { patient: string | null };
 
 export const comboboxOdontogram = async ({ patient }: PatientFilter): Promise<Combobox[]> => {
   const odontogram = await localOdontogram();
+  if (!odontogram.length) return comboboxDataFormat([]);
 
   if (patient)
     return comboboxDataFormat(odontogram.filter((el: any) => el.patient_id === patient && el.finished === false));

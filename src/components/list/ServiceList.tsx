@@ -42,7 +42,7 @@ const Table = <TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) 
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
 
   const table = useReactTable({
-    data,
+    data: data,
     columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,

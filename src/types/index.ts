@@ -31,7 +31,7 @@ export type PartialPatient = {
 };
 export type Anamnese = UpdateAnamnesis & { _id: string };
 export type Intraoral = UpdateIntraoral & { _id: string };
-export type ClinicPatient = NewPatient & Clinic & { anamnese: Anamnese; intraoral: Intraoral };
+export type ClinicPatient = NewPatient & Clinic & { anamnese: Anamnese; intraoral: Intraoral; image: string | null };
 export type FullPatient = ClinicPatient & { _id: string; createdAt: Date };
 
 export type PartialOdontogram = {

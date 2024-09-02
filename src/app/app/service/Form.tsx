@@ -39,14 +39,14 @@ const ServiceForm = ({ toast }: ToastProps) => {
 
   async function onSubmit(values: z.infer<typeof serviceSchema>) {
     setIsLoading(true);
-    const body = {
+    const body: z.infer<typeof serviceSchema> = {
       Patient: values.Patient,
       Doctor: values.Doctor,
-      Odontogram: values.Odontogram,
       workToBeDone: values.workToBeDone,
       price: parseFloat(values.price.toString()),
       status: values.status,
     };
+    if (values.Odontogram) body.Odontogram = values.Odontogram;
 
     try {
       const res = await request("service/create", POST(body));
@@ -99,7 +99,6 @@ const ServiceForm = ({ toast }: ToastProps) => {
                     disabled={form.getValues().Patient === ""}
                   />
                 </FormControl>
-                <FormLabel className="md:text-sm text-xs ml-4">{form.getValues().Patient}</FormLabel>
               </FormItem>
             )}
           />

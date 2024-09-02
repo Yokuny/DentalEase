@@ -69,7 +69,7 @@ const CollapseMenuButton = ({ icon: Icon, label, active, submenus, isOpen }: Col
             <span className="mx-2">{active ? <DotIcon fill="currentColor" /> : <DotIcon />}</span>
             <p
               className={cn(
-                "max-w-[170px] truncate text-xs",
+                "max-w-[170px] truncate text-xs text-muted-foreground",
                 isOpen ? "translate-x-0 opacity-100" : "-translate-x-96 opacity-0"
               )}>
               {label}

@@ -16,7 +16,6 @@ export const requestOdontogram = async (id: string) => {
   const res = await request(`odontogram?id=${id}`, GET());
   if (res.success !== true) throw new Error(res.message);
 
-  localStorage.setItem("odontograms", JSON.stringify(res.data));
   return res.data as FullOdontogram;
 };
 
@@ -26,7 +25,6 @@ export const requestService = async (id: string) => {
   const res = await request(`service?id=${id}`, GET());
   if (res.success !== true) throw new Error(res.message);
 
-  localStorage.setItem("services", JSON.stringify(res.data));
   return res.data as FullService;
 };
 

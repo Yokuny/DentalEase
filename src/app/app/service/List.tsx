@@ -59,13 +59,13 @@ export const columns: ColumnDef<PartialService>[] = [
   },
   {
     accessorKey: "price",
-    header: ({ column }) => SortableComponent({ column, title: "Preço" }),
+    header: ({ column }) => SortableComponent({ column, title: "Valor" }),
     cell: ({ row }) => {
       const { price } = row.original;
 
       return (
         <div className="flex items-center gap-2">
-          <span className="sr-only">Preço</span>
+          <span className="sr-only">Valor</span>
           <p className="text-xs">
             R$ <span className="text-sm">{price.toFixed(2)}</span>
           </p>
@@ -91,7 +91,7 @@ export const columns: ColumnDef<PartialService>[] = [
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Ações</DropdownMenuLabel>
               <DropdownMenuItem>
-                <Link href={`/app/service/${service._id}?interface=update`}>Visualizar serviço</Link>
+                <Link href={`/app/service/${service._id}`}>Visualizar serviço</Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={handleCopy(service.price.toString())}>Copiar preço</DropdownMenuItem>

@@ -7,15 +7,16 @@ import type { FullPatient } from "@/types";
 
 import { useToast } from "@/components/ui/use-toast";
 import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Accordion } from "@/components/ui/accordion";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import PatientAboutField from "@/components/app/patient/PatientAboutField";
 import PatientAnamenesis from "@/components/app/patient/PatientAnamnese";
 import PatientIntraoral from "@/components/app/patient/PatientIntraoral";
+import Avatar from "@/components/app/patient/Avatar";
 import Anamnesis from "./Anamnesis";
 import Intraoral from "./Intraoral";
 
-const CloseView = () => {
+const PatientData = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [isSaving, setIsSaving] = useState<boolean>(false);
@@ -45,17 +46,23 @@ const CloseView = () => {
   return (
     <>
       <CardHeader>
-        <div className="md:gap-2 mb-4 md:flex-row md:items-baseline flex flex-col">
+        <div className="mb-4 gap-4 items-center flex">
+          <Avatar patientID={String(id)} image={patient?.image} fallback={patient?.name.slice(0, 2) || ""} />
           <CardTitle className="text-skyBlue md:text-2xl tracking-wide">{patient?.name}</CardTitle>
-          {/* <CardDescription>Ficha completa do paciente.</CardDescription> */}
         </div>
         {patient && <PatientAboutField patient={patient} />}
       </CardHeader>
       <CardContent>
-        <Accordion type="single" collapsible className="px-10">
+        <Tabs defaultValue="Anamnese" className="px-10 pb-6">
+          <TabsList className=" rounded-md px-3 gap-3 bg-slate-50 dark:bg-slate-900/70 shadow-sm">
+            <TabsTrigger value="Schedule">Agendamentos</TabsTrigger>
+            <TabsTrigger value="Odontogram">Odontograma</TabsTrigger>
+            <TabsTrigger value="Anamnesis">Anamnese</TabsTrigger>
+            <TabsTrigger value="Intraoral">Intraoral</TabsTrigger>
+          </TabsList>
           <PatientAnamenesis anamenesis={patient?.anamnese} userID={String(id)} />
           <PatientIntraoral intraoral={patient?.intraoral} userID={String(id)} />
-        </Accordion>
+        </Tabs>
       </CardContent>
 
       <Suspense fallback={<div>Carregando...</div>}>
@@ -66,4 +73,4 @@ const CloseView = () => {
   );
 };
 
-export default CloseView;
+export default PatientData;
