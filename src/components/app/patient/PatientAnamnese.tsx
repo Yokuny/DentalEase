@@ -11,7 +11,7 @@ const PatientAnamnese = ({ anamenesis, userID }: { anamenesis: Anamnese | undefi
   const hasAnamnese = (anamenesis && anamenesis.lastUpdate === undefined) || !anamenesis;
 
   return (
-    <TabsContent value="Anamnesis">
+    <TabsContent value="Anamnesis" className="border rounded-md">
       <div className="w-full md:gap-6 gap-4 flex-wrap md:p-6 p-2 rounded-md flex">
         <div className="text-skyBlue">Registro de Anamnese</div>
         {hasAnamnese ? (

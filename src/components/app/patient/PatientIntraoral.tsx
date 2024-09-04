@@ -11,7 +11,7 @@ const PatientIntraoral = ({ intraoral, userID }: { intraoral: Intraoral | undefi
   const hasIntraoral = (intraoral && intraoral.lastUpdate === undefined) || !intraoral;
 
   return (
-    <TabsContent value="Intraoral">
+    <TabsContent value="Intraoral" className="border rounded-md">
       <div className="w-full md:gap-6 gap-4 flex-wrap md:p-6 p-2 rounded-md flex">
         <div className="text-skyBlue">Registro de intraoral</div>
         {hasIntraoral ? (

@@ -53,8 +53,8 @@ const PatientData = () => {
         {patient && <PatientAboutField patient={patient} />}
       </CardHeader>
       <CardContent>
-        <Tabs defaultValue="Anamnese" className="px-10 pb-6">
-          <TabsList className=" rounded-md px-3 gap-3 bg-slate-50 dark:bg-slate-900/70 shadow-sm">
+        <Tabs defaultValue="Anamnese" className="px-10 pb-6 gap-2 flex-col flex">
+          <TabsList className="w-fit p-5 px-6 gap-3 rounded-md border bg-slate-50 dark:bg-slate-900/70 shadow-sm">
             <TabsTrigger value="Schedule">Agendamentos</TabsTrigger>
             <TabsTrigger value="Odontogram">Odontograma</TabsTrigger>
             <TabsTrigger value="Anamnesis">Anamnese</TabsTrigger>

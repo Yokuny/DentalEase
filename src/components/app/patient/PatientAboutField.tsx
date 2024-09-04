@@ -43,7 +43,7 @@ const PatientAboutField = ({ patient }: { patient: FullPatient }) => {
 
   return (
     <ScrollArea className="whitespace-nowrap">
-      <div className="flex w-max items-center space-x-5">
+      <div className="flex w-max items-center space-x-1 group transition-all">
         {basePatientInfo.map((info, index) => (
           <PatientAboutBlock key={`patient-info-${index}`} title={info.title} value={info.value} />
         ))}
