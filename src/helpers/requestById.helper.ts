@@ -1,5 +1,5 @@
 import { request, GET } from "@/helpers/fetch.config";
-import type { FullPatient, FullService, FullSchedule, FullOdontogram } from "@/types";
+import type { FullPatient, FullFinancial, FullSchedule, FullOdontogram } from "@/types";
 
 // Patient
 
@@ -19,13 +19,13 @@ export const requestOdontogram = async (id: string) => {
   return res.data as FullOdontogram;
 };
 
-// Service
+// Financial
 
-export const requestService = async (id: string) => {
-  const res = await request(`service?id=${id}`, GET());
+export const requestFinancial = async (id: string) => {
+  const res = await request(`financial?id=${id}`, GET());
   if (res.success !== true) throw new Error(res.message);
 
-  return res.data as FullService;
+  return res.data as FullFinancial;
 };
 
 // Schedule

@@ -1,6 +1,6 @@
 import type { NewPatient, UpdateAnamnesis, UpdateIntraoral } from "./patient.schema";
 import type { NewOdontogram } from "./odontogram.schema";
-import type { NewService } from "./service.schema";
+import type { NewFinancial } from "./financial.schema";
 import type { NewSchedule } from "./schedule.schema";
 
 type Clinic = { Clinic: string };
@@ -53,7 +53,7 @@ export type PartialDoctor = {
   avatar: string | null;
 };
 
-export type PartialService = {
+export type PartialFinancial = {
   _id: string;
   workToBeDone: string;
   price: number;
@@ -64,8 +64,8 @@ export type PartialService = {
   odontogram_id: string;
   status: "Pendente" | "Pago" | "Cancelado";
 };
-export type ClinicService = NewService & Clinic;
-export type FullService = ClinicService & { _id: string; createdAt: Date };
+export type ClinicFinancial = NewFinancial & Clinic;
+export type FullFinancial = ClinicFinancial & { _id: string; createdAt: Date };
 
 export type PartialSchedule = {
   _id: string;

@@ -15,23 +15,23 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import ServiceForm from "./Form";
+import FinancialForm from "./Form";
 
-const NewService = ({ toast }: ToastProps) => {
+const NewFinancial = ({ toast }: ToastProps) => {
   const searchParams = useSearchParams();
-  const serviceParam = searchParams.get("interface");
+  const financialParam = searchParams.get("interface");
   const closed = () => toast("Operação cancelada", "O registro foi limpo");
 
   const [open, setOpen] = useState(false);
   useEffect(() => {
-    serviceParam === "register" ? setOpen(true) : setOpen(false);
-  }, [serviceParam]);
+    financialParam === "register" ? setOpen(true) : setOpen(false);
+  }, [financialParam]);
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
         <Link
-          href={"/app/service?interface=register"}
+          href={"/app/financial?interface=register"}
           className={cn(buttonVariants({ variant: "gradient" }), "md:text-sm text-xs w-[100px]")}>
           Adicionar
         </Link>
@@ -39,17 +39,17 @@ const NewService = ({ toast }: ToastProps) => {
       <DrawerContent>
         <div className="mx-auto w-full md:max-w-6xl">
           <DrawerHeader>
-            <DrawerTitle>Cadastro de serviço</DrawerTitle>
-            <DrawerDescription>Adicione um novo serviço</DrawerDescription>
+            <DrawerTitle>Novo Registro Financeiro </DrawerTitle>
+            <DrawerDescription>Adicione um novo registro financeiro</DrawerDescription>
           </DrawerHeader>
           <div className="p-4 pb-0">
-            <ServiceForm toast={toast} />
+            <FinancialForm toast={toast} />
           </div>
           <DrawerFooter>
             <DrawerClose asChild>
               <Link
                 onClick={closed}
-                href={"/app/service"}
+                href={"/app/financial"}
                 className={cn(buttonVariants({ variant: "outlineBlue" }), "text-darkBlue")}>
                 Cancelar
               </Link>
@@ -61,4 +61,4 @@ const NewService = ({ toast }: ToastProps) => {
   );
 };
 
-export default NewService;
+export default NewFinancial;

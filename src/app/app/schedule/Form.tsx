@@ -13,11 +13,11 @@ import type { ToastProps } from "@/types";
 import IconReload from "../../../../public/Reload.Icon";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
-import ServiceCombobox from "@/components/data-inputs/ServiceCombobox";
+import FinancialCombobox from "@/components/data-inputs/FinancialCombobox";
 import ScheduleCard from "../../../components/app/schedule/ScheduleCard";
 import DayAndHour from "../../../components/app/schedule/DayAndHour";
 
-type Service = {
+type Financial = {
   _id: string;
   patient: string;
   doctor: string;
@@ -26,32 +26,32 @@ type Service = {
   status: "Cancelado" | "Pago" | "Pendente";
 };
 
-const ServiceForm = ({ toast }: ToastProps) => {
+const FinancialForm = ({ toast }: ToastProps) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [service, setService] = useState<Service>();
+  const [financial, setFinancial] = useState<Financial>();
   const [startDate, setStartDate] = useState<Date>();
 
   const form = useForm<z.infer<typeof scheduleSchema>>({
     resolver: zodResolver(scheduleSchema),
     defaultValues: {
-      Service: "",
+      Financial: "",
       startTime: "",
     },
   });
 
   useEffect(() => {
     form.watch((value) => {
-      if (!value.Service) return;
+      if (!value.Financial) return;
 
-      const services = localStorage.getItem("services");
-      if (!services) return;
-      const parsedServices = JSON.parse(services);
+      const financials = localStorage.getItem("financials");
+      if (!financials) return;
+      const parsedFinancials = JSON.parse(financials);
 
-      const selectedService = parsedServices.find((service: Service) => service._id === value.Service);
-      if (!selectedService) return;
+      const selectedFinancial = parsedFinancials.find((financial: Financial) => financial._id === value.Financial);
+      if (!selectedFinancial) return;
 
-      setService(selectedService);
+      setFinancial(selectedFinancial);
     });
   }, [form.watch, form]);
 
@@ -65,7 +65,7 @@ const ServiceForm = ({ toast }: ToastProps) => {
   async function onSubmit(values: z.infer<typeof scheduleSchema>) {
     setIsLoading(true);
     const body = {
-      Service: values.Service,
+      Financial: values.Financial,
       startTime: values.startTime,
       endTime: values.endTime,
     };
@@ -88,7 +88,7 @@ const ServiceForm = ({ toast }: ToastProps) => {
   return (
     <Form {...form}>
       <form
-        id="service-form"
+        id="financial-form"
         onSubmit={(e) => {
           e.preventDefault();
           onSubmit(form.getValues());
@@ -99,16 +99,16 @@ const ServiceForm = ({ toast }: ToastProps) => {
             <div className="max-w-96 w-full gap-4 flex-col flex">
               <FormField
                 control={form.control}
-                name="Service"
+                name="Financial"
                 render={({ field }) => (
                   <FormItem className="w-full">
                     <FormControl>
-                      <ServiceCombobox controller={{ ...field }} toast={toast} />
+                      <FinancialCombobox controller={{ ...field }} toast={toast} />
                     </FormControl>
                   </FormItem>
                 )}
               />
-              <ScheduleCard service={service as Service} startDate={startDate as Date} />
+              <ScheduleCard financial={financial as Financial} startDate={startDate as Date} />
             </div>
             <div>
               <FormField
@@ -125,7 +125,7 @@ const ServiceForm = ({ toast }: ToastProps) => {
             </div>
           </div>
         </div>
-        <Button form="service-form" type="submit" variant={"gradient"} className="mt-4 w-full" disabled={isLoading}>
+        <Button form="financial-form" type="submit" variant={"gradient"} className="mt-4 w-full" disabled={isLoading}>
           {isLoading && <IconReload className="mr-2 h-4 w-4 animate-spin" />}
           Cadastrar
         </Button>
@@ -134,4 +134,4 @@ const ServiceForm = ({ toast }: ToastProps) => {
   );
 };
 
-export default ServiceForm;
+export default FinancialForm;

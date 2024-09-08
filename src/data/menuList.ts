@@ -60,6 +60,24 @@ const getMenuList = (pathname: string): Group[] => {
           ],
         },
         {
+          href: "/app/financial",
+          label: "Financeiro",
+          active: pathname.includes("/app/financial"),
+          icon: IconTask,
+          submenus: [
+            {
+              href: "/app/financial",
+              label: "Registros Financeiros",
+              active: pathname === "/app/financial",
+            },
+            {
+              href: "/app/financial?interface=register",
+              label: "Registrar Finança",
+              active: pathname === "/app/financial?interface=register",
+            },
+          ],
+        },
+        {
           href: "/app/odontogram",
           label: "Odontograma",
           active: pathname.includes("/app/odontogram"),
@@ -74,24 +92,6 @@ const getMenuList = (pathname: string): Group[] => {
               href: "/app/odontogram?interface=register",
               label: "Registrar Odontograma",
               active: pathname === "/app/odontogram?interface=register",
-            },
-          ],
-        },
-        {
-          href: "/app/service",
-          label: "Serviço",
-          active: pathname.includes("/app/service"),
-          icon: IconTask,
-          submenus: [
-            {
-              href: "/app/service",
-              label: "Listar Serviços",
-              active: pathname === "/app/service",
-            },
-            {
-              href: "/app/service?interface=register",
-              label: "Cadastrar Serviço",
-              active: pathname === "/app/service?interface=register",
             },
           ],
         },

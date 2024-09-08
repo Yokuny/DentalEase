@@ -1,6 +1,6 @@
-import type { PartialPatient, PartialDoctor, PartialOdontogram, PartialService } from "@/types";
+import type { PartialPatient, PartialDoctor, PartialOdontogram, PartialFinancial } from "@/types";
 
-type Register = PartialPatient | PartialDoctor | PartialOdontogram | PartialService;
+type Register = PartialPatient | PartialDoctor | PartialOdontogram | PartialFinancial;
 
 const padStart = (value: number) => String(value).padStart(2, "0");
 export const numClean = (value: string) => value.replace(/[^0-9]/g, "");

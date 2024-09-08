@@ -1,6 +1,6 @@
 import { request, GET } from "@/helpers/fetch.config";
 import { comboboxDataFormat } from "@/helpers/formatter.helper";
-import type { PartialPatient, PartialDoctor, PartialOdontogram, PartialService, PartialSchedule } from "@/types";
+import type { PartialPatient, PartialDoctor, PartialOdontogram, PartialFinancial, PartialSchedule } from "@/types";
 
 type Combobox = { value: string; label: string };
 
@@ -76,30 +76,30 @@ export const comboboxDentist = async (): Promise<Combobox[]> => {
   return comboboxDataFormat(dentist);
 };
 
-// Service
+// Financial
 
-export const refreshService = async () => {
-  const res = await request("service/partial", GET());
+export const refreshFinancial = async () => {
+  const res = await request("financial/partial", GET());
   if (res.success !== true) throw new Error(res.message);
 
-  localStorage.setItem("services", JSON.stringify(res.data));
+  localStorage.setItem("financials", JSON.stringify(res.data));
   return res.data;
 };
 
-export const localService = async (): Promise<PartialService[]> => {
-  const service = localStorage.getItem("services");
-  if (service) return JSON.parse(service);
+export const localFinancial = async (): Promise<PartialFinancial[]> => {
+  const financial = localStorage.getItem("financials");
+  if (financial) return JSON.parse(financial);
 
-  return refreshService();
+  return refreshFinancial();
 };
 
 type OnlyActive = { onlyActive: boolean | undefined };
 
-export const comboboxService = async ({ onlyActive }: OnlyActive): Promise<Combobox[]> => {
-  const service = await localService();
+export const comboboxFinancial = async ({ onlyActive }: OnlyActive): Promise<Combobox[]> => {
+  const financial = await localFinancial();
 
-  if (onlyActive) return comboboxDataFormat(service.filter((el: any) => el.status !== "canceled"));
-  return comboboxDataFormat(service);
+  if (onlyActive) return comboboxDataFormat(financial.filter((el: any) => el.status !== "canceled"));
+  return comboboxDataFormat(financial);
 };
 
 // Schedule

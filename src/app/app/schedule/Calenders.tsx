@@ -20,7 +20,7 @@ import type { PartialSchedule } from "@/types";
 
 registerLicense("Ngo9BigBOggjHTQxAR8/V1NBaF5cXmZCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdnWXdecXZUQ2VYVE11V0I=");
 
-const ServiceForm = () => {
+const FinancialForm = () => {
   const [schedule, setSchedule] = useState<PartialSchedule[]>([]);
   // const [isLoading, setIsLoading] = useState<boolean>(false);
   let instance: Internationalization = new Internationalization();
@@ -108,4 +108,4 @@ const ServiceForm = () => {
   );
 };
 
-export default ServiceForm;
+export default FinancialForm;

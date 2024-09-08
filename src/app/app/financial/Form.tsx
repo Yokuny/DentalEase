@@ -5,9 +5,9 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { serviceSchema } from "@/schemas/service.schema";
+import { financialSchema } from "@/schemas/financial.schema";
 import { request, POST } from "@/helpers/fetch.config";
-import { refreshService } from "@/helpers/dataManager.helper";
+import { refreshFinancial } from "@/helpers/dataManager.helper";
 import type { ToastProps } from "@/types";
 
 import IconReload from "../../../../public/Reload.Icon";
@@ -20,13 +20,13 @@ import PatientCombobox from "@/components/data-inputs/PatientCombobox";
 import OdontogramCombobox from "@/components/data-inputs/OdontogramCombobox";
 import DentistCombobox from "@/components/data-inputs/DentistCombobox";
 
-const ServiceForm = ({ toast }: ToastProps) => {
+const FinancialForm = ({ toast }: ToastProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const router = useRouter();
 
-  const form = useForm<z.infer<typeof serviceSchema>>({
-    resolver: zodResolver(serviceSchema),
+  const form = useForm<z.infer<typeof financialSchema>>({
+    resolver: zodResolver(financialSchema),
     defaultValues: {
       Patient: "",
       Doctor: "",
@@ -37,9 +37,9 @@ const ServiceForm = ({ toast }: ToastProps) => {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof serviceSchema>) {
+  async function onSubmit(values: z.infer<typeof financialSchema>) {
     setIsLoading(true);
-    const body: z.infer<typeof serviceSchema> = {
+    const body: z.infer<typeof financialSchema> = {
       Patient: values.Patient,
       Doctor: values.Doctor,
       workToBeDone: values.workToBeDone,
@@ -49,17 +49,17 @@ const ServiceForm = ({ toast }: ToastProps) => {
     if (values.Odontogram) body.Odontogram = values.Odontogram;
 
     try {
-      const res = await request("service/create", POST(body));
+      const res = await request("financial/create", POST(body));
       if (res.success === false) throw new Error(res.message);
 
-      localStorage.setItem("activeService", JSON.stringify(body));
-      toast("Sucesso", "Serviço registrado com sucesso");
+      localStorage.setItem("activeFinancial", JSON.stringify(body));
+      toast("Sucesso", "Registrado financeiro gravado");
       form.reset();
 
-      await refreshService();
-      return router.push(`/app`);
+      await refreshFinancial();
+      return router.push(`/app/schedule`);
     } catch (Error: any) {
-      toast("Erro ao registrar serviço", Error.message);
+      toast("Erro ao salvar registro financeiro", Error.message);
     } finally {
       setIsLoading(false);
     }
@@ -68,7 +68,7 @@ const ServiceForm = ({ toast }: ToastProps) => {
   return (
     <Form {...form}>
       <form
-        id="service-form"
+        id="financial-form"
         className="md:gap-4 gap-2 flex-wrap flex"
         onSubmit={(e) => {
           e.preventDefault();
@@ -174,7 +174,7 @@ const ServiceForm = ({ toast }: ToastProps) => {
             )}
           />
         </div>
-        <Button form="service-form" type="submit" variant={"gradient"} className="mt-4 w-full" disabled={isLoading}>
+        <Button form="financial-form" type="submit" variant={"gradient"} className="mt-4 w-full" disabled={isLoading}>
           {isLoading && <IconReload className="mr-2 h-4 w-4 animate-spin" />}
           Cadastrar
         </Button>
@@ -183,4 +183,4 @@ const ServiceForm = ({ toast }: ToastProps) => {
   );
 };
 
-export default ServiceForm;
+export default FinancialForm;

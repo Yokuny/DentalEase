@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ColumnDef } from "@tanstack/react-table";
-import type { PartialService } from "@/types";
+import type { PartialFinancial } from "@/types";
 
 import IconMixer from "../../../../public/Mixer.Icon";
 import IconSort from "../../../../public/Sort.Icon";
@@ -29,7 +29,7 @@ const SortableComponent = ({ column, title }: { column: any; title: string }) =>
   );
 };
 
-export const columns: ColumnDef<PartialService>[] = [
+export const columns: ColumnDef<PartialFinancial>[] = [
   {
     accessorKey: "status",
     header: ({ column }) => SortableComponent({ column, title: "Situação" }),
@@ -77,7 +77,7 @@ export const columns: ColumnDef<PartialService>[] = [
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
-      const service = row.original;
+      const financial = row.original;
 
       return (
         <div className="flex justify-end">
@@ -91,14 +91,14 @@ export const columns: ColumnDef<PartialService>[] = [
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Ações</DropdownMenuLabel>
               <DropdownMenuItem>
-                <Link href={`/app/service/${service._id}`}>Visualizar serviço</Link>
+                <Link href={`/app/financial/${financial._id}`}>Visualizar detalhes</Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={handleCopy(service.price.toString())}>Copiar preço</DropdownMenuItem>
-              <DropdownMenuItem onClick={handleCopy(service.patient)}>Copiar nome do paciente</DropdownMenuItem>
-              <DropdownMenuItem onClick={handleCopy(service.doctor)}>Copiar nome do doutor</DropdownMenuItem>
-              <DropdownMenuItem onClick={handleCopy(service.patient_id)}>Copiar ID do paciente</DropdownMenuItem>
-              <DropdownMenuItem onClick={handleCopy(service.doctor_id)}>Copiar ID do doutor</DropdownMenuItem>
+              <DropdownMenuItem onClick={handleCopy(financial.price.toString())}>Copiar preço</DropdownMenuItem>
+              <DropdownMenuItem onClick={handleCopy(financial.patient)}>Copiar nome do paciente</DropdownMenuItem>
+              <DropdownMenuItem onClick={handleCopy(financial.doctor)}>Copiar nome do doutor</DropdownMenuItem>
+              <DropdownMenuItem onClick={handleCopy(financial.patient_id)}>Copiar ID do paciente</DropdownMenuItem>
+              <DropdownMenuItem onClick={handleCopy(financial.doctor_id)}>Copiar ID do doutor</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

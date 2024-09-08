@@ -19,13 +19,13 @@ import ScheduleForm from "./Form";
 
 const NewAppointment = ({ toast }: ToastProps) => {
   const searchParams = useSearchParams();
-  const serviceParam = searchParams.get("interface");
+  const financialParam = searchParams.get("interface");
   const closed = () => toast("Operação cancelada", "O registro foi limpo");
 
   const [open, setOpen] = useState(false);
   useEffect(() => {
-    serviceParam === "register" ? setOpen(true) : setOpen(false);
-  }, [serviceParam]);
+    financialParam === "register" ? setOpen(true) : setOpen(false);
+  }, [financialParam]);
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>

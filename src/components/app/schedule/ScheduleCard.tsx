@@ -6,7 +6,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 
-type Service = {
+type Financial = {
   _id: string;
   patient: string;
   doctor: string;
@@ -16,11 +16,11 @@ type Service = {
 };
 
 type ScheduleCardProps = {
-  service: Service;
+  financial: Financial;
   startDate: Date;
 };
 
-const ScheduleCard = ({ service, startDate }: ScheduleCardProps) => {
+const ScheduleCard = ({ financial, startDate }: ScheduleCardProps) => {
   const NoContent = (width: number) => {
     return <div className={`h-4 w-${width}  bg-slate-50 dark:bg-slate-900 rounded`}> </div>;
   };
@@ -34,11 +34,11 @@ const ScheduleCard = ({ service, startDate }: ScheduleCardProps) => {
       <div className="gap-6 flex-wrap flex">
         <div className="flex-col flex gap-1">
           <span className="font-semibold text-lg">Paciente</span>
-          <span>{service?.patient ? <Badge>{service.patient}</Badge> : NoContent(32)}</span>
+          <span>{financial?.patient ? <Badge>{financial.patient}</Badge> : NoContent(32)}</span>
         </div>
         <div className="flex-col flex gap-1">
           <span className="font-semibold text-lg">Doutor</span>
-          <span>{service?.doctor ? <Badge variant={"positive"}>{service.doctor}</Badge> : NoContent(32)}</span>
+          <span>{financial?.doctor ? <Badge variant={"positive"}>{financial.doctor}</Badge> : NoContent(32)}</span>
         </div>
       </div>
       <Separator className="my-2" />
@@ -56,11 +56,11 @@ const ScheduleCard = ({ service, startDate }: ScheduleCardProps) => {
       <div className="gap-6 flex-wrap flex">
         <div className="flex-col flex gap-1">
           <span className="font-semibold text-lg">Serviço</span>
-          <span>{service?.workToBeDone ? service.workToBeDone : NoContent(36)}</span>
+          <span>{financial?.workToBeDone ? financial.workToBeDone : NoContent(36)}</span>
         </div>
         <div className="flex-col flex gap-1">
           <span className="font-semibold text-lg">R$</span>
-          <span>{service?.price ? service.price : NoContent(16)}</span>
+          <span>{financial?.price ? financial.price : NoContent(16)}</span>
         </div>
       </div>
     </div>

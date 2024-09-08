@@ -131,7 +131,7 @@ export const columns: ColumnDef<PartialPatient>[] = [
                 <Link href={`/app/odontogram?interface=register`}>Criar odontograma</Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <Link href={`/app/service?interface=register`}>Criar serviço</Link>
+                <Link href={`/app/financial?interface=register`}>Registrar financeiro</Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <Link href={`/app/schedule?interface=register`}>Criar agendamento</Link>
