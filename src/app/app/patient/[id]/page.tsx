@@ -7,7 +7,7 @@ import type { FullPatient } from "@/types";
 
 import { useToast } from "@/components/ui/use-toast";
 import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import PatientAboutField from "@/components/app/patient/PatientAboutField";
 import PatientAnamenesis from "@/components/app/patient/PatientAnamnese";

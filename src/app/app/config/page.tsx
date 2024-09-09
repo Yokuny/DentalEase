@@ -1,25 +1,17 @@
-"use client";
+import { Separator } from "@/components/ui/separator";
+import FirstForm from "./FirstForm";
 
-import { CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-
-const Config = () => {
+const Settings = () => {
   return (
-    <>
-      <CardHeader className="p-3 px-6 flex flex-row justify-between ">
-        <div className="md:gap-4 gap-1 flex md:flex-row md:items-center flex-col">
-          <CardTitle>Agenda</CardTitle>
-          <CardDescription>Horarios agendados</CardDescription>
-        </div>
-      </CardHeader>
-
-      <CardContent className="flex items-center justify-center flex-col bg-slate-500">
-        <p>Card Content</p>
-      </CardContent>
-      <CardFooter>
-        <p>Card Footer</p>
-      </CardFooter>
-    </>
+    <div className="space-y-6">
+      <div>
+        <h3 className="text-lg font-medium">Profile</h3>
+        <p className="text-sm text-muted-foreground">This is how others will see you on the site.</p>
+      </div>
+      <Separator />
+      <FirstForm />
+    </div>
   );
 };
 
-export default Config;
+export default Settings;
