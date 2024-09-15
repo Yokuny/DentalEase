@@ -4,37 +4,28 @@ import { CardContent, CardDescription, CardHeader, CardTitle } from "@/component
 import { Separator } from "@/components/ui/separator";
 
 import { SidebarNav } from "./sidebar-nav";
-import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
   title: "Configurações",
-  description: "Ajuste suas configurações e da clinica.",
+  description: "Ajuste configurações da clinica e perfil.",
 };
 
 const sidebarNavItems = [
   {
-    title: "Profile",
-    href: "/app/config",
+    title: "Perfil",
+    href: "/app/settings",
+  },
+  {
+    title: "Acesso",
+    href: "/app/settings/acess",
   },
   {
     title: "Clinica",
-    href: "/app/config/clinic",
+    href: "/app/settings/clinic",
   },
   {
-    title: "Account",
-    href: "/app/config/account",
-  },
-  {
-    title: "Appearance",
-    href: "/app/config/appearance",
-  },
-  {
-    title: "Notifications",
-    href: "/app/config/notifications",
-  },
-  {
-    title: "Display",
-    href: "/app/config/display",
+    title: "Serviços",
+    href: "/app/settings/services",
   },
 ];
 
@@ -48,7 +39,7 @@ const SettingsLayout = ({ children }: SettingsLayoutProps) => {
       <CardHeader className="hidden md:flex flex-row justify-between items-baseline">
         <div className="gap-2 flex-col flex">
           <CardTitle className="text-primaryBlue md:text-xl">Configurações</CardTitle>
-          <CardDescription>Manage your account settings and set e-mail preferences.</CardDescription>
+          <CardDescription>Configurações da clinica, perfil e notificações.</CardDescription>
         </div>
       </CardHeader>
       <div className="py-2 px-6">

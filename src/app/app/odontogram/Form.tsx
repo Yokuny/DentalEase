@@ -1,11 +1,10 @@
 "use client";
 
-import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { odontogramSchema } from "@/schemas/odontogram.schema";
+import { odontogramSchema, NewOdontogram } from "@/schemas/odontogram.schema";
 import { request, POST } from "@/helpers/fetch.config";
 import { refreshOdontogram } from "@/helpers/dataManager.helper";
 import type { ToastProps } from "@/types";
@@ -22,7 +21,7 @@ const OdontogramForm = ({ toast }: ToastProps) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const form = useForm<z.infer<typeof odontogramSchema>>({
+  const form = useForm<NewOdontogram>({
     resolver: zodResolver(odontogramSchema),
     defaultValues: {
       Patient: "",
@@ -33,7 +32,7 @@ const OdontogramForm = ({ toast }: ToastProps) => {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof odontogramSchema>) {
+  const onSubmit = async (values: NewOdontogram) => {
     setIsLoading(true);
     const body = {
       Patient: values.Patient,
@@ -48,7 +47,7 @@ const OdontogramForm = ({ toast }: ToastProps) => {
       if (res.success !== true) throw new Error(res.message);
 
       localStorage.setItem("activeOdontogram", JSON.stringify(body));
-      toast("Sucesso", "Odontograma registrado com sucesso");
+      toast("Sucesso", res.message);
       form.reset();
 
       await refreshOdontogram();
@@ -58,17 +57,17 @@ const OdontogramForm = ({ toast }: ToastProps) => {
     } finally {
       setIsLoading(false);
     }
-  }
+  };
 
   return (
     <Form {...form}>
       <form
         id="odontogram-form"
-        className="md:gap-4 gap-2 flex-wrap justify-between flex"
         onSubmit={(e) => {
           e.preventDefault();
           onSubmit(form.getValues());
-        }}>
+        }}
+        className="space-y-5">
         <div className="w-full gap-4 flex-col sm:flex-row flex">
           <FormField
             control={form.control}

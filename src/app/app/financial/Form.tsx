@@ -1,11 +1,10 @@
 "use client";
 
-import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { financialSchema } from "@/schemas/financial.schema";
+import { financialSchema, NewFinancial } from "@/schemas/financial.schema";
 import { request, POST } from "@/helpers/fetch.config";
 import { refreshFinancial } from "@/helpers/dataManager.helper";
 import type { ToastProps } from "@/types";
@@ -25,7 +24,7 @@ const FinancialForm = ({ toast }: ToastProps) => {
 
   const router = useRouter();
 
-  const form = useForm<z.infer<typeof financialSchema>>({
+  const form = useForm<NewFinancial>({
     resolver: zodResolver(financialSchema),
     defaultValues: {
       Patient: "",
@@ -37,9 +36,9 @@ const FinancialForm = ({ toast }: ToastProps) => {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof financialSchema>) {
+  const onSubmit = async (values: NewFinancial) => {
     setIsLoading(true);
-    const body: z.infer<typeof financialSchema> = {
+    const body: NewFinancial = {
       Patient: values.Patient,
       Doctor: values.Doctor,
       workToBeDone: values.workToBeDone,
@@ -53,7 +52,7 @@ const FinancialForm = ({ toast }: ToastProps) => {
       if (res.success === false) throw new Error(res.message);
 
       localStorage.setItem("activeFinancial", JSON.stringify(body));
-      toast("Sucesso", "Registrado financeiro gravado");
+      toast("Sucesso", res.message);
       form.reset();
 
       await refreshFinancial();
@@ -63,17 +62,17 @@ const FinancialForm = ({ toast }: ToastProps) => {
     } finally {
       setIsLoading(false);
     }
-  }
+  };
 
   return (
     <Form {...form}>
       <form
         id="financial-form"
-        className="md:gap-4 gap-2 flex-wrap flex"
         onSubmit={(e) => {
           e.preventDefault();
           onSubmit(form.getValues());
-        }}>
+        }}
+        className="space-y-5">
         <div className="w-full gap-4 flex-col sm:flex-row flex">
           <FormField
             control={form.control}

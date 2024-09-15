@@ -1,11 +1,10 @@
 "use client";
 
-import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { patientSchema } from "@/schemas/patient.schema";
+import { patientSchema, NewPatient } from "@/schemas/patient.schema";
 import { request, POST } from "@/helpers/fetch.config";
 import { refreshPatient } from "@/helpers/dataManager.helper";
 import type { ToastProps } from "@/types";
@@ -21,7 +20,7 @@ const PatientForm = ({ toast }: ToastProps) => {
 
   const router = useRouter();
 
-  const form = useForm<z.infer<typeof patientSchema>>({
+  const form = useForm<NewPatient>({
     resolver: zodResolver(patientSchema),
     defaultValues: {
       name: "",
@@ -36,7 +35,7 @@ const PatientForm = ({ toast }: ToastProps) => {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof patientSchema>) {
+  const onSubmit = async (values: NewPatient) => {
     setIsLoading(true);
     const body = {
       name: values.name,
@@ -55,7 +54,7 @@ const PatientForm = ({ toast }: ToastProps) => {
       if (res.success === false) throw new Error(res.message);
 
       localStorage.setItem("activePatient", JSON.stringify(body));
-      toast("Sucesso", "Paciente registrado com sucesso");
+      toast("Sucesso", res.message);
       form.reset();
 
       await refreshPatient();
@@ -65,14 +64,11 @@ const PatientForm = ({ toast }: ToastProps) => {
     } finally {
       setIsLoading(false);
     }
-  }
+  };
 
   return (
     <Form {...form}>
-      <form
-        id="patient-form"
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="md:gap-4 gap-4 flex-wrap justify-between flex">
+      <form id="patient-form" onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
         <div className="w-full md:gap-6 gap-4 flex-wrap p-4 bg-slate-50 dark:bg-slate-900/70 rounded-md flex">
           <FormField
             control={form.control}

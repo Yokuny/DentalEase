@@ -9,6 +9,8 @@ export const workSpace = [
   { value: "financial?interface=register", label: "Registrar Financeiro" },
   { value: "schedule", label: "Agendamento" },
   { value: "schedule?interface=register", label: "Agendar" },
-  { value: "config", label: "Configurações" },
-  { value: "config/clinic", label: "Registrar Clinica" },
+  { value: "settings", label: "Configurações" },
+  { value: "settings/access", label: "Acesso" },
+  { value: "settings/clinic", label: "Clinica" },
+  { value: "settings/services", label: "Serviços" },
 ];

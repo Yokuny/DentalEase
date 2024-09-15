@@ -119,15 +119,30 @@ const getMenuList = (pathname: string): Group[] => {
       groupLabel: "Configurações",
       menus: [
         {
-          href: "/app/config",
+          href: "/app/settings",
           label: "Configurações",
-          active: pathname.includes("/app/config"),
+          active: pathname.includes("/app/settings"),
           icon: IconGear,
           submenus: [
             {
-              href: "/app/config/clinic",
-              label: "Registrar Clinica",
-              active: pathname === "/app/config/clinic",
+              href: "/app/settings",
+              label: "Perfil",
+              active: pathname === "/app/settings",
+            },
+            {
+              href: "/app/settings/acess",
+              label: "Acesso",
+              active: pathname === "/app/settings/acess",
+            },
+            {
+              href: "/app/settings/clinic",
+              label: "Clinica",
+              active: pathname === "/app/settings/clinic",
+            },
+            {
+              href: "/app/settings/services",
+              label: "Serviços",
+              active: pathname === "/app/settings/services",
             },
           ],
         },

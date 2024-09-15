@@ -20,6 +20,13 @@ export type ErrorProps = {
   reset: () => void;
 };
 
+export type PartialUser = {
+  name: string;
+  email: string;
+  clinic: string;
+  image: string | null;
+};
+
 export type PartialPatient = {
   _id: string;
   name: string;
@@ -50,7 +57,7 @@ export type PartialDoctor = {
   _id: string;
   name: string;
   email: string;
-  avatar: string | null;
+  image: string | null;
 };
 
 export type PartialFinancial = {

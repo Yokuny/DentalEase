@@ -1,11 +1,10 @@
 "use client";
 
-import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { scheduleSchema } from "@/schemas/schedule.schema";
+import { scheduleSchema, NewSchedule } from "@/schemas/schedule.schema";
 import { request, POST } from "@/helpers/fetch.config";
 import { refreshSchedule } from "@/helpers/dataManager.helper";
 import type { ToastProps } from "@/types";
@@ -32,7 +31,7 @@ const FinancialForm = ({ toast }: ToastProps) => {
   const [financial, setFinancial] = useState<Financial>();
   const [startDate, setStartDate] = useState<Date>();
 
-  const form = useForm<z.infer<typeof scheduleSchema>>({
+  const form = useForm<NewSchedule>({
     resolver: zodResolver(scheduleSchema),
     defaultValues: {
       Financial: "",
@@ -62,7 +61,7 @@ const FinancialForm = ({ toast }: ToastProps) => {
     });
   }, [form.watch, form]);
 
-  async function onSubmit(values: z.infer<typeof scheduleSchema>) {
+  const onSubmit = async (values: NewSchedule) => {
     setIsLoading(true);
     const body = {
       Financial: values.Financial,
@@ -73,7 +72,7 @@ const FinancialForm = ({ toast }: ToastProps) => {
     try {
       const res = await request("schedule/create", POST(body));
       if (res.success === false) throw new Error(res.message);
-      toast("Sucesso", "Agendamento realizado");
+      toast("Sucesso", res.message);
       form.reset();
 
       await refreshSchedule();
@@ -83,7 +82,7 @@ const FinancialForm = ({ toast }: ToastProps) => {
     } finally {
       setIsLoading(false);
     }
-  }
+  };
 
   return (
     <Form {...form}>
@@ -93,7 +92,7 @@ const FinancialForm = ({ toast }: ToastProps) => {
           e.preventDefault();
           onSubmit(form.getValues());
         }}
-        className="gap-4 flex-wrap justify-between flex">
+        className="space-y-5">
         <div className="p-4 bg-slate-50 dark:bg-slate-900/70 rounded-md w-full">
           <div className="p-4 px-8 bg-white dark:bg-slate-950 rounded-md w-full flex-wrap justify-between items-center flex">
             <div className="max-w-96 w-full gap-4 flex-col flex">

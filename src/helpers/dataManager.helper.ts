@@ -1,8 +1,32 @@
 import { request, GET } from "@/helpers/fetch.config";
 import { comboboxDataFormat } from "@/helpers/formatter.helper";
-import type { PartialPatient, PartialDoctor, PartialOdontogram, PartialFinancial, PartialSchedule } from "@/types";
+import type {
+  PartialPatient,
+  PartialDoctor,
+  PartialOdontogram,
+  PartialFinancial,
+  PartialSchedule,
+  PartialUser,
+} from "@/types";
 
 type Combobox = { value: string; label: string };
+
+// User
+
+export const refreshUser = async () => {
+  const res = await request("user/partial", GET());
+  if (res.success !== true) throw new Error(res.message);
+
+  localStorage.setItem("user", JSON.stringify(res.data));
+  return res.data;
+};
+
+export const localUser = async (): Promise<PartialUser> => {
+  const user = localStorage.getItem("user");
+  if (user) return JSON.parse(user);
+
+  return refreshUser();
+};
 
 // Patient
 
