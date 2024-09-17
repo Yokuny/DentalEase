@@ -71,7 +71,7 @@ const ProfileForm = ({ user, toast }: ProfileFormProps) => {
                 <FormMessage />
               </div>
               <FormControl>
-                <Input placeholder="Nome" {...field} disabled={isLoading} />
+                <Input placeholder="Nome de usuário" {...field} disabled={isLoading} />
               </FormControl>
             </FormItem>
           )}
@@ -95,14 +95,14 @@ const ProfileForm = ({ user, toast }: ProfileFormProps) => {
                   <FormMessage />
                 </div>
                 <FormControl>
-                  <Input placeholder="Imagem de perfil" {...field} disabled={isLoading} />
+                  <Input placeholder="URL da imagem de perfil" {...field} disabled={isLoading} />
                 </FormControl>
               </div>
             </FormItem>
           )}
         />
         <Button form="user-form" type="submit" variant={"gradient"} disabled={isLoading}>
-          Atualizar perfil
+          {isLoading ? "Salvando..." : "Salvar"}
         </Button>
       </form>
     </Form>

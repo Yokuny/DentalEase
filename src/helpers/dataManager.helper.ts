@@ -7,6 +7,7 @@ import type {
   PartialFinancial,
   PartialSchedule,
   PartialUser,
+  PartialClinic,
 } from "@/types";
 
 type Combobox = { value: string; label: string };
@@ -26,6 +27,23 @@ export const localUser = async (): Promise<PartialUser> => {
   if (user) return JSON.parse(user);
 
   return refreshUser();
+};
+
+// Clinic
+
+export const refreshClinic = async () => {
+  const res = await request("clinic", GET());
+  if (res.success !== true) throw new Error(res.message);
+
+  localStorage.setItem("clinic", JSON.stringify(res.data));
+  return res.data;
+};
+
+export const localClinic = async (): Promise<PartialClinic> => {
+  const clinic = localStorage.getItem("clinic");
+  if (clinic) return JSON.parse(clinic);
+
+  return refreshClinic();
 };
 
 // Patient

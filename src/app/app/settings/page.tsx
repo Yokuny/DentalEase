@@ -2,11 +2,11 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { localUser } from "@/helpers/dataManager.helper";
+import type { PartialUser } from "@/types";
 
 import { useToast } from "@/components/ui/use-toast";
 import { Separator } from "@/components/ui/separator";
 import ProfileForm from "./Form";
-import type { PartialUser } from "@/types";
 
 const Profile = () => {
   const [user, setUser] = useState<PartialUser | null>(null);

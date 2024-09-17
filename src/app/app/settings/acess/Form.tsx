@@ -7,7 +7,6 @@ import { PasswordUpdate, passwordUpdateSchema } from "@/schemas/user.schema";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const AcessForm = ({ toast }: { toast: (title: string, message: string) => void }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -29,6 +28,7 @@ const AcessForm = ({ toast }: { toast: (title: string, message: string) => void 
 
       const res = await request("user/change-password", PUT(body));
       if (res.success === false) throw new Error(res.message);
+
       toast("Sucesso", res.message);
     } catch (error: any) {
       toast("Erro", error.message);
@@ -56,7 +56,7 @@ const AcessForm = ({ toast }: { toast: (title: string, message: string) => void 
                 <FormMessage />
               </div>
               <FormControl>
-                <Input placeholder="Senha antiga" type="password" {...field} disabled={isLoading} />
+                <Input placeholder="Digite sua senha antiga" type="password" {...field} disabled={isLoading} />
               </FormControl>
             </FormItem>
           )}
@@ -71,7 +71,7 @@ const AcessForm = ({ toast }: { toast: (title: string, message: string) => void 
                 <FormMessage />
               </div>
               <FormControl>
-                <Input placeholder="Nova senha" type="password" {...field} disabled={isLoading} />
+                <Input placeholder="Digite uma nova senha" type="password" {...field} disabled={isLoading} />
               </FormControl>
             </FormItem>
           )}
@@ -86,13 +86,13 @@ const AcessForm = ({ toast }: { toast: (title: string, message: string) => void 
                 <FormMessage />
               </div>
               <FormControl>
-                <Input placeholder="Confirmar senha" type="password" {...field} disabled={isLoading} />
+                <Input placeholder="Repita a nova senha" type="password" {...field} disabled={isLoading} />
               </FormControl>
             </FormItem>
           )}
         />
         <Button form="password-form" type="submit" variant={"gradient"} disabled={isLoading}>
-          Atualizar perfil
+          {isLoading ? "Carregando..." : "Atualizar senha"}
         </Button>
       </form>
     </Form>

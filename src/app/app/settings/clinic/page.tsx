@@ -1,23 +1,40 @@
-// import { CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-// import { useToast } from "@/components/ui/use-toast";
-// import Form from "./Form";
+"use client";
 
-const Interfaces = () => {
-  // const { toast } = useToast();
-  // const handlRequestResponse = (title: string, message: string) => toast({ title: title, description: message });
+import { useState, useEffect, useCallback } from "react";
+import { localClinic } from "@/helpers/dataManager.helper";
+import type { PartialClinic } from "@/types";
+
+import { useToast } from "@/components/ui/use-toast";
+import { Separator } from "@/components/ui/separator";
+import ClinicForm from "./Form";
+
+const Clinic = () => {
+  const [clinic, setClinic] = useState<PartialClinic | null>(null);
+
+  const { toast } = useToast();
+  const handlRequestResponse = useCallback(
+    (title: string, message: string) => toast({ title: title, description: message }),
+    [toast]
+  );
+
+  useEffect(() => {
+    const requestClinic = async () => {
+      const clinicData = await localClinic();
+      setClinic(clinicData);
+    };
+    requestClinic();
+  }, []);
 
   return (
-    <>
-      {/* <CardHeader className="items-baseline md:gap-2 md:flex-row md:items-baseline flex flex-col">
-        <CardTitle className="text-primaryBlue md:text-xl">Clinica</CardTitle>
-        <CardDescription>
-          Registro da clinica.
-        </CardDescription>
-      </CardHeader>
-
-      <CardContent className="md:p-6 p-0 pb-0 items-center justify-center flex flex-col"><Form /></CardContent> */}
-    </>
+    <div className="space-y-6">
+      <div>
+        <h3 className="text-lg font-medium">Configuração de Acesso</h3>
+        <p className="text-sm text-muted-foreground">Configure a senha de acesso ao sistema.</p>
+      </div>
+      <Separator />
+      <ClinicForm clinic={clinic} toast={handlRequestResponse} />
+    </div>
   );
 };
 
-export default Interfaces;
+export default Clinic;
