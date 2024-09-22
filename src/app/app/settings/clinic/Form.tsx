@@ -6,6 +6,7 @@ import { clinicSchema, NewClinic } from "@/schemas/clinic.schema";
 import type { PartialClinic } from "@/types";
 
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -95,34 +96,30 @@ const ClinicForm = ({ clinic, toast }: ProfileFormProps) => {
             </FormItem>
           )}
         />
-        <FormField
-          control={form.control}
-          name="code"
-          render={({ field }) => (
-            <FormItem>
-              <div className="gap-2 flex">
-                <FormLabel>Código</FormLabel>
-                <FormMessage />
-              </div>
-              <FormControl>
-                <Input placeholder="Digite um código para a clínica" {...field} disabled={isLoading} />
-              </FormControl>
-            </FormItem>
-          )}
-        />
 
         <div className="md:space-y-2 space-y-1">
           <FormLabel>Usuários</FormLabel>
 
           {clinic?.users.map((user) => (
-            <div key={user.email} className="md:space-y-2 space-y-1">
-              <div className="gap-2 flex">
+            <div key={user.email} className="flex gap-2">
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <Badge
+                      className="h-full"
+                      variant={
+                        user.role === "admin" ? "positive" : user.role === "doctor" ? "neutral" : "pink"
+                      }></Badge>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    {user.role === "admin" ? "Administrador" : user.role === "doctor" ? "Dentista" : "Assistente"}
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+              <div className="flex-col flex">
                 <span>{user.name}</span>
-                <span>{user.email}</span>
+                <span className="text-muted-foreground text-sm">{user.email}</span>
               </div>
-              <Badge variant={user.role === "admin" ? "positive" : user.role === "doctor" ? "neutral" : "pink"}>
-                {user.role === "admin" ? "Administrador" : user.role === "doctor" ? "Dentista" : "Assistente"}
-              </Badge>
             </div>
           ))}
         </div>
@@ -138,6 +135,21 @@ const ClinicForm = ({ clinic, toast }: ProfileFormProps) => {
               </div>
               <FormControl>
                 <Input placeholder="Digite o CNPJ da clínica" {...field} disabled={isLoading} />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="code"
+          render={({ field }) => (
+            <FormItem>
+              <div className="gap-2 flex">
+                <FormLabel>Código</FormLabel>
+                <FormMessage />
+              </div>
+              <FormControl>
+                <Input placeholder="Digite um código para a clínica" {...field} disabled={isLoading} />
               </FormControl>
             </FormItem>
           )}
