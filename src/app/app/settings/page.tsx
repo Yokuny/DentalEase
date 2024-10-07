@@ -26,7 +26,7 @@ const Profile = () => {
   }, []);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 lg:max-w-2xl">
       <div>
         <h3 className="text-lg font-medium">Perfil</h3>
         <p className="text-sm text-muted-foreground">Edite seu perfil e ajuste suas configurações de conta.</p>

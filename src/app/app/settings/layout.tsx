@@ -1,3 +1,4 @@
+import React from "react";
 import { Metadata } from "next";
 
 import { CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -49,7 +50,7 @@ const SettingsLayout = ({ children }: SettingsLayoutProps) => {
           <aside className="lg:w-1/6">
             <SidebarNav items={sidebarNavItems} />
           </aside>
-          <div className="flex-1 lg:max-w-2xl">{children}</div>
+          <div className="flex-1">{children}</div>
         </CardContent>
       </div>
     </>

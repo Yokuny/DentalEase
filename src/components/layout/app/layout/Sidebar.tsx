@@ -2,7 +2,7 @@ import { useStore } from "@/hooks/use-store";
 import { useSidebarToggle } from "@/hooks/use-sidebar-toggle";
 import { cn } from "@/helpers/cn.util";
 
-import DentalEaseLogo from "../../../../../public/DentalEaseLogo";
+import DentalEaseLogo from "../../../ui/DentalEaseLogo";
 import SidebarBtnToggle from "./SidebarBtnToggle";
 import Menu from "./Menu";
 

@@ -1,8 +1,8 @@
 "use client";
 
-import { Suspense, useCallback, useEffect, useState } from "react";
+import React, { Suspense, useCallback, useEffect, useState } from "react";
 import { columns } from "./List";
-import { localFinancial, refreshFinancial } from "@/helpers/dataManager.helper";
+import { localFinancial } from "@/helpers/dataManager.helper";
 import type { PartialFinancial } from "@/types";
 
 import { CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";

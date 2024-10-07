@@ -1,4 +1,4 @@
-import DentalEaseLogo from "../../../../public/DentalEaseLogo";
+import DentalEaseLogo from "../../ui/DentalEaseLogo";
 import NavMenu from "@/components/layout/home/NavMenu";
 import AcessBtns from "@/components/layout/home/AcessBtns";
 

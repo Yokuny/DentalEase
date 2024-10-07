@@ -93,3 +93,11 @@ export type PartialSchedule = {
 };
 export type ClinicSchedule = NewSchedule & Clinic;
 export type FullSchedule = ClinicSchedule & { _id: string; createdAt: Date };
+
+export type ClinicProcedure = {
+  procedure: string;
+  grouper: string;
+  cost_price: number;
+  suggested_price: number;
+  saved_price: number;
+};

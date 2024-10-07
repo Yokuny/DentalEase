@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import DentalEaseLogo from "../../../public/DentalEaseLogo";
+import DentalEaseLogo from "../../components/ui/DentalEaseLogo";
 
 const Banner = () => {
   return (

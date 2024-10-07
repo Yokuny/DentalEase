@@ -14,7 +14,6 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 
-import IconCheck from "../../../public/Check.Icon";
 import IconDown from "../../../public/Down.Icon";
 import IconRight from "../../../public/Right.Icon";
 import IconLeft from "../../../public/Left.Icon";
@@ -30,13 +29,15 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { Table as TableBox, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 import { cn } from "@/helpers/cn.util";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  toast: (title: string, message: string) => void;
 }
 
-const Table = <TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) => {
+const Table = <TData, TValue>({ columns, data, toast }: DataTableProps<TData, TValue>) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
@@ -44,6 +45,11 @@ const Table = <TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) 
   const table = useReactTable({
     data,
     columns,
+    initialState: {
+      pagination: {
+        pageSize: 20,
+      },
+    },
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
@@ -60,46 +66,45 @@ const Table = <TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) 
 
   return (
     <div className="w-full">
-      {/* // Table Header */}
-      <div className="w-full px-6 pb-4 flex items-center gap-3">
-        <Toggle className={cn(buttonVariants({ variant: "primary" }))}>
-          <IconCheck className="w-3 h-3" />
-        </Toggle>
+      {/* Table Header */}
+      <div className="w-full px-6 pb-4 gap-3 flex">
         <Input
-          placeholder="Buscar paciente..."
-          value={(table.getColumn("patient")?.getFilterValue() as string) ?? ""}
-          onChange={(event) => table.getColumn("patient")?.setFilterValue(event.target.value)}
+          placeholder="Buscar procedimento..."
+          value={(table.getColumn("procedure")?.getFilterValue() as string) ?? ""}
+          onChange={(event) => table.getColumn("procedure")?.setFilterValue(event.target.value)}
           className={cn(
             buttonVariants({ variant: "primary" }),
             "max-w-[240px] w-full text-xs font-normal tracking-wide"
           )}
         />
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="primary" className="ml-auto text-xs">
-              Colunas <IconDown className="ml-2 h-3 w-3" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            {table
-              .getAllColumns()
-              .filter((column) => column.getCanHide())
-              .map((column) => {
-                return (
-                  <DropdownMenuCheckboxItem
-                    key={column.id}
-                    className="capitalize"
-                    checked={column.getIsVisible()}
-                    onCheckedChange={(value) => column.toggleVisibility(!!value)}>
-                    {column.id}
-                  </DropdownMenuCheckboxItem>
-                );
-              })}
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <div className="ml-auto gap-2 flex">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="primary" className="text-xs">
+                Colunas <IconDown className="ml-2 h-3 w-3" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              {table
+                .getAllColumns()
+                .filter((column) => column.getCanHide())
+                .map((column) => {
+                  return (
+                    <DropdownMenuCheckboxItem
+                      key={column.id}
+                      className="capitalize"
+                      checked={column.getIsVisible()}
+                      onCheckedChange={(value) => column.toggleVisibility(!!value)}>
+                      {column.id}
+                    </DropdownMenuCheckboxItem>
+                  );
+                })}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
       </div>
-      {/* // Table Body */}
-      <div className="border border-x-0 w-full">
+      {/* Table Body */}
+      <div className="border rounded-md w-full">
         <TableBox>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -135,20 +140,34 @@ const Table = <TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) 
           </TableBody>
         </TableBox>
       </div>
-      {/* // Pagination */}
+      {/* Pagination */}
       <div className="space-x-2 md:px-6 px-4 py-4 flex justify-between items-center">
-        <div className="text-sm text-muted-foreground flex gap-3">
-          <span>
-            {table.getRowModel().rows.length} de {data.length} resultados
-          </span>
-          <span className="md:block hidden">{table.getPageCount()} paginas.</span>
+        <div className="text-sm text-muted-foreground gap-2 items-center flex-col flex">
+          <div className="flex items-center gap-3">
+            <p>Frequência:</p>
+            <Select onValueChange={(value) => table.setPageSize(parseInt(value))}>
+              <SelectTrigger className="gap-2">
+                <SelectValue placeholder="20" />
+              </SelectTrigger>
+              <SelectContent className="min-w-[1rem] font-medium">
+                <SelectItem value="10">10</SelectItem>
+                <SelectItem value="20">20</SelectItem>
+                <SelectItem value="50">50</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="font-semibold">{table.getRowModel().rows.length}</span>de
+            <span className="font-semibold">{data.length}</span>resultados
+            <span className="font-semibold ml-2">{table.getPageCount()}</span>pagina(s).
+          </div>
         </div>
         <div className="space-x-2 flex">
           <Button
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
             variant="primary"
             size="sm"
+            disabled={!table.getCanPreviousPage()}
+            onClick={() => table.previousPage()}
             className="flex items-center gap-1">
             <IconLeft className="h-3 w-3" />
             <p className="font-semibold">{table.getState().pagination.pageIndex + 1}</p>

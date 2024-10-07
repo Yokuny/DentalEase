@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useCallback, useEffect, useState } from "react";
+import React, { Suspense, useCallback, useEffect, useState } from "react";
 import { columns } from "./List";
 import { localPatient, refreshPatient } from "@/helpers/dataManager.helper";
 import type { PartialPatient } from "@/types";

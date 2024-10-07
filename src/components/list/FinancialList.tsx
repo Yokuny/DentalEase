@@ -42,7 +42,7 @@ const Table = <TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) 
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
 
   const table = useReactTable({
-    data: data,
+    data,
     columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
@@ -60,11 +60,12 @@ const Table = <TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) 
 
   return (
     <div className="w-full">
-      {/* // Table Header */}
+      {/* Table Header */}
       <div className="w-full px-6 pb-4 flex items-center gap-3">
         <Toggle className={cn(buttonVariants({ variant: "primary" }))}>
           <IconCheck className="w-3 h-3" />
         </Toggle>
+        {/* Apenas isso deve ser abstraido */}
         <Input
           placeholder="Buscar paciente..."
           value={(table.getColumn("patient")?.getFilterValue() as string) ?? ""}
@@ -74,6 +75,7 @@ const Table = <TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) 
             "max-w-[240px] w-full text-xs font-normal tracking-wide"
           )}
         />
+        {/* Apenas isso deve ser abstraido */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="primary" className="ml-auto text-xs">
@@ -98,7 +100,7 @@ const Table = <TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) 
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      {/* // Table Body */}
+      {/* Table Body */}
       <div className="border border-x-0 w-full">
         <TableBox>
           <TableHeader>
@@ -135,7 +137,7 @@ const Table = <TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) 
           </TableBody>
         </TableBox>
       </div>
-      {/* // Pagination */}
+      {/* Pagination */}
       <div className="space-x-2 md:px-6 px-4 py-4 flex justify-between items-center">
         <div className="text-sm text-muted-foreground flex gap-3">
           <span>
@@ -145,10 +147,10 @@ const Table = <TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) 
         </div>
         <div className="space-x-2 flex">
           <Button
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
             variant="primary"
             size="sm"
+            onClick={() => table.previousPage()}
+            disabled={!table.getCanPreviousPage()}
             className="flex items-center gap-1">
             <IconLeft className="h-3 w-3" />
             <p className="font-semibold">{table.getState().pagination.pageIndex + 1}</p>

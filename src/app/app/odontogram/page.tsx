@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useCallback, useEffect, useState } from "react";
+import React, { Suspense, useCallback, useEffect, useState } from "react";
 import { columns } from "./List";
 import { localOdontogram, refreshOdontogram } from "@/helpers/dataManager.helper";
 import type { PartialOdontogram } from "@/types";
@@ -9,7 +9,7 @@ import type { PartialOdontogram } from "@/types";
 // import { Button } from "@/components/ui/button";
 import { CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
-import List from "../../../components/list/OdontogramList";
+import List from "../../../components/list/FinancialList";
 import Register from "./Register";
 
 const Interfaces = () => {
