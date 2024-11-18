@@ -47,6 +47,7 @@ const Intraoral = ({ toast }: ToastProps) => {
       lips: "",
       otherObservations: "",
     },
+    mode: "onChange",
   });
 
   async function onSubmit(values: z.infer<typeof intraoralSchema>) {
@@ -111,11 +112,9 @@ const Intraoral = ({ toast }: ToastProps) => {
                     <FormLabel>Higiene</FormLabel>
                     <FormControl>
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl className="md:text-sm text-xs">
-                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                            <SelectValue />
-                          </SelectTrigger>
-                        </FormControl>
+                        <SelectTrigger className="bg-white dark:bg-slate-950/50">
+                          <SelectValue />
+                        </SelectTrigger>
                         <SelectContent>
                           <SelectItem className="text-xs" disabled={isLoading} value={"normal"}>
                             Normal
@@ -141,11 +140,9 @@ const Intraoral = ({ toast }: ToastProps) => {
                     <FormLabel>Halito</FormLabel>
                     <FormControl>
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl className="md:text-sm text-xs">
-                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                            <SelectValue />
-                          </SelectTrigger>
-                        </FormControl>
+                        <SelectTrigger className="bg-white dark:bg-slate-950/50">
+                          <SelectValue />
+                        </SelectTrigger>
                         <SelectContent>
                           <SelectItem className="text-xs" disabled={isLoading} value={"ausente"}>
                             Ausente
@@ -171,11 +168,9 @@ const Intraoral = ({ toast }: ToastProps) => {
                     <FormLabel>Tartaro</FormLabel>
                     <FormControl>
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl className="md:text-sm text-xs">
-                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                            <SelectValue />
-                          </SelectTrigger>
-                        </FormControl>
+                        <SelectTrigger className="bg-white dark:bg-slate-950/50">
+                          <SelectValue />
+                        </SelectTrigger>
                         <SelectContent>
                           <SelectItem className="text-xs" disabled={isLoading} value={"ausente"}>
                             Ausente
@@ -201,11 +196,9 @@ const Intraoral = ({ toast }: ToastProps) => {
                     <FormLabel>Gengiva</FormLabel>
                     <FormControl>
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl className="md:text-sm text-xs">
-                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                            <SelectValue />
-                          </SelectTrigger>
-                        </FormControl>
+                        <SelectTrigger className="bg-white dark:bg-slate-950/50">
+                          <SelectValue />
+                        </SelectTrigger>
                         <SelectContent>
                           <SelectItem className="text-xs" disabled={isLoading} value={"normal"}>
                             Normal
@@ -231,11 +224,9 @@ const Intraoral = ({ toast }: ToastProps) => {
                     <FormLabel>Mucosa</FormLabel>
                     <FormControl>
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl className="md:text-sm text-xs">
-                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                            <SelectValue />
-                          </SelectTrigger>
-                        </FormControl>
+                        <SelectTrigger className="bg-white dark:bg-slate-950/50">
+                          <SelectValue />
+                        </SelectTrigger>
                         <SelectContent>
                           <SelectItem className="text-xs" disabled={isLoading} value={"normal"}>
                             Normal
@@ -357,7 +348,7 @@ const Intraoral = ({ toast }: ToastProps) => {
               <Button
                 form="intraoral-form"
                 type="button"
-                variant={"outlineBlue"}
+                variant={"outline"}
                 className="mt-4 w-1/4 text-darkBlue"
                 onClick={() => router.back()}
                 disabled={isLoading}>

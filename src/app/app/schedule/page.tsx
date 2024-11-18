@@ -4,7 +4,7 @@ import React, { Suspense, useCallback } from "react";
 
 import { CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
-import Register from "./Register";
+import Register from "./RegisterBtn";
 import Calendar from "./Calenders";
 
 const Schedule = () => {

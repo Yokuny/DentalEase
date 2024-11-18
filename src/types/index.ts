@@ -1,7 +1,7 @@
-import type { NewPatient, UpdateAnamnesis, UpdateIntraoral } from "./patient.schema";
-import type { NewOdontogram } from "./odontogram.schema";
-import type { NewFinancial } from "./financial.schema";
-import type { NewSchedule } from "./schedule.schema";
+import type { NewPatient, UpdateAnamnesis, UpdateIntraoral } from "../schemas/patient.schema";
+import type { NewOdontogram } from "../schemas/odontogram.schema";
+import type { NewFinancial } from "../schemas/financial.schema";
+import type { NewSchedule } from "../schemas/schedule.schema";
 
 type Clinic = { Clinic: string };
 
@@ -19,6 +19,9 @@ export type ErrorProps = {
   error: Error;
   reset: () => void;
 };
+
+export type Combobox = { value: string; label: string };
+export type PatientCombobox = Combobox & { image: string };
 
 export type PartialUser = {
   name: string;
@@ -42,6 +45,7 @@ export type PartialPatient = {
   phone: string;
   email: string;
   sex: "M" | "F";
+  image: string | null;
   anamnese: boolean;
   intraoral: boolean;
 };
@@ -50,9 +54,15 @@ export type Intraoral = UpdateIntraoral & { _id: string };
 export type ClinicPatient = NewPatient & Clinic & { anamnese: Anamnese; intraoral: Intraoral; image: string | null };
 export type FullPatient = ClinicPatient & { _id: string; createdAt: Date };
 
+export type procedure = {
+  procedure: string;
+  price: number;
+  status: "pending" | "paid" | "canceled";
+};
+
 export type PartialOdontogram = {
   _id: string;
-  workToBeDone: string;
+  procedures: procedure[];
   finished: boolean;
   patient: string;
   doctor: string;
@@ -71,7 +81,7 @@ export type PartialDoctor = {
 
 export type PartialFinancial = {
   _id: string;
-  workToBeDone: string;
+  procedures: procedure[];
   price: number;
   patient: string;
   doctor: string;
@@ -89,15 +99,23 @@ export type PartialSchedule = {
   endTime: string | null;
   patient: string;
   doctor: string;
-  service: string;
+  service: procedure[];
 };
 export type ClinicSchedule = NewSchedule & Clinic;
 export type FullSchedule = ClinicSchedule & { _id: string; createdAt: Date };
 
-export type ClinicProcedure = {
-  procedure: string;
-  grouper: string;
-  cost_price: number;
-  suggested_price: number;
-  saved_price: number;
+export type ProcedurePrices = {
+  costPrice: number;
+  suggestedPrice: number;
+  savedPrice: number;
 };
+
+export type ProcedureData = {
+  procedure: string;
+  costPrice: number;
+  suggestedPrice: number;
+  savedPrice: number;
+};
+
+export type ClinicProcedure = ProcedureData & { grouper: string };
+export type ProcedureSheet = { groupName: string; procedures: ProcedureData[] };

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { PUT, request } from "@/helpers/fetch.config";
+import { toast } from "@/components/ui/use-toast";
 import { cn } from "@/helpers/cn.util";
 
 import {
@@ -13,11 +14,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Avatar } from "@radix-ui/react-avatar";
 import { Button } from "@/components/ui/button";
-import { AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
-import { toast } from "@/components/ui/use-toast";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 type PatientAvatarProps = {
   image: string | null | undefined;

@@ -185,11 +185,9 @@ const PatientForm = ({ toast }: ToastProps) => {
                 <FormLabel className="md:text-sm text-xs">Sexo</FormLabel>
                 <FormControl>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl className="md:text-sm text-xs">
-                      <SelectTrigger className="max-w-28 w-full bg-white dark:bg-slate-950/50">
-                        <SelectValue />
-                      </SelectTrigger>
-                    </FormControl>
+                    <SelectTrigger className="max-w-28 w-full bg-white dark:bg-slate-950/50">
+                      <SelectValue />
+                    </SelectTrigger>
                     <SelectContent>
                       <SelectItem className="text-xs" disabled={isLoading} value="M">
                         Masculino

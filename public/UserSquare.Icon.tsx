@@ -1,4 +1,4 @@
-const IconUp = (props: React.SVGProps<SVGSVGElement>) => (
+const IconUserSquare = (props: React.SVGProps<SVGSVGElement>) => (
   <svg width="1.1em" height="1.1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" {...props}>
     <path
       strokeWidth="1.2"
@@ -10,4 +10,4 @@ const IconUp = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-export default IconUp;
+export default IconUserSquare;

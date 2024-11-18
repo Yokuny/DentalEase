@@ -22,20 +22,19 @@ const Menu = ({ isOpen }: MenuProps) => {
 
   return (
     <ScrollArea className="[&>div>div[style]]:!block">
-      <nav className="mt-8 h-full w-full">
+      <nav className="h-full w-full">
         <ul className="min-h-[calc(100vh-48px-36px-16px-32px)] lg:min-h-[calc(100vh-32px-40px-32px)] items-start space-y-1 px-1 flex flex-col">
           {menuList.map(({ groupLabel, menus }, index) => (
             <li className={cn("w-full mt-4", groupLabel ? "pt-5" : "")} key={index}>
-              {(isOpen && groupLabel) || isOpen === undefined ? (
-                <p className="text-sm font-medium text-muted-foreground px-4 pb-2 max-w-[248px] truncate">
-                  {groupLabel}
-                </p>
-              ) : (
-                <></>
-              )}
+              {(isOpen && groupLabel) ||
+                (isOpen === undefined && (
+                  <p className="text-sm font-medium text-muted-foreground px-4 pb-2 max-w-[248px] truncate">
+                    {groupLabel}
+                  </p>
+                ))}
               {menus.map(({ href, label, icon: Icon, active, submenus }, index) =>
                 submenus.length === 0 ? (
-                  <div className="w-full" key={index}>
+                  <div className="mt-8 w-full" key={index}>
                     <TooltipProvider disableHoverableContent>
                       <Tooltip delayDuration={100}>
                         <TooltipTrigger asChild>

@@ -13,8 +13,8 @@ import { Button } from "@/components/ui/button";
 const OdontogramCombobox = ({ controller, toast, patient, disabled }: any) => {
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [odontograms, setOdontograms] = useState([{ value: "", label: "Selecione o odontograma..." }]);
   const [odontogram, setOdontogram] = useState("");
+  const [odontograms, setOdontograms] = useState([{ value: "", label: "Selecione o odontograma..." }]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -34,8 +34,12 @@ const OdontogramCombobox = ({ controller, toast, patient, disabled }: any) => {
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild className="w-full" disabled={isLoading || disabled}>
-        <Button role="combobox" aria-expanded={open} className="h-10 justify-between font-medium">
-          {odontogram ? odontograms.find((item) => item.value === odontogram)?.label : "Selecione o odontograma..."}
+        <Button
+          variant={odontogram ? "secondary" : "primary"}
+          className="h-10 w-full justify-between font-medium"
+          aria-expanded={open}
+          role="combobox">
+          {odontogram ? odontograms.find((item) => item.value === odontogram)?.label : "Selecione o odontograma"}
           <IconSort className="ml-2 h-3 w-3 shrink-0" />
         </Button>
       </PopoverTrigger>

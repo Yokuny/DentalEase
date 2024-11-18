@@ -1,5 +1,11 @@
 import { request, GET } from "@/helpers/fetch.config";
-import { comboboxDataFormat } from "@/helpers/formatter.helper";
+
+import {
+  comboboxDataFormat,
+  parseCSV,
+  patientComboboxDataFormat,
+  procedureSheetDataFormat,
+} from "@/helpers/formatter.helper";
 import type {
   PartialPatient,
   PartialDoctor,
@@ -8,15 +14,17 @@ import type {
   PartialSchedule,
   PartialUser,
   PartialClinic,
+  ClinicProcedure,
+  Combobox,
+  PatientCombobox,
+  ProcedureSheet,
 } from "@/types";
-
-type Combobox = { value: string; label: string };
 
 // User
 
 export const refreshUser = async () => {
   const res = await request("user/partial", GET());
-  if (res.success !== true) throw new Error(res.message);
+  if (!res.success) throw new Error(res.message);
 
   localStorage.setItem("user", JSON.stringify(res.data));
   return res.data;
@@ -33,7 +41,7 @@ export const localUser = async (): Promise<PartialUser> => {
 
 export const refreshClinic = async () => {
   const res = await request("clinic", GET());
-  if (res.success !== true) throw new Error(res.message);
+  if (!res.success) throw new Error(res.message);
 
   localStorage.setItem("clinic", JSON.stringify(res.data));
   return res.data;
@@ -50,7 +58,7 @@ export const localClinic = async (): Promise<PartialClinic> => {
 
 export const refreshPatient = async () => {
   const res = await request("patient/partial", GET());
-  if (res.success !== true) throw new Error(res.message);
+  if (!res.success) throw new Error(res.message);
 
   localStorage.setItem("patients", JSON.stringify(res.data));
   return res.data;
@@ -63,16 +71,16 @@ export const localPatient = async (): Promise<PartialPatient[]> => {
   return refreshPatient();
 };
 
-export const comboboxPatient = async (): Promise<Combobox[]> => {
+export const comboboxPatient = async (): Promise<PatientCombobox[]> => {
   const patient = await localPatient();
-  return comboboxDataFormat(patient);
+  return patientComboboxDataFormat(patient);
 };
 
 // Odontogram
 
 export const refreshOdontogram = async () => {
   const res = await request("odontogram/partial", GET());
-  if (res.success !== true) throw new Error(res.message);
+  if (!res.success) throw new Error(res.message);
 
   localStorage.setItem("odontograms", JSON.stringify(res.data));
   return res.data;
@@ -100,7 +108,7 @@ export const comboboxOdontogram = async ({ patient }: PatientFilter): Promise<Co
 
 export const refreshDenstist = async () => {
   const res = await request("clinic/doctors", GET());
-  if (res.success !== true) throw new Error(res.message);
+  if (!res.success) throw new Error(res.message);
 
   localStorage.setItem("dentists", JSON.stringify(res.data));
   return res.data;
@@ -122,7 +130,7 @@ export const comboboxDentist = async (): Promise<Combobox[]> => {
 
 export const refreshFinancial = async () => {
   const res = await request("financial/partial", GET());
-  if (res.success !== true) throw new Error(res.message);
+  if (!res.success) throw new Error(res.message);
 
   localStorage.setItem("financials", JSON.stringify(res.data));
   return res.data;
@@ -148,7 +156,7 @@ export const comboboxFinancial = async ({ onlyActive }: OnlyActive): Promise<Com
 
 export const refreshSchedule = async () => {
   const res = await request("schedule/partial", GET());
-  if (res.success !== true) throw new Error(res.message);
+  if (!res.success) throw new Error(res.message);
 
   localStorage.setItem("schedules", JSON.stringify(res.data));
   return res.data;
@@ -159,4 +167,26 @@ export const localSchedule = async (): Promise<PartialSchedule[]> => {
   if (schedule) return JSON.parse(schedule);
 
   return refreshSchedule();
+};
+
+// Procedure
+
+export const refreshProcedure = async () => {
+  const res = await request("procedure", GET());
+  if (!res.success) throw new Error(res.message);
+
+  localStorage.setItem("procedures", res.data.procedure);
+  return parseCSV(res.data.procedure);
+};
+
+export const localProcedure = async (): Promise<ClinicProcedure[]> => {
+  const procedure = localStorage.getItem("procedures");
+  if (procedure) return parseCSV(procedure);
+
+  return refreshProcedure();
+};
+
+export const sheetProcedure = async (): Promise<ProcedureSheet[]> => {
+  const procedure = await localProcedure();
+  return procedureSheetDataFormat(procedure);
 };

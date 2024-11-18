@@ -1,11 +1,7 @@
 import { ColumnDef } from "@tanstack/react-table";
-import { formatPhone } from "@/helpers/formatter.helper";
 import type { ClinicProcedure } from "@/types";
 
-import IconMixer from "../../../../../public/Mixer.Icon";
 import IconSort from "../../../../../public/Sort.Icon";
-import IconCheck from "../../../../../public/Check.Icon";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
 const handleSorting = (column: any) => {
@@ -35,31 +31,31 @@ export const columns: ColumnDef<ClinicProcedure>[] = [
     cell: ({ row }) => <div>{row.original.grouper}</div>,
   },
   {
-    accessorKey: "cost_price",
+    accessorKey: "costPrice",
     header: ({ column }) => SortableComponent({ column, title: "Custo" }),
     cell: ({ row }) => (
       <Badge className="gap-2 flex opacity-90" variant={"alert"}>
-        <span>{row.original.cost_price}</span>
+        <span>{row.original.costPrice}</span>
         <span>R$</span>
       </Badge>
     ),
   },
   {
-    accessorKey: "suggested_price",
+    accessorKey: "suggestedPrice",
     header: ({ column }) => SortableComponent({ column, title: "Sugerido" }),
     cell: ({ row }) => (
       <Badge className="gap-2 flex opacity-90" variant={"positive"}>
-        <span>{row.original.suggested_price}</span>
+        <span>{row.original.suggestedPrice}</span>
         <span>R$</span>
       </Badge>
     ),
   },
   {
-    accessorKey: "saved_price",
+    accessorKey: "savedPrice",
     header: ({ column }) => SortableComponent({ column, title: "Salvo" }),
     cell: ({ row }) => (
       <Badge className="gap-2 flex opacity-90">
-        <span>{row.original.saved_price}</span>
+        <span>{row.original.savedPrice}</span>
         <span>R$</span>
       </Badge>
     ),

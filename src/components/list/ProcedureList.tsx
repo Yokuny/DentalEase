@@ -13,10 +13,13 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import { cn } from "@/helpers/cn.util";
 
 import IconDown from "../../../public/Down.Icon";
 import IconRight from "../../../public/Right.Icon";
 import IconLeft from "../../../public/Left.Icon";
+import IconCloud from "../../../public/UploadCloud.Icon";
+import IconColumn from "../../../public/Column.Icon";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -24,20 +27,18 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
-import { Toggle } from "@/components/ui/toggle";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Table as TableBox, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-
-import { cn } from "@/helpers/cn.util";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
-  toast: (title: string, message: string) => void;
+  updating: boolean;
+  saveProcedure: () => void;
 }
 
-const Table = <TData, TValue>({ columns, data, toast }: DataTableProps<TData, TValue>) => {
+const Table = <TData, TValue>({ columns, data, updating, saveProcedure }: DataTableProps<TData, TValue>) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
@@ -78,10 +79,18 @@ const Table = <TData, TValue>({ columns, data, toast }: DataTableProps<TData, TV
           )}
         />
         <div className="ml-auto gap-2 flex">
+          {updating && table.getRowModel().rows.length != 0 && (
+            <Button onClick={saveProcedure} className="gap-2 flex" variant={"secondary"}>
+              <IconCloud className="h-4 w-4" />
+              Atualizar
+            </Button>
+          )}
+
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="primary" className="text-xs">
-                Colunas <IconDown className="ml-2 h-3 w-3" />
+                <IconColumn className="h-4 w-4" />
+                <IconDown className="ml-2 h-3 w-3" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">

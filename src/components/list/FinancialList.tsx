@@ -18,6 +18,7 @@ import IconCheck from "../../../public/Check.Icon";
 import IconDown from "../../../public/Down.Icon";
 import IconRight from "../../../public/Right.Icon";
 import IconLeft from "../../../public/Left.Icon";
+import IconColumn from "../../../public/Column.Icon";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -79,7 +80,8 @@ const Table = <TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="primary" className="ml-auto text-xs">
-              Colunas <IconDown className="ml-2 h-3 w-3" />
+              <IconColumn className="h-4 w-4" />
+              <IconDown className="ml-2 h-3 w-3" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">

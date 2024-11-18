@@ -130,9 +130,9 @@ const getMenuList = (pathname: string): Group[] => {
               active: pathname === "/app/settings",
             },
             {
-              href: "/app/settings/acess",
+              href: "/app/settings/access",
               label: "Acesso",
-              active: pathname === "/app/settings/acess",
+              active: pathname === "/app/settings/access",
             },
             {
               href: "/app/settings/clinic",
@@ -140,9 +140,9 @@ const getMenuList = (pathname: string): Group[] => {
               active: pathname === "/app/settings/clinic",
             },
             {
-              href: "/app/settings/services",
+              href: "/app/settings/procedures",
               label: "Serviços",
-              active: pathname === "/app/settings/services",
+              active: pathname === "/app/settings/procedures",
             },
           ],
         },

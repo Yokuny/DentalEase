@@ -8,7 +8,7 @@ import type { PartialFinancial } from "@/types";
 import { CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
 import List from "../../../components/list/FinancialList";
-import Register from "./Register";
+import Register from "./RegisterBtn";
 
 const Interfaces = () => {
   const [financials, setFinancials] = useState<PartialFinancial[]>([]);

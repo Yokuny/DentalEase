@@ -17,3 +17,7 @@ export const passRegexMessage = () => ({
 export const objectIdMessage = () => ({
   message: `ID fornecido tem formato inválido`,
 });
+
+export const priceMessage = () => ({
+  message: `O campo deve ser um valor numérico`,
+});

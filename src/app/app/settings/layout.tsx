@@ -18,7 +18,7 @@ const sidebarNavItems = [
   },
   {
     title: "Acesso",
-    href: "/app/settings/acess",
+    href: "/app/settings/access",
   },
   {
     title: "Clinica",
@@ -26,7 +26,7 @@ const sidebarNavItems = [
   },
   {
     title: "Serviços",
-    href: "/app/settings/services",
+    href: "/app/settings/procedures",
   },
 ];
 

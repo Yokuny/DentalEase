@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 
-export const middleware = (request: NextRequest) => {
+export const middleware = async (request: NextRequest) => {
   const siteURL = new URL("/login", request.url);
   const appURL = new URL("/app", request.url);
 
-  const authCookie = cookies().has("auth");
+  const cookieStore = await cookies();
+  const authCookie = cookieStore.has("auth");
   const { pathname } = request.nextUrl;
 
   if (authCookie) {

@@ -32,7 +32,7 @@ const WorkSpace = () => {
       <PopoverTrigger asChild className="sticky top-0 z-40">
         <div className="md:h-16 h-14 w-full bg-gradient-to-r from-sky-400 to-primaryBlue saturate-150 flex items-center justify-center">
           <Button
-            variant="outlineBlue"
+            variant="glassy"
             role="combobox"
             aria-expanded={open}
             className="h-12 md:max-w-[700px] md:w-full w-11/12 justify-between text-white shadow-sm">

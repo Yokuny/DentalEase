@@ -42,7 +42,7 @@ export const columns: ColumnDef<PartialOdontogram>[] = [
     header: ({ column }) => SortableComponent({ column, title: "Paciente" }),
   },
   {
-    accessorKey: "workToBeDone",
+    accessorKey: "procedures",
     header: "Serviço",
   },
   {

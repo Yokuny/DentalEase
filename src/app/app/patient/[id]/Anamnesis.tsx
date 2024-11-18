@@ -69,6 +69,7 @@ const Anamnesis = ({ toast }: ToastProps) => {
       },
       importantHealthInformation: "",
     },
+    mode: "onChange",
   });
 
   async function onSubmit(values: z.infer<typeof anamnesisSchema>) {
@@ -213,11 +214,9 @@ const Anamnesis = ({ toast }: ToastProps) => {
                       <FormLabel>Fumante</FormLabel>
                       <FormControl>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl className="md:text-sm text-xs">
-                            <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                              <SelectValue />
-                            </SelectTrigger>
-                          </FormControl>
+                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
+                            <SelectValue />
+                          </SelectTrigger>
                           <SelectContent>
                             <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
                               Sim
@@ -240,11 +239,9 @@ const Anamnesis = ({ toast }: ToastProps) => {
                       <FormLabel>Consumidor de álcool</FormLabel>
                       <FormControl>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl className="md:text-sm text-xs">
-                            <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                              <SelectValue />
-                            </SelectTrigger>
-                          </FormControl>
+                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
+                            <SelectValue />
+                          </SelectTrigger>
                           <SelectContent>
                             <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
                               Sim
@@ -267,11 +264,9 @@ const Anamnesis = ({ toast }: ToastProps) => {
                       <FormLabel>Rói caneta ou lápis</FormLabel>
                       <FormControl>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl className="md:text-sm text-xs">
-                            <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                              <SelectValue />
-                            </SelectTrigger>
-                          </FormControl>
+                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
+                            <SelectValue />
+                          </SelectTrigger>
                           <SelectContent>
                             <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
                               Sim
@@ -294,11 +289,9 @@ const Anamnesis = ({ toast }: ToastProps) => {
                       <FormLabel>Rói unhas</FormLabel>
                       <FormControl>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl className="md:text-sm text-xs">
-                            <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                              <SelectValue />
-                            </SelectTrigger>
-                          </FormControl>
+                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
+                            <SelectValue />
+                          </SelectTrigger>
                           <SelectContent>
                             <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
                               Sim
@@ -342,11 +335,9 @@ const Anamnesis = ({ toast }: ToastProps) => {
                       <FormLabel>Alergia a medicamentos</FormLabel>
                       <FormControl>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl className="md:text-sm text-xs">
-                            <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                              <SelectValue />
-                            </SelectTrigger>
-                          </FormControl>
+                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
+                            <SelectValue />
+                          </SelectTrigger>
                           <SelectContent>
                             <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
                               Sim
@@ -389,11 +380,9 @@ const Anamnesis = ({ toast }: ToastProps) => {
                       <FormLabel>Gengiva sangra</FormLabel>
                       <FormControl>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl className="md:text-sm text-xs">
-                            <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                              <SelectValue />
-                            </SelectTrigger>
-                          </FormControl>
+                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
+                            <SelectValue />
+                          </SelectTrigger>
                           <SelectContent>
                             <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
                               Sim
@@ -416,11 +405,9 @@ const Anamnesis = ({ toast }: ToastProps) => {
                       <FormLabel>Dentes sensíveis</FormLabel>
                       <FormControl>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl className="md:text-sm text-xs">
-                            <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                              <SelectValue />
-                            </SelectTrigger>
-                          </FormControl>
+                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
+                            <SelectValue />
+                          </SelectTrigger>
                           <SelectContent>
                             <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
                               Sim
@@ -443,11 +430,9 @@ const Anamnesis = ({ toast }: ToastProps) => {
                       <FormLabel>Grávida</FormLabel>
                       <FormControl>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl className="md:text-sm text-xs">
-                            <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                              <SelectValue />
-                            </SelectTrigger>
-                          </FormControl>
+                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
+                            <SelectValue />
+                          </SelectTrigger>
                           <SelectContent>
                             <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
                               Sim
@@ -493,11 +478,9 @@ const Anamnesis = ({ toast }: ToastProps) => {
                       <FormLabel>Amamentando</FormLabel>
                       <FormControl>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl className="md:text-sm text-xs">
-                            <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                              <SelectValue />
-                            </SelectTrigger>
-                          </FormControl>
+                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
+                            <SelectValue />
+                          </SelectTrigger>
                           <SelectContent>
                             <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
                               Sim
@@ -520,11 +503,9 @@ const Anamnesis = ({ toast }: ToastProps) => {
                       <FormLabel>Em tratamento médico</FormLabel>
                       <FormControl>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl className="md:text-sm text-xs">
-                            <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                              <SelectValue />
-                            </SelectTrigger>
-                          </FormControl>
+                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
+                            <SelectValue />
+                          </SelectTrigger>
                           <SelectContent>
                             <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
                               Sim
@@ -567,11 +548,9 @@ const Anamnesis = ({ toast }: ToastProps) => {
                       <FormLabel>Tomando medicamentos</FormLabel>
                       <FormControl>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl className="md:text-sm text-xs">
-                            <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                              <SelectValue />
-                            </SelectTrigger>
-                          </FormControl>
+                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
+                            <SelectValue />
+                          </SelectTrigger>
                           <SelectContent>
                             <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
                               Sim
@@ -617,11 +596,9 @@ const Anamnesis = ({ toast }: ToastProps) => {
                       <FormLabel>Diabetes</FormLabel>
                       <FormControl>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl className="md:text-sm text-xs">
-                            <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                              <SelectValue />
-                            </SelectTrigger>
-                          </FormControl>
+                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
+                            <SelectValue />
+                          </SelectTrigger>
                           <SelectContent>
                             <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
                               Sim
@@ -644,11 +621,9 @@ const Anamnesis = ({ toast }: ToastProps) => {
                       <FormLabel>Tuberculose</FormLabel>
                       <FormControl>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl className="md:text-sm text-xs">
-                            <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                              <SelectValue />
-                            </SelectTrigger>
-                          </FormControl>
+                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
+                            <SelectValue />
+                          </SelectTrigger>
                           <SelectContent>
                             <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
                               Sim
@@ -671,11 +646,9 @@ const Anamnesis = ({ toast }: ToastProps) => {
                       <FormLabel>Problemas cardíacos</FormLabel>
                       <FormControl>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl className="md:text-sm text-xs">
-                            <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                              <SelectValue />
-                            </SelectTrigger>
-                          </FormControl>
+                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
+                            <SelectValue />
+                          </SelectTrigger>
                           <SelectContent>
                             <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
                               Sim
@@ -698,11 +671,9 @@ const Anamnesis = ({ toast }: ToastProps) => {
                       <FormLabel>Artrite</FormLabel>
                       <FormControl>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl className="md:text-sm text-xs">
-                            <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                              <SelectValue />
-                            </SelectTrigger>
-                          </FormControl>
+                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
+                            <SelectValue />
+                          </SelectTrigger>
                           <SelectContent>
                             <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
                               Sim
@@ -725,11 +696,9 @@ const Anamnesis = ({ toast }: ToastProps) => {
                       <FormLabel>Asma</FormLabel>
                       <FormControl>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl className="md:text-sm text-xs">
-                            <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                              <SelectValue />
-                            </SelectTrigger>
-                          </FormControl>
+                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
+                            <SelectValue />
+                          </SelectTrigger>
                           <SelectContent>
                             <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
                               Sim
@@ -752,11 +721,9 @@ const Anamnesis = ({ toast }: ToastProps) => {
                       <FormLabel>Pressão alta</FormLabel>
                       <FormControl>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl className="md:text-sm text-xs">
-                            <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                              <SelectValue />
-                            </SelectTrigger>
-                          </FormControl>
+                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
+                            <SelectValue />
+                          </SelectTrigger>
                           <SelectContent>
                             <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
                               Sim
@@ -779,11 +746,9 @@ const Anamnesis = ({ toast }: ToastProps) => {
                       <FormLabel>Problemas renais</FormLabel>
                       <FormControl>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl className="md:text-sm text-xs">
-                            <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                              <SelectValue />
-                            </SelectTrigger>
-                          </FormControl>
+                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
+                            <SelectValue />
+                          </SelectTrigger>
                           <SelectContent>
                             <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
                               Sim
@@ -806,11 +771,9 @@ const Anamnesis = ({ toast }: ToastProps) => {
                       <FormLabel>Problemas hepáticos</FormLabel>
                       <FormControl>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl className="md:text-sm text-xs">
-                            <SelectTrigger className="bg-white dark:bg-slate-950/50">
-                              <SelectValue />
-                            </SelectTrigger>
-                          </FormControl>
+                          <SelectTrigger className="bg-white dark:bg-slate-950/50">
+                            <SelectValue />
+                          </SelectTrigger>
                           <SelectContent>
                             <SelectItem className="text-xs" disabled={isLoading} value={"true"}>
                               Sim
@@ -856,8 +819,8 @@ const Anamnesis = ({ toast }: ToastProps) => {
                 </Button>
                 <Button
                   type="button"
-                  variant={"outlineBlue"}
-                  className="mt-4 w-1/4 text-darkBlue"
+                  variant={"glassy"}
+                  className="mt-4 w-1/4"
                   onClick={() => router.back()}
                   disabled={isLoading}>
                   Voltar

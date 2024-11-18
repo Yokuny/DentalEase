@@ -10,7 +10,7 @@ import type { PartialPatient } from "@/types";
 import { CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
 import List from "../../../components/list/PatientList";
-import Register from "./Register";
+import Register from "./RegisterBtn";
 
 const Interfaces = () => {
   // const [isLoading, setIsLoading] = useState<boolean>(false);

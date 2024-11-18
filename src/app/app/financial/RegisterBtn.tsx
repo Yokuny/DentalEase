@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
@@ -17,7 +19,7 @@ import {
 } from "@/components/ui/drawer";
 import FinancialForm from "./Form";
 
-const NewFinancial = ({ toast }: ToastProps) => {
+const FinancialDrawer = ({ toast }: ToastProps) => {
   const searchParams = useSearchParams();
   const financialParam = searchParams.get("interface");
   const closed = () => toast("Operação cancelada", "O registro foi limpo");
@@ -42,7 +44,7 @@ const NewFinancial = ({ toast }: ToastProps) => {
             <DrawerTitle>Novo Registro Financeiro </DrawerTitle>
             <DrawerDescription>Adicione um novo registro financeiro</DrawerDescription>
           </DrawerHeader>
-          <div className="p-4 pb-0">
+          <div className="py-4 pb-0">
             <FinancialForm toast={toast} />
           </div>
           <DrawerFooter>
@@ -50,7 +52,7 @@ const NewFinancial = ({ toast }: ToastProps) => {
               <Link
                 onClick={closed}
                 href={"/app/financial"}
-                className={cn(buttonVariants({ variant: "outlineBlue" }), "text-darkBlue")}>
+                className={cn(buttonVariants({ variant: "link" }), "text-darkBlue w-full !no-underline")}>
                 Cancelar
               </Link>
             </DrawerClose>
@@ -61,4 +63,4 @@ const NewFinancial = ({ toast }: ToastProps) => {
   );
 };
 
-export default NewFinancial;
+export default FinancialDrawer;

@@ -54,25 +54,25 @@ export const columns: ColumnDef<PartialFinancial>[] = [
     header: ({ column }) => SortableComponent({ column, title: "Doutor" }),
   },
   {
-    accessorKey: "workToBeDone",
+    accessorKey: "procedures",
     header: "Serviço",
   },
-  {
-    accessorKey: "price",
-    header: ({ column }) => SortableComponent({ column, title: "Valor" }),
-    cell: ({ row }) => {
-      const { price } = row.original;
+  // {
+  //   accessorKey: "price",
+  //   header: ({ column }) => SortableComponent({ column, title: "Valor" }),
+  //   cell: ({ row }) => {
+  //     const { price } = row.original;
 
-      return (
-        <div className="flex items-center gap-2">
-          <span className="sr-only">Valor</span>
-          <p className="text-xs">
-            R$ <span className="text-sm">{price.toFixed(2)}</span>
-          </p>
-        </div>
-      );
-    },
-  },
+  //     return (
+  //       <div className="flex items-center gap-2">
+  //         <span className="sr-only">Valor</span>
+  //         <p className="text-xs">
+  //           R$ <span className="text-sm">{price.toFixed(2)}</span>
+  //         </p>
+  //       </div>
+  //     );
+  //   },
+  // },
   {
     id: "actions",
     enableHiding: false,
@@ -94,7 +94,7 @@ export const columns: ColumnDef<PartialFinancial>[] = [
                 <Link href={`/app/financial/${financial._id}`}>Visualizar detalhes</Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={handleCopy(financial.price.toString())}>Copiar preço</DropdownMenuItem>
+              {/* <DropdownMenuItem onClick={handleCopy(financial.price.toString())}>Copiar preço</DropdownMenuItem> */}
               <DropdownMenuItem onClick={handleCopy(financial.patient)}>Copiar nome do paciente</DropdownMenuItem>
               <DropdownMenuItem onClick={handleCopy(financial.doctor)}>Copiar nome do doutor</DropdownMenuItem>
               <DropdownMenuItem onClick={handleCopy(financial.patient_id)}>Copiar ID do paciente</DropdownMenuItem>

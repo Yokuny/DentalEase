@@ -21,7 +21,7 @@ type Financial = {
   patient: string;
   doctor: string;
   price: number;
-  workToBeDone: string;
+  procedures: string;
   status: "Cancelado" | "Pago" | "Pendente";
 };
 
@@ -37,6 +37,7 @@ const FinancialForm = ({ toast }: ToastProps) => {
       Financial: "",
       startTime: "",
     },
+    mode: "onChange",
   });
 
   useEffect(() => {
@@ -100,7 +101,7 @@ const FinancialForm = ({ toast }: ToastProps) => {
                 control={form.control}
                 name="Financial"
                 render={({ field }) => (
-                  <FormItem className="w-full">
+                  <FormItem className="max-w-sm w-full">
                     <FormControl>
                       <FinancialCombobox controller={{ ...field }} toast={toast} />
                     </FormControl>

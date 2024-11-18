@@ -12,5 +12,5 @@ export const workSpace = [
   { value: "settings", label: "Configurações" },
   { value: "settings/access", label: "Acesso" },
   { value: "settings/clinic", label: "Clinica" },
-  { value: "settings/services", label: "Serviços" },
+  { value: "settings/procedures", label: "Serviços" },
 ];

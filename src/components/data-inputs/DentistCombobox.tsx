@@ -13,8 +13,8 @@ import { Button } from "@/components/ui/button";
 const DentistCombobox = ({ controller, toast }: { controller: any; toast: any }) => {
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [dentists, setDentists] = useState([{ value: "", label: "Selecione o dentista..." }]);
   const [dentist, setDentist] = useState("");
+  const [dentists, setDentists] = useState([{ value: "", label: "Selecione o dentista..." }]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -34,8 +34,12 @@ const DentistCombobox = ({ controller, toast }: { controller: any; toast: any })
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild className="w-full">
-        <Button role="combobox" aria-expanded={open} className="h-10 justify-between font-medium">
-          {dentist ? dentists.find((item) => item.value === dentist)?.label : "Selecione o dentista..."}
+        <Button
+          variant={dentist ? "secondary" : "primary"}
+          className="h-10 w-full justify-between font-medium"
+          aria-expanded={open}
+          role="combobox">
+          {dentist ? dentists.find((item) => item.value === dentist)?.label : "Selecione o dentista"}
           <IconSort className="ml-2 h-3 w-3 shrink-0" />
         </Button>
       </PopoverTrigger>

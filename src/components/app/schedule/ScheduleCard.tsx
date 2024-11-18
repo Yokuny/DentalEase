@@ -11,7 +11,7 @@ type Financial = {
   patient: string;
   doctor: string;
   price: number;
-  workToBeDone: string;
+  procedures: string;
   status: "Cancelado" | "Pago" | "Pendente";
 };
 
@@ -56,7 +56,7 @@ const ScheduleCard = ({ financial, startDate }: ScheduleCardProps) => {
       <div className="gap-6 flex-wrap flex">
         <div className="flex-col flex gap-1">
           <span className="font-semibold text-lg">Serviço</span>
-          <span>{financial?.workToBeDone ? financial.workToBeDone : NoContent(36)}</span>
+          <span>{financial?.procedures ? financial.procedures : NoContent(36)}</span>
         </div>
         <div className="flex-col flex gap-1">
           <span className="font-semibold text-lg">R$</span>

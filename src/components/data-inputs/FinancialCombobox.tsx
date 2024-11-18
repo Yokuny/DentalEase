@@ -13,8 +13,8 @@ import { Button } from "@/components/ui/button";
 const FinancialCombobox = ({ controller, toast, disabled }: any) => {
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [financials, setFinancials] = useState([{ value: "", label: "Selecione um registro..." }]);
   const [financial, setFinancial] = useState("");
+  const [financials, setFinancials] = useState([{ value: "", label: "Selecione um registro" }]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -34,7 +34,11 @@ const FinancialCombobox = ({ controller, toast, disabled }: any) => {
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild className="w-full" disabled={isLoading || disabled}>
-        <Button role="combobox" aria-expanded={open} className="h-10 justify-between font-medium">
+        <Button
+          variant={financial ? "secondary" : "primary"}
+          className="h-10 w-full justify-between font-medium"
+          aria-expanded={open}
+          role="combobox">
           {financial ? financials.find((item) => item.value === financial)?.label : "Selecione um registro..."}
           <IconSort className="ml-2 h-3 w-3 shrink-0" />
         </Button>
