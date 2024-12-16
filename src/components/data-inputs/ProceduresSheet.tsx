@@ -16,6 +16,7 @@ import IconEdit from "../../../public/EditSquare.Icon";
 import { Button } from "@/components/ui/button";
 import { Input } from "../ui/input";
 import { Badge } from "../ui/badge";
+import { Separator } from "../ui/separator";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
@@ -86,12 +87,14 @@ const ProceduresSheet = ({ handleProcedure, toast }: ProceduresSheetProps) => {
           aria-expanded={open}
           role="combobox">
           {!btnValue?.procedure && <IconDental className="h-5 w-5 shrink-0" />}
-          <span className="gap-2 items-start flex-col flex">
-            <span className="">{btnValue?.procedure ? btnValue.procedure : "Selecione um procedimento"}</span>
-            <div className="space-x-2">
-              {btnValue?.price && <Badge variant={"positive"}>R$ {btnValue.price}</Badge>}
-              {btnValue?.status && <Badge>{btnValue.status}</Badge>}
-            </div>
+          <span className="gap-2 p-2 items-start flex-col flex">
+            <span>{btnValue?.procedure ? btnValue.procedure : "Selecione um procedimento"}</span>
+            {btnValue?.price && (
+              <div className="space-x-2">
+                {btnValue?.price && <Badge variant={"positive"}>R$ {btnValue.price}</Badge>}
+                {btnValue?.status && <Badge>{btnValue.status}</Badge>}
+              </div>
+            )}
           </span>
           {btnValue?.procedure && <IconEdit className="h-5 w-5 shrink-0" />}
         </Button>

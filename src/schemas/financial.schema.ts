@@ -23,5 +23,10 @@ export const procedureSchema = z.object({
   status: z.enum(["pending", "paid", "canceled"]),
 });
 
+export const financialStatusSchema = z.object({
+  status: z.enum(["pending", "partial", "paid", "refund", "canceled"]).default("pending"),
+});
+
+export type FinancialStatus = z.infer<typeof financialStatusSchema>;
 export type NewFinancial = z.infer<typeof financialSchema>;
 export type NewProcedure = z.infer<typeof procedureSchema>;

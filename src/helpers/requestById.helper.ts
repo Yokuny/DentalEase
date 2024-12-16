@@ -22,7 +22,7 @@ export const requestOdontogram = async (id: string) => {
 // Financial
 
 export const requestFinancial = async (id: string) => {
-  const res = await request(`financial?id=${id}`, GET());
+  const res = await request(`financial/${id}`, GET());
   if (res.success !== true) throw new Error(res.message);
 
   return res.data as FullFinancial;

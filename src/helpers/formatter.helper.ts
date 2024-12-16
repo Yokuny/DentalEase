@@ -6,7 +6,6 @@ import type {
   Combobox,
   PatientCombobox,
   ClinicProcedure,
-  ProcedureData,
   ProcedureSheet,
 } from "@/types";
 
@@ -121,6 +120,14 @@ export const extractData = (data: Date | string | undefined | null, format: stri
     default:
       return `${dayAndMonth} ${date.getFullYear()}`;
   }
+};
+
+export const financialStatus: { [key: string]: string } = {
+  pending: "Pendente",
+  partial: "Parcial",
+  paid: "Pago",
+  refund: "Reembolsado",
+  canceled: "Cancelado",
 };
 
 export const parseCSV = (csv: string): ClinicProcedure[] => {

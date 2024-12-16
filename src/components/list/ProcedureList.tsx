@@ -31,13 +31,6 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { Table as TableBox, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
-  updating: boolean;
-  saveProcedure: () => void;
-}
-
 const Table = <TData, TValue>({ columns, data, updating, saveProcedure }: DataTableProps<TData, TValue>) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -195,5 +188,12 @@ const Table = <TData, TValue>({ columns, data, updating, saveProcedure }: DataTa
     </div>
   );
 };
+
+interface DataTableProps<TData, TValue> {
+  columns: ColumnDef<TData, TValue>[];
+  data: TData[];
+  updating: boolean;
+  saveProcedure: () => void;
+}
 
 export default Table;

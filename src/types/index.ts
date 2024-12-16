@@ -81,17 +81,30 @@ export type PartialDoctor = {
 
 export type PartialFinancial = {
   _id: string;
-  procedures: procedure[];
-  price: number;
   patient: string;
   doctor: string;
   patient_id: string;
   doctor_id: string;
-  odontogram_id: string;
-  status: "Pendente" | "Pago" | "Cancelado";
+  price: number;
+  status: "Pendente" | "Parcial" | "Pago" | "Cancelado";
+  date: Date;
 };
 export type ClinicFinancial = NewFinancial & Clinic;
-export type FullFinancial = ClinicFinancial & { _id: string; createdAt: Date };
+export type FullFinancial = ClinicFinancial & { _id: string; createdAt: Date } & {
+  Patient: {
+    _id: string;
+    name: string;
+    image: string;
+    email: string;
+    phone: string;
+    cpf: string;
+    rg: string;
+    sex: string;
+    birthdate: Date;
+  };
+  Doctor: { _id: string; name: string; image: string };
+  price: number;
+};
 
 export type PartialSchedule = {
   _id: string;

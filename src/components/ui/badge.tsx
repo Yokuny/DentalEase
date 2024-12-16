@@ -8,11 +8,11 @@ const badgeVariants = cva(
   {
     variants: {
       variant: {
-        positive: "bg-gradient-to-r from-green-400 to-green-500 text-white dark:text-black",
-        neutral: "bg-gradient-to-r from-skyBlue bg-primaryBlue text-white dark:text-black",
-        negative: "bg-gradient-to-r from-red-400 to-red-500 text-white dark:text-black",
-        pink: "bg-gradient-to-r from-pink-400 to-pink-500 text-white dark:text-black",
-        alert: "bg-gradient-to-r from-amber-400 to-amber-500 text-white dark:text-black",
+        positive: "bg-gradient-to-r from-green-400 to-green-500 text-white dark:text-slate-800",
+        neutral: "bg-gradient-to-r from-skyBlue bg-primaryBlue text-white dark:text-slate-800",
+        negative: "bg-gradient-to-r from-red-400 to-red-500 text-white dark:text-slate-800",
+        pink: "bg-gradient-to-r from-pink-400 to-pink-500 text-white dark:text-slate-800",
+        alert: "bg-gradient-to-r from-amber-400 to-amber-500 text-white dark:text-slate-800",
         outline: "border-solid border-slate-600 dark:border-slate-400 border text-foreground",
       },
     },

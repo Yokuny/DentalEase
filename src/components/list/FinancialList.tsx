@@ -13,6 +13,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import { cn } from "@/helpers/cn.util";
 
 import IconCheck from "../../../public/Check.Icon";
 import IconDown from "../../../public/Down.Icon";
@@ -29,13 +30,6 @@ import { Input } from "@/components/ui/input";
 import { Toggle } from "@/components/ui/toggle";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Table as TableBox, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-
-import { cn } from "@/helpers/cn.util";
-
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
-}
 
 const Table = <TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) => {
   const [sorting, setSorting] = useState<SortingState>([]);
@@ -171,5 +165,9 @@ const Table = <TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) 
     </div>
   );
 };
+interface DataTableProps<TData, TValue> {
+  columns: ColumnDef<TData, TValue>[];
+  data: TData[];
+}
 
 export default Table;
